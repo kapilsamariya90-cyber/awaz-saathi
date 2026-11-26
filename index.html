@@ -166,6 +166,27 @@ html[data-accent="pink"] { --accent: #9d174d; --tint: #fce7f3; }
 html[data-accent="gold"] { --accent: #7a4a00; --tint: #fdf6e3; }
 .set-row { margin: 14px 0; }
 .hint { display: block; margin: 6px 0 14px; font-size: 1rem; line-height: 1.55; color: var(--muted); max-width: 70ch; }
+/* थीम (पूरे ऐप का रूप). ऊँचाई/किनारे नहीं बदलते; हाई कंट्रास्ट (नीचे) सबसे ऊपर रहता है */
+html[data-theme="apple"] { --ink: #1d1d1f; --surf: #ffffff; --muted: #3c3c43; --rule: #d1d1d6; --focus: #0071e3; --tint: #f2f2f7; background: #ffffff; }
+html[data-theme="apple"][data-accent="default"] { --accent: #0071e3; }
+html[data-theme="apple"] body { background: #ffffff; color: #1d1d1f; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, system-ui, sans-serif, "Noto Sans Devanagari", "Mangal"; }
+html[data-theme="apple"] .btn, html[data-theme="apple"] .choice, html[data-theme="apple"] input, html[data-theme="apple"] select, html[data-theme="apple"] textarea { border-radius: 14px; }
+html[data-theme="apple"] .btn { min-height: 52px; }
+html[data-theme="apple"] .notice, html[data-theme="apple"] .policy { border-radius: 18px; }
+html[data-theme="dark"] { --ink: #ffffff; --surf: #000000; --muted: #e5e5e5; --rule: #8e8e93; --focus: #ffd60a; --tint: #1c1c1e; background: #000000; color-scheme: dark; }
+html[data-theme="dark"][data-accent] { --accent: #ffffff; }
+html[data-theme="dark"] body { background: #000000; color: #ffffff; }
+html[data-theme="yellow"] { --ink: #ffff00; --surf: #000000; --muted: #ffff00; --rule: #ffff00; --focus: #00e5ff; --tint: #1a1a00; background: #000000; color-scheme: dark; }
+html[data-theme="yellow"][data-accent] { --accent: #ffff00; }
+html[data-theme="yellow"] body { background: #000000; color: #ffff00; }
+html[data-theme="whiteblue"] { --ink: #ffffff; --surf: #0b3d91; --muted: #ffffff; --rule: #ffffff; --focus: #ffd60a; --tint: #1653b8; background: #0b3d91; }
+html[data-theme="whiteblue"][data-accent] { --accent: #ffffff; }
+html[data-theme="whiteblue"] body { background: #0b3d91; color: #ffffff; }
+html[data-theme="talkback"] { --ink: #f1f3f4; --surf: #121212; --muted: #d7dadc; --rule: #5f6368; --focus: #00e676; --tint: #1e2d24; background: #121212; color-scheme: dark; }
+html[data-theme="talkback"][data-accent] { --accent: #00e676; }
+html[data-theme="talkback"] body { background: #121212; color: #f1f3f4; }
+html[data-theme="talkback"] :focus-visible { outline: 6px solid #00e676; outline-offset: 4px; }
+html[data-theme="talkback"] .btn { min-height: 56px; }
 html.hc { --ink: #000; --surf: #fff; --muted: #000; --rule: #000; --focus: #0000cc; --tint: #fff2a8; }
 html.hc body { background: #fff; color: #000; }
 [hidden] { display: none !important; }
@@ -742,6 +763,16 @@ html.hc body { background: #fff; color: #000; }
       <label class="choice"><input type="radio" aria-describedby="hx-accent" name="accent" value="gold"> <span class="swatch sw-gold" aria-hidden="true"></span> <span>सुनहरा</span></label>
       <p id="hx-accent" class="hint">बटनों का रंग चुनें: आठ में से एक। बदलाव तुरंत दिखेगा। डिफ़ॉल्ट पर लौटने के लिए पहला खाना चुनें।</p>
     </fieldset>
+    <fieldset class="set-row">
+      <legend>थीम (पूरे ऐप का रूप)</legend>
+      <label class="choice"><input type="radio" aria-describedby="hx-theme" name="theme" value="classic"> <span>क्लासिक (मौजूदा)</span></label>
+      <label class="choice"><input type="radio" aria-describedby="hx-theme" name="theme" value="apple"> <span>एप्पल जैसी (साफ़, गोल कोने, नीला)</span></label>
+      <label class="choice"><input type="radio" aria-describedby="hx-theme" name="theme" value="dark"> <span>डार्क (पूरा काला)</span></label>
+      <label class="choice"><input type="radio" aria-describedby="hx-theme" name="theme" value="yellow"> <span>पीला-काला (बहुत साफ़ दिखे)</span></label>
+      <label class="choice"><input type="radio" aria-describedby="hx-theme" name="theme" value="whiteblue"> <span>सफ़ेद-नीला</span></label>
+      <label class="choice"><input type="radio" aria-describedby="hx-theme" name="theme" value="talkback"> <span>TalkBack जैसी (गहरा, हरा फ़ोकस)</span></label>
+      <p id="hx-theme" class="hint">पूरे ऐप का रूप चुनें: छह में से एक। डार्क, पीला-काला, सफ़ेद-नीला और TalkBack जैसी थीम में बटनों का रंग थीम का ही रहता है। ऊपर का रंग वाला चुनाव सिर्फ़ क्लासिक और एप्पल जैसी थीम में बदलता है।</p>
+    </fieldset>
   </section>
 
   <section aria-labelledby="h-read">
@@ -781,11 +812,34 @@ html.hc body { background: #fff; color: #000; }
     <p id="hx-selfspeak" class="hint">चालू हो तो बटन, खाने और शीर्षक पर जाने या छूने पर ऐप उसका नाम और छोटी मदद फ़ोन की आवाज़ में खुद बोलता है। अगर फ़ोन में TalkBack चालू है, तो इसे बंद कर दें, ताकि दोनों एक साथ न बोलें।</p>
   </section>
 
+  <section aria-labelledby="h-sr">
+    <h3 id="h-sr" class="sec-title">ऐप का स्क्रीन रीडर / In-app screen reader</h3>
+    <p class="notice">यह स्क्रीन रीडर सिर्फ़ इसी ऐप के अंदर काम करता है। फ़ोन का TalkBack इसकी जगह नहीं ले सकता, और कोई ऐप TalkBack को बदल नहीं सकता। यह ऐप सिर्फ़ Android फ़ोन के लिए है, PC या iPhone के लिए नहीं।</p>
+    <label class="switch-row"><input id="set-sr-on" aria-describedby="hx-sr-on" type="checkbox" role="switch" checked> <span>स्क्रीन रीडर चालू करें</span></label>
+    <p id="hx-sr-on" class="hint">चालू हो तो बटन, खाना, लिंक या शीर्षक पर फ़ोकस जाने, छूने या टैप करने पर ऐप उसका नाम और मदद फ़ोन की आवाज़ में बोलता है।</p>
+    <label for="sr-voice">आवाज़</label>
+    <select id="sr-voice" aria-describedby="hx-sr-voice sr-note" class="big">
+      <option value="auto">अपने-आप चुनें (हिंदी पहले)</option>
+    </select>
+    <p id="hx-sr-voice" class="hint">हिंदी या अंग्रेज़ी की आवाज़ चुनें। यह सूची आपके फ़ोन में मौजूद आवाज़ों से बनती है।</p>
+    <p id="sr-note" class="note" aria-live="polite"></p>
+    <button id="sr-test" type="button" class="btn primary" aria-describedby="hx-sr-test">चुनी हुई आवाज़ सुनें</button>
+    <p id="hx-sr-test" class="hint">दबाने पर चुनी आवाज़ में एक छोटा नमूना बोला जाएगा, ताकि आप आवाज़ और गति जाँच सकें।</p>
+    <label for="sr-rate">स्क्रीन रीडर की गति (0.5 से 2 गुना)</label>
+    <input id="sr-rate" aria-describedby="hx-sr-rate" type="range" min="0.5" max="2" step="0.1" value="1">
+    <p id="hx-sr-rate" class="hint">गति बदलने के लिए स्लाइडर पर टिक कर ऊपर/नीचे स्वाइप करें। हर बार 0.1 गुना बदलेगा।</p>
+    <p class="note">स्क्रीन रीडर की गति: <span id="sr-rate-val">1.0</span> गुना</p>
+    <label for="sr-pitch">स्क्रीन रीडर का सुर (0.5 से 2)</label>
+    <input id="sr-pitch" aria-describedby="hx-sr-pitch" type="range" min="0.5" max="2" step="0.1" value="1">
+    <p id="hx-sr-pitch" class="hint">सुर ऊँचा या नीचा करने के लिए स्लाइडर पर टिक कर स्वाइप करें। 1.0 सामान्य है।</p>
+    <p class="note">सुर: <span id="sr-pitch-val">1.0</span></p>
+  </section>
+
   <section aria-labelledby="h-save">
     <h3 id="h-save" class="sec-title">सेटिंग्स सहेजना</h3>
     <p id="set-store-note" class="support" hidden>इस ब्राउज़र में सेटिंग्स फ़ोन में सहेजी नहीं जा सकतीं। ये सेटिंग्स इसी बार चलेंगी। ऐप बंद करने पर ये वापस पहले जैसी हो जाएँगी।</p>
     <button id="set-reset" type="button" class="btn" aria-describedby="hx-reset">सेटिंग्स पहले जैसी करें</button>
-    <p id="hx-reset" class="hint">आकार, कंट्रास्ट, रंग, भाषा, गति और घोषणा, सब सेटिंग्स पहले जैसी कर देता है।</p>
+    <p id="hx-reset" class="hint">आकार, कंट्रास्ट, रंग, थीम, भाषा, गति, घोषणा और स्क्रीन रीडर (आवाज़, गति, सुर), सब सेटिंग्स पहले जैसी कर देता है।</p>
   </section>
 
   <section aria-labelledby="h-privacy" id="privacy-sec">
@@ -1699,6 +1753,7 @@ function loadVoices() {
   if (!speechOK) return;
   speechVoices = window.speechSynthesis.getVoices() || [];
   showVoiceNote();
+  fillSrVoices();
 }
 
 function speakChunk(run, i) {
@@ -1911,9 +1966,16 @@ bindVolume('#speak-vol', '#speak-vol-down', '#speak-vol-up', 'बोलने �
 var SKEY = 'chitti-settings-v1';
 var FSIZES = [90, 100, 120, 140];
 var FSIZE_NAMES = ['छोटा', 'सामान्य', 'बड़ा', 'बहुत बड़ा'];
-var DEFAULTS = { fsize: 1, contrast: false, lang: 'hi-IN', rate: 1, announce: true, accent: 'default', selfspeak: true };
-var S = { fsize: 1, contrast: false, lang: 'hi-IN', rate: 1, announce: true, accent: 'default', selfspeak: true };
+var DEFAULTS = { fsize: 1, contrast: false, lang: 'hi-IN', rate: 1, announce: true, accent: 'default', selfspeak: true, theme: 'classic', srVoice: 'auto', srRate: 1, srPitch: 1 };
+function cloneDefaults() {
+  var o = {};
+  for (var k in DEFAULTS) { if (DEFAULTS.hasOwnProperty(k)) o[k] = DEFAULTS[k]; }
+  return o;
+}
+var S = cloneDefaults();
 var ACCENTS = ['default', 'blue', 'green', 'orange', 'purple', 'red', 'pink', 'gold'];
+var THEMES = ['classic', 'apple', 'dark', 'yellow', 'whiteblue', 'talkback'];
+var THEME_NAMES = { classic: 'क्लासिक', apple: 'एप्पल जैसी', dark: 'डार्क', yellow: 'पीला-काला', whiteblue: 'सफ़ेद-नीला', talkback: 'TalkBack जैसी' };
 var ACCENT_NAMES = { 'default': 'डिफ़ॉल्ट (काला)', blue: 'नीला', green: 'हरा', orange: 'नारंगी', purple: 'बैंगनी', red: 'लाल', pink: 'गुलाबी', gold: 'सुनहरा' };
 var storeOK = (function () {
   try {
@@ -1936,6 +1998,10 @@ function loadSettings() {
     if (typeof o.announce === 'boolean') S.announce = o.announce;
     if (typeof o.accent === 'string' && ACCENTS.indexOf(o.accent) !== -1) S.accent = o.accent;
     if (typeof o.selfspeak === 'boolean') S.selfspeak = o.selfspeak;
+    if (typeof o.theme === 'string' && THEMES.indexOf(o.theme) !== -1) S.theme = o.theme;
+    if (typeof o.srVoice === 'string' && o.srVoice.length > 0 && o.srVoice.length < 300) S.srVoice = o.srVoice;
+    if (typeof o.srRate === 'number' && o.srRate >= 0.5 && o.srRate <= 2) S.srRate = o.srRate;
+    if (typeof o.srPitch === 'number' && o.srPitch >= 0.5 && o.srPitch <= 2) S.srPitch = o.srPitch;
   } catch (e) { /* खराब सेटिंग्स हों तो पहले जैसी */ }
 }
 function saveSettings() {
@@ -1962,6 +2028,16 @@ function applySettings() {
   $('#set-rate-val').textContent = S.rate.toFixed(1);
   $('#set-announce').checked = !!S.announce;
   $('#set-selfspeak').checked = !!S.selfspeak;
+  document.documentElement.setAttribute('data-theme', S.theme);
+  $$('input[name="theme"]').forEach(function (r) { r.checked = (r.value === S.theme); });
+  $('#set-sr-on').checked = !!S.selfspeak;
+  $('#sr-voice').value = S.srVoice;
+  if ($('#sr-voice').selectedIndex < 0) $('#sr-voice').value = 'auto';
+  $('#sr-rate').value = S.srRate;
+  $('#sr-rate-val').textContent = S.srRate.toFixed(1);
+  $('#sr-pitch').value = S.srPitch;
+  $('#sr-pitch-val').textContent = S.srPitch.toFixed(1);
+  showSrNote();
   var live = S.announce ? 'polite' : 'off';
   $('#status').setAttribute('aria-live', live);
   $('#set-store-note').hidden = storeOK;
@@ -1999,13 +2075,46 @@ $('#set-rate').addEventListener('input', function () {
   applySettings();
   saveSettings();
 });
-$('#set-selfspeak').addEventListener('change', function () {
-  S.selfspeak = this.checked;
+/* स्क्रीन रीडर और "ऐप खुद बोले" एक ही चीज़ है: दोनों एक साथ बदलते हैं */
+function toggleSelfspeak(on) {
+  S.selfspeak = !!on;
   applySettings();
   saveSettings();
   var m = S.selfspeak ? 'ऐप खुद बोलना चालू है।' : 'ऐप खुद बोलना बंद है।';
   say(m);
   speakNow(m);
+}
+$('#set-selfspeak').addEventListener('change', function () { toggleSelfspeak(this.checked); });
+$('#set-sr-on').addEventListener('change', function () { toggleSelfspeak(this.checked); });
+$$('input[name="theme"]').forEach(function (r) {
+  r.addEventListener('change', function () {
+    S.theme = r.value;
+    applySettings();
+    saveSettings();
+    say('थीम ' + THEME_NAMES[S.theme] + ' कर दी गई है।');
+  });
+});
+$('#sr-voice').addEventListener('change', function () {
+  S.srVoice = this.value;
+  applySettings();
+  saveSettings();
+  say('स्क्रीन रीडर की आवाज़ बदल दी गई है।');
+});
+$('#sr-rate').addEventListener('input', function () {
+  S.srRate = Math.round(+this.value * 10) / 10;
+  applySettings();
+  saveSettings();
+});
+$('#sr-pitch').addEventListener('input', function () {
+  S.srPitch = Math.round(+this.value * 10) / 10;
+  applySettings();
+  saveSettings();
+});
+$('#sr-test').addEventListener('click', function () {
+  if (!speechOK) { say('इस फ़ोन में बोलने की सुविधा नहीं है।'); return; }
+  var v = srVoiceObj();
+  var en = !!v && /^en/i.test(v.lang || '');
+  speakNow(en ? 'Hello. This is the screen reader of Awaz Saathi.' : 'नमस्ते। यह आवाज़ साथी का स्क्रीन रीडर है।');
 });
 $('#set-announce').addEventListener('change', function () {
   S.announce = this.checked;
@@ -2014,7 +2123,7 @@ $('#set-announce').addEventListener('change', function () {
   say(S.announce ? 'बटन दबने पर आवाज़ चालू है।' : 'बटन दबने पर आवाज़ बंद है।');
 });
 $('#set-reset').addEventListener('click', function () {
-  S = { fsize: DEFAULTS.fsize, contrast: DEFAULTS.contrast, lang: DEFAULTS.lang, rate: DEFAULTS.rate, announce: DEFAULTS.announce, accent: DEFAULTS.accent, selfspeak: DEFAULTS.selfspeak };
+  S = cloneDefaults();
   applySettings();
   saveSettings();
   say('सेटिंग्स पहले जैसी कर दी गई हैं।');
@@ -2088,15 +2197,67 @@ var lastSelfText = '';
 var lastSelfAt = 0;
 var SELF_TAGS = { BUTTON: 1, A: 1, INPUT: 1, SELECT: 1, TEXTAREA: 1, LABEL: 1, H2: 1, H3: 1 };
 
+/* स्क्रीन रीडर की आवाज़: हिंदी और अंग्रेज़ी की आवाज़ें (hi-* और en-*) */
+function srIsHiEn(v) { return /^(hi|en)([-_]|$)/i.test(v.lang || ''); }
+function srKey(v) { return v.voiceURI || v.name; }
+function srPref() { return (typeof S === 'object' && S && S.srVoice) ? S.srVoice : 'auto'; }
+function srVoiceObj() {
+  var pref = srPref();
+  var found = null;
+  if (pref !== 'auto') {
+    speechVoices.forEach(function (v) { if (!found && srIsHiEn(v) && srKey(v) === pref) found = v; });
+  }
+  if (found) return found;
+  return voiceFor('hi-IN') || voiceFor('en-IN') || null;
+}
+function srOption(val, text) {
+  var o = document.createElement('option');
+  o.value = val;
+  o.textContent = text;
+  return o;
+}
+function fillSrVoices() {
+  var sel = $('#sr-voice');
+  if (!sel) return;
+  var list = speechOK ? speechVoices.filter(srIsHiEn) : [];
+  sel.innerHTML = '';
+  sel.appendChild(srOption('auto', 'अपने-आप चुनें (हिंदी पहले)'));
+  [{ label: 'हिंदी', pre: 'hi' }, { label: 'अंग्रेज़ी', pre: 'en' }].forEach(function (g) {
+    var items = list.filter(function (v) { return (v.lang || '').toLowerCase().split(/[-_]/)[0] === g.pre; });
+    if (!items.length) return;
+    var og = document.createElement('optgroup');
+    og.label = g.label;
+    items.forEach(function (v) { og.appendChild(srOption(srKey(v), v.name + ' (' + v.lang + ')')); });
+    sel.appendChild(og);
+  });
+  sel.value = srPref();
+  if (sel.selectedIndex < 0) sel.value = 'auto';
+  showSrNote();
+}
+function showSrNote() {
+  var note = $('#sr-note');
+  if (!note) return;
+  if (!speechOK) { note.textContent = 'इस फ़ोन में बोलने की सुविधा नहीं है। यह स्क्रीन रीडर Android के Chrome ब्राउज़र में चलता है।'; return; }
+  if (!speechVoices.length) { note.textContent = 'फ़ोन की आवाज़ों की सूची अभी नहीं आई। थोड़ी देर बाद आवाज़ दोबारा चुनें।'; return; }
+  var hasHi = speechVoices.some(function (v) { return /^hi([-_]|$)/i.test(v.lang || ''); });
+  var v = srVoiceObj();
+  if (v && /^en/i.test(v.lang || '')) {
+    note.textContent = 'अंग्रेज़ी आवाज़ चुनी गई है। हिंदी में लिखा पाठ इसमें ठीक से नहीं बोला जाएगा।';
+    return;
+  }
+  if (!hasHi) { note.textContent = 'इस फ़ोन में हिंदी की कोई आवाज़ नहीं मिली। हिंदी आवाज़ के लिए फ़ोन की टेक्स्ट-टू-स्पीच सेटिंग में हिंदी आवाज़ डाउनलोड करें। तब तक हिंदी शब्द ठीक से नहीं बोले जाएँगे।'; return; }
+  note.textContent = 'हिंदी की आवाज़ फ़ोन में मिल गई है।';
+}
 function speakNow(text) {
   if (!speechOK || !text) return;
   try {
     window.speechSynthesis.cancel();
+    var v = srVoiceObj();
     var u = new SpeechSynthesisUtterance(text);
-    u.lang = 'hi-IN';
-    var v = voiceFor('hi-IN');
+    u.lang = (v && v.lang) ? v.lang : 'hi-IN';
     if (v) u.voice = v;
-    u.rate = S.rate;
+    u.rate = S.srRate;
+    u.pitch = S.srPitch;
     u.volume = (typeof speechVol === 'number') ? speechVol : 1;
     window.speechSynthesis.speak(u);
   } catch (e) { /* फ़ोन बोल न सके तो चुप रहें */ }
