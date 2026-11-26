@@ -1,0 +1,2342 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="hyv-type" content="tool">
+<meta name="hyv-layout" content="document">
+<title>आवाज़ साथी</title>
+<script>
+  // ===== इसे बदलें: डेवलपर की लाइन (ऊपर और नीचे दिखती है) =====
+  const DEVELOPER_LINE = 'डेवलपर: कपिल';
+  // ============================================================
+</script>
+<style>
+:root {
+  --ink: var(--hyv-ink, #111);
+  --surf: var(--hyv-surface, #fff);
+  --muted: var(--hyv-muted, #2b2b2b);
+  --rule: var(--hyv-rule, #555);
+  --focus: var(--hyv-intent, #0550ae);
+  --tint: var(--hyv-intent-tint, #eef4fb);
+  --accent: var(--ink);
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  padding: 0 16px 48px;
+  color: var(--ink);
+  font-family: var(--hyv-font, system-ui, sans-serif), "Noto Sans Devanagari", "Mangal", sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+:focus-visible { outline: 4px solid var(--focus); outline-offset: 3px; }
+.skip {
+  position: absolute; left: 12px; top: -200px; z-index: 10;
+  padding: 14px 18px; border-radius: 10px;
+  background: var(--ink); color: var(--surf); font-weight: 700; text-decoration: none;
+}
+.skip:focus { top: 12px; }
+header { padding: 20px 0 8px; }
+h1 { font-size: 2.4rem; line-height: 1.2; margin: 0 0 6px; }
+h2 { font-size: 1.6rem; line-height: 1.3; margin: 0 0 12px; padding-bottom: 8px; border-bottom: 2px solid var(--rule); }
+h3 { font-size: 1.3rem; line-height: 1.3; margin: 24px 0 8px; }
+p { margin: 0 0 12px; max-width: 70ch; }
+.dev { font-weight: 700; }
+.note { color: var(--muted); font-size: 1.05rem; }
+.panel > section, footer {
+  background: var(--surf);
+  border: 2px solid var(--rule);
+  border-inline-start: 8px solid var(--focus);
+  border-radius: 16px;
+  padding: 20px 18px 24px;
+  margin: 20px 0;
+}
+.status {
+  margin: 14px 0; padding: 16px; min-height: 56px;
+  border: 3px solid var(--ink); border-radius: 12px;
+  background: var(--tint);
+  font-size: 1.2rem; font-weight: 700;
+}
+.chips { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.chips a {
+  display: inline-flex; align-items: center; min-height: 56px; padding: 0 16px;
+  border: 2px solid var(--ink); border-radius: 999px; background: var(--tint);
+  color: var(--ink); font-weight: 700; text-decoration: none;
+}
+label { display: block; font-weight: 700; margin: 18px 0 8px; }
+input[type=file] {
+  display: block; width: 100%; min-height: 56px; font: inherit; color: var(--ink);
+}
+input[type=file]::file-selector-button {
+  min-height: 56px; padding: 0 18px; margin-inline-end: 12px;
+  border: 2px solid var(--accent); border-radius: 10px;
+  background: var(--accent); color: var(--surf);
+  font: inherit; font-weight: 700; cursor: pointer;
+}
+select {
+  display: block; width: 100%; min-height: 56px; font: inherit; font-size: 1.1rem;
+  padding: 10px 14px; border: 2px solid var(--ink); border-radius: 10px;
+  background: var(--surf); color: var(--ink);
+}
+select.big { min-height: 64px; font-size: 1.25rem; font-weight: 700; }
+textarea.big-text {
+  display: block; width: 100%; min-height: 200px; font: inherit; font-size: 1.2rem; line-height: 1.6;
+  padding: 12px 14px; border: 2px solid var(--ink); border-radius: 10px;
+  background: var(--surf); color: var(--ink); resize: vertical;
+}
+input[type=range] { flex: 1 1 auto; min-width: 0; width: 100%; min-height: 56px; accent-color: var(--accent); margin: 0; }
+.vol { display: flex; align-items: center; gap: 8px; margin: 4px 0 12px; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; text-align: center;
+  min-height: 56px; min-width: 56px; padding: 10px 18px; margin: 0;
+  font: inherit; font-size: 1.1rem; font-weight: 700; line-height: 1.35;
+  text-decoration: none; color: var(--ink); background: var(--surf);
+  border: 2px solid var(--ink); border-radius: 12px; cursor: pointer;
+  max-width: 100%;
+}
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--surf); }
+.btn:disabled { border-style: dashed; cursor: not-allowed; color: var(--muted); }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0; }
+.actions .btn { flex: 1 1 200px; }
+.group { margin: 14px 0; }
+.group > p { font-weight: 700; margin-bottom: 8px; }
+.list { list-style: none; margin: 8px 0; padding: 0; }
+.item {
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: stretch;
+  padding: 10px 0; border-bottom: 1px solid var(--rule);
+}
+.item .name { flex: 1 1 100%; font-weight: 600; overflow-wrap: anywhere; }
+.item .btn.grow { flex: 1 1 220px; justify-content: flex-start; text-align: start; }
+.support {
+  margin: 12px 0; padding: 12px 14px;
+  border: 2px dashed var(--ink); border-radius: 10px; font-weight: 700;
+}
+.progress { min-height: 1.7em; font-weight: 600; margin: 8px 0; }
+.result { margin-top: 12px; }
+.result .btn { width: 100%; margin-bottom: 8px; }
+audio, video { display: block; width: 100%; max-width: 100%; min-height: 54px; margin: 10px 0; }
+#install-help { outline-offset: 3px; }
+#install-help:not(:empty) { margin: 12px 0; padding: 12px 14px; border: 2px dashed var(--ink); border-radius: 10px; }
+#install-help:focus { outline: 4px solid var(--focus); outline-offset: 3px; }
+#install-help a.btn { display: inline-flex; margin: 8px 0; text-decoration: none; }
+.contact { font-size: 1.3rem; font-weight: 700; }
+.steps { margin: 8px 0 0; padding-inline-start: 1.4em; }
+.steps li { margin-bottom: 10px; }
+.hidden-audio { display: none; }
+noscript p { font-weight: 700; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.panel-title { font-size: 1.9rem; }
+.lead { font-size: 1.2rem; font-weight: 600; margin: 4px 0 16px; }
+h3.sec-title { font-size: 1.4rem; line-height: 1.3; margin: 0 0 12px; padding-bottom: 8px; border-bottom: 2px solid var(--rule); }
+.tab-list { padding-inline-start: 1.2em; }
+.tab-list li { margin-bottom: 10px; }
+.switch-row {
+  display: flex; align-items: center; gap: 14px; min-height: 64px; margin: 12px 0; padding: 10px 14px;
+  border: 2px solid var(--ink); border-radius: 12px; font-weight: 700; cursor: pointer;
+}
+.switch-row input { width: 32px; height: 32px; margin: 0; flex: 0 0 auto; accent-color: var(--accent); }
+fieldset { border: 0; margin: 14px 0; padding: 0; min-width: 0; }
+legend { font-weight: 700; padding: 0; margin-bottom: 6px; }
+.choice { display: flex; align-items: center; gap: 12px; min-height: 56px; margin: 4px 0; font-weight: 600; cursor: pointer; }
+.choice input { width: 28px; height: 28px; margin: 0; flex: 0 0 auto; accent-color: var(--accent); }
+.swatch { display: inline-block; width: 28px; height: 28px; flex: 0 0 auto; border: 2px solid var(--ink); border-radius: 6px; }
+.sw-default { background: #111111; }
+.sw-blue { background: #0b3d91; }
+.sw-green { background: #1b5e20; }
+.sw-orange { background: #9a3412; }
+.sw-purple { background: #6b21a8; }
+.sw-red { background: #991b1b; }
+.sw-pink { background: #9d174d; }
+.sw-gold { background: #7a4a00; }
+.notice { margin: 16px 0; padding: 16px; border: 3px solid var(--ink); border-radius: 12px; background: var(--tint); }
+.notice p { margin: 0 0 10px; }
+.policy { margin: 16px 0; padding: 16px; border: 2px solid var(--ink); border-radius: 12px; background: var(--surf); }
+.policy p { margin: 0 0 12px; }
+/* ऐप का रंग: हर रंग के बटन पर सफ़ेद अक्षर कम से कम 6.5 गुना कंट्रास्ट के साथ */
+html[data-accent="blue"] { --accent: #0b3d91; --tint: #e6eefb; }
+html[data-accent="green"] { --accent: #1b5e20; --tint: #e8f5e9; }
+html[data-accent="orange"] { --accent: #9a3412; --tint: #fff1e6; }
+html[data-accent="purple"] { --accent: #6b21a8; --tint: #f3e8ff; }
+html[data-accent="red"] { --accent: #991b1b; --tint: #fde8e8; }
+html[data-accent="pink"] { --accent: #9d174d; --tint: #fce7f3; }
+html[data-accent="gold"] { --accent: #7a4a00; --tint: #fdf6e3; }
+.set-row { margin: 14px 0; }
+.hint { display: block; margin: 6px 0 14px; font-size: 1rem; line-height: 1.55; color: var(--muted); max-width: 70ch; }
+html.hc { --ink: #000; --surf: #fff; --muted: #000; --rule: #000; --focus: #0000cc; --tint: #fff2a8; }
+html.hc body { background: #fff; color: #000; }
+[hidden] { display: none !important; }
+.big-mic { width: 100%; min-height: 96px; font-size: 1.5rem; margin: 12px 0; }
+.cam-preview { display: block; width: 100%; max-width: 420px; min-height: 120px; background: #000; border: 2px solid var(--ink); border-radius: 12px; margin: 10px 0; }
+.photo { display: block; max-width: 100%; height: auto; border: 2px solid var(--ink); border-radius: 12px; margin: 10px 0; }
+#tc-result .btn { margin: 6px 0; }
+</style>
+</head>
+<body>
+<noscript><p>इस पेज को चलाने के लिए ब्राउज़र में JavaScript चालू होना चाहिए।</p></noscript>
+
+<a class="skip" href="#main">सीधे मुख्य सामग्री पर जाएँ</a>
+
+<header>
+  <h1>आवाज़ साथी</h1>
+  <p class="dev" data-dev-line>डेवलपर: कपिल</p>
+</header>
+
+<div id="status" role="status" aria-live="polite" class="status">आवाज़ साथी तैयार है। सबसे ऊपर का बड़ा बटन दबाकर बोल सकते हैं, या नीचे दिए किसी हिस्से तक स्क्रॉल करें।</div>
+
+<main id="main" tabindex="-1">
+
+<!-- ===== बोलकर काम करें ===== -->
+<div id="panel-voice" class="panel">
+  <h2 id="h-voice" class="panel-title" tabindex="-1">बोलकर काम करें</h2>
+  <p class="lead">नीचे बड़ा बटन दबाएँ, फिर एक आदेश साफ़ आवाज़ में बोलें। ऐप वही हिस्सा खोल देगा।</p>
+
+  <section aria-labelledby="h-voice-cmd">
+    <h3 id="h-voice-cmd" class="sec-title" tabindex="-1">आदेश बोलें</h3>
+    <button id="mic-btn" type="button" class="btn primary big-mic" aria-describedby="hx-mic" aria-pressed="false" aria-label="बोलकर आदेश देने के लिए दबाएँ">बोलकर काम करें</button>
+    <p id="hx-mic" class="hint">दबाने पर फ़ोन सुनने लगेगा। पहली बार फ़ोन माइक्रोफ़ोन की इजाज़त माँग सकता है। बटन दोबारा दबाने पर सुनना बंद होता है।</p>
+    <p id="mic-state" class="note" aria-live="polite"></p>
+    <p class="note">बोलने के नमूने: "वीडियो जोड़ो", "आवाज़ निकालो", "मिलाओ", "गाना", "तस्वीर", "रंग पहचानें", "कैमरा", "सेटिंग", "होम", "पढ़कर सुनाओ", "रुको", "मदद"।</p>
+    <p class="note">बोली पहचानने का काम फ़ोन की अपनी बोली-पहचान सेवा करती है। यह सुविधा फ़ोन और ब्राउज़र पर निर्भर है। अगर फ़ोन में नहीं चलती, तो ऐप खुद बोलकर और लिखकर बताएगा।</p>
+  </section>
+</div>
+
+<!-- ===== होम ===== -->
+<div id="panel-home" class="panel">
+  <div id="privacy-notice" class="notice" role="region" aria-label="प्राइवेसी की सूचना" hidden>
+    <p><strong>आवाज़ साथी आपका कोई निजी डेटा इकट्ठा नहीं करता।</strong> सब काम आपके फ़ोन में ही होता है।</p>
+    <div class="actions">
+      <button id="notice-read" type="button" class="btn primary" aria-describedby="hx-notice">प्राइवेसी पॉलिसी पढ़ें</button>
+      <button id="notice-close" type="button" class="btn" aria-describedby="hx-notice">सूचना बंद करें</button>
+    </div>
+    <p id="hx-notice" class="hint">प्राइवेसी पॉलिसी पढ़ें: पूरी पॉलिसी नीचे सेटिंग वाले हिस्से में खुलेगी। सूचना बंद करें: यह सूचना हट जाएगी और दोबारा नहीं दिखेगी।</p>
+  </div>
+  <h2 id="h-home" class="panel-title" tabindex="-1">होम</h2>
+  <p class="lead">आवाज़ साथी में आपका स्वागत है। यहाँ देखें कि ऐप क्या करता है, किसके लिए है, और कौन-सा काम कहाँ मिलेगा।</p>
+
+  <section aria-labelledby="h-about">
+    <h3 id="h-about" class="sec-title">इस ऐप के बारे में</h3>
+    <p>आवाज़ साथी एक छोटा ऐप है जो आपके फ़ोन में ही चलता है। इसमें ये काम हैं: कई वीडियो एक के बाद एक जोड़ना; किसी वीडियो से आवाज़ निकालकर WAV फ़ाइल बनाना; वीडियो की अपनी आवाज़ की जगह नई आवाज़ या गाना मिलाना; गाना बजाकर उसके साथ अपनी आवाज़ रिकॉर्ड करना और दोनों को एक WAV फ़ाइल में मिलाना; एक तस्वीर और एक आवाज़ वाली फ़ाइल से वीडियो बनाना; और लिखा हुआ पाठ फ़ोन की आवाज़ में बोलकर सुनाना; कैमरे से रंग पहचानना; और कैमरे से रोशनी व हरकत के बारे में बोलकर मदद लेना।</p>
+    <p>यह ऐप नेत्रहीन और कम दिखने वाले लोगों के लिए बनाया गया है, ताकि वे इसे TalkBack के साथ इस्तेमाल कर सकें। इसके बटनों और खानों पर TalkBack के लिए नाम लिखे गए हैं।</p>
+    <p>अभी यह सिर्फ़ एंड्रॉयड फ़ोन के लिए है, कंप्यूटर या लैपटॉप के लिए नहीं।</p>
+    <p>बनी हुई फ़ाइलें इस ऐप में नहीं रहतीं। डाउनलोड या शेयर करके अपने फ़ोन में रख लें।</p>
+    <p>यहाँ कोई फ़ाइल किसी सर्वर पर नहीं भेजी जाती। रेडियो के स्टेशन इंटरनेट से आते हैं, इसलिए उसके लिए इंटरनेट चाहिए।</p>
+  </section>
+
+  <section aria-labelledby="h-tabs">
+    <h3 id="h-tabs" class="sec-title">ऐप में क्या है</h3>
+    <ul class="tab-list">
+      <li><strong>बोलकर काम करें:</strong> सबसे ऊपर का बड़ा बटन। बोलकर सीधे किसी हिस्से पर जा सकते हैं।</li>
+      <li><strong>होम:</strong> यही पेज। ऐप का परिचय, फ़ोन में जोड़ने के कदम और संपर्क।</li>
+      <li><strong>वीडियो:</strong> कई वीडियो जोड़ना, वीडियो से आवाज़ निकालना, और वीडियो में नई आवाज़ मिलाना।</li>
+      <li><strong>आवाज़:</strong> गाने के साथ अपनी रिकॉर्डिंग, तस्वीर और आवाज़ से वीडियो बनाना, और लिखा पाठ बोलकर सुनाना।</li>
+      <li><strong>कैमरे से मदद:</strong> रंग पहचानना और बोलने वाला कैमरा।</li>
+      <li><strong>रेडियो:</strong> आकाशवाणी के कुछ स्टेशन इंटरनेट से सुनना। इंटरनेट न हो तो ऐप बताएगा।</li>
+      <li><strong>सेटिंग:</strong> अक्षरों का आकार, उच्च कंट्रास्ट, ऐप का रंग, ऐप खुद बोले, पढ़कर सुनाने की भाषा और गति, घोषणाएँ, और प्राइवेसी पॉलिसी।</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="h-install">
+    <h3 id="h-install" class="sec-title">फ़ोन में ऐप की तरह रखें</h3>
+    <p>नीचे दिया बटन दबाने पर फ़ोन में जोड़ने के कदम दिखेंगे।</p>
+    <button type="button" id="install-btn" aria-describedby="hx-install" class="btn primary" aria-label="होम स्क्रीन पर जोड़ें। दबाने पर जोड़ने के कदम दिखेंगे">होम स्क्रीन पर जोड़ें</button>
+    <p id="hx-install" class="hint">इससे फ़ोन की होम स्क्रीन पर ऐप का आइकन रखने के कदम दिखते हैं। बटन दबाने पर कदम नीचे खुलेंगे।</p>
+    <div id="install-help" tabindex="-1" aria-live="polite"></div>
+    <p>ब्राउज़र के मेन्यू में "होम स्क्रीन पर जोड़ें" या "ऐप इंस्टॉल करें" चुनकर भी यह फ़ोन में ऐप की तरह दिखेगा।</p>
+  </section>
+
+  <section aria-labelledby="h-contact-home">
+    <h3 id="h-contact-home" class="sec-title">संपर्क</h3>
+  <p class="contact">संपर्क: 9896471058</p>
+  <p id="hx-help-1" class="note">अगर व्हाट्सऐप नहीं है तो कॉल बटन दबाएँ।</p>
+  <p><a class="btn primary" href="https://wa.me/919896471058?text=%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A5%87%20%E0%A4%95%E0%A4%AA%E0%A4%BF%E0%A4%B2%20%E0%A4%9C%E0%A5%80%2C%20%E0%A4%86%E0%A4%B5%E0%A4%BE%E0%A4%9C%E0%A4%BC%20%E0%A4%B8%E0%A4%BE%E0%A4%A5%E0%A5%80%20%E0%A4%90%E0%A4%AA%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AE%E0%A5%81%E0%A4%9D%E0%A5%87%20%E0%A4%AF%E0%A4%B9%20%E0%A4%95%E0%A4%AE%E0%A5%80%20%E0%A4%AE%E0%A4%BF%E0%A4%B2%E0%A5%80%20%E0%A4%B9%E0%A5%88%3A%20" target="_blank" rel="noopener" aria-describedby="hx-wa-1 hx-help-1">कमी बताने के लिए यहाँ दबाओ</a></p>
+  <p id="hx-wa-1" class="hint">दबाने पर व्हाट्सऐप खुलेगा, जिसमें कपिल के लिए कमी बताने का संदेश पहले से लिखा होगा। उसे भेजने के लिए व्हाट्सऐप में भेजें दबाएँ।</p>
+  <p><a class="btn primary" href="tel:+919896471058" aria-describedby="hx-call-1 hx-help-1">कॉल करने के लिए यहाँ दबाओ</a></p>
+  <p id="hx-call-1" class="hint">दबाने पर फ़ोन की कॉल शुरू होगी।</p>
+  </section>
+</div>
+
+<!-- ===== वीडियो ===== -->
+<div id="panel-video" class="panel">
+  <h2 id="h-video" class="panel-title" tabindex="-1">वीडियो</h2>
+  <p class="lead">यहाँ कई वीडियो एक साथ जोड़ सकते हैं, वीडियो से आवाज़ निकाल सकते हैं, और वीडियो में नई आवाज़ मिला सकते हैं।</p>
+
+  <!-- 1. वीडियो जोड़ना -->
+  <section id="join" aria-labelledby="h-join">
+    <h3 id="h-join" class="sec-title">वीडियो जोड़ना</h3>
+    <p>कई वीडियो एक के बाद एक जोड़कर एक नया वीडियो बनाएँ। वीडियो उसी क्रम में जुड़ेंगे जो नीचे दिखाया गया है। क्रम बदलने के लिए "ऊपर" और "नीचे" बटन दबाएँ।</p>
+    <p class="note">जोड़ने में कुल वीडियो की लंबाई जितना समय लगता है। इस दौरान स्क्रीन खुली रखें और दूसरा ऐप न खोलें।</p>
+    <p class="support" data-rec-note hidden>इस ब्राउज़र में वीडियो जोड़ने की सुविधा नहीं है। Chrome, Samsung Internet या Firefox में खोलकर देखें।</p>
+    <label for="join-files">वीडियो फ़ाइलें चुनें (एक से ज़्यादा चुन सकते हैं)</label>
+    <input id="join-files" aria-describedby="hx-join-files" type="file" accept="video/*" multiple>
+    <p id="hx-join-files" class="hint">वीडियो फ़ाइलें चुनने के लिए दबाएँ। एक से ज़्यादा वीडियो एक साथ चुन सकते हैं। चुने हुए वीडियो नीचे सूची में आएँगे।</p>
+    <p id="join-count">अभी कोई वीडियो नहीं चुना गया</p>
+    <ol id="join-list" class="list" aria-label="चुने हुए वीडियो, क्रम से"></ol>
+    <p id="hx-join-list" class="hint">हर वीडियो के "ऊपर" या "नीचे" बटन से उसका क्रम बदलें। "हटाएँ" से वीडियो सूची से निकल जाएगा।</p>
+    <div class="actions">
+      <button id="join-go" aria-describedby="hx-join-btns" type="button" class="btn primary" data-rec aria-label="चुने हुए वीडियो एक के बाद एक जोड़कर नया वीडियो बनाएँ">वीडियो जोड़ें</button>
+      <button id="join-stop" aria-describedby="hx-join-btns" type="button" class="btn" disabled aria-label="वीडियो जोड़ना जल्दी रोकें, जो बन चुका है वह मिलेगा">जल्दी रोकें (जो बना है वह मिलेगा)</button>
+    </div>
+    <p id="hx-join-btns" class="hint">वीडियो जोड़ें: सूची के सारे वीडियो एक के बाद एक जुड़कर नया वीडियो बनेगा। जल्दी रोकें: अभी तक जो बना है, वही मिलेगा।</p>
+    <p id="join-progress" class="progress" aria-hidden="true"></p>
+    <div id="join-result" class="result"></div>
+  </section>
+
+  <!-- 2. वीडियो से आवाज़ निकालना -->
+  <section id="extract" aria-labelledby="h-extract">
+    <h3 id="h-extract" class="sec-title">वीडियो से आवाज़ निकालना</h3>
+    <p>वीडियो चुनें। उसकी आवाज़ WAV फ़ाइल में बन जाएगी।</p>
+    <label for="ext-file">वीडियो फ़ाइल चुनें</label>
+    <input id="ext-file" aria-describedby="hx-ext-file" type="file" accept="video/*">
+    <p id="hx-ext-file" class="hint">वीडियो फ़ाइल चुनने के लिए दबाएँ। उसकी आवाज़ WAV फ़ाइल में बनेगी।</p>
+    <div class="actions">
+      <button id="ext-go" aria-describedby="hx-ext-go" type="button" class="btn primary" data-ac aria-label="चुने हुए वीडियो से आवाज़ निकालकर WAV फ़ाइल बनाएँ">आवाज़ निकालें</button>
+    </div>
+    <p id="hx-ext-go" class="hint">चुने हुए वीडियो से आवाज़ निकालकर WAV फ़ाइल बनाता है।</p>
+    <div id="ext-result" class="result"></div>
+  </section>
+
+  <!-- 3. आवाज़ और वीडियो मिलाना -->
+  <section id="merge" aria-labelledby="h-merge">
+    <h3 id="h-merge" class="sec-title">आवाज़ और वीडियो मिलाना</h3>
+    <p>एक वीडियो और एक आवाज़ वाली फ़ाइल चुनें। नया वीडियो उतना ही लंबा होगा जितना वीडियो है, और उसमें नई आवाज़ सुनाई देगी। वीडियो की अपनी आवाज़ हट जाएगी।</p>
+    <p class="note">यह भी वीडियो की लंबाई जितना समय लेगा। वीडियो से लंबी आवाज़ बीच में कट जाएगी।</p>
+    <p class="support" data-rec-note hidden>इस ब्राउज़र में यह सुविधा नहीं चलती। Chrome, Samsung Internet या Firefox में खोलकर देखें।</p>
+    <label for="merge-video">वीडियो फ़ाइल चुनें</label>
+    <input id="merge-video" aria-describedby="hx-merge-video" type="file" accept="video/*">
+    <p id="hx-merge-video" class="hint">वीडियो फ़ाइल चुनने के लिए दबाएँ। यही वीडियो नए वीडियो का आधार होगा।</p>
+    <label for="merge-audio">आवाज़ वाली फ़ाइल चुनें (गाना या रिकॉर्डिंग)</label>
+    <input id="merge-audio" aria-describedby="hx-merge-audio" type="file" accept="audio/*">
+    <p id="hx-merge-audio" class="hint">गाना या रिकॉर्डिंग वाली आवाज़ फ़ाइल चुनने के लिए दबाएँ।</p>
+    <div class="actions">
+      <button id="merge-go" aria-describedby="hx-merge-btns" type="button" class="btn primary" data-rec aria-label="चुने हुए वीडियो में नई आवाज़ मिलाकर नया वीडियो बनाएँ">मिलाएँ और वीडियो बनाएँ</button>
+      <button id="merge-stop" aria-describedby="hx-merge-btns" type="button" class="btn" disabled aria-label="आवाज़ मिलाना जल्दी रोकें, जो बन चुका है वह मिलेगा">जल्दी रोकें (जो बना है वह मिलेगा)</button>
+    </div>
+    <p id="hx-merge-btns" class="hint">मिलाएँ और वीडियो बनाएँ: वीडियो में नई आवाज़ मिलाकर नया वीडियो बनेगा। जल्दी रोकें: अभी तक जो बना है, वही मिलेगा।</p>
+    <p id="merge-progress" class="progress" aria-hidden="true"></p>
+    <div id="merge-result" class="result"></div>
+  </section>
+</div>
+
+<!-- ===== आवाज़ ===== -->
+<div id="panel-sound" class="panel">
+  <h2 id="h-sound" class="panel-title" tabindex="-1">आवाज़</h2>
+  <p class="lead">यहाँ गाने के साथ अपनी आवाज़ रिकॉर्ड कर सकते हैं, तस्वीर और आवाज़ से वीडियो बना सकते हैं, और लिखा पाठ बोलकर सुन सकते हैं।</p>
+
+  <!-- 4. गाने के साथ रिकॉर्डिंग -->
+  <section id="karaoke" aria-labelledby="h-karaoke">
+    <h3 id="h-karaoke" class="sec-title">गाने के साथ रिकॉर्डिंग</h3>
+    <p>गाने की फ़ाइल चुनें, फिर रिकॉर्डिंग शुरू करें। गाना बजेगा और आपकी आवाज़ माइक्रोफ़ोन से रिकॉर्ड होगी। माइक्रोफ़ोन की इजाज़त माँगी जाएगी।</p>
+    <p class="note">हेडफ़ोन लगाकर गाएँ, ताकि गाना माइक्रोफ़ोन में दोबारा न जाए। गाना खत्म होने पर रिकॉर्डिंग अपने-आप रुक जाएगी।</p>
+    <p class="support" data-rec-note hidden>इस ब्राउज़र में रिकॉर्डिंग नहीं होती। Chrome, Samsung Internet या Firefox में खोलकर देखें।</p>
+
+    <label for="k-track">गाने की फ़ाइल चुनें (ऑडियो)</label>
+    <input id="k-track" aria-describedby="hx-k-track" type="file" accept="audio/*">
+    <p id="hx-k-track" class="hint">गाने की फ़ाइल फ़ोन से चुनने के लिए दबाएँ। फिर "गाना चलाएँ" से उसे सुन सकते हैं।</p>
+    <p id="k-track-name" class="note">कोई गाना नहीं चुना गया</p>
+
+    <div class="group" role="group" aria-label="गाने के बटन">
+      <p>गाना</p>
+      <div class="actions">
+        <button id="k-play-track" aria-describedby="hx-k-play-track" type="button" class="btn" aria-label="चुना हुआ गाना चलाएँ">गाना चलाएँ</button>
+        <button id="k-pause-track" aria-describedby="hx-k-play-track" type="button" class="btn" aria-label="चल रहा गाना रोकें">गाना रोकें</button>
+      </div>
+      <p id="hx-k-play-track" class="hint">गाना चलाएँ: चुना हुआ गाना बजाता है। गाना रोकें: बजता गाना रोक देता है।</p>
+    </div>
+
+    <div class="group" role="group" aria-label="रिकॉर्डिंग के बटन">
+      <p>रिकॉर्डिंग</p>
+      <div class="actions">
+        <button id="k-rec-start" aria-describedby="hx-k-rec" type="button" class="btn primary" data-rec data-mic aria-label="माइक्रोफ़ोन से रिकॉर्डिंग शुरू करें, गाना भी साथ बजेगा">रिकॉर्डिंग शुरू करें</button>
+        <button id="k-rec-stop" aria-describedby="hx-k-rec" type="button" class="btn" aria-label="चल रही रिकॉर्डिंग रोकें">रिकॉर्डिंग रोकें</button>
+      </div>
+      <p id="hx-k-rec" class="hint">रिकॉर्डिंग शुरू करें: माइक्रोफ़ोन से आपकी आवाज़ रिकॉर्ड होगी और गाना साथ बजेगा। रिकॉर्डिंग रोकें: रिकॉर्डिंग बंद करता है।</p>
+      <p id="k-state" class="note" aria-hidden="true">अभी रिकॉर्डिंग नहीं हो रही।</p>
+    </div>
+
+    <div class="group">
+      <label for="k-vol-track">गाने की आवाज़ (0 से 100)</label>
+      <div class="vol">
+        <button id="k-track-down" aria-describedby="hx-k-vol-track" type="button" class="btn" aria-label="गाने की आवाज़ कम करें">कम</button>
+        <input id="k-vol-track" aria-describedby="hx-k-vol-track" type="range" min="0" max="100" step="5" value="80" aria-label="गाने की आवाज़ का स्तर">
+        <button id="k-track-up" aria-describedby="hx-k-vol-track" type="button" class="btn" aria-label="गाने की आवाज़ बढ़ाएँ">बढ़ाएँ</button>
+      </div>
+      <p id="hx-k-vol-track" class="hint">गाने की आवाज़ बदलने के लिए: स्क्रीन-रीडर चालू हो तो स्लाइडर पर टिक कर ऊपर/नीचे स्वाइप करें; या बगल के कम/बढ़ाएँ बटन दबाएँ। हर बार 10 प्रतिशत बदलेगा।</p>
+      <label for="k-vol-vocal">आपकी आवाज़ (0 से 100)</label>
+      <div class="vol">
+        <button id="k-vocal-down" aria-describedby="hx-k-vol-vocal" type="button" class="btn" aria-label="आपकी आवाज़ कम करें">कम</button>
+        <input id="k-vol-vocal" aria-describedby="hx-k-vol-vocal" type="range" min="0" max="100" step="5" value="100" aria-label="आपकी आवाज़ का स्तर">
+        <button id="k-vocal-up" aria-describedby="hx-k-vol-vocal" type="button" class="btn" aria-label="आपकी आवाज़ बढ़ाएँ">बढ़ाएँ</button>
+      </div>
+      <p id="hx-k-vol-vocal" class="hint">आपकी आवाज़ बदलने के लिए: स्क्रीन-रीडर चालू हो तो स्लाइडर पर टिक कर ऊपर/नीचे स्वाइप करें; या बगल के कम/बढ़ाएँ बटन दबाएँ। हर बार 10 प्रतिशत बदलेगा।</p>
+    </div>
+
+    <div class="group" role="group" aria-label="सुनने के बटन">
+      <p>सुनना</p>
+      <div class="actions">
+        <button id="k-play-rec" aria-describedby="hx-k-play" type="button" class="btn" aria-label="अपनी बनी हुई रिकॉर्डिंग सुनें">अपनी रिकॉर्डिंग सुनें</button>
+        <button id="k-play-both" aria-describedby="hx-k-play" type="button" class="btn" aria-label="गाने के साथ अपनी रिकॉर्डिंग सुनें">गाने के साथ सुनें</button>
+        <button id="k-stop-all" aria-describedby="hx-k-play" type="button" class="btn" aria-label="गाना और रिकॉर्डिंग, दोनों बंद करें">सब रोकें</button>
+      </div>
+      <p id="hx-k-play" class="hint">अपनी रिकॉर्डिंग सुनें: सिर्फ़ आपकी आवाज़। गाने के साथ सुनें: गाना और आपकी आवाज़ साथ। सब रोकें: दोनों बंद।</p>
+    </div>
+
+    <div id="k-raw" class="result"></div>
+    <div class="actions">
+      <button id="k-mix" aria-describedby="hx-k-mix" type="button" class="btn primary" data-rec aria-label="गाना और आपकी आवाज़ मिलाकर WAV फ़ाइल बनाएँ">गाना और आवाज़ मिलाकर WAV बनाएँ</button>
+    </div>
+    <p id="hx-k-mix" class="hint">गाना और आपकी आवाज़ मिलाकर एक WAV फ़ाइल बनाता है। पहले रिकॉर्डिंग कर लें।</p>
+    <div id="k-mix-result" class="result"></div>
+  </section>
+
+  <!-- 5. ऑडियो को वीडियो में बदलना -->
+  <section id="imgvid" aria-labelledby="h-imgvid">
+    <h3 id="h-imgvid" class="sec-title">तस्वीर और आवाज़ से वीडियो</h3>
+    <p>एक तस्वीर और एक ऑडियो फ़ाइल चुनें। नया वीडियो उतना ही लंबा होगा जितनी ऑडियो फ़ाइल है, और तस्वीर पूरे समय दिखेगी।</p>
+    <p class="note">यह भी ऑडियो की लंबाई जितना समय लेगा।</p>
+    <p class="support" data-rec-note hidden>इस ब्राउज़र में यह सुविधा नहीं चलती। Chrome, Samsung Internet या Firefox में खोलकर देखें।</p>
+    <label for="img-file">तस्वीर चुनें (गैलरी या फ़ाइलों से)</label>
+    <input id="img-file" aria-describedby="hx-img-file" type="file" accept="image/*">
+    <p id="hx-img-file" class="hint">तस्वीर चुनने के लिए दबाएँ। गैलरी या फ़ाइलों से चुन सकते हैं।</p>
+    <label for="img-audio">ऑडियो फ़ाइल चुनें</label>
+    <input id="img-audio" aria-describedby="hx-img-audio" type="file" accept="audio/*">
+    <p id="hx-img-audio" class="hint">आवाज़ वाली फ़ाइल चुनने के लिए दबाएँ। वीडियो उतना ही लंबा बनेगा।</p>
+    <div class="actions">
+      <button id="imgvid-go" aria-describedby="hx-imgvid-btns" type="button" class="btn primary" data-rec aria-label="चुनी हुई तस्वीर और आवाज़ से वीडियो बनाएँ">वीडियो बनाएँ</button>
+      <button id="imgvid-stop" aria-describedby="hx-imgvid-btns" type="button" class="btn" disabled aria-label="वीडियो बनाना जल्दी रोकें, जो बन चुका है वह मिलेगा">जल्दी रोकें (जो बना है वह मिलेगा)</button>
+    </div>
+    <p id="hx-imgvid-btns" class="hint">वीडियो बनाएँ: चुनी तस्वीर और आवाज़ से वीडियो बनेगा। जल्दी रोकें: अभी तक जो बना है, वही मिलेगा।</p>
+    <p id="imgvid-progress" class="progress" aria-hidden="true"></p>
+    <div id="imgvid-result" class="result"></div>
+  </section>
+  <!-- 6. बोलकर सुनाएँ -->
+  <section id="speak" aria-labelledby="h-speak">
+    <h3 id="h-speak" class="sec-title">बोलकर सुनाएँ</h3>
+    <p>यहाँ लिखा हुआ पाठ आपके फ़ोन की आवाज़ में सुनाया जाता है। आवाज़ फ़ोन की अपनी टेक्स्ट-टू-स्पीच सेटिंग से आती है। जो भाषा फ़ोन में नहीं है, उसमें आवाज़ नहीं आएगी।</p>
+    <label for="speak-text">यहाँ लिखें या कॉपी करके चिपकाएँ</label>
+    <textarea id="speak-text" class="big-text" rows="8"></textarea>
+
+    <label for="speak-lang">भाषा चुनें</label>
+    <select id="speak-lang" aria-describedby="hx-speak-lang" class="big">
+      <option value="hi-IN" selected>हिंदी</option>
+      <option value="en-IN">अंग्रेज़ी (भारत)</option>
+      <option value="pa-IN">पंजाबी</option>
+      <option value="ur-PK">उर्दू</option>
+      <option value="bn-IN">बंगाली</option>
+      <option value="ta-IN">तमिल</option>
+      <option value="te-IN">तेलुगु</option>
+      <option value="mr-IN">मराठी</option>
+      <option value="gu-IN">गुजराती</option>
+      <option value="kn-IN">कन्नड़</option>
+      <option value="ml-IN">मलयालम</option>
+      <option value="en-US">अंग्रेज़ी (US)</option>
+      <option value="en-GB">अंग्रेज़ी (UK)</option>
+    </select>
+    <p id="hx-speak-lang" class="hint">भाषा चुनें। फ़ोन में उस भाषा की आवाज़ होनी चाहिए, नहीं तो आवाज़ नहीं आएगी।</p>
+    <p id="speak-voice" class="note" aria-live="polite"></p>
+
+    <label for="speak-rate">बोलने की गति (0.5 से 2 गुना)</label>
+    <div class="vol">
+      <button id="speak-slow" aria-describedby="hx-speak-rate" type="button" class="btn" aria-label="बोलने की गति धीमी करें">धीमा करें</button>
+      <input id="speak-rate" aria-describedby="hx-speak-rate" type="range" min="0.5" max="2" step="0.1" value="1">
+      <button id="speak-fast" aria-describedby="hx-speak-rate" type="button" class="btn" aria-label="बोलने की गति तेज़ करें">तेज़ करें</button>
+    </div>
+    <p id="hx-speak-rate" class="hint">बोलने की गति बदलने के लिए: स्क्रीन-रीडर चालू हो तो स्लाइडर पर टिक कर ऊपर/नीचे स्वाइप करें; या बगल के धीमा करें/तेज़ करें बटन दबाएँ। हर बार 0.1 गुना बदलेगा।</p>
+    <p class="note">अभी गति: <span id="speak-rate-val">1.0</span> गुना</p>
+
+    <label for="speak-vol">बोलने की आवाज़ (0 से 100)</label>
+    <div class="vol">
+      <button id="speak-vol-down" aria-describedby="hx-speak-vol" type="button" class="btn" aria-label="बोलने की आवाज़ कम करें">कम</button>
+      <input id="speak-vol" aria-describedby="hx-speak-vol" type="range" min="0" max="100" step="5" value="100" aria-label="बोलने की आवाज़ का स्तर">
+      <button id="speak-vol-up" aria-describedby="hx-speak-vol" type="button" class="btn" aria-label="बोलने की आवाज़ बढ़ाएँ">बढ़ाएँ</button>
+    </div>
+    <p id="hx-speak-vol" class="hint">बोलने की आवाज़ बदलने के लिए: स्क्रीन-रीडर चालू हो तो स्लाइडर पर टिक कर ऊपर/नीचे स्वाइप करें; या बगल के कम/बढ़ाएँ बटन दबाएँ। हर बार 10 प्रतिशत बदलेगा।</p>
+
+    <div class="actions">
+      <button id="speak-go" aria-describedby="hx-speak-btns" type="button" class="btn primary" aria-label="लिखा हुआ पाठ फ़ोन की आवाज़ में बोलकर सुनाएँ">बोलकर सुनाएँ</button>
+      <button id="speak-pause" aria-describedby="hx-speak-btns" type="button" class="btn" aria-label="बोलकर सुनाना रोकें">रोकें</button>
+      <button id="speak-restart" aria-describedby="hx-speak-btns" type="button" class="btn" aria-label="पूरा पाठ शुरू से फिर से बोलकर सुनाएँ">फिर से शुरू</button>
+    </div>
+    <p id="hx-speak-btns" class="hint">बोलकर सुनाएँ: लिखा पाठ फ़ोन की आवाज़ में सुनाता है। रोकें: बोलना बंद करता है। फिर से शुरू: पूरा पाठ शुरू से सुनाता है।</p>
+    <p id="speak-status" class="status" aria-live="polite"></p>
+  </section>
+</div>
+
+<!-- ===== कैमरे से मदद ===== -->
+<div id="panel-camera" class="panel">
+  <h2 id="h-camera" class="panel-title" tabindex="-1">कैमरे से मदद</h2>
+  <p class="lead">ये हिस्से कैमरा तभी चालू करते हैं जब आप उनका बटन दबाते हैं। तस्वीरें फ़ोन में ही देखी जाती हैं।</p>
+
+  <section aria-labelledby="h-color">
+    <h3 id="h-color" class="sec-title" tabindex="-1">रंग पहचानें</h3>
+    <p>पीछे वाला कैमरा चालू होगा और बीच की जगह का रंग बोलकर बताएगा। रंग बदलने पर ही नया नाम बोला जाएगा।</p>
+    <p class="note">रोशनी के हिसाब से रंग थोड़ा अलग दिख सकता है। यह सिर्फ़ अंदाज़ा है।</p>
+    <p id="col-support" class="support" hidden>इस फ़ोन या ब्राउज़र में कैमरा नहीं चलता। Chrome ब्राउज़र में खोलकर देखें।</p>
+    <div class="actions">
+      <button id="col-start" type="button" class="btn primary" aria-describedby="hx-col-btns">रंग पहचानना शुरू करें</button>
+      <button id="col-stop" type="button" class="btn" aria-describedby="hx-col-btns" disabled>रंग पहचानना बंद करें</button>
+    </div>
+    <p id="hx-col-btns" class="hint">शुरू करें: पीछे का कैमरा चालू होगा और रंग बोलेगा। बंद करें: कैमरा तुरंत बंद होगा।</p>
+    <video id="col-video" class="cam-preview" playsinline muted aria-hidden="true"></video>
+    <p id="col-result" class="note" aria-live="off"></p>
+  </section>
+
+  <section aria-labelledby="h-talkcam">
+    <h3 id="h-talkcam" class="sec-title" tabindex="-1">बोलने वाला कैमरा</h3>
+    <p>कैमरा चालू करें। ऐप रोशनी और हाथ की हरकत के बारे में बोलकर बताएगा। फ़ोन यह सुविधा दे तो चेहरे की जगह भी बताएगा। "फ़ोटो लें" से एक तस्वीर बनेगी।</p>
+    <p class="note">कैमरा सिर्फ़ इसी हिस्से के खुले रहने पर और बटन दबाने पर चलता है। ऐप छोड़ने पर बंद हो जाता है।</p>
+    <p id="tc-support" class="support" hidden>इस फ़ोन या ब्राउज़र में कैमरा नहीं चलता। Chrome ब्राउज़र में खोलकर देखें।</p>
+    <div class="actions">
+      <button id="tc-start" type="button" class="btn primary" aria-describedby="hx-tc-btns">कैमरा चालू करें</button>
+      <button id="tc-capture" type="button" class="btn" aria-describedby="hx-tc-btns" disabled>फ़ोटो लें</button>
+      <button id="tc-stop" type="button" class="btn" aria-describedby="hx-tc-btns" disabled>कैमरा बंद करें</button>
+    </div>
+    <p id="hx-tc-btns" class="hint">कैमरा चालू करें: कैमरा शुरू होगा और मदद बोलेगा। फ़ोटो लें: अभी का दृश्य एक तस्वीर बनेगा। कैमरा बंद करें: कैमरा बंद होगा।</p>
+    <video id="tc-video" class="cam-preview" playsinline muted aria-hidden="true"></video>
+    <p id="tc-guide" class="note" aria-live="off"></p>
+    <p id="tc-face" class="note" aria-live="off"></p>
+    <div id="tc-result" class="result"></div>
+  </section>
+</div>
+
+<!-- ===== रेडियो ===== -->
+<div id="panel-radio" class="panel">
+  <h2 id="h-radio" class="panel-title" tabindex="-1">रेडियो</h2>
+  <p class="lead">यहाँ आकाशवाणी के कुछ स्टेशन इंटरनेट से सुन सकते हैं। इसके लिए फ़ोन में इंटरनेट चालू होना चाहिए।</p>
+
+  <section aria-labelledby="h-radio-find">
+    <h3 id="h-radio-find" class="sec-title" tabindex="-1">स्टेशन खोजें</h3>
+    <label for="radio-country">देश</label>
+    <select id="radio-country" aria-describedby="hx-radio-country">
+      <option value="all">सभी देश</option>
+      <option value="IN">भारत</option>
+    </select>
+    <p id="hx-radio-country" class="hint">देश चुनने पर उसी देश के स्टेशन दिखेंगे। अभी सूची में सिर्फ़ भारत के स्टेशन हैं।</p>
+    <label for="radio-lang">भाषा</label>
+    <select id="radio-lang" aria-describedby="hx-radio-lang">
+      <option value="all">सभी भाषाएँ</option>
+      <option value="hi">हिंदी</option>
+      <option value="ta">तमिल</option>
+    </select>
+    <p id="hx-radio-lang" class="hint">भाषा चुनने पर उसी भाषा के स्टेशन दिखेंगे।</p>
+    <label for="radio-search">स्टेशन का नाम लिखें</label>
+    <input type="search" id="radio-search" aria-describedby="hx-radio-search" autocomplete="off">
+    <p id="hx-radio-search" class="hint">यहाँ लिखते ही नीचे की सूची छोटी होती जाएगी। खाली करने पर सारे स्टेशन दिखेंगे।</p>
+    <p id="radio-count" class="note" aria-live="polite"></p>
+  </section>
+
+  <section aria-labelledby="h-radio-list">
+    <h3 id="h-radio-list" class="sec-title">स्टेशनों की सूची</h3>
+    <p id="hx-radio-pick" class="hint">दबाने पर यह स्टेशन इंटरनेट से चालू होगा। इंटरनेट न हो तो ऐप बताएगा।</p>
+    <div id="radio-list" class="actions"></div>
+  </section>
+
+  <section aria-labelledby="h-radio-play">
+    <h3 id="h-radio-play" class="sec-title">चलाना और बंद करना</h3>
+    <p id="radio-now" class="note" aria-live="polite">अभी कोई स्टेशन नहीं चल रहा।</p>
+    <div class="actions">
+      <button id="radio-again" type="button" class="btn primary" aria-describedby="hx-radio-again">फिर से शुरू करें</button>
+      <button id="radio-stop" type="button" class="btn" aria-describedby="hx-radio-stop" disabled>रेडियो बंद करें</button>
+    </div>
+    <p id="hx-radio-again" class="hint">दबाने पर पिछला या चुना हुआ स्टेशन दोबारा शुरू होगा। इंटरनेट लौटने पर, अगर स्टेशन चल रहा था, तो ऐप अपने-आप यही करता है।</p>
+    <p id="hx-radio-stop" class="hint">दबाने पर चल रहा स्टेशन तुरंत बंद होगा।</p>
+    <p id="radio-state" class="note" aria-live="polite"></p>
+    <audio id="radio-audio" class="hidden-audio" preload="none"></audio>
+  </section>
+
+  <section aria-labelledby="h-radio-note">
+    <h3 id="h-radio-note" class="sec-title">ध्यान रखें</h3>
+    <p class="note">रेडियो इंटरनेट से चलता है, इसलिए इंटरनेट का डेटा खर्च होगा। स्टेशन चलाने वाली संस्था को आपके फ़ोन का इंटरनेट पता दिखता है, जैसे किसी भी स्ट्रीमिंग में होता है। आवाज़ साथी खुद कोई निजी डेटा इकट्ठा नहीं करता।</p>
+    <p class="note">ऐप छोड़ने पर या "रुको" बोलने पर रेडियो बंद हो जाता है।</p>
+  </section>
+</div>
+
+<!-- ===== सेटिंग (हमेशा आख़िरी) ===== -->
+<div id="panel-settings" class="panel">
+  <h2 id="h-settings" class="panel-title" tabindex="-1">सेटिंग</h2>
+  <p class="lead">यहाँ अक्षरों का आकार, रंग, पढ़कर सुनाने की भाषा और गति बदल सकते हैं। बदलाव तुरंत दिखते हैं।</p>
+
+  <section aria-labelledby="h-look">
+    <h3 id="h-look" class="sec-title">दिखावट</h3>
+    <fieldset class="set-row">
+      <legend>अक्षरों का आकार</legend>
+      <label class="choice"><input type="radio" aria-describedby="hx-fsize" name="fsize" value="0"> <span>छोटा</span></label>
+      <label class="choice"><input type="radio" aria-describedby="hx-fsize" name="fsize" value="1"> <span>सामान्य</span></label>
+      <label class="choice"><input type="radio" aria-describedby="hx-fsize" name="fsize" value="2"> <span>बड़ा</span></label>
+      <label class="choice"><input type="radio" aria-describedby="hx-fsize" name="fsize" value="3"> <span>बहुत बड़ा</span></label>
+      <p id="hx-fsize" class="hint">अक्षरों का आकार चुनें: चार में से एक। बदलाव तुरंत दिखेगा।</p>
+    </fieldset>
+    <label class="switch-row"><input id="set-contrast" aria-describedby="hx-contrast" type="checkbox" role="switch"> <span>उच्च कंट्रास्ट (गहरे रंग, साफ़ किनारे)</span></label>
+    <p id="hx-contrast" class="hint">दबाकर चालू या बंद करें। चालू होने पर रंग गहरे और किनारे साफ़ दिखेंगे।</p>
+    <fieldset class="set-row">
+      <legend>ऐप का रंग</legend>
+      <label class="choice"><input type="radio" aria-describedby="hx-accent" name="accent" value="default"> <span class="swatch sw-default" aria-hidden="true"></span> <span>डिफ़ॉल्ट (काला)</span></label>
+      <label class="choice"><input type="radio" aria-describedby="hx-accent" name="accent" value="blue"> <span class="swatch sw-blue" aria-hidden="true"></span> <span>नीला</span></label>
+      <label class="choice"><input type="radio" aria-describedby="hx-accent" name="accent" value="green"> <span class="swatch sw-green" aria-hidden="true"></span> <span>हरा</span></label>
+      <label class="choice"><input type="radio" aria-describedby="hx-accent" name="accent" value="orange"> <span class="swatch sw-orange" aria-hidden="true"></span> <span>नारंगी</span></label>
+      <label class="choice"><input type="radio" aria-describedby="hx-accent" name="accent" value="purple"> <span class="swatch sw-purple" aria-hidden="true"></span> <span>बैंगनी</span></label>
+      <label class="choice"><input type="radio" aria-describedby="hx-accent" name="accent" value="red"> <span class="swatch sw-red" aria-hidden="true"></span> <span>लाल</span></label>
+      <label class="choice"><input type="radio" aria-describedby="hx-accent" name="accent" value="pink"> <span class="swatch sw-pink" aria-hidden="true"></span> <span>गुलाबी</span></label>
+      <label class="choice"><input type="radio" aria-describedby="hx-accent" name="accent" value="gold"> <span class="swatch sw-gold" aria-hidden="true"></span> <span>सुनहरा</span></label>
+      <p id="hx-accent" class="hint">बटनों का रंग चुनें: आठ में से एक। बदलाव तुरंत दिखेगा। डिफ़ॉल्ट पर लौटने के लिए पहला खाना चुनें।</p>
+    </fieldset>
+  </section>
+
+  <section aria-labelledby="h-read">
+    <h3 id="h-read" class="sec-title">पढ़कर सुनाना</h3>
+    <label for="set-lang">डिफ़ॉल्ट भाषा</label>
+    <select id="set-lang" aria-describedby="hx-set-lang" class="big">
+      <option value="hi-IN">हिंदी</option>
+      <option value="en-IN">अंग्रेज़ी (भारत)</option>
+      <option value="pa-IN">पंजाबी</option>
+      <option value="ur-PK">उर्दू</option>
+      <option value="bn-IN">बंगाली</option>
+      <option value="ta-IN">तमिल</option>
+      <option value="te-IN">तेलुगु</option>
+      <option value="mr-IN">मराठी</option>
+      <option value="gu-IN">गुजराती</option>
+      <option value="kn-IN">कन्नड़</option>
+      <option value="ml-IN">मलयालम</option>
+      <option value="en-US">अंग्रेज़ी (US)</option>
+      <option value="en-GB">अंग्रेज़ी (UK)</option>
+    </select>
+    <p id="hx-set-lang" class="hint">पढ़कर सुनाने की डिफ़ॉल्ट भाषा चुनें। बोलकर सुनाएँ वाले हिस्से में भी यही भाषा आएगी।</p>
+    <label for="set-rate">डिफ़ॉल्ट गति (0.5 से 2 गुना)</label>
+    <input id="set-rate" aria-describedby="hx-set-rate" type="range" min="0.5" max="2" step="0.1" value="1" aria-label="डिफ़ॉल्ट बोलने की गति">
+    <p id="hx-set-rate" class="hint">डिफ़ॉल्ट गति बदलने के लिए स्लाइडर पर टिक कर ऊपर/नीचे स्वाइप करें। हर बार 0.1 गुना बदलेगा।</p>
+    <p class="note">डिफ़ॉल्ट गति: <span id="set-rate-val">1.0</span> गुना</p>
+  </section>
+
+  <section aria-labelledby="h-ann">
+    <h3 id="h-ann" class="sec-title">घोषणा</h3>
+    <label class="switch-row"><input id="set-announce" aria-describedby="hx-announce" type="checkbox" role="switch" checked> <span>बटन दबने पर आवाज़/घोषणा</span></label>
+    <p id="hx-announce" class="note">चालू हो तो हर बटन दबने पर TalkBack नतीजा बोलकर सुनाएगा। बंद हो तो नतीजा सिर्फ़ स्क्रीन पर लिखा दिखेगा।</p>
+  </section>
+
+  <section aria-labelledby="h-speakself">
+    <h3 id="h-speakself" class="sec-title">ऐप खुद बोले</h3>
+    <label class="switch-row"><input id="set-selfspeak" aria-describedby="hx-selfspeak" type="checkbox" role="switch" checked> <span>ऐप खुद बोले</span></label>
+    <p id="hx-selfspeak" class="hint">चालू हो तो बटन, खाने और शीर्षक पर जाने या छूने पर ऐप उसका नाम और छोटी मदद फ़ोन की आवाज़ में खुद बोलता है। अगर फ़ोन में TalkBack चालू है, तो इसे बंद कर दें, ताकि दोनों एक साथ न बोलें।</p>
+  </section>
+
+  <section aria-labelledby="h-save">
+    <h3 id="h-save" class="sec-title">सेटिंग्स सहेजना</h3>
+    <p id="set-store-note" class="support" hidden>इस ब्राउज़र में सेटिंग्स फ़ोन में सहेजी नहीं जा सकतीं। ये सेटिंग्स इसी बार चलेंगी। ऐप बंद करने पर ये वापस पहले जैसी हो जाएँगी।</p>
+    <button id="set-reset" type="button" class="btn" aria-describedby="hx-reset">सेटिंग्स पहले जैसी करें</button>
+    <p id="hx-reset" class="hint">आकार, कंट्रास्ट, रंग, भाषा, गति और घोषणा, सब सेटिंग्स पहले जैसी कर देता है।</p>
+  </section>
+
+  <section aria-labelledby="h-privacy" id="privacy-sec">
+    <h3 id="h-privacy" class="sec-title">प्राइवेसी पॉलिसी</h3>
+    <p>यहाँ लिखा है कि आवाज़ साथी आपकी जानकारी कैसे रखता है। पूरा पाठ इसी ऐप में है, बाहर कोई पेज नहीं खुलता।</p>
+    <button id="privacy-open" type="button" class="btn primary" aria-describedby="hx-privacy-open">प्राइवेसी पॉलिसी पढ़ें</button>
+    <p id="hx-privacy-open" class="hint">दबाने पर पूरी प्राइवेसी पॉलिसी इसी पेज पर नीचे खुलेगी। खुलते ही उसका शीर्षक चुना जाएगा।</p>
+    <div id="privacy-body" class="policy" role="region" aria-labelledby="privacy-title" hidden>
+      <h4 id="privacy-title" tabindex="-1">आवाज़ साथी – प्राइवेसी पॉलिसी</h4>
+      <p>डेवलपर: कपिल. संपर्क: 9896471058 (WhatsApp).</p>
+      <p><strong>1. हम क्या इकट्ठा करते हैं:</strong> आवाज़ साथी आपका कोई निजी डेटा इकट्ठा नहीं करता। इसमें न साइन-अप है, न अकाउंट, न विज्ञापन, न ट्रैकिंग।</p>
+      <p><strong>2. आपकी फ़ाइलें और आवाज़:</strong> आप जो ऑडियो, वीडियो, फ़ोटो या रिकॉर्डिंग चुनते हैं, उन पर सारा काम आपके अपने फ़ोन में ही होता है। वे किसी सर्वर पर नहीं भेजी जातीं और हमें कभी नहीं मिलतीं।</p>
+      <p><strong>3. परमिशन:</strong> माइक्रोफ़ोन सिर्फ़ तब, जब आप गाने के साथ रिकॉर्डिंग करना चुनते हैं या "बोलकर काम करें" का बटन दबाकर आदेश बोलते हैं; बिना आपके बटन दबाए रिकॉर्डिंग शुरू नहीं होती। फ़ाइलें/गैलरी सिर्फ़ वही फ़ाइल जो आप खुद चुनते हैं। बोलकर सुनाने की सुविधा आपके फ़ोन की अपनी आवाज़ का इस्तेमाल करती है।</p>
+      <p><strong>4. आपकी सेटिंग:</strong> अक्षर का आकार, कंट्रास्ट, रंग, भाषा और गति जैसी सेटिंग सिर्फ़ आपके फ़ोन में सेव होती हैं। हमें नहीं दिखतीं।</p>
+      <p><strong>5. तीसरे पक्ष से साझा:</strong> हम आपकी कोई जानकारी किसी को बेचते या देते नहीं।</p>
+      <p><strong>6. बच्चे:</strong> ऐप सबके लिए है और हम बच्चों से कोई जानकारी नहीं लेते।</p>
+      <p><strong>7. बदलाव:</strong> नीति बदली तो नई तारीख के साथ यहीं अपडेट होगी।</p>
+      <p><strong>8. संपर्क:</strong> कोई सवाल हो तो कपिल से WhatsApp पर 9896471058 पर संपर्क करें।</p>
+      <p><strong>9. कैमरा:</strong> कैमरा सिर्फ़ तब चलता है जब आप "रंग पहचानें" या "बोलने वाला कैमरा" वाला हिस्सा खोलकर उसका बटन दबाते हैं। कैमरे की तस्वीर फ़ोन में ही, उसी समय देखी जाती है और किसी सर्वर पर नहीं भेजी जाती। कोई तस्वीर तभी बनती या सेव होती है जब आप "फ़ोटो लें" या सेव करने वाला बटन दबाते हैं। कैमरा बंद करने या ऐप छोड़ने पर कैमरा बंद हो जाता है।</p>
+      <p><strong>10. बोलकर आदेश:</strong> "बोलकर काम करें" चालू करने पर आपकी बोली फ़ोन की अपनी बोली-पहचान सेवा से समझी जाती है। वह सेवा फ़ोन या ब्राउज़र की अपनी है, और उसकी अपनी प्राइवेसी नियम लागू होते हैं। आवाज़ साथी उस सेवा को आदेश के सिवा कुछ नहीं भेजता।</p>
+      <p><strong>11. रेडियो:</strong> रेडियो वाला हिस्सा चुने हुए स्टेशन इंटरनेट से चलाता है। स्टेशन के सर्वर से जुड़ते समय उस संस्था को आपके फ़ोन का इंटरनेट पता (IP address) दिखता है, जैसे किसी भी स्ट्रीमिंग में होता है। आवाज़ साथी यह पता अपने पास नहीं रखता और आपका कोई निजी डेटा इकट्ठा नहीं करता। आख़िरी चुना स्टेशन सिर्फ़ आपके फ़ोन में सेव होता है।</p>
+      <p>अंतिम अपडेट: 26 नवंबर 2026.</p>
+      <button id="privacy-close" type="button" class="btn" aria-describedby="hx-privacy-close">बंद करें और सेटिंग पर लौटें</button>
+      <p id="hx-privacy-close" class="hint">दबाने पर पॉलिसी बंद होगी और फ़ोकस फिर "प्राइवेसी पॉलिसी पढ़ें" बटन पर चला जाएगा।</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-contact-set">
+    <h3 id="h-contact-set" class="sec-title">संपर्क</h3>
+  <p class="contact">संपर्क: 9896471058</p>
+  <p id="hx-help-2" class="note">अगर व्हाट्सऐप नहीं है तो कॉल बटन दबाएँ।</p>
+  <p><a class="btn primary" href="https://wa.me/919896471058?text=%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A5%87%20%E0%A4%95%E0%A4%AA%E0%A4%BF%E0%A4%B2%20%E0%A4%9C%E0%A5%80%2C%20%E0%A4%86%E0%A4%B5%E0%A4%BE%E0%A4%9C%E0%A4%BC%20%E0%A4%B8%E0%A4%BE%E0%A4%A5%E0%A5%80%20%E0%A4%90%E0%A4%AA%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AE%E0%A5%81%E0%A4%9D%E0%A5%87%20%E0%A4%AF%E0%A4%B9%20%E0%A4%95%E0%A4%AE%E0%A5%80%20%E0%A4%AE%E0%A4%BF%E0%A4%B2%E0%A5%80%20%E0%A4%B9%E0%A5%88%3A%20" target="_blank" rel="noopener" aria-describedby="hx-wa-2 hx-help-2">कमी बताने के लिए यहाँ दबाओ</a></p>
+  <p id="hx-wa-2" class="hint">दबाने पर व्हाट्सऐप खुलेगा, जिसमें कपिल के लिए कमी बताने का संदेश पहले से लिखा होगा। उसे भेजने के लिए व्हाट्सऐप में भेजें दबाएँ।</p>
+  <p><a class="btn primary" href="tel:+919896471058" aria-describedby="hx-call-2 hx-help-2">कॉल करने के लिए यहाँ दबाओ</a></p>
+  <p id="hx-call-2" class="hint">दबाने पर फ़ोन की कॉल शुरू होगी।</p>
+  </section>
+</div>
+
+</main>
+
+<footer aria-label="डेवलपर और संपर्क">
+  <p class="dev" data-dev-line>डेवलपर: कपिल</p>
+  <p class="contact">संपर्क: 9896471058</p>
+  <p id="hx-help-3" class="note">अगर व्हाट्सऐप नहीं है तो कॉल बटन दबाएँ।</p>
+  <p><a class="btn primary" href="https://wa.me/919896471058?text=%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A5%87%20%E0%A4%95%E0%A4%AA%E0%A4%BF%E0%A4%B2%20%E0%A4%9C%E0%A5%80%2C%20%E0%A4%86%E0%A4%B5%E0%A4%BE%E0%A4%9C%E0%A4%BC%20%E0%A4%B8%E0%A4%BE%E0%A4%A5%E0%A5%80%20%E0%A4%90%E0%A4%AA%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AE%E0%A5%81%E0%A4%9D%E0%A5%87%20%E0%A4%AF%E0%A4%B9%20%E0%A4%95%E0%A4%AE%E0%A5%80%20%E0%A4%AE%E0%A4%BF%E0%A4%B2%E0%A5%80%20%E0%A4%B9%E0%A5%88%3A%20" target="_blank" rel="noopener" aria-describedby="hx-wa-3 hx-help-3">कमी बताने के लिए यहाँ दबाओ</a></p>
+  <p id="hx-wa-3" class="hint">दबाने पर व्हाट्सऐप खुलेगा, जिसमें कपिल के लिए कमी बताने का संदेश पहले से लिखा होगा। उसे भेजने के लिए व्हाट्सऐप में भेजें दबाएँ।</p>
+  <p><a class="btn primary" href="tel:+919896471058" aria-describedby="hx-call-3 hx-help-3">कॉल करने के लिए यहाँ दबाओ</a></p>
+  <p id="hx-call-3" class="hint">दबाने पर फ़ोन की कॉल शुरू होगी।</p>
+</footer>
+
+
+<audio id="track-audio" class="hidden-audio" preload="auto"></audio>
+
+<script>
+'use strict';
+/* ---------- छोटे सहायक ---------- */
+var $ = function (s) { return document.querySelector(s); };
+var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+var AC = window.AudioContext || window.webkitAudioContext;
+var HAS_REC = !!(window.MediaRecorder && AC && HTMLCanvasElement.prototype.captureStream);
+var HAS_MIC = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+var VIDEO_MIMES = ['video/mp4;codecs=avc1.42E01E,mp4a.40.2', 'video/mp4', 'video/webm;codecs=vp9,opus', 'video/webm;codecs=vp8,opus', 'video/webm'];
+var AUDIO_MIMES = ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4', 'audio/ogg;codecs=opus'];
+
+var stopReq = false;
+var busy = false;
+var sayTimer = 0;
+
+function say(msg) {
+  var s = $('#status');
+  s.textContent = '';
+  clearTimeout(sayTimer);
+  sayTimer = setTimeout(function () { s.textContent = msg; }, 80);
+}
+function prog(sel, text) { $(sel).textContent = text; }
+function setStop(sel, on) { $(sel).disabled = !on; }
+function pad2(n) { return (n < 10 ? '0' : '') + n; }
+function stamp() {
+  var d = new Date();
+  return '' + d.getFullYear() + pad2(d.getMonth() + 1) + pad2(d.getDate()) + '-' + pad2(d.getHours()) + pad2(d.getMinutes()) + pad2(d.getSeconds());
+}
+function extOf(type) {
+  if (type.indexOf('mp4') !== -1) return 'mp4';
+  if (type.indexOf('webm') !== -1) return 'webm';
+  if (type.indexOf('ogg') !== -1) return 'ogg';
+  if (type.indexOf('wav') !== -1) return 'wav';
+  return 'bin';
+}
+function mkCanvas(W, H) { var c = document.createElement('canvas'); c.width = W; c.height = H; return c; }
+function sizeFor(w, h) {
+  if (!w || !h) return { W: 1280, H: 720 };
+  var s = Math.min(1, 1280 / Math.max(w, h));
+  return { W: Math.max(2, 2 * Math.round(w * s / 2)), H: Math.max(2, 2 * Math.round(h * s / 2)) };
+}
+function makeMedia(tag, file) {
+  var el = document.createElement(tag);
+  el.preload = 'auto';
+  el.playsInline = true;
+  el.src = URL.createObjectURL(file);
+  return el;
+}
+function loadMeta(el) {
+  return new Promise(function (res, rej) {
+    if (el.readyState >= 1) return res();
+    var clean = function () { el.removeEventListener('loadedmetadata', ok); el.removeEventListener('error', bad); };
+    var ok = function () { clean(); res(); };
+    var bad = function () { clean(); rej(new Error('media')); };
+    el.addEventListener('loadedmetadata', ok);
+    el.addEventListener('error', bad);
+  });
+}
+function startRecorder(stream, mimes) {
+  var type = '';
+  for (var i = 0; i < mimes.length; i++) {
+    if (MediaRecorder.isTypeSupported(mimes[i])) { type = mimes[i]; break; }
+  }
+  var rec = new MediaRecorder(stream, type ? { mimeType: type } : undefined);
+  var chunks = [];
+  rec.ondataavailable = function (e) { if (e.data && e.data.size) chunks.push(e.data); };
+  var done = new Promise(function (res, rej) {
+    rec.onstop = function () { res(new Blob(chunks, { type: rec.mimeType || type || 'video/webm' })); };
+    rec.onerror = function (e) { rej(e.error || new Error('rec')); };
+  });
+  rec.start(1000);
+  return {
+    rec: rec,
+    stop: function () { if (rec.state !== 'inactive') rec.stop(); return done; }
+  };
+}
+function combined(canvas, audioStream) {
+  var s = new MediaStream();
+  canvas.captureStream(30).getVideoTracks().forEach(function (t) { s.addTrack(t); });
+  audioStream.getAudioTracks().forEach(function (t) { s.addTrack(t); });
+  return s;
+}
+function resumeCtx(ac) {
+  return ac.state !== 'running' ? ac.resume().catch(function () {}) : Promise.resolve();
+}
+/* ख़त्म होने पर (सफल या विफल) fn चलाना */
+function always(p, fn) {
+  return p.then(function (v) { fn(); return v; }, function (e) { fn(); throw e; });
+}
+function drawContain(ctx, src, W, H) {
+  ctx.fillStyle = '#000';
+  ctx.fillRect(0, 0, W, H);
+  var sw = src.videoWidth || src.naturalWidth, sh = src.videoHeight || src.naturalHeight;
+  if (!sw || !sh) return;
+  var s = Math.min(W / sw, H / sh), dw = sw * s, dh = sh * s;
+  ctx.drawImage(src, (W - dw) / 2, (H - dh) / 2, dw, dh);
+}
+/* चलाते हुए हर फ़्रेम बनाना; ख़त्म होने पर resolve, रुकने या अटकने पर भी ख़त्म */
+function playAndDraw(el, draw, stopped) {
+  return new Promise(function (resolve, reject) {
+    var raf = 0, finished = false, lastT = -1, lastMove = Date.now();
+    var end = function (err) {
+      if (finished) return;
+      finished = true;
+      cancelAnimationFrame(raf);
+      el.removeEventListener('ended', onEnd);
+      el.removeEventListener('error', onErr);
+      try { draw(); } catch (_) { /* ignore */ }
+      if (err) reject(err); else resolve();
+    };
+    var onEnd = function () { end(null); };
+    var onErr = function () { end(new Error('media')); };
+    el.addEventListener('ended', onEnd);
+    el.addEventListener('error', onErr);
+    var tick = function () {
+      if (stopped()) return end(null);
+      if (el.currentTime !== lastT) { lastT = el.currentTime; lastMove = Date.now(); }
+      else if (Date.now() - lastMove > 15000) return end(new Error('stall'));
+      if (el.paused && !el.ended) el.play().catch(function () {});
+      draw();
+      raf = requestAnimationFrame(tick);
+    };
+    el.play().then(function () { lastMove = Date.now(); tick(); }).catch(onErr);
+  });
+}
+function audioBufferToWav(buf) {
+  var ch = buf.numberOfChannels, sr = buf.sampleRate, len = buf.length;
+  var dataLen = len * ch * 2;
+  var ab = new ArrayBuffer(44 + dataLen);
+  var v = new DataView(ab);
+  var str = function (o, s) { for (var i = 0; i < s.length; i++) v.setUint8(o + i, s.charCodeAt(i)); };
+  str(0, 'RIFF'); v.setUint32(4, 36 + dataLen, true); str(8, 'WAVE'); str(12, 'fmt ');
+  v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, ch, true);
+  v.setUint32(24, sr, true); v.setUint32(28, sr * ch * 2, true);
+  v.setUint16(32, ch * 2, true); v.setUint16(34, 16, true);
+  str(36, 'data'); v.setUint32(40, dataLen, true);
+  var data = [];
+  for (var c = 0; c < ch; c++) data.push(buf.getChannelData(c));
+  var o = 44;
+  for (var i = 0; i < len; i++) {
+    for (var k = 0; k < ch; k++) {
+      var s = Math.max(-1, Math.min(1, data[k][i]));
+      v.setInt16(o, s < 0 ? s * 0x8000 : s * 0x7fff, true);
+      o += 2;
+    }
+  }
+  return new Blob([ab], { type: 'audio/wav' });
+}
+/* नतीजा दिखाना: डाउनलोड, (हो सके तो) शेयर, और चलाकर देखने का प्लेयर */
+/* नतीजे के प्लेयर के लिए आवाज़ का स्तर (0 से 100) */
+var volCount = 0;
+function addVolume(parent, media, label) {
+  volCount++;
+  var id = 'vol-' + volCount;
+  var wrap = document.createElement('div');
+  wrap.className = 'group';
+  var lab = document.createElement('label');
+  lab.setAttribute('for', id);
+  lab.textContent = label + ' (0 से 100)';
+  var row = document.createElement('div');
+  row.className = 'vol';
+  var down = document.createElement('button');
+  down.type = 'button';
+  down.id = id + '-down';
+  down.className = 'btn';
+  down.textContent = 'कम';
+  down.setAttribute('aria-label', label + ' कम करें');
+  var rng = document.createElement('input');
+  rng.type = 'range';
+  rng.id = id;
+  rng.min = '0';
+  rng.max = '100';
+  rng.step = '5';
+  rng.value = '100';
+  rng.setAttribute('aria-label', label + ' का स्तर');
+  var up = document.createElement('button');
+  up.type = 'button';
+  up.id = id + '-up';
+  up.className = 'btn';
+  up.textContent = 'बढ़ाएँ';
+  up.setAttribute('aria-label', label + ' बढ़ाएँ');
+  row.appendChild(down);
+  row.appendChild(rng);
+  row.appendChild(up);
+  var vhId = 'hx-vol-' + id;
+  var vh = document.createElement('p');
+  vh.className = 'hint';
+  vh.id = vhId;
+  vh.textContent = label + ' बदलने के लिए: स्क्रीन-रीडर चालू हो तो स्लाइडर पर टिक कर ऊपर/नीचे स्वाइप करें; या बगल के कम/बढ़ाएँ बटन दबाएँ। हर बार 10 प्रतिशत बदलेगा।';
+  rng.setAttribute('aria-describedby', vhId);
+  down.setAttribute('aria-describedby', vhId);
+  up.setAttribute('aria-describedby', vhId);
+  wrap.appendChild(lab);
+  wrap.appendChild(row);
+  wrap.appendChild(vh);
+  parent.appendChild(wrap);
+  bindVolume('#' + id, '#' + id + '-down', '#' + id + '-up', label, function (x) { media.volume = x; });
+}
+var resCount = 0;
+function showResult(box, blob, fileName) {
+  box.replaceChildren();
+  var url = URL.createObjectURL(blob);
+  var dl = document.createElement('a');
+  dl.className = 'btn primary';
+  dl.href = url;
+  dl.download = fileName;
+  dl.textContent = 'डाउनलोड करें (' + fileName + ')';
+  dl.setAttribute('aria-label', 'बनी हुई फ़ाइल फ़ोन में डाउनलोड करें');
+  var wrap = document.createElement('div');
+  wrap.className = 'result';
+  wrap.appendChild(dl);
+  var file = new File([blob], fileName, { type: blob.type || 'application/octet-stream' });
+  if (navigator.canShare && navigator.canShare({ files: [file] })) {
+    var sh = document.createElement('button');
+    sh.type = 'button';
+    sh.className = 'btn';
+    sh.textContent = 'शेयर करें';
+    sh.setAttribute('aria-label', 'बनी हुई फ़ाइल किसी और ऐप से शेयर करें');
+    sh.addEventListener('click', function () {
+      navigator.share({ files: [file], title: fileName }).then(function () {
+        say('शेयर का पैनल खुल गया।');
+      }, function (e) {
+        if (!e || e.name !== 'AbortError') say('शेयर नहीं हो पाया। डाउनलोड करें बटन इस्तेमाल करें।');
+      });
+    });
+    wrap.appendChild(sh);
+  }
+  resCount++;
+  var rhId = 'hx-res-' + resCount;
+  var rh = document.createElement('p');
+  rh.className = 'hint';
+  rh.id = rhId;
+  rh.textContent = (navigator.canShare && navigator.canShare({ files: [file] }))
+    ? 'डाउनलोड करें: बनी फ़ाइल फ़ोन में रखता है। शेयर करें: फ़ाइल किसी और ऐप से भेजता है।'
+    : 'डाउनलोड करें: बनी फ़ाइल फ़ोन में रखता है।';
+  dl.setAttribute('aria-describedby', rhId);
+  if (sh) sh.setAttribute('aria-describedby', rhId);
+  wrap.appendChild(rh);
+  if (blob.type.indexOf('video/') === 0) {
+    var pv = document.createElement('video');
+    pv.controls = true; pv.playsInline = true; pv.src = url;
+    pv.setAttribute('aria-label', 'बना हुआ वीडियो देखें');
+    wrap.appendChild(pv);
+    box.appendChild(wrap);
+    addVolume(wrap, pv, 'वीडियो की आवाज़');
+  } else if (blob.type.indexOf('audio/') === 0) {
+    var pa = document.createElement('audio');
+    pa.controls = true; pa.src = url;
+    pa.setAttribute('aria-label', 'बनी हुई आवाज़ सुनें');
+    wrap.appendChild(pa);
+    box.appendChild(wrap);
+    addVolume(wrap, pa, 'बनी हुई आवाज़');
+  } else {
+    box.appendChild(wrap);
+  }
+  dl.focus();
+}
+
+/* एक समय में एक ही भारी काम */
+function job(fn, failMsg) {
+  if (busy) { say('एक काम चल रहा है। उसके पूरा होने का इंतज़ार करें।'); return Promise.resolve(); }
+  busy = true;
+  return Promise.resolve().then(fn).then(null, function () { say(failMsg); }).then(function () { busy = false; });
+}
+
+/* ---------- 1. वीडियो जोड़ना ---------- */
+var joinFiles = [];
+
+function renderJoin(focusIdx, act) {
+  var ol = $('#join-list');
+  ol.replaceChildren();
+  joinFiles.forEach(function (f, i) {
+    var li = document.createElement('li');
+    li.className = 'item';
+    var name = document.createElement('span');
+    name.className = 'name';
+    name.textContent = (i + 1) + '. ' + f.name;
+    li.appendChild(name);
+    var mk = function (act2, txt, label, fn, disabled) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'btn'; b.dataset.act = act2;
+      b.textContent = txt; b.setAttribute('aria-label', label); b.disabled = !!disabled;
+      b.setAttribute('aria-describedby', 'hx-join-list');
+      b.addEventListener('click', fn);
+      return b;
+    };
+    li.appendChild(mk('up', 'ऊपर', f.name + ' को ऊपर ले जाएँ', function () { moveJoin(i, -1); }, i === 0));
+    li.appendChild(mk('down', 'नीचे', f.name + ' को नीचे ले जाएँ', function () { moveJoin(i, 1); }, i === joinFiles.length - 1));
+    li.appendChild(mk('remove', 'हटाएँ', f.name + ' को सूची से हटाएँ', function () { removeJoin(i); }, false));
+    ol.appendChild(li);
+  });
+  $('#join-count').textContent = joinFiles.length
+    ? joinFiles.length + ' वीडियो चुने गए, इसी क्रम में जुड़ेंगे'
+    : 'अभी कोई वीडियो नहीं चुना गया';
+  if (focusIdx != null && ol.children[focusIdx]) {
+    var li = ol.children[focusIdx];
+    var target = (act && li.querySelector('[data-act="' + act + '"]:not(:disabled)')) || li.querySelector('button:not(:disabled)');
+    if (target) target.focus();
+  }
+}
+function moveJoin(i, d) {
+  var j = i + d;
+  if (j < 0 || j >= joinFiles.length) return;
+  var tmp = joinFiles[i]; joinFiles[i] = joinFiles[j]; joinFiles[j] = tmp;
+  renderJoin(j, d < 0 ? 'up' : 'down');
+  say(joinFiles[j].name + ' अब नंबर ' + (j + 1) + ' पर है।');
+}
+function removeJoin(i) {
+  var f = joinFiles.splice(i, 1)[0];
+  renderJoin(Math.min(i, joinFiles.length - 1), 'remove');
+  say(f.name + ' सूची से हटा दिया गया।');
+}
+
+function joinVideos(files, onStep, isStopped) {
+  var vids = files.map(function (f) { return makeMedia('video', f); });
+  var good = [];
+  var skipped = 0, used = 0, rec = null, ac = null;
+  var cleanup = function () {
+    if (rec && rec.rec.state !== 'inactive') rec.rec.stop();
+    if (ac) ac.close().catch(function () {});
+    vids.forEach(function (v) { URL.revokeObjectURL(v.src); });
+  };
+  var loadAll = vids.reduce(function (p, v) {
+    return p.then(function () {
+      return loadMeta(v).then(function () { good.push(v); }, function () { skipped++; });
+    });
+  }, Promise.resolve());
+  return loadAll.then(function () {
+    if (!good.length) return { blob: null, used: 0, skipped: skipped, stopped: false };
+    var first = good[0];
+    var sz = sizeFor(first.videoWidth, first.videoHeight);
+    var W = sz.W, H = sz.H;
+    var canvas = mkCanvas(W, H);
+    var ctx = canvas.getContext('2d');
+    ac = new AC();
+    var dest = ac.createMediaStreamDestination();
+    good.forEach(function (v) { ac.createMediaElementSource(v).connect(dest); });
+    return resumeCtx(ac).then(function () {
+      rec = startRecorder(combined(canvas, dest.stream), VIDEO_MIMES);
+      var steps = good.map(function (v, i) { return i; });
+      return steps.reduce(function (p, i) {
+        return p.then(function () {
+          if (isStopped()) return null;
+          onStep(i + 1, good.length);
+          var v = good[i];
+          return playAndDraw(v, function () { drawContain(ctx, v, W, H); }, isStopped).then(
+            function () { used++; },
+            function () { skipped++; }
+          );
+        });
+      }, Promise.resolve()).then(function () {
+        return rec.stop();
+      }).then(function (blob) {
+        return { blob: blob, used: used, skipped: skipped, stopped: isStopped() };
+      });
+    });
+  }).then(function (r) { cleanup(); return r; }, function (e) { cleanup(); throw e; });
+}
+
+$('#join-files').addEventListener('change', function (e) {
+  var files = Array.prototype.slice.call(e.target.files || []);
+  e.target.value = '';
+  if (!files.length) return;
+  joinFiles = joinFiles.concat(files);
+  renderJoin();
+  say(files.length + ' वीडियो सूची में जुड़े। कुल ' + joinFiles.length + '।');
+});
+
+$('#join-go').addEventListener('click', function () {
+  job(function () {
+    if (!joinFiles.length) return say('पहले वीडियो फ़ाइलें चुनें।');
+    var files = joinFiles.slice();
+    stopReq = false;
+    setStop('#join-stop', true);
+    say(files.length + ' वीडियो जोड़े जा रहे हैं। इसमें वीडियो की कुल लंबाई जितना समय लगेगा।');
+    return always(joinVideos(files,
+      function (i, n) { var m = 'वीडियो ' + i + ' में से ' + n + ' जोड़ा जा रहा है'; prog('#join-progress', m); say(m); },
+      function () { return stopReq; }
+    ).then(function (r) {
+      prog('#join-progress', '');
+      if (!r.blob || !r.blob.size) return say('कोई वीडियो नहीं जुड़ पाया। फ़ाइलें दोबारा चुनें।');
+      showResult($('#join-result'), r.blob, 'chitti-joined-' + stamp() + '.' + extOf(r.blob.type));
+      var extra = r.skipped ? ' ' + r.skipped + ' फ़ाइलें नहीं चल पाईं, इसलिए छोड़ दी गईं।' : '';
+      say((r.stopped ? 'रोक दिया गया। जो बना था वह तैयार है।' : 'वीडियो तैयार है।') + extra + ' डाउनलोड करें बटन दबाएँ।');
+    }), function () { setStop('#join-stop', false); });
+  }, 'वीडियो नहीं जुड़ पाया। फ़ाइलें दोबारा चुनें या दूसरी फ़ाइलें आज़माएँ।');
+});
+
+$('#join-stop').addEventListener('click', function () { stopReq = true; say('रोका जा रहा है। जो बना है वह तैयार होगा।'); });
+
+/* ---------- 2. वीडियो से आवाज़ निकालना ---------- */
+function extractAudio(file) {
+  var dec = new AC();
+  var close = function () { dec.close().catch(function () {}); };
+  return file.arrayBuffer()
+    .then(function (ab) { return dec.decodeAudioData(ab); })
+    .then(function (buf) { var wav = audioBufferToWav(buf); close(); return wav; },
+          function (e) { close(); throw e; });
+}
+$('#ext-go').addEventListener('click', function () {
+  job(function () {
+    var f = $('#ext-file').files[0];
+    if (!f) return say('पहले वीडियो फ़ाइल चुनें।');
+    say('आवाज़ निकाली जा रही है। कुछ पल रुकें।');
+    return extractAudio(f).then(function (blob) {
+      showResult($('#ext-result'), blob, 'chitti-awaaz-' + stamp() + '.wav');
+      say('आवाज़ तैयार है। डाउनलोड करें बटन दबाएँ।');
+    });
+  }, 'इस फ़ाइल से आवाज़ नहीं निकल पाई। हो सकता है इसमें आवाज़ न हो।');
+});
+
+/* ---------- 3. आवाज़ और वीडियो मिलाना ---------- */
+function mergeVideoAudio(vFile, aFile, isStopped) {
+  var v = makeMedia('video', vFile);
+  v.muted = true;
+  var a = makeMedia('audio', aFile);
+  var ac = new AC();
+  var r = null;
+  var cleanup = function () {
+    if (r && r.rec.state !== 'inactive') r.rec.stop();
+    a.pause();
+    ac.close().catch(function () {});
+    URL.revokeObjectURL(v.src); URL.revokeObjectURL(a.src);
+  };
+  return loadMeta(v).then(function () { return loadMeta(a); }).then(function () {
+    var sz = sizeFor(v.videoWidth, v.videoHeight);
+    var W = sz.W, H = sz.H;
+    var canvas = mkCanvas(W, H);
+    var ctx = canvas.getContext('2d');
+    var dest = ac.createMediaStreamDestination();
+    ac.createMediaElementSource(a).connect(dest);
+    return resumeCtx(ac).then(function () {
+      r = startRecorder(combined(canvas, dest.stream), VIDEO_MIMES);
+      a.play().catch(function () {});
+      return playAndDraw(v, function () { drawContain(ctx, v, W, H); }, isStopped);
+    }).then(function () {
+      a.pause();
+      return r.stop();
+    });
+  }).then(function (blob) { cleanup(); return blob; }, function (e) { cleanup(); throw e; });
+}
+$('#merge-go').addEventListener('click', function () {
+  job(function () {
+    var vf = $('#merge-video').files[0], af = $('#merge-audio').files[0];
+    if (!vf || !af) return say('पहले वीडियो फ़ाइल और आवाज़ वाली फ़ाइल, दोनों चुनें।');
+    stopReq = false;
+    setStop('#merge-stop', true);
+    say('वीडियो और आवाज़ मिलाए जा रहे हैं। इसमें वीडियो जितना समय लगेगा।');
+    return always(mergeVideoAudio(vf, af, function () { return stopReq; }).then(function (blob) {
+      if (!blob || !blob.size) return say('वीडियो नहीं बन पाया। फ़ाइलें दोबारा चुनें।');
+      showResult($('#merge-result'), blob, 'chitti-mila-' + stamp() + '.' + extOf(blob.type));
+      say('नया वीडियो तैयार है। डाउनलोड करें बटन दबाएँ।');
+    }), function () { setStop('#merge-stop', false); });
+  }, 'वीडियो और आवाज़ नहीं मिल पाए। फ़ाइलें दोबारा चुनें।');
+});
+$('#merge-stop').addEventListener('click', function () { stopReq = true; say('रोका जा रहा है।'); });
+
+/* ---------- 4. गाने के साथ रिकॉर्डिंग ---------- */
+var K = { track: null, trackUrl: '', rec: null, mic: null, recUrl: '', recBlob: null };
+var trackAudio = $('#track-audio');
+var recAudio = new Audio();
+
+function kVol() { return { track: +$('#k-vol-track').value / 100, vocal: +$('#k-vol-vocal').value / 100 }; }
+
+trackAudio.addEventListener('ended', function () { if (K.rec) stopKaraokeRec(); });
+
+$('#k-track').addEventListener('change', function (e) {
+  var f = e.target.files[0];
+  if (!f) return;
+  if (K.trackUrl) URL.revokeObjectURL(K.trackUrl);
+  K.track = f;
+  K.trackUrl = URL.createObjectURL(f);
+  trackAudio.src = K.trackUrl;
+  trackAudio.volume = kVol().track;
+  prog('#k-track-name', 'गाना चुना गया: ' + f.name);
+  say('गाना चुना गया: ' + f.name);
+});
+
+function stopMic() {
+  if (K.mic) { K.mic.getTracks().forEach(function (t) { t.stop(); }); K.mic = null; }
+}
+
+function startKaraokeRec() {
+  if (K.rec) return say('रिकॉर्डिंग पहले से चल रही है।');
+  if (!HAS_REC || !HAS_MIC) return say('इस ब्राउज़र में रिकॉर्डिंग नहीं होती। Chrome या Samsung Internet में खोलें।');
+  return navigator.mediaDevices.getUserMedia({ audio: true }).then(function (mic) {
+    var rec;
+    try { rec = startRecorder(mic, AUDIO_MIMES); }
+    catch (e) { mic.getTracks().forEach(function (t) { t.stop(); }); return say('रिकॉर्डिंग शुरू नहीं हो पाई।'); }
+    K.rec = rec;
+    K.mic = mic;
+    if (K.track) {
+      trackAudio.currentTime = 0;
+      trackAudio.volume = kVol().track;
+      trackAudio.play().catch(function () {});
+      prog('#k-state', 'रिकॉर्डिंग चल रही है, गाना भी बज रहा है।');
+      say('रिकॉर्डिंग शुरू हो गई। गाना बज रहा है।');
+    } else {
+      prog('#k-state', 'रिकॉर्डिंग चल रही है। गाना नहीं चुना है, इसलिए सिर्फ़ आपकी आवाज़ रिकॉर्ड होगी।');
+      say('रिकॉर्डिंग शुरू हो गई। गाना नहीं चुना है, इसलिए सिर्फ़ आपकी आवाज़ रिकॉर्ड होगी।');
+    }
+  }, function () {
+    say('माइक्रोफ़ोन की इजाज़त नहीं मिली। फ़ोन की सेटिंग में इस ब्राउज़र को माइक्रोफ़ोन की इजाज़त दें।');
+  });
+}
+
+function stopKaraokeRec() {
+  if (!K.rec) return say('रिकॉर्डिंग चल नहीं रही।');
+  var r = K.rec;
+  K.rec = null;
+  trackAudio.pause();
+  return r.stop().then(function (blob) {
+    stopMic();
+    if (K.recUrl) URL.revokeObjectURL(K.recUrl);
+    K.recBlob = blob;
+    K.recUrl = URL.createObjectURL(blob);
+    recAudio.src = K.recUrl;
+    recAudio.volume = kVol().vocal;
+    prog('#k-state', 'रिकॉर्डिंग तैयार है। अब सुन सकते हैं या मिक्स कर सकते हैं।');
+    showResult($('#k-raw'), blob, 'chitti-meri-awaaz-' + stamp() + '.' + extOf(blob.type));
+    say('रिकॉर्डिंग रोक दी गई। रिकॉर्डिंग तैयार है।');
+  }, function () {
+    stopMic();
+    say('रिकॉर्डिंग नहीं रुक पाई। दोबारा शुरू करके देखें।');
+  });
+}
+
+function playRec() {
+  if (!K.recUrl) return say('पहले गाने के साथ रिकॉर्डिंग करें।');
+  recAudio.currentTime = 0;
+  recAudio.volume = kVol().vocal;
+  recAudio.play().catch(function () { say('रिकॉर्डिंग नहीं चल पाई।'); });
+  say('आपकी रिकॉर्डिंग सुनाई जा रही है।');
+}
+function playBoth() {
+  if (!K.recUrl) return say('पहले रिकॉर्डिंग करें।');
+  var v = kVol();
+  recAudio.currentTime = 0; recAudio.volume = v.vocal; recAudio.play().catch(function () {});
+  if (K.track) { trackAudio.currentTime = 0; trackAudio.volume = v.track; trackAudio.play().catch(function () {}); }
+  say('गाना और आपकी आवाज़ साथ चल रहे हैं।');
+}
+function stopAll() {
+  trackAudio.pause(); recAudio.pause();
+  say('सब बंद कर दिया गया।');
+}
+
+function mixToWav(trackFile, vocalBlob, tg, vg) {
+  var dec = new AC();
+  var close = function () { dec.close().catch(function () {}); };
+  var tbP = trackFile ? trackFile.arrayBuffer().then(function (b) { return dec.decodeAudioData(b); }) : Promise.resolve(null);
+  return vocalBlob.arrayBuffer()
+    .then(function (vbuf) { return dec.decodeAudioData(vbuf); })
+    .then(function (vb) {
+      return tbP.then(function (tb) {
+        var sr = 44100;
+        var len = Math.max(1, Math.ceil(vb.duration * sr), tb ? Math.ceil(tb.duration * sr) : 0);
+        var off = new OfflineAudioContext(2, len, sr);
+        var add = function (buf, gain) {
+          var s = off.createBufferSource();
+          s.buffer = buf;
+          var g = off.createGain();
+          g.gain.value = gain;
+          s.connect(g);
+          g.connect(off.destination);
+          s.start(0);
+        };
+        if (tb) add(tb, tg);
+        add(vb, vg);
+        return off.startRendering();
+      });
+    })
+    .then(function (out) { var wav = audioBufferToWav(out); close(); return wav; },
+          function (e) { close(); throw e; });
+}
+function mixKaraoke() {
+  if (!K.recBlob) return say('पहले गाने के साथ रिकॉर्डिंग करें।');
+  return job(function () {
+    say('मिक्स बन रहा है। कुछ पल रुकें।');
+    var v = kVol();
+    return mixToWav(K.track, K.recBlob, v.track, v.vocal).then(function (blob) {
+      showResult($('#k-mix-result'), blob, 'chitti-gaana-mix-' + stamp() + '.wav');
+      say('मिक्स तैयार है। डाउनलोड करें बटन दबाएँ।');
+    });
+  }, 'मिक्स नहीं बन पाया। रिकॉर्डिंग दोबारा करके देखें।');
+}
+
+$('#k-play-track').addEventListener('click', function () {
+  if (!K.track) return say('पहले गाने की फ़ाइल चुनें।');
+  trackAudio.volume = kVol().track;
+  trackAudio.play().catch(function () { say('गाना नहीं चल पाया।'); });
+  say('गाना चल रहा है।');
+});
+$('#k-pause-track').addEventListener('click', function () { trackAudio.pause(); say('गाना रोक दिया गया।'); });
+$('#k-rec-start').addEventListener('click', function () { startKaraokeRec(); });
+$('#k-rec-stop').addEventListener('click', function () { stopKaraokeRec(); });
+$('#k-play-rec').addEventListener('click', playRec);
+$('#k-play-both').addEventListener('click', playBoth);
+$('#k-stop-all').addEventListener('click', stopAll);
+$('#k-mix').addEventListener('click', function () { mixKaraoke(); });
+
+/* ---------- 5. तस्वीर और आवाज़ से वीडियो ---------- */
+function imageToVideo(imgFile, aFile, isStopped) {
+  var img = new Image();
+  img.src = URL.createObjectURL(imgFile);
+  var a = makeMedia('audio', aFile);
+  var ac = new AC();
+  var r = null;
+  var cleanup = function () {
+    if (r && r.rec.state !== 'inactive') r.rec.stop();
+    a.pause();
+    ac.close().catch(function () {});
+    URL.revokeObjectURL(a.src); URL.revokeObjectURL(img.src);
+  };
+  return img.decode().then(function () { return loadMeta(a); }).then(function () {
+    var sz = sizeFor(img.naturalWidth, img.naturalHeight);
+    var W = sz.W, H = sz.H;
+    var canvas = mkCanvas(W, H);
+    var ctx = canvas.getContext('2d');
+    var draw = function () { drawContain(ctx, img, W, H); };
+    var dest = ac.createMediaStreamDestination();
+    ac.createMediaElementSource(a).connect(dest);
+    return resumeCtx(ac).then(function () {
+      draw();
+      r = startRecorder(combined(canvas, dest.stream), VIDEO_MIMES);
+      return playAndDraw(a, draw, isStopped);
+    }).then(function () {
+      return r.stop();
+    });
+  }).then(function (blob) { cleanup(); return blob; }, function (e) { cleanup(); throw e; });
+}
+$('#imgvid-go').addEventListener('click', function () {
+  job(function () {
+    var imf = $('#img-file').files[0], af = $('#img-audio').files[0];
+    if (!imf || !af) return say('पहले तस्वीर और ऑडियो फ़ाइल, दोनों चुनें।');
+    stopReq = false;
+    setStop('#imgvid-stop', true);
+    say('वीडियो बन रहा है। इसमें ऑडियो जितना समय लगेगा।');
+    return always(imageToVideo(imf, af, function () { return stopReq; }).then(function (blob) {
+      if (!blob || !blob.size) return say('वीडियो नहीं बन पाया। तस्वीर या ऑडियो फ़ाइल जाँचें।');
+      showResult($('#imgvid-result'), blob, 'chitti-tasveer-' + stamp() + '.' + extOf(blob.type));
+      say('वीडियो तैयार है। डाउनलोड करें बटन दबाएँ।');
+    }), function () { setStop('#imgvid-stop', false); });
+  }, 'वीडियो नहीं बन पाया। तस्वीर या ऑडियो फ़ाइल जाँचें।');
+});
+$('#imgvid-stop').addEventListener('click', function () { stopReq = true; say('रोका जा रहा है।'); });
+
+/* ---------- आवाज़ की स्लाइडर (हर स्लाइडर के साथ कम और बढ़ाएँ बटन) ---------- */
+function bindVolume(sliderSel, downSel, upSel, label, onChange) {
+  var s = $(sliderSel);
+  var apply = function (raw, announce) {
+    var v = Math.max(0, Math.min(100, Math.round(raw / 5) * 5));
+    s.value = v;
+    s.setAttribute('aria-valuetext', v + ' प्रतिशत');
+    onChange(v / 100);
+    if (announce) say(label + ' ' + v + ' प्रतिशत।');
+  };
+  s.addEventListener('input', function () { apply(+s.value, false); });
+  $(downSel).addEventListener('click', function () { apply(+s.value - 10, true); });
+  $(upSel).addEventListener('click', function () { apply(+s.value + 10, true); });
+  apply(+s.value, false);
+}
+bindVolume('#k-vol-track', '#k-track-down', '#k-track-up', 'गाने की आवाज़', function (x) { trackAudio.volume = x; });
+bindVolume('#k-vol-vocal', '#k-vocal-down', '#k-vocal-up', 'आपकी आवाज़', function (x) { recAudio.volume = x; });
+
+/* ---------- बोलकर सुनाएँ (फ़ोन की अपनी आवाज़, window.speechSynthesis) ---------- */
+var speechOK = !!(window.speechSynthesis && window.SpeechSynthesisUtterance);
+var speechVoices = [];
+var speechRun = 0;
+var speechBusy = false;
+var speechResume = 0;
+var speechKey = '';
+var speechChunks = [];
+var speechIdx = 0;
+var speechVoice = null;
+
+function spStatus(msg) { $('#speak-status').textContent = msg; }
+
+/* लंबा पाठ छोटे टुकड़ों में, वाक्य के हिसाब से */
+function chunkText(text) {
+  var out = [];
+  var sents = text.match(/[^।.!?\n]+[।.!?]*/g) || [];
+  sents.forEach(function (s) {
+    s = s.trim();
+    while (s.length > 180) {
+      var cut = s.lastIndexOf(' ', 180);
+      if (cut < 60) cut = 180;
+      out.push(s.slice(0, cut).trim());
+      s = s.slice(cut).trim();
+    }
+    if (s) out.push(s);
+  });
+  return out.filter(function (x) { return x.length > 0; });
+}
+
+/* चुनी भाषा की आवाज़: पहले पूरा मेल, फिर वही भाषा */
+function voiceFor(lang) {
+  var want = lang.toLowerCase();
+  var base = want.split('-')[0];
+  var exact = null;
+  var same = null;
+  speechVoices.forEach(function (v) {
+    var l = (v.lang || '').toLowerCase().replace('_', '-');
+    if (!exact && l === want) exact = v;
+    if (!same && l.split('-')[0] === base) same = v;
+  });
+  return exact || same;
+}
+
+function showVoiceNote() {
+  var note = $('#speak-voice');
+  if (!speechOK) { note.textContent = 'इस फ़ोन में बोलकर सुनाने की सुविधा नहीं है।'; return; }
+  if (!speechVoices.length) { note.textContent = 'फ़ोन की आवाज़ों की सूची अभी नहीं आई। थोड़ी देर बाद भाषा दोबारा चुनें।'; return; }
+  note.textContent = voiceFor($('#speak-lang').value)
+    ? 'इस भाषा की आवाज़ फ़ोन में मिल गई है।'
+    : 'इस भाषा की आवाज़ इस फ़ोन में नहीं मिली। फ़ोन की टेक्स्ट-टू-स्पीच सेटिंग में यह भाषा डाउनलोड करें, या दूसरी भाषा चुनें।';
+}
+
+function loadVoices() {
+  if (!speechOK) return;
+  speechVoices = window.speechSynthesis.getVoices() || [];
+  showVoiceNote();
+}
+
+function speakChunk(run, i) {
+  if (run !== speechRun) return;
+  if (i >= speechChunks.length) {
+    speechBusy = false;
+    speechResume = 0;
+    speechKey = '';
+    spStatus('पूरा पाठ सुना दिया गया।');
+    return;
+  }
+  speechIdx = i;
+  var u = new SpeechSynthesisUtterance(speechChunks[i]);
+  u.lang = $('#speak-lang').value;
+  if (speechVoice) u.voice = speechVoice;
+  u.rate = +$('#speak-rate').value;
+  u.volume = speechVol;
+  u.onend = function () { if (run === speechRun) speakChunk(run, i + 1); };
+  u.onerror = function (e) {
+    if (run !== speechRun) return;
+    var code = e && e.error;
+    if (code === 'interrupted' || code === 'canceled') return;
+    speechBusy = false;
+    spStatus('आवाज़ में दिक्कत आई। बोलकर सुनाएँ दबाकर फिर से कोशिश करें।');
+  };
+  window.speechSynthesis.speak(u);
+}
+
+function startSpeech(fromStart) {
+  if (!speechOK) { spStatus('इस फ़ोन में बोलकर सुनाने की सुविधा नहीं है। Chrome ब्राउज़र में खोलकर देखें।'); return; }
+  var text = $('#speak-text').value;
+  var lang = $('#speak-lang').value;
+  if (!text.trim()) { spStatus('पहले ऊपर के खाने में कुछ लिखें या चिपकाएँ।'); $('#speak-text').focus(); return; }
+  if (speechBusy) { spStatus('अभी बोला जा रहा है। रोकने के लिए "रोकें" दबाएँ।'); return; }
+  if (!speechVoices.length) speechVoices = window.speechSynthesis.getVoices() || [];
+  if (!speechVoices.length) { spStatus('फ़ोन की आवाज़ों की सूची अभी नहीं आई। थोड़ी देर बाद फिर दबाएँ।'); return; }
+  var voice = voiceFor(lang);
+  if (!voice) {
+    spStatus('इस भाषा की आवाज़ इस फ़ोन में नहीं मिली। फ़ोन की टेक्स्ट-टू-स्पीच सेटिंग में यह भाषा डाउनलोड करें, या दूसरी भाषा चुनें।');
+    return;
+  }
+  var key = lang + '|' + text;
+  if (fromStart || key !== speechKey) speechResume = 0;
+  speechKey = key;
+  speechChunks = chunkText(text);
+  speechVoice = voice;
+  var from = speechResume;
+  speechResume = 0;
+  speechRun++;
+  speechBusy = true;
+  window.speechSynthesis.cancel();
+  spStatus(from > 0 ? 'वहीं से आगे बोल रहे हैं।' : 'बोलना शुरू हो रहा है।');
+  speakChunk(speechRun, from);
+}
+
+function pauseSpeech() {
+  if (!speechOK) return;
+  if (!speechBusy) { spStatus('अभी कुछ नहीं बोला जा रहा।'); return; }
+  speechRun++;
+  speechBusy = false;
+  speechResume = speechIdx;
+  window.speechSynthesis.cancel();
+  spStatus('रोक दिया गया। "बोलकर सुनाएँ" दबाने पर यहीं से आगे सुनेंगे।');
+}
+
+function setRate(v) {
+  v = Math.max(0.5, Math.min(2, Math.round(v * 10) / 10));
+  $('#speak-rate').value = v;
+  $('#speak-rate').setAttribute('aria-valuetext', v.toFixed(1) + ' गुना');
+  $('#speak-rate-val').textContent = v.toFixed(1);
+  return v;
+}
+
+$('#speak-go').addEventListener('click', function () { startSpeech(false); });
+$('#speak-restart').addEventListener('click', function () { startSpeech(true); });
+$('#speak-pause').addEventListener('click', pauseSpeech);
+$('#speak-lang').addEventListener('change', showVoiceNote);
+$('#speak-rate').addEventListener('input', function () { setRate(+$('#speak-rate').value); });
+$('#speak-slow').addEventListener('click', function () {
+  var v = setRate(+$('#speak-rate').value - 0.1);
+  spStatus('बोलने की गति ' + v.toFixed(1) + ' गुना।');
+});
+$('#speak-fast').addEventListener('click', function () {
+  var v = setRate(+$('#speak-rate').value + 0.1);
+  spStatus('बोलने की गति ' + v.toFixed(1) + ' गुना।');
+});
+setRate(1);
+if (speechOK) {
+  loadVoices();
+  window.speechSynthesis.onvoiceschanged = loadVoices;
+} else {
+  ['#speak-go', '#speak-pause', '#speak-restart'].forEach(function (s) { $(s).disabled = true; });
+  showVoiceNote();
+}
+
+
+window.addEventListener('offline', function () {
+  say('इंटरनेट बंद हो गया है। आवाज़ साथी के बाकी सारे काम फ़ोन में चलते रहेंगे।');
+});
+window.addEventListener('online', function () { say('इंटरनेट वापस आ गया है।'); });
+
+/* ---------- होम स्क्रीन पर जोड़ना ---------- */
+var installPrompt = null;
+var installHelp = $('#install-help');
+window.addEventListener('beforeinstallprompt', function (e) {
+  e.preventDefault();
+  installPrompt = e;
+});
+function showInstallSteps() {
+  installHelp.replaceChildren();
+  var h = document.createElement('p');
+  h.className = 'dev';
+  h.textContent = 'होम स्क्रीन पर जोड़ने के कदम। अपने ब्राउज़र के हिसाब से देखें:';
+  installHelp.appendChild(h);
+  var ol = document.createElement('ol');
+  ol.className = 'steps';
+  [
+    'Chrome: ऊपर दाएँ कोने में तीन बिंदुओं वाला मेन्यू दबाएँ। फिर "होम स्क्रीन पर जोड़ें" या "ऐप इंस्टॉल करें" चुनें। फिर "जोड़ें" या "इंस्टॉल" दबाएँ।',
+    'Samsung Internet: नीचे दाएँ कोने में मेन्यू दबाएँ। फिर "पेज जोड़ें" दबाकर "होम स्क्रीन" चुनें।',
+    'Firefox: ऊपर या नीचे दाएँ कोने में तीन बिंदुओं वाला मेन्यू दबाएँ। फिर "इंस्टॉल" या "होम स्क्रीन पर जोड़ें" चुनें।',
+    'जोड़ने के बाद फ़ोन की होम स्क्रीन पर "आवाज़ साथी" का आइकन दिखेगा। उसी से ऐप खुलेगी।'
+  ].forEach(function (t) {
+    var li = document.createElement('li');
+    li.textContent = t;
+    ol.appendChild(li);
+  });
+  installHelp.appendChild(ol);
+  installHelp.focus();
+  say('होम स्क्रीन पर जोड़ने के कदम नीचे दिखाए गए हैं।');
+}
+/* पेज किसी और साइट के अंदर (iframe) खुला हो, तो फ़ोन में जोड़ना सीधे नहीं होता */
+var inFrame = (function () { try { return window.top !== window.self; } catch (e) { return true; } })();
+function pageAddress() {
+  var u = '';
+  try { u = location.href; } catch (e) { u = ''; }
+  if (!/^https?:\/\//i.test(u)) { try { u = document.referrer || ''; } catch (e) { u = ''; } }
+  return /^https?:\/\//i.test(u) ? u : '';
+}
+function showFrameHelp() {
+  installHelp.replaceChildren();
+  var h = document.createElement('p');
+  h.className = 'dev';
+  h.textContent = 'यह पेज किसी और पेज के अंदर खुला है, इसलिए यहाँ से फ़ोन में सीधे नहीं जुड़ेगा।';
+  installHelp.appendChild(h);
+  var p1 = document.createElement('p');
+  p1.textContent = 'पहले नीचे का बटन दबाकर इस पेज को अलग से खोलें। वह Chrome ब्राउज़र में खुले, फिर Chrome का मेन्यू (तीन बिंदु) दबाकर "होम स्क्रीन पर जोड़ें" चुनें।';
+  installHelp.appendChild(p1);
+  var addr = pageAddress();
+  if (addr) {
+    var a = document.createElement('a');
+    a.className = 'btn primary';
+    a.href = addr;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.textContent = 'इस पेज को अलग से खोलें';
+    a.setAttribute('aria-label', 'इस पेज को अलग से नई विंडो में खोलें, ताकि उसे फ़ोन में जोड़ा जा सके');
+    installHelp.appendChild(a);
+  } else {
+    var p2 = document.createElement('p');
+    p2.textContent = 'इस पेज का पता अपने ब्राउज़र के ऊपर वाले खाने में लिखकर उसे Chrome में खोलें।';
+    installHelp.appendChild(p2);
+  }
+  installHelp.focus();
+  say('इस पेज को अलग से खोलने के लिए बटन दिखाया गया है।');
+}
+$('#install-btn').addEventListener('click', function () {
+  if (inFrame) return showFrameHelp();
+  if (installPrompt) {
+    var p = installPrompt;
+    installPrompt = null;
+    try {
+      var pr = p.prompt();
+      say('फ़ोन में जोड़ने का पैनल खुल रहा है।');
+      if (p.userChoice && p.userChoice.then) {
+        p.userChoice.then(function (c) {
+          say(c && c.outcome === 'accepted' ? 'ऐप फ़ोन में जुड़ गया।' : 'ऐप इस बार नहीं जोड़ा गया। बटन दोबारा दबाकर कदम देख सकते हैं।');
+        }, function () {});
+      }
+      if (pr && pr.catch) pr.catch(function () { showInstallSteps(); });
+      return;
+    } catch (err) { /* नीचे कदम दिखेंगे */ }
+  }
+  showInstallSteps();
+});
+/* ब्राउज़र को ऐप की जानकारी (मैनिफ़ेस्ट) अंदर से देना, अगर बन सके */
+(function addManifest() {
+  try {
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="96" fill="#111111"/><circle cx="256" cy="256" r="150" fill="#ffffff"/></svg>';
+    var m = {
+      name: 'आवाज़ साथी',
+      short_name: 'आवाज़ साथी',
+      lang: 'hi',
+      display: 'standalone',
+      background_color: '#ffffff',
+      theme_color: '#111111',
+      icons: [{ src: 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg), sizes: 'any', type: 'image/svg+xml', purpose: 'any' }]
+    };
+    var link = document.createElement('link');
+    link.rel = 'manifest';
+    link.href = URL.createObjectURL(new Blob([JSON.stringify(m)], { type: 'application/manifest+json' }));
+    document.head.appendChild(link);
+  } catch (e) { /* मैनिफ़ेस्ट न बने तो भी ऐप चलती है */ }
+})();
+
+/* ---------- बोलने की आवाज़ का स्तर ---------- */
+var speechVol = 1;
+bindVolume('#speak-vol', '#speak-vol-down', '#speak-vol-up', 'बोलने की आवाज़', function (x) { speechVol = x; });
+
+/* ---------- सेटिंग्स (फ़ोन में सहेजना; न हो सके तो इसी बार के लिए) ---------- */
+var SKEY = 'chitti-settings-v1';
+var FSIZES = [90, 100, 120, 140];
+var FSIZE_NAMES = ['छोटा', 'सामान्य', 'बड़ा', 'बहुत बड़ा'];
+var DEFAULTS = { fsize: 1, contrast: false, lang: 'hi-IN', rate: 1, announce: true, accent: 'default', selfspeak: true };
+var S = { fsize: 1, contrast: false, lang: 'hi-IN', rate: 1, announce: true, accent: 'default', selfspeak: true };
+var ACCENTS = ['default', 'blue', 'green', 'orange', 'purple', 'red', 'pink', 'gold'];
+var ACCENT_NAMES = { 'default': 'डिफ़ॉल्ट (काला)', blue: 'नीला', green: 'हरा', orange: 'नारंगी', purple: 'बैंगनी', red: 'लाल', pink: 'गुलाबी', gold: 'सुनहरा' };
+var storeOK = (function () {
+  try {
+    window.localStorage.setItem('chitti-test', '1');
+    window.localStorage.removeItem('chitti-test');
+    return true;
+  } catch (e) { return false; }
+})();
+
+function loadSettings() {
+  if (!storeOK) return;
+  try {
+    var raw = window.localStorage.getItem(SKEY);
+    if (!raw) return;
+    var o = JSON.parse(raw);
+    if (typeof o.fsize === 'number' && o.fsize >= 0 && o.fsize <= 3) S.fsize = o.fsize;
+    if (typeof o.contrast === 'boolean') S.contrast = o.contrast;
+    if (typeof o.lang === 'string' && $('#set-lang').querySelector('option[value="' + o.lang + '"]')) S.lang = o.lang;
+    if (typeof o.rate === 'number' && o.rate >= 0.5 && o.rate <= 2) S.rate = o.rate;
+    if (typeof o.announce === 'boolean') S.announce = o.announce;
+    if (typeof o.accent === 'string' && ACCENTS.indexOf(o.accent) !== -1) S.accent = o.accent;
+    if (typeof o.selfspeak === 'boolean') S.selfspeak = o.selfspeak;
+  } catch (e) { /* खराब सेटिंग्स हों तो पहले जैसी */ }
+}
+function saveSettings() {
+  if (!storeOK) return;
+  try {
+    window.localStorage.setItem(SKEY, JSON.stringify(S));
+  } catch (e) {
+    storeOK = false;
+    applySettings();
+  }
+}
+function applySettings() {
+  document.documentElement.style.fontSize = FSIZES[S.fsize] + '%';
+  document.documentElement.classList.toggle('hc', !!S.contrast);
+  document.documentElement.setAttribute('data-accent', S.accent);
+  $$('input[name="fsize"]').forEach(function (r) { r.checked = (+r.value === S.fsize); });
+  $$('input[name="accent"]').forEach(function (r) { r.checked = (r.value === S.accent); });
+  $('#set-contrast').checked = !!S.contrast;
+  $('#set-lang').value = S.lang;
+  $('#speak-lang').value = S.lang;
+  showVoiceNote();
+  setRate(S.rate);
+  $('#set-rate').value = S.rate;
+  $('#set-rate-val').textContent = S.rate.toFixed(1);
+  $('#set-announce').checked = !!S.announce;
+  $('#set-selfspeak').checked = !!S.selfspeak;
+  var live = S.announce ? 'polite' : 'off';
+  $('#status').setAttribute('aria-live', live);
+  $('#set-store-note').hidden = storeOK;
+}
+
+$$('input[name="fsize"]').forEach(function (r) {
+  r.addEventListener('change', function () {
+    S.fsize = +r.value;
+    applySettings();
+    saveSettings();
+    say('अक्षरों का आकार ' + FSIZE_NAMES[S.fsize] + ' कर दिया गया।');
+  });
+});
+$('#set-contrast').addEventListener('change', function () {
+  S.contrast = this.checked;
+  applySettings();
+  saveSettings();
+  say(S.contrast ? 'उच्च कंट्रास्ट चालू है।' : 'उच्च कंट्रास्ट बंद है।');
+});
+$('#set-lang').addEventListener('change', function () {
+  S.lang = this.value;
+  applySettings();
+  saveSettings();
+});
+$$('input[name="accent"]').forEach(function (r) {
+  r.addEventListener('change', function () {
+    S.accent = r.value;
+    applySettings();
+    saveSettings();
+    say('ऐप का रंग ' + ACCENT_NAMES[S.accent] + ' कर दिया गया।');
+  });
+});
+$('#set-rate').addEventListener('input', function () {
+  S.rate = Math.round(+this.value * 10) / 10;
+  applySettings();
+  saveSettings();
+});
+$('#set-selfspeak').addEventListener('change', function () {
+  S.selfspeak = this.checked;
+  applySettings();
+  saveSettings();
+  var m = S.selfspeak ? 'ऐप खुद बोलना चालू है।' : 'ऐप खुद बोलना बंद है।';
+  say(m);
+  speakNow(m);
+});
+$('#set-announce').addEventListener('change', function () {
+  S.announce = this.checked;
+  applySettings();
+  saveSettings();
+  say(S.announce ? 'बटन दबने पर आवाज़ चालू है।' : 'बटन दबने पर आवाज़ बंद है।');
+});
+$('#set-reset').addEventListener('click', function () {
+  S = { fsize: DEFAULTS.fsize, contrast: DEFAULTS.contrast, lang: DEFAULTS.lang, rate: DEFAULTS.rate, announce: DEFAULTS.announce, accent: DEFAULTS.accent, selfspeak: DEFAULTS.selfspeak };
+  applySettings();
+  saveSettings();
+  say('सेटिंग्स पहले जैसी कर दी गई हैं।');
+});
+
+/* ---------- प्राइवेसी पॉलिसी और पहली बार की सूचना ---------- */
+var NKEY = 'chitti-privacy-notice-v1';
+function noticeSeen() {
+  try { return window.localStorage.getItem(NKEY) === '1'; } catch (e) { return false; }
+}
+function markNoticeSeen() {
+  try { window.localStorage.setItem(NKEY, '1'); } catch (e) { /* सेव न हो सके तो भी सूचना बंद है */ }
+}
+function hideNotice() {
+  $('#privacy-notice').setAttribute('hidden', '');
+  markNoticeSeen();
+}
+function openPrivacy() {
+  $('#privacy-open').setAttribute('hidden', '');
+  $('#privacy-body').removeAttribute('hidden');
+  $('#privacy-title').focus();
+}
+function closePrivacy() {
+  $('#privacy-body').setAttribute('hidden', '');
+  $('#privacy-open').removeAttribute('hidden');
+  $('#privacy-open').focus();
+}
+$('#privacy-open').addEventListener('click', openPrivacy);
+$('#privacy-close').addEventListener('click', closePrivacy);
+$('#notice-read').addEventListener('click', function () {
+  hideNotice();
+  openPrivacy();
+});
+$('#notice-close').addEventListener('click', function () {
+  hideNotice();
+  $('#h-home').focus();
+});
+if (!noticeSeen()) $('#privacy-notice').removeAttribute('hidden');
+
+/* ---------- फ़ोन की आवाज़ से बटन और शीर्षक बताना (ऐप खुद बोले) ---------- */
+var lastSelfEl = null;
+var lastSelfText = '';
+var lastSelfAt = 0;
+var SELF_TAGS = { BUTTON: 1, A: 1, INPUT: 1, SELECT: 1, TEXTAREA: 1, LABEL: 1, H2: 1, H3: 1 };
+
+function speakNow(text) {
+  if (!speechOK || !text) return;
+  try {
+    window.speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    u.lang = 'hi-IN';
+    var v = voiceFor('hi-IN');
+    if (v) u.voice = v;
+    u.rate = S.rate;
+    u.volume = (typeof speechVol === 'number') ? speechVol : 1;
+    window.speechSynthesis.speak(u);
+  } catch (e) { /* फ़ोन बोल न सके तो चुप रहें */ }
+}
+function oneLine(t) { return (t || '').replace(/\s+/g, ' ').trim(); }
+function nameOf(el) {
+  var a = el.getAttribute('aria-label');
+  if (a) return a;
+  if (el.id) {
+    var lb = document.querySelector('label[for="' + el.id + '"]');
+    if (lb) return oneLine(lb.textContent);
+  }
+  if (el.parentNode && el.parentNode.tagName === 'LABEL') return oneLine(el.parentNode.textContent);
+  return oneLine(el.textContent);
+}
+function firstSentence(t) {
+  t = oneLine(t);
+  var i = t.indexOf('।');
+  if (i > 0 && i < 160) t = t.slice(0, i + 1);
+  return t.length > 160 ? t.slice(0, 160) : t;
+}
+function helpOf(el) {
+  var ids = (el.getAttribute('aria-describedby') || '').split(' ');
+  for (var k = 0; k < ids.length; k++) {
+    var h = ids[k] ? document.getElementById(ids[k]) : null;
+    if (h && oneLine(h.textContent)) return firstSentence(h.textContent);
+  }
+  return '';
+}
+function selfTarget(node) {
+  var n = node;
+  while (n && n !== document.body) {
+    if (n.nodeType === 1 && SELF_TAGS[n.tagName]) {
+      if (n.tagName === 'INPUT' && n.type === 'hidden') return null;
+      return n;
+    }
+    n = n.parentNode;
+  }
+  return null;
+}
+function selfSpeakFor(e) {
+  if (!S.selfspeak || !speechOK || speechBusy) return;
+  var el = selfTarget(e.target);
+  if (!el) return;
+  var now = Date.now();
+  if (el === lastSelfEl && now - lastSelfAt < 1500) return;
+  var name = nameOf(el);
+  if (!name) return;
+  var text = name;
+  if (el.tagName !== 'H2' && el.tagName !== 'H3') {
+    var help = helpOf(el);
+    if (help) text = name + '। ' + help;
+    if (el.disabled) text += '। अभी यह बंद है।';
+  }
+  if (text === lastSelfText && now - lastSelfAt < 1500) return;
+  lastSelfEl = el;
+  lastSelfText = text;
+  lastSelfAt = now;
+  speakNow(text);
+}
+document.addEventListener('touchstart', selfSpeakFor, { passive: true });
+document.addEventListener('mouseover', selfSpeakFor);
+document.addEventListener('focusin', selfSpeakFor);
+
+/* ---------- रेडियो (इंटरनेट से आकाशवाणी के स्टेशन) ---------- */
+var RKEY = 'chitti-radio-v1';
+var RADIO_STATIONS = [
+  { id: 'vb-cuttack', name: 'आकाशवाणी विविध भारती – कटक', country: 'IN', lang: 'hi', url: 'https://air.pc.cdn.bitgravity.com/air/live/pbaudio001/playlist.m3u8' },
+  { id: 'vb-hyderabad', name: 'आकाशवाणी विविध भारती – हैदराबाद', country: 'IN', lang: 'hi', url: 'https://air.pc.cdn.bitgravity.com/air/live/pbaudio034/playlist.m3u8' },
+  { id: 'rb-delhi', name: 'आकाशवाणी एफ़एम रेनबो – दिल्ली', country: 'IN', lang: 'hi', url: 'https://d3r9rhourdc02u.cloudfront.net/assets/radio/airdelhi02/air002_Auto.m3u8' },
+  { id: 'rb-chennai', name: 'आकाशवाणी एफ़एम रेनबो – चेन्नई', country: 'IN', lang: 'ta', url: 'https://air.pc.cdn.bitgravity.com/air/live/pbaudio022/playlist.m3u8' },
+  { id: 'gold-chennai', name: 'आकाशवाणी एफ़एम गोल्ड – चेन्नई', country: 'IN', lang: 'ta', url: 'https://air.pc.cdn.bitgravity.com/air/live/pbaudio021/playlist.m3u8' }
+];
+var radioPick = null;
+var radioWanted = false;
+var radioRetry = false;
+var radioAudio = $('#radio-audio');
+
+function radioSaveLast(st) {
+  try { window.localStorage.setItem(RKEY, st.id); } catch (e) { /* सेव न हो सके तो भी स्टेशन चलेगा */ }
+}
+function radioLoadLast() {
+  try {
+    var id = window.localStorage.getItem(RKEY);
+    for (var i = 0; i < RADIO_STATIONS.length; i++) {
+      if (RADIO_STATIONS[i].id === id) return RADIO_STATIONS[i];
+    }
+  } catch (e) { /* स्टोरेज बंद हो तो कुछ नहीं */ }
+  return null;
+}
+function radioFiltered() {
+  var c = $('#radio-country').value;
+  var l = $('#radio-lang').value;
+  var q = oneLine($('#radio-search').value).toLowerCase();
+  return RADIO_STATIONS.filter(function (st) {
+    if (c !== 'all' && st.country !== c) return false;
+    if (l !== 'all' && st.lang !== l) return false;
+    if (q && st.name.toLowerCase().indexOf(q) === -1) return false;
+    return true;
+  });
+}
+function radioRender() {
+  var box = $('#radio-list');
+  box.innerHTML = '';
+  var items = radioFiltered();
+  items.forEach(function (st) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'btn';
+    b.setAttribute('aria-describedby', 'hx-radio-pick');
+    b.textContent = st.name;
+    b.addEventListener('click', function () { radioPlay(st); });
+    box.appendChild(b);
+  });
+  $('#radio-count').textContent = items.length
+    ? items.length + ' स्टेशन मिले।'
+    : 'इन चुनावों में कोई स्टेशन नहीं मिला। देश, भाषा या खोज बदलकर देखें।';
+}
+function radioLoad() {
+  radioAudio.src = radioPick.url;
+  radioAudio.load();
+  var p = radioAudio.play();
+  if (p && p.catch) p.catch(function () { /* असली कारण 'error' घटना में दिखेगा */ });
+}
+function radioOffline() {
+  radioRetry = true;
+  radioAudio.pause();
+  $('#radio-now').textContent = 'इंटरनेट नहीं है। इंटरनेट आते ही ' + radioPick.name + ' अपने-आप दोबारा शुरू होगा।';
+  notify('#radio-state', 'इंटरनेट से कनेक्ट करो');
+}
+function radioPlay(st) {
+  if (st) { radioPick = st; radioSaveLast(st); }
+  if (!radioPick) { notify('#radio-state', 'पहले कोई स्टेशन चुनें।'); return; }
+  radioWanted = true;
+  radioRetry = false;
+  $('#radio-stop').disabled = false;
+  if (navigator.onLine === false) { radioOffline(); return; }
+  $('#radio-now').textContent = 'शुरू हो रहा है: ' + radioPick.name;
+  notify('#radio-state', radioPick.name + ' शुरू हो रहा है।');
+  radioLoad();
+}
+function radioStop(quiet) {
+  radioWanted = false;
+  radioRetry = false;
+  radioAudio.pause();
+  radioAudio.removeAttribute('src');
+  radioAudio.load();
+  $('#radio-stop').disabled = true;
+  $('#radio-now').textContent = 'अभी कोई स्टेशन नहीं चल रहा।';
+  if (!quiet) notify('#radio-state', 'रेडियो बंद कर दिया गया।');
+}
+
+radioAudio.addEventListener('playing', function () {
+  if (radioWanted && radioPick) {
+    radioRetry = false;
+    $('#radio-now').textContent = 'चल रहा है: ' + radioPick.name;
+  }
+});
+radioAudio.addEventListener('error', function () {
+  if (!radioWanted) return;
+  if (navigator.onLine === false) { radioOffline(); return; }
+  radioRetry = false;
+  $('#radio-now').textContent = 'यह स्टेशन अभी नहीं चल रहा।';
+  notify('#radio-state', 'यह स्टेशन अभी नहीं चल रहा। फिर से शुरू करें दबाएँ, या दूसरा स्टेशन चुनें।');
+});
+$('#radio-country').addEventListener('change', radioRender);
+$('#radio-lang').addEventListener('change', radioRender);
+$('#radio-search').addEventListener('input', radioRender);
+$('#radio-again').addEventListener('click', function () { radioPlay(); });
+$('#radio-stop').addEventListener('click', function () { radioStop(false); });
+window.addEventListener('offline', function () { if (radioWanted) radioOffline(); });
+window.addEventListener('online', function () {
+  if (radioWanted && radioRetry && radioPick) radioPlay();
+});
+window.addEventListener('pagehide', function () { radioStop(true); });
+
+radioRender();
+var radioLast = radioLoadLast();
+if (radioLast) {
+  radioPick = radioLast;
+  $('#radio-now').textContent = 'पिछली बार का स्टेशन: ' + radioLast.name + '। फिर से सुनने के लिए "फिर से शुरू करें" दबाएँ।';
+}
+
+/* ---------- आवाज़ से आदेश (फ़ोन की बोली-पहचान) ---------- */
+var SRClass = window.SpeechRecognition || window.webkitSpeechRecognition;
+var recog = null;
+var micListening = false;
+var MIC_NO = 'इस फ़ोन या ब्राउज़र में बोलकर आदेश देने की सुविधा नहीं है। Chrome ब्राउज़र में खोलकर देखें। नीचे के बटनों और खानों से सभी काम कर सकते हैं।';
+var NO_CAM = 'इस फ़ोन या ब्राउज़र में कैमरा नहीं चलता। Chrome ब्राउज़र में खोलकर देखें।';
+
+function norm(s) { return oneLine((s || '').replace(/़/g, '')); }
+function notify(sel, msg) {
+  $(sel).textContent = msg;
+  say(msg);
+  speakNow(msg);
+}
+function setMicBtn(on) {
+  var b = $('#mic-btn');
+  b.textContent = on ? 'सुनना बंद करें' : 'बोलकर काम करें';
+  b.setAttribute('aria-label', on ? 'सुनना बंद करें' : 'बोलकर आदेश देने के लिए दबाएँ');
+  b.setAttribute('aria-pressed', on ? 'true' : 'false');
+}
+function goTo(id, msg) {
+  var h = document.getElementById(id);
+  if (h) { h.setAttribute('tabindex', '-1'); h.focus(); }
+  notify('#mic-state', msg);
+}
+function stopAllCams() {
+  colStop(false);
+  tcStop(false);
+  radioStop(true);
+  window.speechSynthesis && window.speechSynthesis.cancel();
+}
+var COMMANDS = [
+  { w: ['वीडियो जोड़'], run: function () { goTo('h-join', 'वीडियो जोड़ने वाला हिस्सा खुला है।'); } },
+  { w: ['आवाज़ निकाल'], run: function () { goTo('h-extract', 'आवाज़ निकालने वाला हिस्सा खुला है।'); } },
+  { w: ['मिलाओ', 'मिला'], run: function () { goTo('h-merge', 'आवाज़ मिलाने वाला हिस्सा खुला है।'); } },
+  { w: ['गाना', 'कराओके', 'रिकॉर्ड'], run: function () { goTo('h-karaoke', 'गाने के साथ रिकॉर्डिंग वाला हिस्सा खुला है।'); } },
+  { w: ['तस्वीर'], run: function () { goTo('h-imgvid', 'तस्वीर से वीडियो वाला हिस्सा खुला है।'); } },
+  { w: ['रंग'], run: function () { goTo('h-color', 'रंग पहचानने वाला हिस्सा खुला है।'); } },
+  { w: ['कैमरा', 'कैमरे'], run: function () { goTo('h-talkcam', 'बोलने वाला कैमरा खुला है।'); } },
+  { w: ['सेटिंग'], run: function () { goTo('h-settings', 'सेटिंग खुली है।'); } },
+  { w: ['होम', 'घर'], run: function () { goTo('h-home', 'होम पेज खुला है।'); } },
+  { w: ['रेडियो'], run: function () { goTo('h-radio', 'रेडियो वाला हिस्सा खुला है।'); } },
+  { w: ['पढ़कर', 'सुनाओ', 'सुनाएँ', 'पढ़ो', 'पढ़ें'], run: function () { goTo('h-speak', 'बोलकर सुनाने वाला हिस्सा खुला है। लिखा पाठ यहाँ चिपकाएँ।'); } },
+  { w: ['रुको', 'रोको', 'बंद करो', 'चुप'], run: function () { stopAllCams(); notify('#mic-state', 'सब रोक दिया गया।'); } },
+  { w: ['मदद', 'क्या बोल'], run: function () { notify('#mic-state', 'आदेश: वीडियो जोड़ो, आवाज़ निकालो, मिलाओ, गाना, तस्वीर, रंग पहचानें, कैमरा, सेटिंग, होम, पढ़कर सुनाओ, रुको।'); } },
+  { w: ['आवाज़'], run: function () { goTo('h-sound', 'आवाज़ वाला हिस्सा खुला है।'); } }
+];
+
+function micDo(raw) {
+  var t = norm(raw);
+  for (var i = 0; i < COMMANDS.length; i++) {
+    var c = COMMANDS[i];
+    for (var k = 0; k < c.w.length; k++) {
+      if (t.indexOf(norm(c.w[k])) !== -1) { c.run(); return; }
+    }
+  }
+  notify('#mic-state', 'यह आदेश समझ नहीं आया: "' + oneLine(raw) + '"। सारे आदेश सुनने के लिए "मदद" बोलें।');
+}
+function micStop() {
+  micListening = false;
+  setMicBtn(false);
+  try { if (recog) recog.stop(); } catch (e) { /* पहले से बंद */ }
+}
+function micStart() {
+  if (!SRClass) { notify('#mic-state', MIC_NO); return; }
+  if (micListening) { micStop(); return; }
+  try {
+    recog = new SRClass();
+    recog.lang = 'hi-IN';
+    recog.interimResults = false;
+    recog.maxAlternatives = 1;
+    recog.continuous = false;
+    recog.onresult = function (ev) {
+      var t = '';
+      try { t = ev.results[0][0].transcript || ''; } catch (e) { t = ''; }
+      micListening = false;
+      setMicBtn(false);
+      if (!t) { notify('#mic-state', 'आदेश समझ नहीं आया। फिर से बोलें।'); return; }
+      micDo(t);
+    };
+    recog.onerror = function (ev) {
+      var code = ev && ev.error;
+      micListening = false;
+      setMicBtn(false);
+      var m = 'बोलकर आदेश में दिक्कत आई। फिर से कोशिश करें।';
+      if (code === 'not-allowed' || code === 'service-not-allowed') m = 'माइक्रोफ़ोन की इजाज़त नहीं मिली। फ़ोन की सेटिंग में ब्राउज़र को माइक्रोफ़ोन की इजाज़त दें।';
+      else if (code === 'no-speech') m = 'कुछ सुनाई नहीं दिया। बटन दबाकर फिर साफ़ बोलें।';
+      else if (code === 'network') m = 'बोली-पहचान के लिए नेटवर्क नहीं मिला। इंटरनेट देखकर फिर कोशिश करें।';
+      else if (code === 'language-not-supported') m = 'इस फ़ोन में हिंदी की बोली-पहचान नहीं है। बोलकर काम करें इसलिए नहीं चलेगा।';
+      notify('#mic-state', m);
+    };
+    recog.onend = function () {
+      if (micListening) { micListening = false; setMicBtn(false); }
+    };
+    recog.start();
+    micListening = true;
+    setMicBtn(true);
+    notify('#mic-state', 'सुन रहा हूँ। अब एक आदेश बोलें।');
+  } catch (e) {
+    micListening = false;
+    setMicBtn(false);
+    notify('#mic-state', 'इस फ़ोन में बोलकर आदेश अभी नहीं चल पा रहा। नीचे के बटनों से काम करें।');
+  }
+}
+$('#mic-btn').addEventListener('click', micStart);
+
+/* ---------- कैमरा: रंग पहचानें ---------- */
+var colStream = null;
+var colTimer = 0;
+var colLast = '';
+var colCand = '';
+var colCandN = 0;
+var colCanvas = null;
+var colCtx = null;
+
+function hasCam() { return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia); }
+function camError(err) {
+  var n = (err && err.name) || '';
+  if (n === 'NotAllowedError' || n === 'SecurityError' || n === 'PermissionDeniedError') return 'कैमरे की इजाज़त नहीं मिली। फ़ोन की सेटिंग में ब्राउज़र को कैमरे की इजाज़त दें, फिर दोबारा दबाएँ।';
+  if (n === 'NotFoundError' || n === 'DevicesNotFoundError' || n === 'OverconstrainedError') return 'इस फ़ोन में कैमरा नहीं मिला।';
+  if (n === 'NotReadableError' || n === 'AbortError' || n === 'TrackStartError') return 'कैमरा किसी और ऐप में खुला है। वह ऐप बंद करके फिर दबाएँ।';
+  return 'कैमरा शुरू नहीं हो सका। फिर से कोशिश करें।';
+}
+function rgbToName(r, g, b) {
+  var max = Math.max(r, g, b);
+  var min = Math.min(r, g, b);
+  var l = (max + min) / 510;
+  var d = max - min;
+  var s = 0;
+  var h = 0;
+  if (d > 0) {
+    s = Math.min(1, (d / 255) / (1 - Math.abs(2 * l - 1)));
+    if (max === r) h = ((g - b) / d) % 6;
+    else if (max === g) h = (b - r) / d + 2;
+    else h = (r - g) / d + 4;
+    h = h * 60;
+    if (h < 0) h += 360;
+  }
+  if (l < 0.18) return 'काला';
+  if (l > 0.85 && s < 0.25) return 'सफ़ेद';
+  if (s < 0.14) return l < 0.5 ? 'गहरा स्लेटी' : 'हल्का स्लेटी';
+  if (h < 15 || h >= 345) return l < 0.4 ? 'गहरा लाल' : 'लाल';
+  if (h < 45 && l < 0.42) return 'भूरा';
+  if (h < 45) return 'नारंगी';
+  if (h < 70) return 'पीला';
+  if (h < 160) return 'हरा';
+  if (h < 200) return 'फ़िरोज़ी';
+  if (h < 255) return 'नीला';
+  if (h < 290) return 'बैंगनी';
+  return 'गुलाबी';
+}
+function colTick() {
+  var v = $('#col-video');
+  if (!v || !v.videoWidth) return;
+  if (!colCtx) {
+    colCanvas = document.createElement('canvas');
+    colCanvas.width = 64;
+    colCanvas.height = 48;
+    colCtx = colCanvas.getContext('2d');
+  }
+  colCtx.drawImage(v, 0, 0, 64, 48);
+  var px = colCtx.getImageData(28, 20, 8, 8).data;
+  var r = 0, g = 0, b = 0, n = 0;
+  for (var i = 0; i < px.length; i += 4) { r += px[i]; g += px[i + 1]; b += px[i + 2]; n++; }
+  var name = rgbToName(r / n, g / n, b / n);
+  if (name === colCand) colCandN++;
+  else { colCand = name; colCandN = 1; }
+  if (colCandN >= 2 && name !== colLast) {
+    colLast = name;
+    $('#col-result').textContent = 'बीच में रंग: ' + name;
+    speakNow('यह ' + name + ' लगता है।');
+  }
+}
+function colStart() {
+  if (colStream) { notify('#col-result', 'रंग पहचानना पहले से चालू है।'); return; }
+  if (!hasCam()) { notify('#col-result', NO_CAM); return; }
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' } }, audio: false })
+    .then(function (st) {
+      colStream = st;
+      var v = $('#col-video');
+      v.srcObject = st;
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {});
+      colLast = ''; colCand = ''; colCandN = 0;
+      colTimer = setInterval(colTick, 400);
+      $('#col-start').disabled = true;
+      $('#col-stop').disabled = false;
+      notify('#col-result', 'रंग पहचानना चालू है। कैमरा बीच की जगह का रंग बताएगा।');
+    })
+    .catch(function (err) { notify('#col-result', camError(err)); });
+}
+function colStop(quiet) {
+  clearInterval(colTimer);
+  colTimer = 0;
+  if (colStream) {
+    colStream.getTracks().forEach(function (t) { t.stop(); });
+    colStream = null;
+  }
+  $('#col-video').srcObject = null;
+  $('#col-start').disabled = !hasCam();
+  $('#col-stop').disabled = true;
+  if (!quiet) notify('#col-result', 'रंग पहचानना बंद हो गया।');
+}
+$('#col-start').addEventListener('click', colStart);
+$('#col-stop').addEventListener('click', function () { colStop(false); });
+
+/* ---------- कैमरा: बोलने वाला कैमरा ---------- */
+var tcStream = null;
+var tcTimer = 0;
+var tcPrev = null;
+var tcLastGuide = '';
+var tcLastFace = '';
+var tcDetector = null;
+var tcCtx = null;
+
+function tcTick() {
+  var v = $('#tc-video');
+  if (!v || !v.videoWidth) return;
+  if (!tcCtx) {
+    var c = document.createElement('canvas');
+    c.width = 32;
+    c.height = 24;
+    tcCtx = c.getContext('2d');
+  }
+  tcCtx.drawImage(v, 0, 0, 32, 24);
+  var px = tcCtx.getImageData(0, 0, 32, 24).data;
+  var lum = [];
+  var sum = 0;
+  for (var i = 0; i < px.length; i += 4) {
+    var y = 0.299 * px[i] + 0.587 * px[i + 1] + 0.114 * px[i + 2];
+    lum.push(y);
+    sum += y;
+  }
+  var avg = sum / lum.length;
+  var diff = 0;
+  if (tcPrev && tcPrev.length === lum.length) {
+    for (var j = 0; j < lum.length; j++) diff += Math.abs(lum[j] - tcPrev[j]);
+    diff = diff / lum.length;
+  }
+  tcPrev = lum;
+  var msg;
+  if (avg < 50) msg = 'रोशनी कम है। किसी लाइट के पास जाएँ या लाइट चालू करें।';
+  else if (avg > 225) msg = 'बहुत तेज़ रोशनी है। थोड़ा हटकर देखें।';
+  else if (diff > 28) msg = 'कैमरा हिल रहा है। फ़ोन को स्थिर रखें।';
+  else msg = 'रोशनी ठीक है, फ़ोन स्थिर है।';
+  if (msg !== tcLastGuide) {
+    tcLastGuide = msg;
+    notify('#tc-guide', msg);
+  }
+  if (tcDetector) {
+    tcDetector.detect(v).then(function (faces) {
+      var dir;
+      if (!faces || !faces.length) dir = 'चेहरा नहीं दिख रहा।';
+      else {
+        var box = faces[0].boundingBox;
+        var ratio = (box.x + box.width / 2) / v.videoWidth;
+        dir = ratio < 0.4 ? 'चेहरा फ़्रेम के बाईं ओर है।' : (ratio > 0.6 ? 'चेहरा फ़्रेम के दाईं ओर है।' : 'चेहरा बीच में है।');
+      }
+      if (dir !== tcLastFace) {
+        tcLastFace = dir;
+        notify('#tc-face', dir);
+      }
+    }).catch(function () { /* चेहरा पहचानने में दिक्कत हो तो चुप */ });
+  }
+}
+function tcStart() {
+  if (tcStream) { notify('#tc-guide', 'कैमरा पहले से चालू है।'); return; }
+  if (!hasCam()) { notify('#tc-guide', NO_CAM); return; }
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' } }, audio: false })
+    .then(function (st) {
+      tcStream = st;
+      var v = $('#tc-video');
+      v.srcObject = st;
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {});
+      tcPrev = null;
+      tcLastGuide = '';
+      tcLastFace = '';
+      tcDetector = null;
+      if ('FaceDetector' in window) {
+        try { tcDetector = new window.FaceDetector({ fastMode: true, maxDetectedFaces: 1 }); } catch (e) { tcDetector = null; }
+      }
+      $('#tc-face').textContent = tcDetector ? 'चेहरा दिखे तो उसकी जगह बताई जाएगी।' : 'इस फ़ोन में चेहरा पहचानने की सुविधा नहीं है। चेहरे की दिशा नहीं बताई जाएगी।';
+      $('#tc-start').disabled = true;
+      $('#tc-capture').disabled = false;
+      $('#tc-stop').disabled = false;
+      tcTimer = setInterval(tcTick, 1000);
+      notify('#tc-guide', 'कैमरा चालू है। रोशनी और हरकत के बारे में बताया जाएगा।');
+    })
+    .catch(function (err) { notify('#tc-guide', camError(err)); });
+}
+function tcStop(quiet) {
+  clearInterval(tcTimer);
+  tcTimer = 0;
+  if (tcStream) {
+    tcStream.getTracks().forEach(function (t) { t.stop(); });
+    tcStream = null;
+  }
+  $('#tc-video').srcObject = null;
+  tcDetector = null;
+  $('#tc-start').disabled = !hasCam();
+  $('#tc-capture').disabled = true;
+  $('#tc-stop').disabled = true;
+  if (!quiet) notify('#tc-guide', 'बोलने वाला कैमरा बंद हो गया।');
+}
+function shareFile(file) {
+  navigator.share({ files: [file], title: 'आवाज़ साथी फ़ोटो' })
+    .then(function () { notify('#tc-guide', 'फ़ोटो शेयर हो गई।'); })
+    .catch(function (err) {
+      if (err && err.name === 'AbortError') notify('#tc-guide', 'शेयर रद्द हुआ। फ़ोटो स्क्रीन पर है, चाहें तो डाउनलोड कर लें।');
+      else notify('#tc-guide', 'फ़ोटो शेयर नहीं हो सकी। डाउनलोड बटन से फ़ोटो रख लें।');
+    });
+}
+function showCaptured(blob) {
+  var box = $('#tc-result');
+  box.textContent = '';
+  var file = null;
+  try { file = new File([blob], 'आवाज़-साथी-फ़ोटो.jpg', { type: 'image/jpeg' }); } catch (e) { file = null; }
+  var canShareFile = false;
+  try { canShareFile = !!(file && navigator.share && navigator.canShare && navigator.canShare({ files: [file] })); } catch (e) { canShareFile = false; }
+  var url = null;
+  try { url = URL.createObjectURL(blob); } catch (e) { url = null; }
+  if (url) {
+    var img = document.createElement('img');
+    img.className = 'photo';
+    img.alt = 'लिया गया फ़ोटो';
+    img.onerror = function () { img.remove(); notify('#tc-guide', 'फ़ोटो स्क्रीन पर नहीं दिख पा रही। शेयर या डाउनलोड से रखें।'); };
+    img.src = url;
+    box.appendChild(img);
+  }
+  if (canShareFile) {
+    var sb = document.createElement('button');
+    sb.type = 'button';
+    sb.className = 'btn primary';
+    sb.textContent = 'फ़ोटो शेयर करें';
+    sb.addEventListener('click', function () { shareFile(file); });
+    box.appendChild(sb);
+  }
+  if (url) {
+    var a = document.createElement('a');
+    a.className = 'btn';
+    a.href = url;
+    a.setAttribute('download', 'आवाज़-साथी-फ़ोटो.jpg');
+    a.textContent = 'फ़ोटो डाउनलोड करें';
+    box.appendChild(a);
+  }
+  notify('#tc-guide', 'फ़ोटो बन गई है। ' + (canShareFile ? 'शेयर या डाउनलोड कर सकते हैं।' : (url ? 'डाउनलोड कर सकते हैं।' : 'स्क्रीन पर दिख रही है।')));
+}
+function tcCapture() {
+  var v = $('#tc-video');
+  if (!tcStream || !v.videoWidth) { notify('#tc-guide', 'पहले कैमरा चालू करें।'); return; }
+  var c = document.createElement('canvas');
+  c.width = v.videoWidth;
+  c.height = v.videoHeight;
+  c.getContext('2d').drawImage(v, 0, 0, c.width, c.height);
+  if (!c.toBlob) { notify('#tc-guide', 'इस ब्राउज़र में फ़ोटो नहीं बन सकती।'); return; }
+  c.toBlob(function (blob) {
+    if (!blob) { notify('#tc-guide', 'फ़ोटो नहीं बन सकी। फिर से कोशिश करें।'); return; }
+    showCaptured(blob);
+  }, 'image/jpeg', 0.92);
+}
+$('#tc-start').addEventListener('click', tcStart);
+$('#tc-capture').addEventListener('click', tcCapture);
+$('#tc-stop').addEventListener('click', function () { tcStop(false); });
+
+/* कैमरा तभी चले जब ऐप खुला और सामने हो; छोड़ने पर बंद */
+document.addEventListener('visibilitychange', function () {
+  if (document.hidden) { colStop(true); tcStop(true); }
+});
+window.addEventListener('pagehide', function () { colStop(true); tcStop(true); });
+
+
+/* ---------- शुरू करना ---------- */
+$$('[data-dev-line]').forEach(function (e) { e.textContent = DEVELOPER_LINE; });
+if (!HAS_REC) $$('[data-rec]').forEach(function (b) { b.disabled = true; });
+if (!HAS_REC) $$('[data-rec-note]').forEach(function (n) { n.hidden = false; });
+if (!HAS_MIC) $$('[data-mic]').forEach(function (b) { b.disabled = true; });
+if (!AC) $$('[data-ac]').forEach(function (b) { b.disabled = true; });
+loadSettings();
+applySettings();
+renderJoin();
+if (!hasCam()) {
+  $('#col-support').hidden = false;
+  $('#tc-support').hidden = false;
+}
+if (!SRClass) { $('#mic-state').textContent = MIC_NO; }
+</script>
+</body>
+</html>
