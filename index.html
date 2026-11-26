@@ -218,16 +218,6 @@ html.hc body { background: #fff; color: #000; }
   <h2 id="h-home" class="panel-title" tabindex="-1">होम</h2>
   <p class="lead">आवाज़ साथी में आपका स्वागत है। यहाँ देखें कि ऐप क्या करता है, किसके लिए है, और कौन-सा काम कहाँ मिलेगा।</p>
 
-  <section aria-labelledby="h-privacy-intro" id="privacy-intro">
-    <h3 id="h-privacy-intro" class="sec-title">प्राइवेसी / <span lang="en">Privacy</span></h3>
-    <h4 lang="hi">हिंदी में</h4>
-    <p lang="hi">हम आपका डेटा किसी को नहीं देते, न बेचते हैं, न चुराते हैं। यह दृष्टिबाधित लोगों को ध्यान में रखकर बनाया गया सुलभ ऐप है, आप इसका उपयोग करें। कोई कमी लगे तो डेवलपर से संपर्क करें: नीचे व्हाट्सऐप का बटन और कॉल का बटन है। हमें उम्मीद है आपको पसंद आएगा।</p>
-    <p lang="hi">ध्यान दें: रेडियो के स्टेशन इंटरनेट से आते हैं, इसलिए उस हिस्से में स्टेशन के सर्वर से जुड़ते समय उसे आपके फ़ोन का इंटरनेट पता (IP address) दिखता है। पूरी पॉलिसी इसी पेज पर सेटिंग वाले हिस्से में है।</p>
-    <h4 lang="en">In English</h4>
-    <p lang="en">We do not share or sell or steal your data. This is an accessible app, use it. If you find any shortcoming, the developer's number is given: use the WhatsApp button or the call button below. Built with blind and low-vision users in mind; we hope you like it.</p>
-    <p lang="en">Note: radio stations stream from the internet, so in that part the station's server sees your phone's internet address (IP address) when you connect. The full policy is on this page, in the settings part.</p>
-  </section>
-
   <section aria-labelledby="h-about">
     <h3 id="h-about" class="sec-title">इस ऐप के बारे में</h3>
     <p>आवाज़ साथी एक छोटा ऐप है जो आपके फ़ोन में ही चलता है। इसमें ये काम हैं: कई वीडियो एक के बाद एक जोड़ना; किसी वीडियो से आवाज़ निकालकर WAV फ़ाइल बनाना; वीडियो की अपनी आवाज़ की जगह नई आवाज़ या गाना मिलाना; गाना बजाकर उसके साथ अपनी आवाज़ रिकॉर्ड करना और दोनों को एक WAV फ़ाइल में मिलाना; एक तस्वीर और एक आवाज़ वाली फ़ाइल से वीडियो बनाना; और लिखा हुआ पाठ फ़ोन की आवाज़ में बोलकर सुनाना; कैमरे से रंग पहचानना; और कैमरे से रोशनी व हरकत के बारे में बोलकर मदद लेना।</p>
@@ -2175,13 +2165,12 @@ document.addEventListener('focusin', selfSpeakFor);
 var RKEY = 'chitti-radio-v1';
 /* हर स्टेशन का पता जाँचा गया है (सर्वर की तरफ़ से)। hls: true वाले स्टेशन (.m3u8) के लिए hls.js ज़रूरी है। */
 var RADIO_STATIONS = [
-  { id: 'big927', name: 'बिग एफ़एम 92.7', country: 'IN', lang: 'hi', url: 'https://stream.zeno.fm/dbstwo3dvhhtv' },
-  { id: 'hungama-dilse', name: 'रेडियो हंगामा – बॉलीवुड दिल से', country: 'IN', lang: 'hi', url: 'https://stream.zeno.fm/143d7gty24zuv' },
-  { id: 'hindi-gold', name: 'हिंदी गोल्ड रेडियो', country: 'IN', lang: 'hi', url: 'https://azuracast.vibesounds.in:8010/radio.mp3' },
   { id: 'suno-1024', name: 'रेडियो सुनो 1024 FM', country: 'IN', lang: 'hi', url: 'https://eu8.fastcast4u.com/proxy/clyedupq/stream' },
+  { id: 'hindi-gold', name: 'हिंदी गोल्ड रेडियो', country: 'IN', lang: 'hi', url: 'https://azuracast.vibesounds.in:8010/radio.mp3' },
   { id: 'mixify-hits', name: 'मिक्सिफ़ाई हिंदी हिट्स', country: 'IN', lang: 'hi', url: 'https://server.mixify.in/listen/new_hits/radio.mp3' },
   { id: 'gyansthali', name: 'ज्ञानस्थली रेडियो', country: 'IN', lang: 'hi', url: 'https://streamasiacdn.atc-labs.com/gyansthali.aac' },
   { id: 'suno-sharda', name: 'सुनो शारदा रेडियो', country: 'IN', lang: 'hi', url: 'https://streamasiacdn.atc-labs.com/shardaradio.aac' },
+  { id: 'hungama-dilse', name: 'रेडियो हंगामा – बॉलीवुड दिल से', country: 'IN', lang: 'hi', url: 'https://stream.zeno.fm/143d7gty24zuv' },
   { id: 'vb-cuttack', name: 'आकाशवाणी विविध भारती – कटक', country: 'IN', lang: 'hi', hls: true, url: 'https://air.pc.cdn.bitgravity.com/air/live/pbaudio001/playlist.m3u8' },
   { id: 'vb-hyderabad', name: 'आकाशवाणी विविध भारती – हैदराबाद', country: 'IN', lang: 'hi', hls: true, url: 'https://air.pc.cdn.bitgravity.com/air/live/pbaudio034/playlist.m3u8' },
   { id: 'rb-chennai', name: 'आकाशवाणी एफ़एम रेनबो – चेन्नई', country: 'IN', lang: 'ta', hls: true, url: 'https://air.pc.cdn.bitgravity.com/air/live/pbaudio022/playlist.m3u8' },
