@@ -217,6 +217,16 @@ html.hc body { background: #fff; color: #000; }
   <h2 id="h-home" class="panel-title" tabindex="-1">होम</h2>
   <p class="lead">आवाज़ साथी में आपका स्वागत है। यहाँ देखें कि ऐप क्या करता है, किसके लिए है, और कौन-सा काम कहाँ मिलेगा।</p>
 
+  <section aria-labelledby="h-privacy-intro" id="privacy-intro">
+    <h3 id="h-privacy-intro" class="sec-title">प्राइवेसी / <span lang="en">Privacy</span></h3>
+    <h4 lang="hi">हिंदी में</h4>
+    <p lang="hi">हम आपका डेटा किसी को नहीं देते, न बेचते हैं, न चुराते हैं। यह दृष्टिबाधित लोगों को ध्यान में रखकर बनाया गया सुलभ ऐप है, आप इसका उपयोग करें। कोई कमी लगे तो डेवलपर से संपर्क करें: नीचे व्हाट्सऐप का बटन और कॉल का बटन है। हमें उम्मीद है आपको पसंद आएगा।</p>
+    <p lang="hi">ध्यान दें: रेडियो के स्टेशन इंटरनेट से आते हैं, इसलिए उस हिस्से में स्टेशन के सर्वर से जुड़ते समय उसे आपके फ़ोन का इंटरनेट पता (IP address) दिखता है। पूरी पॉलिसी इसी पेज पर सेटिंग वाले हिस्से में है।</p>
+    <h4 lang="en">In English</h4>
+    <p lang="en">We do not share or sell or steal your data. This is an accessible app, use it. If you find any shortcoming, the developer's number is given: use the WhatsApp button or the call button below. Built with blind and low-vision users in mind; we hope you like it.</p>
+    <p lang="en">Note: radio stations stream from the internet, so in that part the station's server sees your phone's internet address (IP address) when you connect. The full policy is on this page, in the settings part.</p>
+  </section>
+
   <section aria-labelledby="h-about">
     <h3 id="h-about" class="sec-title">इस ऐप के बारे में</h3>
     <p>आवाज़ साथी एक छोटा ऐप है जो आपके फ़ोन में ही चलता है। इसमें ये काम हैं: कई वीडियो एक के बाद एक जोड़ना; किसी वीडियो से आवाज़ निकालकर WAV फ़ाइल बनाना; वीडियो की अपनी आवाज़ की जगह नई आवाज़ या गाना मिलाना; गाना बजाकर उसके साथ अपनी आवाज़ रिकॉर्ड करना और दोनों को एक WAV फ़ाइल में मिलाना; एक तस्वीर और एक आवाज़ वाली फ़ाइल से वीडियो बनाना; और लिखा हुआ पाठ फ़ोन की आवाज़ में बोलकर सुनाना; कैमरे से रंग पहचानना; और कैमरे से रोशनी व हरकत के बारे में बोलकर मदद लेना।</p>
@@ -420,6 +430,10 @@ html.hc body { background: #fff; color: #000; }
     <p>यहाँ लिखा हुआ पाठ आपके फ़ोन की आवाज़ में सुनाया जाता है। आवाज़ फ़ोन की अपनी टेक्स्ट-टू-स्पीच सेटिंग से आती है। जो भाषा फ़ोन में नहीं है, उसमें आवाज़ नहीं आएगी।</p>
     <label for="speak-text">यहाँ लिखें या कॉपी करके चिपकाएँ</label>
     <textarea id="speak-text" class="big-text" rows="8"></textarea>
+    <div class="actions">
+      <button id="speak-clear" type="button" class="btn" aria-describedby="hx-speak-clear">साफ़ करें / <span lang="en">Clear</span></button>
+    </div>
+    <p id="hx-speak-clear" class="hint">दबाने पर ऊपर के खाने का सारा लिखा मिट जाएगा और फ़ोकस फिर उसी खाने में चला जाएगा। मिटाया पाठ वापस नहीं आएगा।</p>
 
     <label for="speak-lang">भाषा चुनें</label>
     <select id="speak-lang" aria-describedby="hx-speak-lang" class="big">
@@ -527,6 +541,10 @@ html.hc body { background: #fff; color: #000; }
     <label for="radio-search">स्टेशन का नाम लिखें</label>
     <input type="search" id="radio-search" aria-describedby="hx-radio-search" autocomplete="off">
     <p id="hx-radio-search" class="hint">यहाँ लिखते ही नीचे की सूची छोटी होती जाएगी। खाली करने पर सारे स्टेशन दिखेंगे।</p>
+    <div class="actions">
+      <button id="radio-clear" type="button" class="btn" aria-describedby="hx-radio-clear">साफ़ करें / <span lang="en">Clear</span></button>
+    </div>
+    <p id="hx-radio-clear" class="hint">दबाने पर स्टेशन का नाम मिट जाएगा और सारे स्टेशन फिर से दिखेंगे।</p>
     <p id="radio-count" class="note" aria-live="polite"></p>
   </section>
 
@@ -569,6 +587,10 @@ html.hc body { background: #fff; color: #000; }
     <label for="book-text">या पाठ यहाँ चिपकाएँ</label>
     <textarea id="book-text" class="big-text" rows="6" aria-describedby="hx-book-text"></textarea>
     <p id="hx-book-text" class="hint">किताब का पाठ यहाँ चिपकाएँ। फ़ाइल चुनी हो तो वही लोड होगी।</p>
+    <div class="actions">
+      <button id="book-clear" type="button" class="btn" aria-describedby="hx-book-clear">साफ़ करें / <span lang="en">Clear</span></button>
+    </div>
+    <p id="hx-book-clear" class="hint">दबाने पर चिपकाए पाठ का सारा लिखा मिट जाएगा और फ़ोकस फिर उसी खाने में चला जाएगा। जो किताब पहले से लोड है, उस पर इसका असर नहीं होता।</p>
     <button id="book-load" type="button" class="btn primary" aria-describedby="hx-book-load-btn">किताब लोड करें</button>
     <p id="hx-book-load-btn" class="hint">दबाने पर चुनी फ़ाइल या चिपकाया पाठ तैयार होगा। पढ़ने की जगह फ़ोन में याद रहेगी।</p>
     <p id="book-status" class="status" aria-live="polite"></p>
@@ -767,6 +789,29 @@ html.hc body { background: #fff; color: #000; }
       <p>अंतिम अपडेट: 26 नवंबर 2026.</p>
       <button id="privacy-close" type="button" class="btn" aria-describedby="hx-privacy-close">बंद करें और सेटिंग पर लौटें</button>
       <p id="hx-privacy-close" class="hint">दबाने पर पॉलिसी बंद होगी और फ़ोकस फिर "प्राइवेसी पॉलिसी पढ़ें" बटन पर चला जाएगा।</p>
+    </div>
+
+    <button id="privacy-en-open" type="button" class="btn primary" aria-describedby="hx-privacy-en-open" lang="en">Read privacy policy in English</button>
+    <p id="hx-privacy-en-open" class="hint" lang="en">Press to open the full privacy policy in English on this page. Its title is selected when it opens. The Hindi policy above stays as it is.</p>
+    <div id="privacy-en-body" class="policy" lang="en" role="region" aria-labelledby="privacy-en-title" hidden>
+      <h4 id="privacy-en-title" tabindex="-1">Awaz Saathi – Privacy Policy</h4>
+      <p>Developer: Kapil. Contact: 9896471058 (WhatsApp).</p>
+      <p><strong>1. What we collect:</strong> Awaz Saathi does not collect any personal data about you. There is no sign-up, no account, no ads and no tracking.</p>
+      <p><strong>2. Your files and voice:</strong> All work on the audio, video, photos or recordings you choose happens only on your own phone. They are not sent to any server, and we never receive them.</p>
+      <p><strong>3. Permissions:</strong> The microphone is used only when you choose to record along with a song, or when you press the "Work by voice" (बोलकर काम करें) button and speak a command. Recording never starts without you pressing a button. Files and gallery: only the file you pick yourself. The read-aloud feature uses your phone's own voice.</p>
+      <p><strong>4. Your settings:</strong> Settings such as text size, contrast, colour, language and speed are saved only on your phone. We cannot see them.</p>
+      <p><strong>5. Sharing with third parties:</strong> We do not sell or give any of your information to anyone.</p>
+      <p><strong>6. Children:</strong> The app is for everyone, and we do not collect any information from children.</p>
+      <p><strong>7. Changes:</strong> If the policy changes, it will be updated here with a new date.</p>
+      <p><strong>8. Contact:</strong> If you have any question, contact Kapil on WhatsApp at 9896471058.</p>
+      <p><strong>9. Camera:</strong> The camera runs only when you open the "Identify colours" (रंग पहचानें) or "Talking camera" (बोलने वाला कैमरा) part and press its button. The camera picture is seen only on your phone, at that moment, and is not sent to any server. A picture is made or saved only when you press the "Take photo" (फ़ोटो लें) button or a save button. The camera turns off when you stop it or leave the app.</p>
+      <p><strong>10. Voice commands:</strong> When you turn on "Work by voice" (बोलकर काम करें), your speech is understood by your phone's own speech-recognition service. That service belongs to the phone or browser, and its own privacy rules apply. Awaz Saathi sends that service nothing except the command.</p>
+      <p><strong>11. Radio:</strong> The radio part plays the station you choose over the internet. When connecting to the station's server, that organisation can see your phone's internet address (IP address), as happens with any streaming. Awaz Saathi does not keep this address and does not collect any personal data. The last station you chose is saved only on your phone.</p>
+      <p><strong>12. Book reader:</strong> The .txt file or text you choose or paste is read only on your phone. It is not sent to any server. Your reading place (which paragraph) is saved only in your phone's browser. The voice for reading comes from your phone's own read-aloud service.</p>
+      <p><strong>13. Screen recorder:</strong> Screen recording is made only on your phone and is not uploaded anywhere. You give the microphone permission yourself to record your voice. A recording is made only when you press the start button, and you save or share the file yourself.</p>
+      <p>Last updated: 26 November 2026.</p>
+      <button id="privacy-en-close" type="button" class="btn" aria-describedby="hx-privacy-en-close">Close and return to settings</button>
+      <p id="hx-privacy-en-close" class="hint">Press to close the policy. Focus then goes back to the "Read privacy policy in English" button.</p>
     </div>
   </section>
 
@@ -1862,6 +1907,34 @@ function closePrivacy() {
 }
 $('#privacy-open').addEventListener('click', openPrivacy);
 $('#privacy-close').addEventListener('click', closePrivacy);
+
+/* ---------- अंग्रेज़ी प्राइवेसी पॉलिसी (अलग बटन से खुलती है) ---------- */
+function openPrivacyEn() {
+  $('#privacy-body').setAttribute('hidden', '');
+  $('#privacy-open').setAttribute('hidden', '');
+  $('#privacy-en-open').setAttribute('hidden', '');
+  $('#privacy-en-body').removeAttribute('hidden');
+  $('#privacy-en-title').focus();
+}
+function closePrivacyEn() {
+  $('#privacy-en-body').setAttribute('hidden', '');
+  $('#privacy-open').removeAttribute('hidden');
+  $('#privacy-en-open').removeAttribute('hidden');
+  $('#privacy-en-open').focus();
+}
+$('#privacy-en-open').addEventListener('click', openPrivacyEn);
+$('#privacy-en-close').addEventListener('click', closePrivacyEn);
+
+/* ---------- "साफ़ करें" बटन: खाने का सारा लिखा मिटाए ---------- */
+function clearBox(sel, after) {
+  $(sel).value = '';
+  if (after) after();
+  $(sel).focus();
+  say('सारा लिखा मिटा दिया');
+}
+$('#speak-clear').addEventListener('click', function () { clearBox('#speak-text'); });
+$('#book-clear').addEventListener('click', function () { clearBox('#book-text'); });
+$('#radio-clear').addEventListener('click', function () { clearBox('#radio-search', radioRender); });
 $('#notice-read').addEventListener('click', function () {
   hideNotice();
   openPrivacy();
