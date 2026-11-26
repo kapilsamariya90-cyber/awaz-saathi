@@ -1205,6 +1205,8 @@ html.hc body { background: #fff; color: #000; }
   <section aria-labelledby="h-sr">
     <h3 id="h-sr" class="sec-title">गुनगुन (ऐप की अपनी आवाज़)</h3>
     <p class="notice">गुनगुन सिर्फ़ इसी ऐप के अंदर बोलती है। फ़ोन का TalkBack इसकी जगह नहीं ले सकता, और कोई ऐप TalkBack को बदल नहीं सकता। यह ऐप सिर्फ़ Android फ़ोन के लिए है।</p>
+    <p id="sr-welcome" class="note" lang="hi">गुनगुन में आपका स्वागत है। गुनगुन स्क्रीन रीडर आपकी समस्या को हल करने के लिए बनाया गया है। इसमें आप नेविगेशन अच्छे से कर पाएँगे, और इसकी सेटिंग में भी जा सकते हैं, और बहुत कुछ।</p>
+    <p id="hx-sr-welcome" class="hint">गुनगुन चालू करने पर, और ऐप खुलने पर जब गुनगुन चालू हो, यही स्वागत संदेश फ़ोन की आवाज़ में एक बार बोला जाता है। गुनगुन बंद करने या कोई स्टॉप बटन दबाने पर यह बीच में रुक जाता है।</p>
     <label class="switch-row"><input id="set-sr-on" aria-describedby="hx-sr-on" type="checkbox" role="switch" checked> <span>गुनगुन चालू करें</span></label>
     <p id="hx-sr-on" class="hint">चालू हो तो बटन, खाना, लिंक या शीर्षक पर फ़ोकस जाने, छूने या टैप करने पर गुनगुन उसका नाम और मदद फ़ोन की आवाज़ में बोलती है। बंद करने पर गुनगुन चुप रहती है।</p>
     <label for="sr-voice">आवाज़</label>
@@ -2538,7 +2540,7 @@ function startSpeech(fromStart) {
   speechResume = 0;
   speechRun++;
   speechBusy = true;
-  window.speechSynthesis.cancel();
+  speechCancelAll();
   spStatus(from > 0 ? 'वहीं से आगे बोल रहे हैं।' : 'बोलना शुरू हो रहा है।');
   speakChunk(speechRun, from);
 }
@@ -2549,7 +2551,7 @@ function pauseSpeech() {
   speechRun++;
   speechBusy = false;
   speechResume = speechIdx;
-  window.speechSynthesis.cancel();
+  speechCancelAll();
   spStatus('रोक दिया गया। "बोलकर सुनाएँ" दबाने पर यहीं से आगे सुनेंगे।');
 }
 
@@ -2819,7 +2821,13 @@ function toggleSelfspeak(on) {
   S.selfspeak = !!on;
   applySettings();
   saveSettings();
-  var m = S.selfspeak ? 'ऐप खुद बोलना चालू है।' : 'ऐप खुद बोलना बंद है।';
+  if (S.selfspeak) {
+    say('ऐप खुद बोलना चालू है।');
+    speakWelcome();
+    return;
+  }
+  speechCancelAll();
+  var m = 'ऐप खुद बोलना बंद है।';
   say(m);
   speakNow(m);
 }
@@ -3045,28 +3053,79 @@ function mixVoiceFor(kind) {
   if (kind === 'pa') return voiceFor('pa-IN') || null;
   return voiceFor('hi-IN') || null;
 }
-function speakOne(text, v, kind) {
+function srUtt(text, v, kind) {
   var u = new SpeechSynthesisUtterance(text);
   u.lang = (v && v.lang) ? v.lang : (kind === 'en' ? 'en-IN' : (kind === 'pa' ? 'pa-IN' : 'hi-IN'));
   if (v) u.voice = v;
   u.rate = S.srRate;
   u.pitch = S.srPitch;
   u.volume = (typeof S.srVol === 'number') ? S.srVol : 1;
-  window.speechSynthesis.speak(u);
+  return u;
+}
+function speakOne(text, v, kind) {
+  window.speechSynthesis.speak(srUtt(text, v, kind));
+}
+/* गुनगुन का पाठ टुकड़ों में: चुनी आवाज़ से, या "मिक्स" में लिपि के हिसाब से */
+function srPieces(s) {
+  var out = [];
+  if (srPref() !== 'mix') { out.push({ text: s, v: srVoiceObj(), kind: '' }); return out; }
+  var last = 'hi';
+  splitScripts(s).forEach(function (p) {
+    var kind = p.kind || last;
+    last = kind;
+    out.push({ text: p.text, v: mixVoiceFor(kind), kind: kind });
+  });
+  return out;
 }
 function speakNow(text) {
   if (!speechOK || !text) return;
+  /* स्वागत संदेश चल रहा हो तो बीच में नहीं रोकते: बाद में बोलने के लिए रखते हैं */
+  if (welcomeActive) { welcomePending = String(text); return; }
   try {
     window.speechSynthesis.cancel();
-    var s = String(text);
-    if (srPref() !== 'mix') { speakOne(s, srVoiceObj(), ''); return; }
-    var last = 'hi';
-    splitScripts(s).forEach(function (p) {
-      var kind = p.kind || last;
-      last = kind;
-      speakOne(p.text, mixVoiceFor(kind), kind);
-    });
+    srPieces(String(text)).forEach(function (p) { speakOne(p.text, p.v, p.kind); });
   } catch (e) { /* फ़ोन बोल न सके तो चुप रहें */ }
+}
+
+/* ---------- गुनगुन का स्वागत संदेश ---------- */
+var WELCOME_TEXT = 'गुनगुन में आपका स्वागत है। गुनगुन स्क्रीन रीडर आपकी समस्या को हल करने के लिए बनाया गया है। इसमें आप नेविगेशन अच्छे से कर पाएँगे, और इसकी सेटिंग में भी जा सकते हैं, और बहुत कुछ।';
+var welcomeActive = false;
+var welcomeRun = 0;
+var welcomeTimer = 0;
+var welcomePending = '';
+/* हर रोक या बंद करने पर सारी बोली रुकती है, स्वागत संदेश भी */
+function speechCancelAll() {
+  welcomeRun++;
+  welcomeActive = false;
+  welcomePending = '';
+  clearTimeout(welcomeTimer);
+  if (window.speechSynthesis) { try { window.speechSynthesis.cancel(); } catch (e) { /* ignore */ } }
+}
+/* स्वागत संदेश पूरा हुआ: जो फ़ोकस की बात रुकी थी, अब बोलें */
+function welcomeDone(run) {
+  if (run !== welcomeRun || !welcomeActive) return;
+  welcomeActive = false;
+  clearTimeout(welcomeTimer);
+  var p = welcomePending;
+  welcomePending = '';
+  if (p) speakNow(p);
+}
+function speakWelcome() {
+  if (!speechOK || !S.selfspeak) return;
+  speechCancelAll();
+  var run = welcomeRun;
+  welcomeActive = true;
+  try {
+    var parts = srPieces(WELCOME_TEXT);
+    parts.forEach(function (p, i) {
+      var u = srUtt(p.text, p.v, p.kind);
+      u.onend = function () { if (i === parts.length - 1) welcomeDone(run); };
+      u.onerror = function () { welcomeDone(run); };
+      window.speechSynthesis.speak(u);
+    });
+    /* सुरक्षा के लिए: अगर फ़ोन कोई खबर न दे तो भी रुकावट न रहे */
+    welcomeTimer = setTimeout(function () { welcomeDone(run); }, 90000);
+  } catch (e) { welcomeDone(run); }
 }
 function oneLine(t) { return (t || '').replace(/\s+/g, ' ').trim(); }
 function nameOf(el) {
@@ -3550,7 +3609,7 @@ function wxBegin(msg) {
 function wxStop(quiet) {
   wxSeq++;
   if (wxAbort) { try { wxAbort.abort(); } catch (e) { /* ignore */ } wxAbort = null; }
-  if (window.speechSynthesis) { try { window.speechSynthesis.cancel(); } catch (e) { /* ignore */ } }
+  speechCancelAll();
   if (!quiet) wxSay('मौसम बोलना और खोज रोक दी गई है।');
 }
 
@@ -3823,7 +3882,7 @@ function bookSpeakSent(run) {
 function bookStart() {
   if (!bookVoiceOK()) return;
   bookRun++;
-  window.speechSynthesis.cancel();
+  speechCancelAll();
   bookPlaying = true;
   bookSpeakSent(bookRun);
   bookStatus('पढ़ रहे हैं। रोकने के लिए "रोकें / पॉज़" दबाएँ।');
@@ -3833,7 +3892,7 @@ function bookPause() {
   if (!bookPlaying) { bookStart(); return; }
   bookRun++;
   bookPlaying = false;
-  window.speechSynthesis.cancel();
+  speechCancelAll();
   bookSave();
   var msg = 'रोक दिया गया। "रोकें / पॉज़" दबाने पर यहीं से आगे पढ़ेंगे।';
   bookStatus(msg);
@@ -3846,7 +3905,7 @@ function bookMove(d) {
   if (n >= bookParas.length) { bookStatus('यह आख़िरी अनुच्छेद है।'); return; }
   var was = bookPlaying;
   bookRun++;
-  window.speechSynthesis.cancel();
+  speechCancelAll();
   bookPi = n; bookSi = 0;
   bookSave(); bookShow();
   if (was) {
@@ -3875,7 +3934,7 @@ function bookSentMove(d) {
     }
   }
   bookRun++;
-  window.speechSynthesis.cancel();
+  speechCancelAll();
   bookPi = pi; bookSi = si;
   bookSave(); bookShow();
   if (was) {
@@ -3895,7 +3954,7 @@ function bookGoPage(k) {
   if (k >= n) { bookStatus('यह आख़िरी पेज है।'); return; }
   var was = bookPlaying;
   bookRun++;
-  window.speechSynthesis.cancel();
+  speechCancelAll();
   bookPi = bookPgStart[k]; bookSi = 0;
   bookSave(); bookShow();
   var msg = 'पेज ' + (k + 1) + ' / ' + n + ' पर आ गए।';
@@ -3911,7 +3970,7 @@ function bookGoPage(k) {
 function bookStop() {
   bookRun++;
   bookPlaying = false;
-  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  if (window.speechSynthesis) speechCancelAll();
   bookSave();
   bookStatus(bookParas.length ? 'बंद कर दिया। जगह याद है। "चलाओ / प्ले" से वहीं से शुरू होगा।' : 'कोई किताब खुली नहीं है।');
 }
@@ -3929,7 +3988,7 @@ function bookLoad(text, name) {
   if (!paras.length) { bookStatus('इस पाठ में कुछ लिखा नहीं मिला। फ़ाइल या चिपकाया पाठ दोबारा जाँचें।'); return; }
   bookRun++;
   bookPlaying = false;
-  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  if (window.speechSynthesis) speechCancelAll();
   bookParas = paras;
   bookPgStart = starts;
   bookName = name;
@@ -3972,7 +4031,7 @@ bookRateShow();
 window.addEventListener('pagehide', function () {
   bookRun++;
   bookPlaying = false;
-  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  if (window.speechSynthesis) speechCancelAll();
 });
 
 /* ---------- स्क्रीन रिकॉर्डर (सिर्फ़ जहाँ फ़ोन/ब्राउज़र सहारा दे) ---------- */
@@ -4126,7 +4185,7 @@ function stopAllCams() {
   if (scrRec) scrStop();
   bookRun++;
   bookPlaying = false;
-  window.speechSynthesis && window.speechSynthesis.cancel();
+  speechCancelAll();
 }
 var COMMANDS = [
   { w: ['नाम बदल', 'नाम लिख', 'मेरा नाम'], run: function () { goTo('h-myname', 'नाम बदलने वाला हिस्सा खुला है। पहला नाम लिखें और नाम सहेजें दबाएँ।'); } },
@@ -5141,7 +5200,7 @@ function renderGreeting() {
 function speakGreeting() {
   if (greetSpoken || !speechOK || !S.selfspeak) return;
   greetSpoken = true;
-  speakNow(greetText(new Date()));
+  speakWelcome();
 }
 /* ब्राउज़र बिना छुए बोलने नहीं देता, इसलिए पहली छूने/दबाने की क्रिया पर बोलें */
 function startGreetSpeech() {
