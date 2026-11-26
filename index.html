@@ -258,9 +258,10 @@ html.hc body { background: #fff; color: #000; }
       <li><strong>वोकल रिमूवर:</strong> गाने से गायक की आवाज़ कम करने की कोशिश, फ़ोन में ही। यह पूरी तरह साफ़ नहीं होती।</li>
       <li><strong>कैमरे से मदद:</strong> रंग पहचानना और बोलने वाला कैमरा।</li>
       <li><strong>रेडियो:</strong> कुछ रेडियो स्टेशन इंटरनेट से सुनना। स्टेशन न चले तो 8 सेकंड में अगला स्टेशन अपने-आप आज़माया जाएगा। इंटरनेट न हो तो ऐप बताएगा।</li>
-      <li><strong>बुक रीडर:</strong> .txt फ़ाइल या चिपकाया पाठ फ़ोन की आवाज़ में अनुच्छेद-दर-अनुच्छेद पढ़ना। पढ़ने की गति, हिंदी या अंग्रेज़ी, और जहाँ रुके थे वहीं से आगे।</li>
+      <li><strong>बुक रीडर:</strong> .txt या PDF फ़ाइल, किताब के पन्ने की फ़ोटो या चिपकाया पाठ फ़ोन की आवाज़ में अनुच्छेद-दर-अनुच्छेद पढ़ना। पढ़ने की गति, हिंदी या अंग्रेज़ी, और जहाँ रुके थे वहीं से आगे।</li>
+      <li><strong>टेक्स्ट से इमेज और PDF:</strong> लिखा पाठ फ़ोन में ही PNG तस्वीर या PDF फ़ाइल बनना। PDF का पाठ तस्वीर होता है, इसलिए उसे चुना या खोजा नहीं जा सकता।</li>
       <li><strong>स्क्रीन रिकॉर्डर:</strong> जिस फ़ोन में अनुमति हो, उसकी स्क्रीन रिकॉर्ड करना, आवाज़ के साथ, और फ़ाइल सेव या शेयर करना। जहाँ यह सुविधा न हो, वहाँ फ़ोन का अपना रिकॉर्डर चलाने के कदम बताए जाएँगे।</li>
-      <li><strong>सेटिंग:</strong> अक्षरों का आकार, उच्च कंट्रास्ट, ऐप का रंग, ऐप खुद बोले, पढ़कर सुनाने की भाषा और गति, घोषणाएँ, और प्राइवेसी पॉलिसी।</li>
+      <li><strong>सेटिंग:</strong> अक्षरों का आकार, उच्च कंट्रास्ट, ऐप का रंग, ऐप खुद बोले, पढ़कर सुनाने की भाषा और गति, घोषणाएँ, स्क्रीन चालू रखो, और प्राइवेसी पॉलिसी।</li>
     </ul>
   </section>
 
@@ -621,22 +622,32 @@ html.hc body { background: #fff; color: #000; }
 <!-- ===== बुक रीडर ===== -->
 <div id="panel-book" class="panel">
   <h2 id="h-book" class="panel-title" tabindex="-1">बुक रीडर</h2>
-  <p class="lead">यहाँ अपनी किताब की .txt फ़ाइल चुनें, या पाठ सीधे चिपकाएँ। ऐप उसे अनुच्छेद-दर-अनुच्छेद फ़ोन की आवाज़ में पढ़कर सुनाएगा। फ़ाइल फ़ोन से बाहर कहीं नहीं जाती।</p>
+  <p class="lead">यहाँ अपनी किताब की .txt या PDF फ़ाइल चुनें, किताब के पन्ने की फ़ोटो लें, या पाठ सीधे चिपकाएँ। ऐप उसे अनुच्छेद-दर-अनुच्छेद फ़ोन की आवाज़ में पढ़कर सुनाएगा। फ़ाइल फ़ोन से बाहर कहीं नहीं जाती।</p>
 
   <section aria-labelledby="h-book-load">
-    <h3 id="h-book-load" class="sec-title">किताब चुनें</h3>
-    <label for="book-file">.txt फ़ाइल चुनें</label>
-    <input type="file" id="book-file" accept=".txt,text/plain" aria-describedby="hx-book-file">
-    <p id="hx-book-file" class="hint">फ़ोन की फ़ाइलों में से .txt फ़ाइल चुनें। PDF और EPUB फ़ाइलें इस ऐप में अभी नहीं पढ़ी जातीं। उनका पाठ कॉपी करके नीचे चिपकाएँ।</p>
-    <label for="book-text">या पाठ यहाँ चिपकाएँ</label>
-    <textarea id="book-text" class="big-text" rows="6" aria-describedby="hx-book-text"></textarea>
-    <p id="hx-book-text" class="hint">किताब का पाठ यहाँ चिपकाएँ। फ़ाइल चुनी हो तो वही लोड होगी।</p>
+    <h3 id="h-book-load" class="sec-title">किताब का पाठ</h3>
+    <label for="book-text">यहाँ पाठ लिखें या चिपकाएँ</label>
+    <textarea id="book-text" class="big-text" rows="8" aria-describedby="hx-book-text"></textarea>
+    <p id="hx-book-text" class="hint">यहाँ सीधे टाइप करें या कॉपी किया हुआ पाठ चिपकाएँ। नीचे फ़ाइल, PDF या फ़ोटो से भी पाठ यहीं भर सकते हैं।</p>
     <div class="actions">
-      <button id="book-clear" type="button" class="btn" aria-describedby="hx-book-clear">साफ़ करें / <span lang="en">Clear</span></button>
+      <button id="book-clear" type="button" class="btn" aria-describedby="hx-book-clear">साफ़ करो</button>
     </div>
-    <p id="hx-book-clear" class="hint">दबाने पर चिपकाए पाठ का सारा लिखा मिट जाएगा और फ़ोकस फिर उसी खाने में चला जाएगा। जो किताब पहले से लोड है, उस पर इसका असर नहीं होता।</p>
+    <p id="hx-book-clear" class="hint">दबाने पर बॉक्स का सारा लिखा मिट जाएगा। जो किताब पहले से लोड है, उस पर इसका असर नहीं होता।</p>
+  </section>
+
+  <section aria-labelledby="h-book-up">
+    <h3 id="h-book-up" class="sec-title">फ़ाइल या फ़ोटो से पाठ लाएँ</h3>
+    <label for="book-gallery">गैलरी से फ़ोटो चुनें</label>
+    <input type="file" id="book-gallery" accept="image/*" aria-describedby="hx-book-gallery">
+    <p id="hx-book-gallery" class="hint">फ़ोन की गैलरी से किताब के पन्ने की फ़ोटो चुनें। ऐप उसके अक्षर पढ़कर बॉक्स में लिखेगा। इसमें समय लगता है, और पहली बार इंटरनेट चाहिए।</p>
+    <label for="book-file">.txt या PDF फ़ाइल चुनें</label>
+    <input type="file" id="book-file" accept=".txt,text/plain,.pdf,application/pdf" aria-describedby="hx-book-file">
+    <p id="hx-book-file" class="hint">.txt फ़ाइल सीधे बॉक्स में आ जाएगी। PDF में लिखा पाठ हो तो वह आएगा। स्कैन की हुई PDF में लिखा पाठ नहीं होता, उसे नहीं पढ़ा जा सकेगा।</p>
+    <label for="book-camera">कैमरे से फ़ोटो लें</label>
+    <input type="file" id="book-camera" accept="image/*" capture="environment" aria-describedby="hx-book-camera">
+    <p id="hx-book-camera" class="hint">दबाने पर फ़ोन का कैमरा खुलेगा। पन्ना सीधा और अच्छी रोशनी में रखें। फ़ोटो से पढ़ा पाठ बॉक्स में आएगा, उसे जाँच लें।</p>
     <button id="book-load" type="button" class="btn primary" aria-describedby="hx-book-load-btn">किताब लोड करें</button>
-    <p id="hx-book-load-btn" class="hint">दबाने पर चुनी फ़ाइल या चिपकाया पाठ तैयार होगा। पढ़ने की जगह फ़ोन में याद रहेगी।</p>
+    <p id="hx-book-load-btn" class="hint">दबाने पर बॉक्स का पाठ तैयार होगा। पढ़ने की जगह फ़ोन में याद रहेगी।</p>
     <p id="book-status" class="status" aria-live="polite"></p>
   </section>
 
@@ -677,6 +688,87 @@ html.hc body { background: #fff; color: #000; }
     <h3 id="h-book-note" class="sec-title">ध्यान रखें</h3>
     <p class="note">आवाज़ आपके फ़ोन की अपनी टेक्स्ट-टू-स्पीच से आती है। किताब बहुत लंबी हो तो शुरू होने में थोड़ा समय लग सकता है।</p>
     <p class="note">आपकी आख़िरी पढ़ी जगह इसी फ़ोन में सेव होती है। वही किताब दोबारा लोड करने पर वहीं से शुरू होगी।</p>
+  </section>
+</div>
+
+<!-- ===== टेक्स्ट से इमेज ===== -->
+<div id="panel-timg" class="panel">
+  <h2 id="h-timg" class="panel-title" tabindex="-1">टेक्स्ट से इमेज</h2>
+  <p class="lead">यहाँ लिखा पाठ एक सादी तस्वीर (PNG) में बदला जाता है, जिसे आप फ़ोन में सेव या शेयर कर सकते हैं। यह सिर्फ़ लिखे अक्षरों को तस्वीर में रखता है। यह AI से कोई नई तस्वीर नहीं बनाता।</p>
+
+  <section aria-labelledby="h-timg-in">
+    <h3 id="h-timg-in" class="sec-title">पाठ लिखें</h3>
+    <label for="timg-text">यहाँ पाठ लिखें या चिपकाएँ</label>
+    <textarea id="timg-text" class="big-text" rows="8" aria-describedby="hx-timg-text"></textarea>
+    <p id="hx-timg-text" class="hint">जितना लिखा होगा, उतना तस्वीरों में आएगा। बहुत लंबा पाठ हो तो ऐप उसे कई तस्वीरों (पेज) में बाँट देगा।</p>
+    <div class="actions">
+      <button id="timg-clear" type="button" class="btn" aria-describedby="hx-timg-clear">साफ़ करो</button>
+    </div>
+    <p id="hx-timg-clear" class="hint">दबाने पर लिखा सारा पाठ मिट जाएगा।</p>
+  </section>
+
+  <section aria-labelledby="h-timg-set">
+    <h3 id="h-timg-set" class="sec-title">तस्वीर का आकार और रंग</h3>
+    <label for="timg-size">तस्वीर का आकार</label>
+    <select id="timg-size" class="big" aria-describedby="hx-timg-size">
+      <option value="1080x1920" selected>फ़ोन जैसा लंबा (1080 × 1920)</option>
+      <option value="1080x1080">चौकोर (1080 × 1080)</option>
+    </select>
+    <p id="hx-timg-size" class="hint">फ़ोन पर देखने या WhatsApp पर भेजने के लिए लंबा आकार अच्छा है।</p>
+    <label for="timg-theme">रंग</label>
+    <select id="timg-theme" class="big" aria-describedby="hx-timg-theme">
+      <option value="light" selected>हल्का: सफ़ेद पर काला</option>
+      <option value="dark">गहरा: काले पर सफ़ेद</option>
+    </select>
+    <p id="hx-timg-theme" class="hint">कम रोशनी में या आँखों के लिए जो ज़्यादा आरामदेह हो, वह चुनें।</p>
+  </section>
+
+  <section aria-labelledby="h-timg-make">
+    <h3 id="h-timg-make" class="sec-title">तस्वीर बनाएँ</h3>
+    <button id="timg-make" type="button" class="btn primary big-btn" aria-describedby="hx-timg-make">तस्वीर बनाएँ</button>
+    <p id="hx-timg-make" class="hint">दबाने पर पाठ से PNG तस्वीरें बनेंगी। हर पेज के लिए अलग डाउनलोड बटन आएगा।</p>
+    <p id="timg-status" class="status" aria-live="polite"></p>
+    <div id="timg-result"></div>
+  </section>
+</div>
+
+<!-- ===== टेक्स्ट से PDF ===== -->
+<div id="panel-tpdf" class="panel">
+  <h2 id="h-tpdf" class="panel-title" tabindex="-1">टेक्स्ट से PDF</h2>
+  <p class="lead">यहाँ लिखा पाठ कई पेज वाली PDF फ़ाइल में बदला जाता है। हर पेज A4 आकार का है। यह फ़ाइल इंटरनेट के बिना भी फ़ोन में बनती है।</p>
+
+  <section aria-labelledby="h-tpdf-warn">
+    <h3 id="h-tpdf-warn" class="sec-title">ध्यान रखें</h3>
+    <p class="note"><strong>PDF में लिखा पाठ एक तस्वीर की तरह बनता है।</strong> इसलिए PDF में अक्षर न चुने जा सकते हैं, न कॉपी या खोजे जा सकते हैं। स्क्रीन रीडर भी उन्हें नहीं पढ़ पाएगा।</p>
+  </section>
+
+  <section aria-labelledby="h-tpdf-in">
+    <h3 id="h-tpdf-in" class="sec-title">पाठ लिखें</h3>
+    <label for="tpdf-text">यहाँ पाठ लिखें या चिपकाएँ</label>
+    <textarea id="tpdf-text" class="big-text" rows="8" aria-describedby="hx-tpdf-text"></textarea>
+    <p id="hx-tpdf-text" class="hint">जितना लिखा होगा, उतना PDF के पेजों में आएगा। पेज अपने-आप बनते हैं।</p>
+    <div class="actions">
+      <button id="tpdf-clear" type="button" class="btn" aria-describedby="hx-tpdf-clear">साफ़ करो</button>
+    </div>
+    <p id="hx-tpdf-clear" class="hint">दबाने पर लिखा सारा पाठ मिट जाएगा।</p>
+  </section>
+
+  <section aria-labelledby="h-tpdf-set">
+    <h3 id="h-tpdf-set" class="sec-title">अक्षर का आकार</h3>
+    <label for="tpdf-size">अक्षर</label>
+    <select id="tpdf-size" class="big" aria-describedby="hx-tpdf-size">
+      <option value="44" selected>सामान्य अक्षर</option>
+      <option value="58">बड़े अक्षर</option>
+    </select>
+    <p id="hx-tpdf-size" class="hint">पढ़ने में दिक़्क़त हो तो बड़े अक्षर चुनें। इससे PDF में पेज ज़्यादा बनेंगे।</p>
+  </section>
+
+  <section aria-labelledby="h-tpdf-make">
+    <h3 id="h-tpdf-make" class="sec-title">PDF बनाएँ</h3>
+    <button id="tpdf-make" type="button" class="btn primary big-btn" aria-describedby="hx-tpdf-make">PDF बनाएँ</button>
+    <p id="hx-tpdf-make" class="hint">दबाने पर PDF बनेगी। फिर उसे डाउनलोड कर सकते हैं या शेयर कर सकते हैं।</p>
+    <p id="tpdf-status" class="status" aria-live="polite"></p>
+    <div id="tpdf-result"></div>
   </section>
 </div>
 
@@ -800,6 +892,13 @@ html.hc body { background: #fff; color: #000; }
     <p class="note">डिफ़ॉल्ट गति: <span id="set-rate-val">1.0</span> गुना</p>
   </section>
 
+  <section aria-labelledby="h-wake">
+    <h3 id="h-wake" class="sec-title">स्क्रीन चालू रखो</h3>
+    <label class="switch-row"><input id="set-wake" aria-describedby="hx-wake" type="checkbox" role="switch" checked> <span>स्क्रीन चालू रखो</span></label>
+    <p id="hx-wake" class="hint">चालू हो तो ऐप खुला रहते समय फ़ोन की स्क्रीन अपने-आप बंद नहीं होगी। इससे बैटरी ज़्यादा लगती है, इसलिए काम खत्म होने पर बंद कर दें।</p>
+    <p id="wake-state" class="support" aria-live="polite"></p>
+  </section>
+
   <section aria-labelledby="h-ann">
     <h3 id="h-ann" class="sec-title">घोषणा</h3>
     <label class="switch-row"><input id="set-announce" aria-describedby="hx-announce" type="checkbox" role="switch" checked> <span>बटन दबने पर आवाज़/घोषणा</span></label>
@@ -839,7 +938,7 @@ html.hc body { background: #fff; color: #000; }
     <h3 id="h-save" class="sec-title">सेटिंग्स सहेजना</h3>
     <p id="set-store-note" class="support" hidden>इस ब्राउज़र में सेटिंग्स फ़ोन में सहेजी नहीं जा सकतीं। ये सेटिंग्स इसी बार चलेंगी। ऐप बंद करने पर ये वापस पहले जैसी हो जाएँगी।</p>
     <button id="set-reset" type="button" class="btn" aria-describedby="hx-reset">सेटिंग्स पहले जैसी करें</button>
-    <p id="hx-reset" class="hint">आकार, कंट्रास्ट, रंग, थीम, भाषा, गति, घोषणा और स्क्रीन रीडर (आवाज़, गति, सुर), सब सेटिंग्स पहले जैसी कर देता है।</p>
+    <p id="hx-reset" class="hint">आकार, कंट्रास्ट, रंग, थीम, भाषा, गति, घोषणा, स्क्रीन चालू रखो और स्क्रीन रीडर (आवाज़, गति, सुर), सब सेटिंग्स पहले जैसी कर देता है।</p>
   </section>
 
   <section aria-labelledby="h-privacy" id="privacy-sec">
@@ -861,7 +960,7 @@ html.hc body { background: #fff; color: #000; }
       <p><strong>9. कैमरा:</strong> कैमरा सिर्फ़ तब चलता है जब आप "रंग पहचानें" या "बोलने वाला कैमरा" वाला हिस्सा खोलकर उसका बटन दबाते हैं। कैमरे की तस्वीर फ़ोन में ही, उसी समय देखी जाती है और किसी सर्वर पर नहीं भेजी जाती। कोई तस्वीर तभी बनती या सेव होती है जब आप "फ़ोटो लें" या सेव करने वाला बटन दबाते हैं। कैमरा बंद करने या ऐप छोड़ने पर कैमरा बंद हो जाता है।</p>
       <p><strong>10. बोलकर आदेश:</strong> "बोलकर काम करें" चालू करने पर आपकी बोली फ़ोन की अपनी बोली-पहचान सेवा से समझी जाती है। वह सेवा फ़ोन या ब्राउज़र की अपनी है, और उसकी अपनी प्राइवेसी नियम लागू होते हैं। आवाज़ साथी उस सेवा को आदेश के सिवा कुछ नहीं भेजता।</p>
       <p><strong>11. रेडियो:</strong> रेडियो वाला हिस्सा चुने हुए स्टेशन इंटरनेट से चलाता है। स्टेशन के सर्वर से जुड़ते समय उस संस्था को आपके फ़ोन का इंटरनेट पता (IP address) दिखता है, जैसे किसी भी स्ट्रीमिंग में होता है। आवाज़ साथी यह पता अपने पास नहीं रखता और आपका कोई निजी डेटा इकट्ठा नहीं करता। आख़िरी चुना स्टेशन सिर्फ़ आपके फ़ोन में सेव होता है।</p>
-      <p><strong>12. बुक रीडर:</strong> आप जो .txt फ़ाइल या पाठ चुनते या चिपकाते हैं, वह आपके फ़ोन में ही पढ़ा जाता है। वह किसी सर्वर पर नहीं भेजा जाता। पढ़ने की जगह (कौन-सा अनुच्छेद) सिर्फ़ आपके फ़ोन के ब्राउज़र में सेव होती है। "पढ़ना" की आवाज़ फ़ोन की अपनी बोलकर सुनाने वाली सेवा से आती है।</p>
+      <p><strong>12. बुक रीडर:</strong> आप जो .txt फ़ाइल या पाठ चुनते या चिपकाते हैं, वह आपके फ़ोन में ही पढ़ा जाता है। वह किसी सर्वर पर नहीं भेजा जाता। पढ़ने की जगह (कौन-सा अनुच्छेद) सिर्फ़ आपके फ़ोन के ब्राउज़र में सेव होती है। "पढ़ना" की आवाज़ फ़ोन की अपनी बोलकर सुनाने वाली सेवा से आती है। फ़ोटो या PDF से पाठ निकालना, और टेक्स्ट से इमेज या PDF बनाना, यह भी आपके फ़ोन पर ही होता है। फ़ोटो या फ़ाइल किसी सर्वर पर नहीं भेजी जाती। पहली बार फ़ोटो से पढ़ने के लिए भाषा की फ़ाइलें और एक छोटा पढ़ने वाला प्रोग्राम jsDelivr और cdnjs नाम की सार्वजनिक साइटों से फ़ोन में आते हैं।</p>
       <p><strong>13. स्क्रीन रिकॉर्डर:</strong> स्क्रीन रिकॉर्डिंग सिर्फ़ आपके फ़ोन में बनती है और कहीं अपलोड नहीं होती। आवाज़ रिकॉर्ड करने के लिए माइक्रोफ़ोन की अनुमति आप खुद देते हैं। रिकॉर्डिंग तभी बनती है जब आप शुरू करने का बटन दबाते हैं, और फ़ाइल आप खुद सेव या शेयर करते हैं।</p>
       <p><strong>14. वोकल रिमूवर:</strong> गाने से आवाज़ कम करने का काम सिर्फ़ आपके फ़ोन में होता है। आपकी फ़ाइल किसी सर्वर पर नहीं भेजी जाती और हम उसे कभी नहीं देखते। बनी हुई फ़ाइल आप खुद सेव करते हैं।</p>
       <p>अंतिम अपडेट: 26 नवंबर 2026.</p>
@@ -885,7 +984,7 @@ html.hc body { background: #fff; color: #000; }
       <p><strong>9. Camera:</strong> The camera runs only when you open the "Identify colours" (रंग पहचानें) or "Talking camera" (बोलने वाला कैमरा) part and press its button. The camera picture is seen only on your phone, at that moment, and is not sent to any server. A picture is made or saved only when you press the "Take photo" (फ़ोटो लें) button or a save button. The camera turns off when you stop it or leave the app.</p>
       <p><strong>10. Voice commands:</strong> When you turn on "Work by voice" (बोलकर काम करें), your speech is understood by your phone's own speech-recognition service. That service belongs to the phone or browser, and its own privacy rules apply. Awaz Saathi sends that service nothing except the command.</p>
       <p><strong>11. Radio:</strong> The radio part plays the station you choose over the internet. When connecting to the station's server, that organisation can see your phone's internet address (IP address), as happens with any streaming. Awaz Saathi does not keep this address and does not collect any personal data. The last station you chose is saved only on your phone.</p>
-      <p><strong>12. Book reader:</strong> The .txt file or text you choose or paste is read only on your phone. It is not sent to any server. Your reading place (which paragraph) is saved only in your phone's browser. The voice for reading comes from your phone's own read-aloud service.</p>
+      <p><strong>12. Book reader:</strong> The .txt file or text you choose or paste is read only on your phone. It is not sent to any server. Your reading place (which paragraph) is saved only in your phone's browser. The voice for reading comes from your phone's own read-aloud service. Reading text from photos or PDFs, and making text images or PDFs, also happens on your phone. Photos and files are not sent to any server. The first time you read a photo, the language files and a small reading program are downloaded from the public sites jsDelivr and cdnjs.</p>
       <p><strong>13. Screen recorder:</strong> Screen recording is made only on your phone and is not uploaded anywhere. You give the microphone permission yourself to record your voice. A recording is made only when you press the start button, and you save or share the file yourself.</p>
       <p><strong>14. Vocal remover:</strong> Removing the singer's voice from a song happens only on your own phone. Your file is not sent to any server and we never see it. You save the made file yourself.</p>
       <p>Last updated: 26 November 2026.</p>
@@ -1304,7 +1403,7 @@ $('#join-go').addEventListener('click', function () {
     ).then(function (r) {
       prog('#join-progress', '');
       if (!r.blob || !r.blob.size) return say('कोई वीडियो नहीं जुड़ पाया। फ़ाइलें दोबारा चुनें।');
-      showResult($('#join-result'), r.blob, 'chitti-joined-' + stamp() + '.' + extOf(r.blob.type));
+      showResult($('#join-result'), r.blob, 'awaz-saathi-joined-' + stamp() + '.' + extOf(r.blob.type));
       var extra = r.skipped ? ' ' + r.skipped + ' फ़ाइलें नहीं चल पाईं, इसलिए छोड़ दी गईं।' : '';
       say((r.stopped ? 'रोक दिया गया। जो बना था वह तैयार है।' : 'वीडियो तैयार है।') + extra + ' डाउनलोड करें बटन दबाएँ।');
     }), function () { setStop('#join-stop', false); });
@@ -1387,7 +1486,7 @@ $('#vr-go').addEventListener('click', function () {
     return vrRemove(f, amount).then(function (blob) {
       var done = 'तैयार है। बनी फ़ाइल सुनने के लिए बटन दबाएँ, या डाउनलोड करें।';
       $('#vr-status').textContent = done;
-      vrSetResult(blob, 'chitti-bina-vocal-' + stamp() + '.wav');
+      vrSetResult(blob, 'awaz-saathi-bina-vocal-' + stamp() + '.wav');
       say(done);
     }, function (e) {
       var m = (e && e.message === 'mono') ? 'यह फ़ाइल एक ही चैनल की (मोनो) है। इस काम के लिए स्टीरियो गाना चुनें।'
@@ -1437,7 +1536,7 @@ $('#ext-go').addEventListener('click', function () {
     if (!f) return say('पहले वीडियो फ़ाइल चुनें।');
     say('आवाज़ निकाली जा रही है। कुछ पल रुकें।');
     return extractAudio(f).then(function (blob) {
-      showResult($('#ext-result'), blob, 'chitti-awaaz-' + stamp() + '.wav');
+      showResult($('#ext-result'), blob, 'awaz-saathi-awaaz-' + stamp() + '.wav');
       say('आवाज़ तैयार है। डाउनलोड करें बटन दबाएँ।');
     });
   }, 'इस फ़ाइल से आवाज़ नहीं निकल पाई। हो सकता है इसमें आवाज़ न हो।');
@@ -1482,7 +1581,7 @@ $('#merge-go').addEventListener('click', function () {
     say('वीडियो और आवाज़ मिलाए जा रहे हैं। इसमें वीडियो जितना समय लगेगा।');
     return always(mergeVideoAudio(vf, af, function () { return stopReq; }).then(function (blob) {
       if (!blob || !blob.size) return say('वीडियो नहीं बन पाया। फ़ाइलें दोबारा चुनें।');
-      showResult($('#merge-result'), blob, 'chitti-mila-' + stamp() + '.' + extOf(blob.type));
+      showResult($('#merge-result'), blob, 'awaz-saathi-mila-' + stamp() + '.' + extOf(blob.type));
       say('नया वीडियो तैयार है। डाउनलोड करें बटन दबाएँ।');
     }), function () { setStop('#merge-stop', false); });
   }, 'वीडियो और आवाज़ नहीं मिल पाए। फ़ाइलें दोबारा चुनें।');
@@ -1551,7 +1650,7 @@ function stopKaraokeRec() {
     recAudio.src = K.recUrl;
     recAudio.volume = kVol().vocal;
     prog('#k-state', 'रिकॉर्डिंग तैयार है। अब सुन सकते हैं या मिक्स कर सकते हैं।');
-    showResult($('#k-raw'), blob, 'chitti-meri-awaaz-' + stamp() + '.' + extOf(blob.type));
+    showResult($('#k-raw'), blob, 'awaz-saathi-meri-awaaz-' + stamp() + '.' + extOf(blob.type));
     say('रिकॉर्डिंग रोक दी गई। रिकॉर्डिंग तैयार है।');
   }, function () {
     stopMic();
@@ -1612,7 +1711,7 @@ function mixKaraoke() {
     say('मिक्स बन रहा है। कुछ पल रुकें।');
     var v = kVol();
     return mixToWav(K.track, K.recBlob, v.track, v.vocal).then(function (blob) {
-      showResult($('#k-mix-result'), blob, 'chitti-gaana-mix-' + stamp() + '.wav');
+      showResult($('#k-mix-result'), blob, 'awaz-saathi-gaana-mix-' + stamp() + '.wav');
       say('मिक्स तैयार है। डाउनलोड करें बटन दबाएँ।');
     });
   }, 'मिक्स नहीं बन पाया। रिकॉर्डिंग दोबारा करके देखें।');
@@ -1671,7 +1770,7 @@ $('#imgvid-go').addEventListener('click', function () {
     say('वीडियो बन रहा है। इसमें ऑडियो जितना समय लगेगा।');
     return always(imageToVideo(imf, af, function () { return stopReq; }).then(function (blob) {
       if (!blob || !blob.size) return say('वीडियो नहीं बन पाया। तस्वीर या ऑडियो फ़ाइल जाँचें।');
-      showResult($('#imgvid-result'), blob, 'chitti-tasveer-' + stamp() + '.' + extOf(blob.type));
+      showResult($('#imgvid-result'), blob, 'awaz-saathi-tasveer-' + stamp() + '.' + extOf(blob.type));
       say('वीडियो तैयार है। डाउनलोड करें बटन दबाएँ।');
     }), function () { setStop('#imgvid-stop', false); });
   }, 'वीडियो नहीं बन पाया। तस्वीर या ऑडियो फ़ाइल जाँचें।');
@@ -1966,7 +2065,7 @@ bindVolume('#speak-vol', '#speak-vol-down', '#speak-vol-up', 'बोलने �
 var SKEY = 'chitti-settings-v1';
 var FSIZES = [90, 100, 120, 140];
 var FSIZE_NAMES = ['छोटा', 'सामान्य', 'बड़ा', 'बहुत बड़ा'];
-var DEFAULTS = { fsize: 1, contrast: false, lang: 'hi-IN', rate: 1, announce: true, accent: 'default', selfspeak: true, theme: 'classic', srVoice: 'auto', srRate: 1, srPitch: 1 };
+var DEFAULTS = { fsize: 1, contrast: false, lang: 'hi-IN', rate: 1, announce: true, accent: 'default', selfspeak: true, theme: 'classic', srVoice: 'auto', srRate: 1, srPitch: 1, wake: true };
 function cloneDefaults() {
   var o = {};
   for (var k in DEFAULTS) { if (DEFAULTS.hasOwnProperty(k)) o[k] = DEFAULTS[k]; }
@@ -2002,6 +2101,7 @@ function loadSettings() {
     if (typeof o.srVoice === 'string' && o.srVoice.length > 0 && o.srVoice.length < 300) S.srVoice = o.srVoice;
     if (typeof o.srRate === 'number' && o.srRate >= 0.5 && o.srRate <= 2) S.srRate = o.srRate;
     if (typeof o.srPitch === 'number' && o.srPitch >= 0.5 && o.srPitch <= 2) S.srPitch = o.srPitch;
+    if (typeof o.wake === 'boolean') S.wake = o.wake;
   } catch (e) { /* खराब सेटिंग्स हों तो पहले जैसी */ }
 }
 function saveSettings() {
@@ -2028,6 +2128,7 @@ function applySettings() {
   $('#set-rate-val').textContent = S.rate.toFixed(1);
   $('#set-announce').checked = !!S.announce;
   $('#set-selfspeak').checked = !!S.selfspeak;
+  $('#set-wake').checked = !!S.wake;
   document.documentElement.setAttribute('data-theme', S.theme);
   $$('input[name="theme"]').forEach(function (r) { r.checked = (r.value === S.theme); });
   $('#set-sr-on').checked = !!S.selfspeak;
@@ -2126,6 +2227,7 @@ $('#set-reset').addEventListener('click', function () {
   S = cloneDefaults();
   applySettings();
   saveSettings();
+  wakeSync();
   say('सेटिंग्स पहले जैसी कर दी गई हैं।');
 });
 
@@ -2179,7 +2281,6 @@ function clearBox(sel, after) {
   say('सारा लिखा मिटा दिया');
 }
 $('#speak-clear').addEventListener('click', function () { clearBox('#speak-text'); });
-$('#book-clear').addEventListener('click', function () { clearBox('#book-text'); });
 $('#radio-clear').addEventListener('click', function () { clearBox('#radio-search', radioRender); });
 $('#notice-read').addEventListener('click', function () {
   hideNotice();
@@ -2680,23 +2781,6 @@ function bookLoad(text, name) {
     : 'किताब तैयार है। कुल ' + paras.length + ' अनुच्छेद। "पढ़ना शुरू" दबाएँ।');
 }
 
-$('#book-load').addEventListener('click', function () {
-  var f = $('#book-file').files && $('#book-file').files[0];
-  if (f) {
-    if (!/\.txt$/i.test(f.name) && f.type !== 'text/plain') {
-      bookStatus('इस फ़ाइल को ऐप अभी नहीं पढ़ता। .txt फ़ाइल चुनें, या पाठ कॉपी करके नीचे चिपकाएँ।');
-      return;
-    }
-    var r = new FileReader();
-    r.onload = function () { bookLoad(String(r.result || ''), f.name); };
-    r.onerror = function () { bookStatus('फ़ाइल नहीं पढ़ी जा सकी। कोई दूसरी .txt फ़ाइल चुनें।'); };
-    r.readAsText(f, 'utf-8');
-    return;
-  }
-  var t = $('#book-text').value;
-  if (!t.trim()) { bookStatus('पहले .txt फ़ाइल चुनें या पाठ चिपकाएँ।'); return; }
-  bookLoad(t, 'चिपकाया गया पाठ');
-});
 $('#book-play').addEventListener('click', function () {
   if (!bookParas.length) { bookStatus('पहले किताब लोड करें।'); return; }
   bookSi = 0;
@@ -2877,6 +2961,8 @@ var COMMANDS = [
   { w: ['आवाज़ निकाल'], run: function () { goTo('h-extract', 'आवाज़ निकालने वाला हिस्सा खुला है।'); } },
   { w: ['मिलाओ', 'मिला'], run: function () { goTo('h-merge', 'आवाज़ मिलाने वाला हिस्सा खुला है।'); } },
   { w: ['गाना', 'कराओके', 'रिकॉर्ड'], run: function () { goTo('h-karaoke', 'गाने के साथ रिकॉर्डिंग वाला हिस्सा खुला है।'); } },
+  { w: ['टेक्स्ट से इमेज', 'टेक्स्ट से तस्वीर'], run: function () { goTo('h-timg', 'टेक्स्ट से इमेज वाला हिस्सा खुला है।'); } },
+  { w: ['टेक्स्ट से PDF', 'टेक्स्ट से पीडीएफ़'], run: function () { goTo('h-tpdf', 'टेक्स्ट से PDF वाला हिस्सा खुला है।'); } },
   { w: ['तस्वीर'], run: function () { goTo('h-imgvid', 'तस्वीर से वीडियो वाला हिस्सा खुला है।'); } },
   { w: ['रंग'], run: function () { goTo('h-color', 'रंग पहचानने वाला हिस्सा खुला है।'); } },
   { w: ['कैमरा', 'कैमरे'], run: function () { goTo('h-talkcam', 'बोलने वाला कैमरा खुला है।'); } },
@@ -3228,6 +3314,386 @@ if (!hasCam()) {
   $('#tc-support').hidden = false;
 }
 if (!SRClass) { $('#mic-state').textContent = MIC_NO; }
+
+/* ===== स्क्रीन चालू रखो (Screen Wake Lock) ===== */
+var wakeLock = null;
+var wakePending = false;
+function wakeSupported() {
+  return !!(navigator.wakeLock && typeof navigator.wakeLock.request === 'function');
+}
+function wakeShow(msg) { $('#wake-state').textContent = msg; }
+function wakeRelease() {
+  var w = wakeLock;
+  wakeLock = null;
+  if (w) { try { w.release().catch(function () {}); } catch (e) { /* बंद करने में दिक़्क़त हो तो छोड़ दें */ } }
+}
+function wakeAcquire() {
+  if (!S.wake || !wakeSupported() || wakeLock || wakePending) return;
+  if (document.visibilityState !== 'visible') return;
+  wakePending = true;
+  navigator.wakeLock.request('screen').then(function (s) {
+    wakePending = false;
+    wakeLock = s;
+    s.addEventListener('release', function () {
+      if (wakeLock === s) wakeLock = null;
+      if (S.wake && document.visibilityState === 'visible') {
+        wakeShow('स्क्रीन चालू रखने की अनुमति छूट गई। ऐप पर वापस आने पर फिर से चालू करने की कोशिश होगी।');
+      }
+    });
+    wakeShow('स्क्रीन चालू है। ऐप खुला रहते समय स्क्रीन अपने-आप बंद नहीं होगी।');
+  }, function () {
+    wakePending = false;
+    wakeShow('स्क्रीन चालू रखने की अनुमति नहीं मिली। स्क्रीन की समय-सीमा फ़ोन की सेटिंग में बढ़ा सकते हैं।');
+  });
+}
+function wakeSync() {
+  if (!wakeSupported()) {
+    wakeShow('इस फ़ोन या ब्राउज़र में ऐप स्क्रीन को चालू नहीं रख सकता। स्क्रीन की समय-सीमा फ़ोन की सेटिंग में बढ़ाएँ।');
+    return;
+  }
+  if (!S.wake) {
+    wakeRelease();
+    wakeShow('स्क्रीन चालू रखना बंद है। फ़ोन अपने समय पर स्क्रीन बंद करेगा।');
+    return;
+  }
+  wakeAcquire();
+}
+$('#set-wake').addEventListener('change', function () {
+  S.wake = this.checked;
+  applySettings();
+  saveSettings();
+  wakeSync();
+  say(S.wake ? 'स्क्रीन चालू रखना चालू है।' : 'स्क्रीन चालू रखना बंद है।');
+});
+document.addEventListener('visibilitychange', function () {
+  if (document.visibilityState === 'visible') wakeAcquire();
+});
+setTimeout(wakeSync, 0);
+
+/* ===== बुक रीडर: फ़ाइल, फ़ोटो और PDF से पाठ ===== */
+var TESS_LIB = 'https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js';
+var TESS_LANG = 'https://cdn.jsdelivr.net/gh/tesseract-ocr/tessdata_fast@main';
+var PDFJS_LIB = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+var PDFJS_WORKER = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+var bookSrcName = '';
+var libWait = {};
+function loadLib(url, globalName) {
+  return new Promise(function (ok, bad) {
+    if (window[globalName]) { ok(window[globalName]); return; }
+    if (libWait[url]) { libWait[url].then(ok, bad); return; }
+    libWait[url] = new Promise(function (ok2, bad2) {
+      var s = document.createElement('script');
+      s.src = url;
+      s.async = true;
+      s.onload = function () {
+        if (window[globalName]) ok2(window[globalName]); else bad2(new Error('no global'));
+      };
+      s.onerror = function () { bad2(new Error('load failed')); };
+      document.head.appendChild(s);
+    });
+    libWait[url].then(ok, bad);
+  });
+}
+function readBuf(f) {
+  return new Promise(function (ok, bad) {
+    var r = new FileReader();
+    r.onload = function () { ok(r.result); };
+    r.onerror = function () { bad(r.error); };
+    r.readAsArrayBuffer(f);
+  });
+}
+function bookPut(txt) {
+  var box = $('#book-text');
+  var old = box.value.replace(/\s+$/, '');
+  box.value = old ? old + '\n\n' + txt : txt;
+  bookSrcName = '';
+}
+function bookFill(txt, name) {
+  $('#book-text').value = txt;
+  bookSrcName = name;
+  bookStatus('फ़ाइल "' + name + '" का पाठ बॉक्स में आ गया है। अब "किताब लोड करें" दबाएँ।');
+}
+$('#book-text').addEventListener('input', function () { bookSrcName = ''; });
+$('#book-clear').addEventListener('click', function () { clearBox('#book-text', function () { bookSrcName = ''; }); });
+$('#book-file').addEventListener('change', function () {
+  var f = this.files && this.files[0];
+  if (!f) return;
+  if (/\.pdf$/i.test(f.name) || f.type === 'application/pdf') { bookPdf(f); return; }
+  if (!/\.txt$/i.test(f.name) && f.type !== 'text/plain') {
+    bookStatus('इस फ़ाइल को ऐप अभी नहीं पढ़ता। .txt या PDF फ़ाइल चुनें, या फ़ोटो चुनें।');
+    return;
+  }
+  var r = new FileReader();
+  r.onload = function () { bookFill(String(r.result || '').replace(/^﻿/, ''), f.name); };
+  r.onerror = function () { bookStatus('फ़ाइल नहीं पढ़ी जा सकी। कोई दूसरी .txt फ़ाइल चुनें।'); };
+  r.readAsText(f, 'utf-8');
+});
+function bookPdf(f) {
+  bookStatus('पढ़ रहा हूँ, कृपया इंतज़ार करें।');
+  readBuf(f).then(function (buf) {
+    return loadLib(PDFJS_LIB, 'pdfjsLib').then(function (P) {
+      P.GlobalWorkerOptions.workerSrc = PDFJS_WORKER;
+      return P.getDocument({ data: buf }).promise;
+    });
+  }).then(function (doc) {
+    var parts = [];
+    function pageText(n) {
+      if (n > doc.numPages) return Promise.resolve();
+      return doc.getPage(n).then(function (pg) { return pg.getTextContent(); }).then(function (tc) {
+        var s = '';
+        for (var i = 0; i < tc.items.length; i++) {
+          var it = tc.items[i];
+          s += (it.str || '') + (it.hasEOL ? '\n' : ' ');
+        }
+        parts.push(s);
+        return pageText(n + 1);
+      });
+    }
+    return pageText(1).then(function () { return parts.join('\n'); });
+  }).then(function (txt) {
+    var clean = txt.replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+    if (!clean) {
+      bookStatus('इस PDF में लिखा पाठ नहीं मिला। यह शायद स्कैन की हुई फ़ाइल है। उसके पन्ने की फ़ोटो गैलरी या कैमरे से लें।');
+      return;
+    }
+    bookFill(clean, f.name);
+  }).catch(function () {
+    bookStatus('PDF नहीं पढ़ी जा सकी। फ़ाइल खुलती है या नहीं, जाँचें, या पाठ कॉपी करके ऊपर चिपकाएँ।');
+  });
+}
+function bookPhoto(f) {
+  if (!/^image\//.test(f.type) && !/\.(jpe?g|png|webp|gif|bmp)$/i.test(f.name)) {
+    bookStatus('यह फ़ाइल फ़ोटो नहीं है। फ़ोटो चुनें, या .txt या PDF फ़ाइल चुनें।');
+    return;
+  }
+  bookStatus('पढ़ रहा हूँ, कृपया इंतज़ार करें। पहली बार भाषा की फ़ाइलें इंटरनेट से आएँगी।');
+  var worker = null;
+  loadLib(TESS_LIB, 'Tesseract').then(function (T) {
+    return T.createWorker('hin+eng', 1, {
+      langPath: TESS_LANG,
+      gzip: false,
+      logger: function (m) {
+        if (m && m.status === 'recognizing text') {
+          bookStatus('पढ़ रहा हूँ, कृपया इंतज़ार करें... ' + Math.round((m.progress || 0) * 100) + '%');
+        }
+      }
+    });
+  }).then(function (w) {
+    worker = w;
+    return w.recognize(f);
+  }).then(function (r) {
+    var txt = (r && r.data && r.data.text) ? String(r.data.text).trim() : '';
+    if (!txt) {
+      bookStatus('फ़ोटो में पढ़ने लायक पाठ नहीं मिला। रोशनी बढ़ाकर या पन्ना सीधा रखकर दोबारा फ़ोटो लें।');
+      return;
+    }
+    bookPut(txt);
+    bookStatus('फ़ोटो से पाठ मिल गया, वह बॉक्स में है। पहले जाँच लें, फिर "किताब लोड करें" दबाएँ। फ़ोटो से पढ़ा पाठ कुछ गलत भी हो सकता है।');
+  }).catch(function () {
+    bookStatus('फ़ोटो से पाठ नहीं निकल पाया। इंटरनेट जाँचें और दोबारा कोशिश करें, या पाठ हाथ से लिखें।');
+  }).then(function () {
+    if (worker) return worker.terminate().catch(function () {});
+  });
+}
+function bookPhotoPick(e) {
+  var input = e.target;
+  var f = input.files && input.files[0];
+  input.value = '';
+  if (f) bookPhoto(f);
+}
+$('#book-gallery').addEventListener('change', bookPhotoPick);
+$('#book-camera').addEventListener('change', bookPhotoPick);
+$('#book-load').addEventListener('click', function () {
+  var t = $('#book-text').value;
+  if (!t.trim()) { bookStatus('पहले पाठ लिखें या चिपकाएँ, या फ़ाइल/फ़ोटो से पाठ लाएँ।'); return; }
+  bookLoad(t, bookSrcName || 'चिपकाया गया पाठ');
+});
+
+/* ===== टेक्स्ट से इमेज और टेक्स्ट से PDF ===== */
+var TXT_FONT = '"Noto Sans Devanagari", "Mukta", "Lohit Devanagari", "Kalimati", "Nirmala UI", sans-serif';
+var TXT_MAX_PAGES = 60;
+function txtSay(sel, msg) { $(sel).textContent = msg; say(msg); }
+function txtWrap(ctx, text, maxW) {
+  var out = [];
+  var paras = text.replace(/\r/g, '').split('\n');
+  for (var p = 0; p < paras.length; p++) {
+    var words = paras[p].split(/\s+/).filter(function (w) { return w.length > 0; });
+    if (!words.length) { out.push(''); continue; }
+    var line = '';
+    for (var i = 0; i < words.length; i++) {
+      var w = words[i];
+      while (w.length > 1 && ctx.measureText(w).width > maxW) {
+        var cut = w.length - 1;
+        while (cut > 1 && ctx.measureText(w.slice(0, cut)).width > maxW) cut--;
+        if (line) { out.push(line); line = ''; }
+        out.push(w.slice(0, cut));
+        w = w.slice(cut);
+      }
+      var test = line ? line + ' ' + w : w;
+      if (line && ctx.measureText(test).width > maxW) { out.push(line); line = w; }
+      else line = test;
+    }
+    if (line) out.push(line);
+  }
+  return out;
+}
+function txtLayout(text, W, H, fontPx, margin) {
+  var ctx = document.createElement('canvas').getContext('2d');
+  var font = fontPx + 'px ' + TXT_FONT;
+  ctx.font = font;
+  var lineH = Math.round(fontPx * 1.6);
+  var lines = txtWrap(ctx, text, W - 2 * margin);
+  var per = Math.max(1, Math.floor((H - 2 * margin) / lineH));
+  var pages = [];
+  for (var i = 0; i < lines.length; i += per) pages.push({ from: i, count: Math.min(per, lines.length - i) });
+  return { lines: lines, pages: pages, lineH: lineH, font: font };
+}
+function txtPaint(cv, L, page, opt) {
+  var ctx = cv.getContext('2d');
+  ctx.fillStyle = opt.bg;
+  ctx.fillRect(0, 0, cv.width, cv.height);
+  ctx.fillStyle = opt.fg;
+  ctx.font = L.font;
+  ctx.textBaseline = 'top';
+  for (var i = 0; i < page.count; i++) {
+    ctx.fillText(L.lines[page.from + i], opt.margin, opt.margin + i * L.lineH);
+  }
+}
+function dataUrlBytes(u) {
+  var b = atob(u.slice(u.indexOf(',') + 1));
+  var a = new Uint8Array(b.length);
+  for (var i = 0; i < b.length; i++) a[i] = b.charCodeAt(i);
+  return a;
+}
+function txtOut(box, items, label) {
+  while (box.firstChild) box.removeChild(box.firstChild);
+  var wrap = document.createElement('div');
+  wrap.className = 'result';
+  items.forEach(function (it) {
+    var a = document.createElement('a');
+    a.className = 'btn primary';
+    a.href = URL.createObjectURL(it.blob);
+    a.download = it.name;
+    a.textContent = 'डाउनलोड करें (' + it.name + ')';
+    wrap.appendChild(a);
+  });
+  var files = items.map(function (it) { return new File([it.blob], it.name, { type: it.blob.type }); });
+  var canShare = false;
+  try { canShare = !!(navigator.canShare && navigator.canShare({ files: files })); } catch (e) { canShare = false; }
+  if (canShare) {
+    var sh = document.createElement('button');
+    sh.type = 'button';
+    sh.className = 'btn';
+    sh.textContent = 'शेयर करें';
+    sh.setAttribute('aria-label', label + ' किसी और ऐप से शेयर करें');
+    sh.addEventListener('click', function () {
+      navigator.share({ files: files, title: label }).then(function () {
+        say('शेयर का पैनल खुल गया।');
+      }, function (e) {
+        if (!e || e.name !== 'AbortError') say('शेयर नहीं हो पाया। डाउनलोड करें बटन इस्तेमाल करें।');
+      });
+    });
+    wrap.appendChild(sh);
+  }
+  box.appendChild(wrap);
+}
+function timgMake() {
+  var text = $('#timg-text').value;
+  if (!text.trim()) { txtSay('#timg-status', 'पहले कुछ लिखें।'); return; }
+  var sz = $('#timg-size').value.split('x');
+  var W = +sz[0], H = +sz[1];
+  var opt = $('#timg-theme').value === 'dark' ? { bg: '#000000', fg: '#ffffff' } : { bg: '#ffffff', fg: '#000000' };
+  var fontPx = Math.round(W * 0.055), margin = Math.round(W * 0.074);
+  var L = txtLayout(text, W, H, fontPx, margin);
+  if (!L.pages.length) { txtSay('#timg-status', 'पाठ में कुछ लिखा नहीं मिला।'); return; }
+  if (L.pages.length > TXT_MAX_PAGES) {
+    txtSay('#timg-status', 'पाठ बहुत लंबा है। एक बार में ' + TXT_MAX_PAGES + ' तस्वीरें तक बनती हैं। कुछ हिस्सा हटाकर दोबारा बनाएँ।');
+    return;
+  }
+  txtSay('#timg-status', 'तस्वीरें बना रहा हूँ, कृपया इंतज़ार करें। कुल ' + L.pages.length + ' पेज।');
+  setTimeout(function () {
+    var cv = document.createElement('canvas');
+    cv.width = W;
+    cv.height = H;
+    var stp = stamp();
+    var items = [];
+    for (var i = 0; i < L.pages.length; i++) {
+      txtPaint(cv, L, L.pages[i], { bg: opt.bg, fg: opt.fg, margin: margin });
+      var bytes = dataUrlBytes(cv.toDataURL('image/png'));
+      items.push({ blob: new Blob([bytes], { type: 'image/png' }), name: 'awaz-saathi-text-image-' + stp + '-' + (i + 1) + '.png' });
+    }
+    txtOut($('#timg-result'), items, 'टेक्स्ट से बनी तस्वीरें');
+    txtSay('#timg-status', 'तस्वीरें तैयार हैं: ' + items.length + '। नीचे हर पेज अलग-अलग डाउनलोड करें। यह सादा पाठ है, AI से बनी तस्वीर नहीं।');
+  }, 30);
+}
+function tpdfMake() {
+  var text = $('#tpdf-text').value;
+  if (!text.trim()) { txtSay('#tpdf-status', 'पहले कुछ लिखें।'); return; }
+  var W = 1654, H = 2339, margin = 160;
+  var fontPx = +$('#tpdf-size').value;
+  var L = txtLayout(text, W, H, fontPx, margin);
+  if (!L.pages.length) { txtSay('#tpdf-status', 'पाठ में कुछ लिखा नहीं मिला।'); return; }
+  if (L.pages.length > TXT_MAX_PAGES) {
+    txtSay('#tpdf-status', 'पाठ बहुत लंबा है। एक बार में ' + TXT_MAX_PAGES + ' पेज तक बनते हैं। कुछ हिस्सा हटाकर दोबारा बनाएँ।');
+    return;
+  }
+  txtSay('#tpdf-status', 'PDF बना रहा हूँ, कृपया इंतज़ार करें। कुल ' + L.pages.length + ' पेज।');
+  setTimeout(function () {
+    var cv = document.createElement('canvas');
+    cv.width = W;
+    cv.height = H;
+    var pages = [];
+    for (var i = 0; i < L.pages.length; i++) {
+      txtPaint(cv, L, L.pages[i], { bg: '#ffffff', fg: '#000000', margin: margin });
+      pages.push({ jpg: dataUrlBytes(cv.toDataURL('image/jpeg', 0.9)), w: W, h: H });
+    }
+    var blob = buildPdf(pages);
+    txtOut($('#tpdf-result'), [{ blob: blob, name: 'awaz-saathi-text-' + stamp() + '.pdf' }], 'बनी हुई PDF');
+    txtSay('#tpdf-status', 'PDF तैयार है: ' + pages.length + ' पेज। नीचे डाउनलोड करें। PDF में पाठ तस्वीर की तरह है, उसे चुना या खोजा नहीं जा सकता।');
+  }, 30);
+}
+/* सादा PDF बनाने वाला: हर पेज A4 और उसमें JPEG तस्वीर (DCTDecode) */
+function buildPdf(pages) {
+  var n = pages.length;
+  var size = 3 * n + 3;
+  var parts = [];
+  var off = 0;
+  var offs = [];
+  function str(s) { parts.push(s); off += s.length; }
+  function bin(a) { parts.push(a); off += a.length; }
+  function pad(o) { return ('0000000000' + o).slice(-10); }
+  str('%PDF-1.4\n');
+  bin(new Uint8Array([37, 226, 227, 207, 211, 10]));
+  offs[1] = off;
+  str('1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n');
+  var kids = [];
+  for (var k = 0; k < n; k++) kids.push((3 + 3 * k) + ' 0 R');
+  offs[2] = off;
+  str('2 0 obj\n<< /Type /Pages /Kids [' + kids.join(' ') + '] /Count ' + n + ' >>\nendobj\n');
+  for (var i = 0; i < n; i++) {
+    var pg = 3 + 3 * i, ct = 4 + 3 * i, im = 5 + 3 * i;
+    var content = 'q 595.28 0 0 841.89 0 0 cm /Im1 Do Q';
+    offs[pg] = off;
+    str(pg + ' 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /XObject << /Im1 ' + im + ' 0 R >> >> /Contents ' + ct + ' 0 R >>\nendobj\n');
+    offs[ct] = off;
+    str(ct + ' 0 obj\n<< /Length ' + content.length + ' >>\nstream\n' + content + '\nendstream\nendobj\n');
+    offs[im] = off;
+    str(im + ' 0 obj\n<< /Type /XObject /Subtype /Image /Width ' + pages[i].w + ' /Height ' + pages[i].h +
+      ' /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ' + pages[i].jpg.length + ' >>\nstream\n');
+    bin(pages[i].jpg);
+    str('\nendstream\nendobj\n');
+  }
+  var xref = off;
+  var x = 'xref\n0 ' + size + '\n0000000000 65535 f \n';
+  for (var j = 1; j < size; j++) x += pad(offs[j]) + ' 00000 n \n';
+  str(x);
+  str('trailer\n<< /Size ' + size + ' /Root 1 0 R >>\nstartxref\n' + xref + '\n%%EOF\n');
+  return new Blob(parts, { type: 'application/pdf' });
+}
+$('#timg-clear').addEventListener('click', function () { clearBox('#timg-text'); });
+$('#tpdf-clear').addEventListener('click', function () { clearBox('#tpdf-text'); });
+$('#timg-make').addEventListener('click', timgMake);
+$('#tpdf-make').addEventListener('click', tpdfMake);
 </script>
 </body>
 </html>
