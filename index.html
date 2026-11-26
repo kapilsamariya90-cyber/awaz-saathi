@@ -443,6 +443,11 @@ html.hc body { background: #fff; color: #000; }
     </div>
     <p id="hx-k-mix" class="hint">गाना और आपकी आवाज़ मिलाकर एक WAV फ़ाइल बनाता है। पहले रिकॉर्डिंग कर लें।</p>
     <div id="k-mix-result" class="result"></div>
+    <div class="actions">
+      <button id="k-video" aria-describedby="hx-k-video" type="button" class="btn primary" data-rec aria-label="रिकॉर्डिंग से वीडियो बनाएँ">वीडियो बनाएँ</button>
+    </div>
+    <p id="hx-k-video" class="hint">वीडियो बनाएँ: एक सादी तस्वीर पर आपकी रिकॉर्डिंग चलती है। गाना चुना हो तो गाना और आपकी आवाज़ दोनों साथ। वीडियो का फ़ॉर्मेट आपके ब्राउज़र पर निर्भर है: ज़्यादातर फ़ोन में MP4 या WebM बनेगा, जो बनने के बाद बताया जाएगा। पहले रिकॉर्डिंग कर लें।</p>
+    <div id="k-video-result" class="result"></div>
   </section>
 
   <!-- 4b. वोकल रिमूवर -->
@@ -549,6 +554,7 @@ html.hc body { background: #fff; color: #000; }
       <button id="speak-restart" aria-describedby="hx-speak-btns" type="button" class="btn" aria-label="पूरा पाठ शुरू से फिर से बोलकर सुनाएँ">फिर से शुरू</button>
     </div>
     <p id="hx-speak-btns" class="hint">बोलकर सुनाएँ: लिखा पाठ फ़ोन की आवाज़ में सुनाता है। रोकें: बोलना बंद करता है। फिर से शुरू: पूरा पाठ शुरू से सुनाता है।</p>
+    <p class="note">बोलकर सुनाने की आवाज़ को फ़ाइल (MP3 या WAV) में सेव करने का बटन इस ऐप में नहीं है। फ़ोन की आवाज़ को फ़ाइल में बदलने का तरीका ब्राउज़र में भरोसेमंद नहीं है। इसके लिए इंटरनेट की आवाज़-सेवा या सर्वर चाहिए। यह आगे का एक संभावित कदम हो सकता है, अभी नहीं।</p>
     <p id="speak-status" class="status" aria-live="polite"></p>
   </section>
 </div>
@@ -664,17 +670,20 @@ html.hc body { background: #fff; color: #000; }
 
   <section aria-labelledby="h-book-up">
     <h3 id="h-book-up" class="sec-title">फ़ाइल या फ़ोटो से पाठ लाएँ</h3>
-    <label for="book-gallery">गैलरी से फ़ोटो चुनें</label>
-    <input type="file" id="book-gallery" accept="image/*" aria-describedby="hx-book-gallery">
-    <p id="hx-book-gallery" class="hint">फ़ोन की गैलरी से किताब के पन्ने की फ़ोटो चुनें। ऐप उसके अक्षर पढ़कर बॉक्स में लिखेगा। इसमें समय लगता है, और पहली बार इंटरनेट चाहिए।</p>
-    <label for="book-file">.txt या PDF फ़ाइल चुनें</label>
-    <input type="file" id="book-file" accept=".txt,text/plain,.pdf,application/pdf" aria-describedby="hx-book-file">
-    <p id="hx-book-file" class="hint">.txt फ़ाइल सीधे बॉक्स में आ जाएगी। PDF में लिखा पाठ हो तो वह आएगा। स्कैन की हुई PDF में लिखा पाठ नहीं होता, उसे नहीं पढ़ा जा सकेगा।</p>
-    <label for="book-camera">कैमरे से फ़ोटो लें</label>
-    <input type="file" id="book-camera" accept="image/*" capture="environment" aria-describedby="hx-book-camera">
-    <p id="hx-book-camera" class="hint">दबाने पर फ़ोन का कैमरा खुलेगा। पन्ना सीधा और अच्छी रोशनी में रखें। फ़ोटो से पढ़ा पाठ बॉक्स में आएगा, उसे जाँच लें।</p>
+    <div class="actions">
+      <button id="book-gallery-btn" type="button" class="btn" aria-describedby="hx-book-gallery">गैलरी से फ़ोटो चुनें</button>
+      <button id="book-file-btn" type="button" class="btn" aria-describedby="hx-book-file">.txt या PDF फ़ाइल चुनें</button>
+      <button id="book-camera-btn" type="button" class="btn" aria-describedby="hx-book-camera">कैमरे से फ़ोटो लें</button>
+    </div>
+    <p id="hx-book-gallery" class="hint">गैलरी से फ़ोटो चुनें दबाने पर ही फ़ोन की गैलरी खुलेगी। एक से ज़्यादा फ़ोटो चुन सकते हैं, और हर फ़ोटो एक अलग पेज बनेगी। ऐप उसके अक्षर पढ़कर बॉक्स में लिखेगा। इसमें समय लगता है, और पहली बार इंटरनेट चाहिए।</p>
+    <p id="hx-book-file" class="hint">.txt या PDF फ़ाइल चुनें दबाने पर ही फ़ाइल चुनने का पैनल खुलेगा। .txt फ़ाइल सीधे बॉक्स में आ जाएगी। PDF में लिखा पाठ हो तो वह आएगा, और हर PDF पन्ना अलग पेज बनेगा। स्कैन की हुई PDF में लिखा पाठ नहीं होता, उसे नहीं पढ़ा जा सकेगा।</p>
+    <p id="hx-book-camera" class="hint">कैमरे से फ़ोटो लें दबाने पर फ़ोन का कैमरा खुलेगा। पन्ना सीधा और अच्छी रोशनी में रखें। फ़ोटो से पढ़ा पाठ बॉक्स में आएगा, उसे जाँच लें।</p>
+    <input type="file" id="book-gallery" accept="image/*" multiple tabindex="-1" aria-hidden="true" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden">
+    <input type="file" id="book-file" accept=".txt,text/plain,.pdf,application/pdf" tabindex="-1" aria-hidden="true" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden">
+    <input type="file" id="book-camera" accept="image/*" capture="environment" tabindex="-1" aria-hidden="true" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden">
     <button id="book-load" type="button" class="btn primary" aria-describedby="hx-book-load-btn">किताब लोड करें</button>
     <p id="hx-book-load-btn" class="hint">दबाने पर बॉक्स का पाठ तैयार होगा। पढ़ने की जगह फ़ोन में याद रहेगी।</p>
+    <p id="book-load-note" class="note" aria-live="off"></p>
     <p id="book-status" class="status" aria-live="polite"></p>
   </section>
 
@@ -697,18 +706,33 @@ html.hc body { background: #fff; color: #000; }
     <p id="book-now" class="note" aria-live="polite">अभी कोई किताब नहीं खुली है।</p>
     <div id="book-view" class="book-view" role="region" aria-label="चालू अनुच्छेद" aria-describedby="hx-book-view"></div>
     <p id="hx-book-view" class="hint">यहाँ चालू अनुच्छेद का पाठ दिखता है।</p>
+    <p id="book-pos" class="note" aria-live="off"></p>
     <div class="actions">
-      <button id="book-play" type="button" class="btn primary big-btn" aria-describedby="hx-book-play">पढ़ना शुरू</button>
-      <button id="book-pause" type="button" class="btn big-btn" aria-describedby="hx-book-pause">रोकें / जारी</button>
+      <button id="book-back" type="button" class="btn big-btn" aria-describedby="hx-book-sent">पीछे जाओ</button>
+      <button id="book-fwd" type="button" class="btn big-btn" aria-describedby="hx-book-sent">आगे बढ़ाओ</button>
     </div>
-    <p id="hx-book-play" class="hint">पढ़ना शुरू: चालू अनुच्छेद से फ़ोन की आवाज़ में पढ़कर सुनाता है और आगे बढ़ता जाता है।</p>
-    <p id="hx-book-pause" class="hint">रोकें / जारी: बोलना रोकता है। दोबारा दबाने पर वहीं से आगे पढ़ता है। पढ़ते समय कोई और बटन छूने पर ऐप उसका नाम बोल सकता है, तब "रोकें / जारी" दबाकर फिर सुनें।</p>
+    <p id="hx-book-sent" class="hint">पीछे जाओ: एक वाक्य पीछे से फिर पढ़ता है। आगे बढ़ाओ: एक वाक्य आगे जाता है। फ़ोन की आवाज़ में सीधे खिसकना नहीं होता, इसलिए ऐप वाक्य-वाक्य बदलता है।</p>
     <div class="actions">
-      <button id="book-prev" type="button" class="btn big-btn" aria-describedby="hx-book-nav">पिछला अनुच्छेद</button>
-      <button id="book-next" type="button" class="btn big-btn" aria-describedby="hx-book-nav">अगला अनुच्छेद</button>
+      <button id="book-play" type="button" class="btn primary big-btn" aria-describedby="hx-book-play">चलाओ / प्ले</button>
+      <button id="book-pause" type="button" class="btn big-btn" aria-describedby="hx-book-play">रोकें / पॉज़</button>
+      <button id="book-stop" type="button" class="btn big-btn" aria-describedby="hx-book-play">बंद करो</button>
+    </div>
+    <p id="hx-book-play" class="hint">चलाओ / प्ले: चालू वाक्य से पढ़ना शुरू या फिर शुरू करता है। रोकें / पॉज़: बोलना रोकता है, दोबारा दबाने पर वहीं से आगे पढ़ता है। बंद करो: बोलना पूरी तरह बंद करता है, और जगह याद रहती है।</p>
+    <div class="actions">
+      <button id="book-prev-page" type="button" class="btn big-btn" aria-describedby="hx-book-page">पिछला पेज</button>
+      <button id="book-next-page" type="button" class="btn big-btn" aria-describedby="hx-book-page">अगला पेज</button>
+    </div>
+    <label for="book-goto">पेज नंबर लिखें</label>
+    <div class="vol">
+      <input id="book-goto" type="number" min="1" value="1" inputmode="numeric" aria-describedby="hx-book-page">
+      <button id="book-goto-btn" type="button" class="btn" aria-describedby="hx-book-page">इस पेज पर जाओ</button>
+    </div>
+    <p id="hx-book-page" class="hint">पिछला पेज और अगला पेज: एक पेज पीछे या आगे जाता है। PDF या कई फ़ोटो हों तो हर पन्ना अलग पेज होता है। पेज नंबर लिखकर "इस पेज पर जाओ" दबाने से सीधे वहाँ पहुँचते हैं। पेज बदलते ही ऐप बताता है।</p>
+    <div class="actions">
+      <button id="book-prev" type="button" class="btn" aria-describedby="hx-book-nav">पिछला अनुच्छेद</button>
+      <button id="book-next" type="button" class="btn" aria-describedby="hx-book-nav">अगला अनुच्छेद</button>
     </div>
     <p id="hx-book-nav" class="hint">पिछला या अगला अनुच्छेद: एक अनुच्छेद पीछे या आगे जाता है। पढ़ते समय हो तो वहीं से पढ़ने लगता है।</p>
-    <p id="book-pos" class="note" aria-live="polite"></p>
   </section>
 
   <section aria-labelledby="h-book-note">
@@ -1803,6 +1827,48 @@ $('#k-play-both').addEventListener('click', playBoth);
 $('#k-stop-all').addEventListener('click', stopAll);
 $('#k-mix').addEventListener('click', function () { mixKaraoke(); });
 
+/* ---------- गाने की रिकॉर्डिंग से वीडियो ---------- */
+function karaokeCard() {
+  var c = mkCanvas(1280, 720);
+  var ctx = c.getContext('2d');
+  ctx.fillStyle = '#1b3a1f';
+  ctx.fillRect(0, 0, 1280, 720);
+  ctx.fillStyle = '#ffffff';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.font = 'bold 84px ' + TXT_FONT;
+  ctx.fillText('आवाज़ साथी', 640, 250);
+  ctx.font = '48px ' + TXT_FONT;
+  ctx.fillText('गाने के साथ रिकॉर्डिंग', 640, 360);
+  ctx.font = '36px ' + TXT_FONT;
+  ctx.fillText(stamp(), 640, 460);
+  return new Promise(function (ok, bad) {
+    c.toBlob(function (b) { if (b) ok(b); else bad(new Error('card')); }, 'image/png');
+  });
+}
+function karaokeVideo() {
+  if (!K.recBlob) return say('पहले गाने के साथ रिकॉर्डिंग करें।');
+  return job(function () {
+    var v = kVol();
+    prog('#k-video-result', 'वीडियो बन रहा है। इसमें रिकॉर्डिंग जितना समय लगेगा।');
+    say('वीडियो बन रहा है। इसमें रिकॉर्डिंग जितना समय लगेगा।');
+    var audioP = K.track ? mixToWav(K.track, K.recBlob, v.track, v.vocal) : Promise.resolve(K.recBlob);
+    return Promise.all([karaokeCard(), audioP]).then(function (pair) {
+      return imageToVideo(pair[0], pair[1], function () { return false; });
+    }).then(function (blob) {
+      if (!blob || !blob.size) {
+        $('#k-video-result').textContent = '';
+        say('वीडियो नहीं बन पाया। रिकॉर्डिंग दोबारा करके देखें।');
+        return;
+      }
+      var mp4 = blob.type.indexOf('mp4') !== -1;
+      showResult($('#k-video-result'), blob, 'awaz-saathi-gaana-video-' + stamp() + '.' + extOf(blob.type));
+      say('वीडियो तैयार है। फ़ॉर्मेट ' + (mp4 ? 'MP4' : 'WebM') + ' है। डाउनलोड करें बटन दबाएँ।');
+    });
+  }, 'वीडियो नहीं बन पाया। रिकॉर्डिंग दोबारा करके देखें।');
+}
+$('#k-video').addEventListener('click', function () { karaokeVideo(); });
+
 /* ---------- 5. तस्वीर और आवाज़ से वीडियो ---------- */
 function imageToVideo(imgFile, aFile, isStopped) {
   var img = new Image();
@@ -2810,6 +2876,15 @@ function bookRestore() {
   } catch (e) { /* स्टोरेज बंद हो तो शुरू से */ }
   return 0;
 }
+var bookPgStart = [0];
+var bookPages = [];
+var BOOK_LOAD_NOTE = 'लोड हो रहा है। यह आपके इंटरनेट और फ़ाइल के आकार पर निर्भर करता है। नेट तेज़ है तो जल्दी पढ़ेगा, धीमा है तो थोड़ा इंतज़ार करना पड़ सकता है।';
+/* कौन-सा पेज (0 से) इस अनुच्छेद पर है */
+function bookPageOf(pi) {
+  var p = 0;
+  for (var k = 0; k < bookPgStart.length; k++) { if (bookPgStart[k] <= pi) p = k; }
+  return p;
+}
 function bookShow() {
   if (!bookParas.length) {
     $('#book-view').textContent = '';
@@ -2819,7 +2894,8 @@ function bookShow() {
   }
   $('#book-view').textContent = bookParas[bookPi];
   $('#book-now').textContent = 'खुली किताब: ' + bookName;
-  $('#book-pos').textContent = 'अनुच्छेद ' + (bookPi + 1) + ' कुल ' + bookParas.length + ' में से';
+  var pg = bookPageOf(bookPi), n = bookPgStart.length;
+  $('#book-pos').textContent = (n > 1 ? 'पेज ' + (pg + 1) + ' / ' + n + '। ' : '') + 'अनुच्छेद ' + (bookPi + 1) + ' कुल ' + bookParas.length + ' में से';
 }
 function bookVoiceOK() {
   if (!speechOK) { bookStatus('इस फ़ोन में बोलकर सुनाने की सुविधा नहीं है। Chrome ब्राउज़र में खोलकर देखें।'); return false; }
@@ -2837,7 +2913,7 @@ function bookSpeakSent(run) {
   if (bookPi >= bookParas.length) {
     bookPi = 0; bookSi = 0; bookPlaying = false;
     bookSave(); bookShow();
-    bookStatus('पूरी किताब पढ़ दी गई। शुरू से पढ़ने के लिए "पढ़ना शुरू" दबाएँ।');
+    bookStatus('पूरी किताब पढ़ दी गई। शुरू से पढ़ने के लिए "चलाओ / प्ले" दबाएँ।');
     return;
   }
   var sents = chunkText(bookParas[bookPi]);
@@ -2863,7 +2939,7 @@ function bookSpeakSent(run) {
     var code = e && e.error;
     if (code === 'interrupted' || code === 'canceled') return;
     bookPlaying = false;
-    bookStatus('आवाज़ में दिक्कत आई। "पढ़ना शुरू" दबाकर फिर कोशिश करें।');
+    bookStatus('आवाज़ में दिक्कत आई। "चलाओ / प्ले" दबाकर फिर कोशिश करें।');
   };
   window.speechSynthesis.speak(u);
 }
@@ -2873,7 +2949,7 @@ function bookStart() {
   window.speechSynthesis.cancel();
   bookPlaying = true;
   bookSpeakSent(bookRun);
-  bookStatus('पढ़ रहे हैं। रोकने के लिए "रोकें / जारी" दबाएँ।');
+  bookStatus('पढ़ रहे हैं। रोकने के लिए "रोकें / पॉज़" दबाएँ।');
 }
 function bookPause() {
   if (!bookParas.length) { bookStatus('पहले किताब लोड करें।'); return; }
@@ -2882,7 +2958,7 @@ function bookPause() {
   bookPlaying = false;
   window.speechSynthesis.cancel();
   bookSave();
-  var msg = 'रोक दिया गया। "रोकें / जारी" दबाने पर यहीं से आगे पढ़ेंगे।';
+  var msg = 'रोक दिया गया। "रोकें / पॉज़" दबाने पर यहीं से आगे पढ़ेंगे।';
   bookStatus(msg);
   speakNow(msg);
 }
@@ -2901,16 +2977,84 @@ function bookMove(d) {
     bookSpeakSent(bookRun);
     bookStatus('अनुच्छेद ' + (bookPi + 1) + ' से पढ़ रहे हैं।');
   } else {
-    bookStatus('अनुच्छेद ' + (bookPi + 1) + ' चुना गया। "पढ़ना शुरू" दबाकर सुनें।');
+    bookStatus('अनुच्छेद ' + (bookPi + 1) + ' चुना गया। "चलाओ / प्ले" दबाकर सुनें।');
   }
 }
+/* एक वाक्य पीछे (d<0) या आगे (d>0); अनुच्छेद की सीमा पार हो तो अगले/पिछले अनुच्छेद में */
+function bookSentMove(d) {
+  if (!bookParas.length) { bookStatus('पहले किताब लोड करें।'); return; }
+  var was = bookPlaying;
+  var pi = bookPi, si = bookSi + d;
+  if (d < 0) {
+    if (si < 0) {
+      if (pi === 0) { bookStatus('यह किताब का पहला वाक्य है।'); return; }
+      pi--;
+      si = Math.max(0, chunkText(bookParas[pi]).length - 1);
+    }
+  } else {
+    if (si >= chunkText(bookParas[pi]).length) {
+      if (pi + 1 >= bookParas.length) { bookStatus('यह किताब का आख़िरी वाक्य है।'); return; }
+      pi++; si = 0;
+    }
+  }
+  bookRun++;
+  window.speechSynthesis.cancel();
+  bookPi = pi; bookSi = si;
+  bookSave(); bookShow();
+  if (was) {
+    bookPlaying = true;
+    bookSpeakSent(bookRun);
+    bookStatus('वाक्य बदला। वहाँ से पढ़ रहे हैं।');
+  } else {
+    bookStatus('वाक्य चुना गया। "चलाओ / प्ले" दबाकर सुनें।');
+  }
+}
+/* पेज k (0 से) के पहले अनुच्छेद पर जाना; पढ़ते हों तो वहीं से पढ़ना जारी */
+function bookGoPage(k) {
+  if (!bookParas.length) { bookStatus('पहले किताब लोड करें।'); return; }
+  var n = bookPgStart.length;
+  if (n < 2) { bookStatus('इस किताब में एक ही पेज है।'); return; }
+  if (k < 0) { bookStatus('यह पहला पेज है।'); return; }
+  if (k >= n) { bookStatus('यह आख़िरी पेज है।'); return; }
+  var was = bookPlaying;
+  bookRun++;
+  window.speechSynthesis.cancel();
+  bookPi = bookPgStart[k]; bookSi = 0;
+  bookSave(); bookShow();
+  var msg = 'पेज ' + (k + 1) + ' / ' + n + ' पर आ गए।';
+  if (was) {
+    bookPlaying = true;
+    bookSpeakSent(bookRun);
+    bookStatus(msg + ' वहाँ से पढ़ रहे हैं।');
+  } else {
+    bookStatus(msg + ' "चलाओ / प्ले" दबाकर सुनें।');
+  }
+}
+/* बंद करो: बोलना पूरी तरह बंद, जगह याद रहती है */
+function bookStop() {
+  bookRun++;
+  bookPlaying = false;
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  bookSave();
+  bookStatus(bookParas.length ? 'बंद कर दिया। जगह याद है। "चलाओ / प्ले" से वहीं से शुरू होगा।' : 'कोई किताब खुली नहीं है।');
+}
 function bookLoad(text, name) {
-  var paras = bookSplit(text.replace(/^﻿/, ''));
+  var src = text.replace(/^﻿/, '');
+  /* PDF या फ़ोटो के पेज तभी अलग रखें जब बॉक्स में वही पाठ हो जो उन्हीं से आया था */
+  var pageTexts = (bookPages.length > 1 && src.trim() === bookPages.join('\n\n').trim()) ? bookPages : [src];
+  var paras = [], starts = [];
+  pageTexts.forEach(function (pt) {
+    var ps = bookSplit(pt);
+    if (!ps.length) return;
+    starts.push(paras.length);
+    paras = paras.concat(ps);
+  });
   if (!paras.length) { bookStatus('इस पाठ में कुछ लिखा नहीं मिला। फ़ाइल या चिपकाया पाठ दोबारा जाँचें।'); return; }
   bookRun++;
   bookPlaying = false;
   if (window.speechSynthesis) window.speechSynthesis.cancel();
   bookParas = paras;
+  bookPgStart = starts;
   bookName = name;
   bookKey = name + '|' + paras.length + '|' + paras[0].slice(0, 30);
   bookPi = bookRestore();
@@ -2918,18 +3062,29 @@ function bookLoad(text, name) {
   bookSave();
   bookShow();
   bookStatus(bookPi > 0
-    ? 'किताब तैयार है। पिछली बार अनुच्छेद ' + (bookPi + 1) + ' पर थे। "पढ़ना शुरू" दबाएँ।'
-    : 'किताब तैयार है। कुल ' + paras.length + ' अनुच्छेद। "पढ़ना शुरू" दबाएँ।');
+    ? 'किताब तैयार है। पिछली बार अनुच्छेद ' + (bookPi + 1) + ' पर थे। "चलाओ / प्ले" दबाएँ।'
+    : 'किताब तैयार है। कुल ' + paras.length + ' अनुच्छेद' + (starts.length > 1 ? ', ' + starts.length + ' पेज' : '') + '। "चलाओ / प्ले" दबाएँ।');
 }
 
 $('#book-play').addEventListener('click', function () {
   if (!bookParas.length) { bookStatus('पहले किताब लोड करें।'); return; }
-  bookSi = 0;
   bookStart();
 });
 $('#book-pause').addEventListener('click', bookPause);
+$('#book-stop').addEventListener('click', bookStop);
+$('#book-back').addEventListener('click', function () { bookSentMove(-1); });
+$('#book-fwd').addEventListener('click', function () { bookSentMove(1); });
 $('#book-prev').addEventListener('click', function () { bookMove(-1); });
 $('#book-next').addEventListener('click', function () { bookMove(1); });
+$('#book-prev-page').addEventListener('click', function () { bookGoPage(bookPageOf(bookPi) - 1); });
+$('#book-next-page').addEventListener('click', function () { bookGoPage(bookPageOf(bookPi) + 1); });
+$('#book-goto-btn').addEventListener('click', function () {
+  if (!bookParas.length) { bookStatus('पहले किताब लोड करें।'); return; }
+  var n = bookPgStart.length;
+  var v = parseInt($('#book-goto').value, 10);
+  if (isNaN(v) || v < 1 || v > n) { bookStatus('पेज 1 से ' + n + ' के बीच का नंबर लिखें।'); return; }
+  bookGoPage(v - 1);
+});
 function bookRateShow() {
   var v = +$('#book-rate').value;
   $('#book-rate-val').textContent = v.toFixed(1);
@@ -3603,34 +3758,47 @@ function readBuf(f) {
     r.readAsArrayBuffer(f);
   });
 }
-function bookPut(txt) {
-  var box = $('#book-text');
-  var old = box.value.replace(/\s+$/, '');
-  box.value = old ? old + '\n\n' + txt : txt;
-  bookSrcName = '';
+/* लोड होने की सूचना: बोलकर भी और बॉक्स में भी */
+function bookLoading() {
+  $('#book-load-note').textContent = BOOK_LOAD_NOTE;
+  bookStatus(BOOK_LOAD_NOTE);
 }
-function bookFill(txt, name) {
+function bookLoadProg(msg) { $('#book-status').textContent = 'लोड हो रहा है। ' + msg; }
+function bookLoadDone() { $('#book-load-note').textContent = ''; }
+
+/* फ़ोटो चुनने पर नई किताब: हर फ़ोटो एक पेज, पिछला बॉक्स बदल जाता है */
+function bookPutPages(texts) {
+  $('#book-text').value = texts.join('\n\n');
+  bookSrcName = '';
+  bookPages = texts.slice();
+}
+function bookFill(txt, name, pages) {
   $('#book-text').value = txt;
   bookSrcName = name;
+  bookPages = pages ? pages.slice() : [];
+  bookLoadDone();
   bookStatus('फ़ाइल "' + name + '" का पाठ बॉक्स में आ गया है। अब "किताब लोड करें" दबाएँ।');
 }
-$('#book-text').addEventListener('input', function () { bookSrcName = ''; });
-$('#book-clear').addEventListener('click', function () { clearBox('#book-text', function () { bookSrcName = ''; }); });
+$('#book-text').addEventListener('input', function () { bookSrcName = ''; bookPages = []; });
+$('#book-clear').addEventListener('click', function () { clearBox('#book-text', function () { bookSrcName = ''; bookPages = []; }); });
 $('#book-file').addEventListener('change', function () {
   var f = this.files && this.files[0];
+  this.value = '';
   if (!f) return;
   if (/\.pdf$/i.test(f.name) || f.type === 'application/pdf') { bookPdf(f); return; }
   if (!/\.txt$/i.test(f.name) && f.type !== 'text/plain') {
     bookStatus('इस फ़ाइल को ऐप अभी नहीं पढ़ता। .txt या PDF फ़ाइल चुनें, या फ़ोटो चुनें।');
     return;
   }
+  bookLoading();
   var r = new FileReader();
   r.onload = function () { bookFill(String(r.result || '').replace(/^﻿/, ''), f.name); };
-  r.onerror = function () { bookStatus('फ़ाइल नहीं पढ़ी जा सकी। कोई दूसरी .txt फ़ाइल चुनें।'); };
+  r.onerror = function () { bookLoadDone(); bookStatus('फ़ाइल नहीं पढ़ी जा सकी। कोई दूसरी .txt फ़ाइल चुनें।'); };
   r.readAsText(f, 'utf-8');
 });
+/* हर PDF पन्ना एक अलग पेज */
 function bookPdf(f) {
-  bookStatus('पढ़ रहा हूँ, कृपया इंतज़ार करें।');
+  bookLoading();
   readBuf(f).then(function (buf) {
     return loadLib(PDFJS_LIB, 'pdfjsLib').then(function (P) {
       P.GlobalWorkerOptions.workerSrc = PDFJS_WORKER;
@@ -3640,6 +3808,7 @@ function bookPdf(f) {
     var parts = [];
     function pageText(n) {
       if (n > doc.numPages) return Promise.resolve();
+      bookLoadProg('पेज ' + n + ' / ' + doc.numPages + ' पढ़ रहा हूँ।');
       return doc.getPage(n).then(function (pg) { return pg.getTextContent(); }).then(function (tc) {
         var s = '';
         for (var i = 0; i < tc.items.length; i++) {
@@ -3650,47 +3819,71 @@ function bookPdf(f) {
         return pageText(n + 1);
       });
     }
-    return pageText(1).then(function () { return parts.join('\n'); });
-  }).then(function (txt) {
-    var clean = txt.replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
-    if (!clean) {
+    return pageText(1).then(function () { return parts; });
+  }).then(function (parts) {
+    var pages = [];
+    parts.forEach(function (s) {
+      var c = s.replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+      if (c) pages.push(c);
+    });
+    bookLoadDone();
+    if (!pages.length) {
       bookStatus('इस PDF में लिखा पाठ नहीं मिला। यह शायद स्कैन की हुई फ़ाइल है। उसके पन्ने की फ़ोटो गैलरी या कैमरे से लें।');
       return;
     }
-    bookFill(clean, f.name);
+    bookFill(pages.join('\n\n'), f.name, pages);
   }).catch(function () {
+    bookLoadDone();
     bookStatus('PDF नहीं पढ़ी जा सकी। फ़ाइल खुलती है या नहीं, जाँचें, या पाठ कॉपी करके ऊपर चिपकाएँ।');
   });
 }
-function bookPhoto(f) {
-  if (!/^image\//.test(f.type) && !/\.(jpe?g|png|webp|gif|bmp)$/i.test(f.name)) {
+/* एक या कई फ़ोटो: हर फ़ोटो एक पेज, एक-एक करके पढ़ी जाती हैं */
+function bookPhotos(files) {
+  var list = files.filter(function (f) {
+    return /^image\//.test(f.type) || /\.(jpe?g|png|webp|gif|bmp)$/i.test(f.name);
+  });
+  if (!list.length) {
     bookStatus('यह फ़ाइल फ़ोटो नहीं है। फ़ोटो चुनें, या .txt या PDF फ़ाइल चुनें।');
     return;
   }
-  bookStatus('पढ़ रहा हूँ, कृपया इंतज़ार करें। पहली बार भाषा की फ़ाइलें इंटरनेट से आएँगी।');
+  bookLoading();
+  bookLoadProg('पहली बार भाषा की फ़ाइलें इंटरनेट से आएँगी।');
   var worker = null;
+  var got = [];
+  var cur = 0;
   loadLib(TESS_LIB, 'Tesseract').then(function (T) {
     return T.createWorker('hin+eng', 1, {
       langPath: TESS_LANG,
       gzip: false,
       logger: function (m) {
         if (m && m.status === 'recognizing text') {
-          bookStatus('पढ़ रहा हूँ, कृपया इंतज़ार करें... ' + Math.round((m.progress || 0) * 100) + '%');
+          bookLoadProg('फ़ोटो ' + (cur + 1) + ' / ' + list.length + ' पढ़ रहा हूँ... ' + Math.round((m.progress || 0) * 100) + '%');
         }
       }
     });
   }).then(function (w) {
     worker = w;
-    return w.recognize(f);
-  }).then(function (r) {
-    var txt = (r && r.data && r.data.text) ? String(r.data.text).trim() : '';
-    if (!txt) {
+    var chain = Promise.resolve();
+    list.forEach(function (f, i) {
+      chain = chain.then(function () {
+        cur = i;
+        return w.recognize(f).then(function (r) {
+          var t = (r && r.data && r.data.text) ? String(r.data.text).trim() : '';
+          if (t) got.push(t);
+        }, function () { /* यह फ़ोटो छोड़ दें, बाकी पढ़ते रहें */ });
+      });
+    });
+    return chain;
+  }).then(function () {
+    bookLoadDone();
+    if (!got.length) {
       bookStatus('फ़ोटो में पढ़ने लायक पाठ नहीं मिला। रोशनी बढ़ाकर या पन्ना सीधा रखकर दोबारा फ़ोटो लें।');
       return;
     }
-    bookPut(txt);
-    bookStatus('फ़ोटो से पाठ मिल गया, वह बॉक्स में है। पहले जाँच लें, फिर "किताब लोड करें" दबाएँ। फ़ोटो से पढ़ा पाठ कुछ गलत भी हो सकता है।');
+    bookPutPages(got);
+    bookStatus(got.length + ' फ़ोटो से पाठ मिल गया, वह बॉक्स में है। हर फ़ोटो अलग पेज है। पहले जाँच लें, फिर "किताब लोड करें" दबाएँ। फ़ोटो से पढ़ा पाठ कुछ गलत भी हो सकता है।');
   }).catch(function () {
+    bookLoadDone();
     bookStatus('फ़ोटो से पाठ नहीं निकल पाया। इंटरनेट जाँचें और दोबारा कोशिश करें, या पाठ हाथ से लिखें।');
   }).then(function () {
     if (worker) return worker.terminate().catch(function () {});
@@ -3698,12 +3891,17 @@ function bookPhoto(f) {
 }
 function bookPhotoPick(e) {
   var input = e.target;
-  var f = input.files && input.files[0];
+  var list = Array.prototype.slice.call(input.files || []);
   input.value = '';
-  if (f) bookPhoto(f);
+  if (list.length) bookPhotos(list);
 }
 $('#book-gallery').addEventListener('change', bookPhotoPick);
 $('#book-camera').addEventListener('change', bookPhotoPick);
+/* चooser तभी खुलता है जब सदस्य बटन दबाए */
+$('#book-gallery-btn').addEventListener('click', function () { $('#book-gallery').click(); });
+$('#book-file-btn').addEventListener('click', function () { $('#book-file').click(); });
+$('#book-camera-btn').addEventListener('click', function () { $('#book-camera').click(); });
+
 $('#book-load').addEventListener('click', function () {
   var t = $('#book-text').value;
   if (!t.trim()) { bookStatus('पहले पाठ लिखें या चिपकाएँ, या फ़ाइल/फ़ोटो से पाठ लाएँ।'); return; }
