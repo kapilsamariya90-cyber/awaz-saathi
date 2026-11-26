@@ -154,6 +154,9 @@ legend { font-weight: 700; padding: 0; margin-bottom: 6px; }
 .sw-gold { background: #7a4a00; }
 .notice { margin: 16px 0; padding: 16px; border: 3px solid var(--ink); border-radius: 12px; background: var(--tint); }
 .notice p { margin: 0 0 10px; }
+.greet { font-size: 1.5rem; font-weight: 700; line-height: 1.5; margin: 8px 0 14px; }
+.greet:focus { outline: 3px solid currentColor; outline-offset: 4px; }
+#name-first, #name-last, #set-name-first, #set-name-last { display: block; width: 100%; max-width: 420px; min-height: 56px; font-size: 1.2rem; padding: 10px 12px; border: 3px solid var(--ink); border-radius: 10px; background: #fff; color: #000; box-sizing: border-box; }
 .policy { margin: 16px 0; padding: 16px; border: 2px solid var(--ink); border-radius: 12px; background: var(--surf); }
 .policy p { margin: 0 0 12px; }
 /* ऐप का रंग: हर रंग के बटन पर सफ़ेद अक्षर कम से कम 6.5 गुना कंट्रास्ट के साथ */
@@ -219,6 +222,30 @@ html.hc body { background: #fff; color: #000; }
 
 <main id="main" tabindex="-1">
 
+<!-- ===== अभिवादन (समय के हिसाब से) और पहली बार का वैकल्पिक नाम ===== -->
+<div id="greet-box">
+  <p id="greet" class="greet" tabindex="-1" aria-live="polite"></p>
+</div>
+
+<div id="name-panel" class="notice" role="region" aria-labelledby="h-name" hidden>
+  <h2 id="h-name" class="panel-title" tabindex="-1">आपका नाम (वैकल्पिक)</h2>
+  <p>अगर आप चाहें तो अपना नाम लिखें, तब ऐप अभिवादन में आपका नाम लेगा। नहीं लिखना चाहें तो "छोड़ें" दबाएँ।</p>
+  <p><strong>साफ़ बात:</strong> यह नाम सिर्फ़ इसी फ़ोन में सहेजा जाएगा और कहीं भेजा नहीं जाएगा। ऐप आपके Gmail या Google खाते से नाम नहीं पढ़ता, इसलिए नाम आपको खुद लिखना होगा। फ़ोन नंबर नहीं माँगा जाता।</p>
+  <label for="name-first">पहला नाम</label>
+  <input id="name-first" type="text" autocomplete="given-name" maxlength="40" aria-describedby="hx-name-first">
+  <p id="hx-name-first" class="hint">पहला नाम लिखें, जैसे रमेश। इसके बिना नाम सहेजा नहीं जाएगा।</p>
+  <label for="name-last">दूसरा नाम (वैकल्पिक)</label>
+  <input id="name-last" type="text" autocomplete="family-name" maxlength="40" aria-describedby="hx-name-last">
+  <p id="hx-name-last" class="hint">दूसरा नाम, जैसे शर्मा। यह लिखना ज़रूरी नहीं है।</p>
+  <div class="actions">
+    <button id="name-save" type="button" class="btn primary" aria-describedby="hx-name-save">नाम सहेजें</button>
+    <button id="name-skip" type="button" class="btn" aria-describedby="hx-name-skip">छोड़ें / <span lang="en">Skip</span></button>
+  </div>
+  <p id="hx-name-save" class="hint">नाम सहेजें: जो लिखा है वह इसी फ़ोन में रहेगा और अभिवादन में लिया जाएगा।</p>
+  <p id="hx-name-skip" class="hint">छोड़ें: नाम नहीं लिखा जाएगा और अभिवादन बिना नाम के होगा। यह सवाल दोबारा नहीं पूछा जाएगा। नाम बाद में सेटिंग में जोड़ सकते हैं।</p>
+  <p id="name-msg" class="note" aria-live="polite"></p>
+</div>
+
 <!-- ===== बोलकर काम करें ===== -->
 <div id="panel-voice" class="panel">
   <h2 id="h-voice" class="panel-title" tabindex="-1">बोलकर काम करें</h2>
@@ -229,7 +256,7 @@ html.hc body { background: #fff; color: #000; }
     <button id="mic-btn" type="button" class="btn primary big-mic" aria-describedby="hx-mic" aria-pressed="false" aria-label="बोलकर आदेश देने के लिए दबाएँ">बोलकर काम करें</button>
     <p id="hx-mic" class="hint">दबाने पर फ़ोन सुनने लगेगा। पहली बार फ़ोन माइक्रोफ़ोन की इजाज़त माँग सकता है। बटन दोबारा दबाने पर सुनना बंद होता है।</p>
     <p id="mic-state" class="note" aria-live="polite"></p>
-    <p class="note">बोलने के नमूने: "वीडियो जोड़ो", "आवाज़ निकालो", "मिलाओ", "गाना", "वोकल रिमूवर", "तस्वीर", "रंग पहचानें", "कैमरा", "सेटिंग", "होम", "मेन्यू", "पढ़कर सुनाओ", "किताब", "स्क्रीन रिकॉर्डर", "रुको", "मदद"।</p>
+    <p class="note">बोलने के नमूने: "वीडियो जोड़ो", "आवाज़ निकालो", "मिलाओ", "गाना", "वोकल रिमूवर", "तस्वीर", "रंग पहचानें", "कैमरा", "सेटिंग", "होम", "मेन्यू", "पढ़कर सुनाओ", "किताब", "स्क्रीन रिकॉर्डर", "नाम बदलो", "रुको", "मदद"।</p>
     <p class="note">बोली पहचानने का काम फ़ोन की अपनी बोली-पहचान सेवा करती है। यह सुविधा फ़ोन और ब्राउज़र पर निर्भर है। अगर फ़ोन में नहीं चलती, तो ऐप खुद बोलकर और लिखकर बताएगा।</p>
   </section>
 </div>
@@ -918,6 +945,23 @@ html.hc body { background: #fff; color: #000; }
     <p id="hx-reset" class="hint">आकार, कंट्रास्ट, रंग, थीम, भाषा, गति, घोषणा, स्क्रीन चालू रखो और श्रुति (आवाज़, गति, सुर, आवाज़ का स्तर), सब सेटिंग्स पहले जैसी कर देता है।</p>
   </section>
 
+  <section aria-labelledby="h-myname" id="myname-sec">
+    <h3 id="h-myname" class="sec-title">मेरा नाम</h3>
+    <p class="note">नाम सिर्फ़ इसी फ़ोन में रहता है, कहीं भेजा नहीं जाता। यह अभिवादन में लिया जाता है।</p>
+    <p id="set-name-now" class="note" aria-live="polite">अभी कोई नाम सहेजा नहीं है।</p>
+    <label for="set-name-first">पहला नाम</label>
+    <input id="set-name-first" type="text" autocomplete="given-name" maxlength="40" aria-describedby="hx-set-name-first">
+    <p id="hx-set-name-first" class="hint">पहला नाम लिखें या बदलें। खाली छोड़ने पर नाम सहेजा नहीं जाएगा।</p>
+    <label for="set-name-last">दूसरा नाम (वैकल्पिक)</label>
+    <input id="set-name-last" type="text" autocomplete="family-name" maxlength="40" aria-describedby="hx-set-name-last">
+    <p id="hx-set-name-last" class="hint">दूसरा नाम लिखना ज़रूरी नहीं है।</p>
+    <button id="set-name-save" type="button" class="btn primary" aria-describedby="hx-set-name-save">नाम सहेजें</button>
+    <p id="hx-set-name-save" class="hint">दबाने पर लिखा हुआ नाम इसी फ़ोन में सहेजा जाएगा।</p>
+    <button id="set-name-del" type="button" class="btn" aria-describedby="hx-set-name-del">नाम मिटाएँ</button>
+    <p id="hx-set-name-del" class="hint">दबाने पर सहेजा हुआ नाम फ़ोन से मिट जाएगा और अभिवादन बिना नाम के होगा।</p>
+    <p id="set-name-msg" class="support" aria-live="polite"></p>
+  </section>
+
   <section aria-labelledby="h-privacy" id="privacy-sec">
     <h3 id="h-privacy" class="sec-title">प्राइवेसी पॉलिसी</h3>
     <p>यहाँ लिखा है कि आवाज़ साथी आपकी जानकारी कैसे रखता है। पूरा पाठ इसी ऐप में है, बाहर कोई पेज नहीं खुलता।</p>
@@ -930,6 +974,7 @@ html.hc body { background: #fff; color: #000; }
       <p><strong>2. आपकी फ़ाइलें और आवाज़:</strong> आप जो ऑडियो, वीडियो, फ़ोटो या रिकॉर्डिंग चुनते हैं, उन पर सारा काम आपके अपने फ़ोन में ही होता है। वे किसी सर्वर पर नहीं भेजी जातीं और हमें कभी नहीं मिलतीं।</p>
       <p><strong>3. परमिशन:</strong> माइक्रोफ़ोन सिर्फ़ तब, जब आप गाने के साथ रिकॉर्डिंग करना चुनते हैं या "बोलकर काम करें" का बटन दबाकर आदेश बोलते हैं; बिना आपके बटन दबाए रिकॉर्डिंग शुरू नहीं होती। फ़ाइलें/गैलरी सिर्फ़ वही फ़ाइल जो आप खुद चुनते हैं। बोलकर सुनाने की सुविधा आपके फ़ोन की अपनी आवाज़ का इस्तेमाल करती है।</p>
       <p><strong>4. आपकी सेटिंग:</strong> अक्षर का आकार, कंट्रास्ट, रंग, भाषा और गति जैसी सेटिंग सिर्फ़ आपके फ़ोन में सेव होती हैं। हमें नहीं दिखतीं।</p>
+      <p><strong>4क. वैकल्पिक नाम:</strong> अगर आप चाहें तो अपना नाम लिख सकते हैं, ताकि अभिवादन में वह लिया जाए। यह नाम सिर्फ़ आपके फ़ोन में सेव होता है, कहीं भेजा नहीं जाता, और सेटिंग में जाकर कभी भी बदला या मिटाया जा सकता है। हम आपके Gmail या Google खाते से नाम नहीं पढ़ते।</p>
       <p><strong>5. तीसरे पक्ष से साझा:</strong> हम आपकी कोई जानकारी किसी को बेचते या देते नहीं।</p>
       <p><strong>6. बच्चे:</strong> ऐप सबके लिए है और हम बच्चों से कोई जानकारी नहीं लेते।</p>
       <p><strong>7. बदलाव:</strong> नीति बदली तो नई तारीख के साथ यहीं अपडेट होगी।</p>
@@ -954,6 +999,7 @@ html.hc body { background: #fff; color: #000; }
       <p><strong>2. Your files and voice:</strong> All work on the audio, video, photos or recordings you choose happens only on your own phone. They are not sent to any server, and we never receive them.</p>
       <p><strong>3. Permissions:</strong> The microphone is used only when you choose to record along with a song, or when you press the "Work by voice" (बोलकर काम करें) button and speak a command. Recording never starts without you pressing a button. Files and gallery: only the file you pick yourself. The read-aloud feature uses your phone's own voice.</p>
       <p><strong>4. Your settings:</strong> Settings such as text size, contrast, colour, language and speed are saved only on your phone. We cannot see them.</p>
+      <p><strong>4a. Optional name:</strong> If you wish, you can type your name so the greeting can use it. The name is saved only on your phone, is never sent anywhere, and can be changed or deleted in Settings at any time. We do not read your name from your Gmail or Google account.</p>
       <p><strong>5. Sharing with third parties:</strong> We do not sell or give any of your information to anyone.</p>
       <p><strong>6. Children:</strong> The app is for everyone, and we do not collect any information from children.</p>
       <p><strong>7. Changes:</strong> If the policy changes, it will be updated here with a new date.</p>
@@ -3050,6 +3096,7 @@ function stopAllCams() {
   window.speechSynthesis && window.speechSynthesis.cancel();
 }
 var COMMANDS = [
+  { w: ['नाम बदल', 'नाम लिख', 'मेरा नाम'], run: function () { goTo('h-myname', 'नाम बदलने वाला हिस्सा खुला है। पहला नाम लिखें और नाम सहेजें दबाएँ।'); } },
   { w: ['स्क्रीन रिकॉर्ड', 'स्क्रीन'], run: function () { goTo('h-screen', 'स्क्रीन रिकॉर्डर वाला हिस्सा खुला है।'); } },
   { w: ['किताब', 'बुक रीडर', 'बुक'], run: function () { goTo('h-book', 'बुक रीडर वाला हिस्सा खुला है। .txt फ़ाइल चुनें या पाठ चिपकाएँ।'); } },
   { w: ['वीडियो जोड़'], run: function () { goTo('h-join', 'वीडियो जोड़ने वाला हिस्सा खुला है।'); } },
@@ -3067,7 +3114,7 @@ var COMMANDS = [
   { w: ['पढ़कर', 'सुनाओ', 'सुनाएँ', 'पढ़ो', 'पढ़ें'], run: function () { goTo('h-speak', 'बोलकर सुनाने वाला हिस्सा खुला है। लिखा पाठ यहाँ चिपकाएँ।'); } },
   { w: ['रुको', 'रोको', 'बंद करो', 'चुप'], run: function () { stopAllCams(); notify('#mic-state', 'सब रोक दिया गया।'); } },
   { w: ['मेन्यू'], run: function () { openMenu(); } },
-  { w: ['मदद', 'क्या बोल'], run: function () { notify('#mic-state', 'मेन्यू खोलने के लिए "मेन्यू" बोलें। आदेश: वीडियो जोड़ो, आवाज़ निकालो, मिलाओ, गाना, वोकल रिमूवर, तस्वीर, रंग पहचानें, कैमरा, सेटिंग, होम, पढ़कर सुनाओ, किताब, स्क्रीन रिकॉर्डर, रेडियो, रुको।'); } },
+  { w: ['मदद', 'क्या बोल'], run: function () { notify('#mic-state', 'मेन्यू खोलने के लिए "मेन्यू" बोलें। आदेश: वीडियो जोड़ो, आवाज़ निकालो, मिलाओ, गाना, वोकल रिमूवर, तस्वीर, रंग पहचानें, कैमरा, सेटिंग, होम, पढ़कर सुनाओ, किताब, स्क्रीन रिकॉर्डर, रेडियो, नाम बदलो, रुको।'); } },
   { w: ['वोकल रिमूवर', 'वोकल'], run: function () { goTo('h-vocal', 'वोकल रिमूवर वाला हिस्सा खुला है। गाने की फ़ाइल चुनें।'); } },
   { w: ['आवाज़'], run: function () { goTo('h-sound', 'आवाज़ वाला हिस्सा खुला है।'); } }
 ];
@@ -3848,6 +3895,178 @@ $('#timg-clear').addEventListener('click', function () { clearBox('#timg-text');
 $('#tpdf-clear').addEventListener('click', function () { clearBox('#tpdf-text'); });
 $('#timg-make').addEventListener('click', timgMake);
 $('#tpdf-make').addEventListener('click', tpdfMake);
+
+/* ---------- अभिवादन (समय के हिसाब से) और वैकल्पिक नाम (सिर्फ़ इसी फ़ोन में) ---------- */
+var NAMEKEY = 'awaz-saathi-name-v1';
+var NAMEASK = 'awaz-saathi-name-asked-v1';
+var nameMem = null;
+var askedMem = false;
+var GREET_HI = { morning: 'सुप्रभात', afternoon: 'शुभ दोपहर', evening: 'शुभ संध्या', night: 'शुभ रात्रि' };
+var GREET_EN = { morning: 'Good morning', afternoon: 'Good afternoon', evening: 'Good evening', night: 'Good night' };
+var greetLast = '';
+var greetSpoken = false;
+
+/* घड़ी के हिसाब से: 5–11 सुबह, 12–15 दोपहर, 16–20 शाम, 21–4 रात */
+function greetBand(d) {
+  var h = d.getHours();
+  if (h >= 5 && h <= 11) return 'morning';
+  if (h >= 12 && h <= 15) return 'afternoon';
+  if (h >= 16 && h <= 20) return 'evening';
+  return 'night';
+}
+function isEnglishUI() { return (S.lang || '').indexOf('en') === 0; }
+function cleanName(s) {
+  return oneLine(String(s || '').replace(/[<>"{}\[\]\\|\/@#$%^*=+_~0-9]/g, '')).slice(0, 40);
+}
+function readName() {
+  if (nameMem) return nameMem;
+  if (!storeOK) return null;
+  try {
+    var raw = window.localStorage.getItem(NAMEKEY);
+    if (!raw) return null;
+    var o = JSON.parse(raw);
+    if (!o || typeof o.first !== 'string') return null;
+    var n = { first: cleanName(o.first), last: cleanName(o.last) };
+    if (!n.first) return null;
+    nameMem = n;
+    return n;
+  } catch (e) { return null; }
+}
+/* 'saved' = फ़ोन में सहेजा; 'mem' = इसी बार के लिए; 'empty' = पहला नाम नहीं लिखा */
+function writeName(first, last) {
+  var o = { first: cleanName(first), last: cleanName(last) };
+  if (!o.first) return 'empty';
+  nameMem = o;
+  if (!storeOK) return 'mem';
+  try { window.localStorage.setItem(NAMEKEY, JSON.stringify(o)); return 'saved'; }
+  catch (e) { return 'mem'; }
+}
+function eraseName() {
+  nameMem = null;
+  if (!storeOK) return;
+  try { window.localStorage.removeItem(NAMEKEY); } catch (e) { /* फ़ोन में न हो तो ठीक */ }
+}
+function askedBefore() {
+  if (askedMem) return true;
+  if (!storeOK) return false;
+  try { return window.localStorage.getItem(NAMEASK) === '1'; } catch (e) { return false; }
+}
+function markAsked() {
+  askedMem = true;
+  if (!storeOK) return;
+  try { window.localStorage.setItem(NAMEASK, '1'); } catch (e) { /* ठीक है */ }
+}
+function fullName() {
+  var n = readName();
+  if (!n) return '';
+  return n.last ? n.first + ' ' + n.last : n.first;
+}
+function greetText(d) {
+  var band = greetBand(d);
+  var nm = fullName();
+  if (isEnglishUI()) {
+    return GREET_EN[band] + (nm ? ', ' + nm : '') + '! Welcome to Awaz Saathi.';
+  }
+  return GREET_HI[band] + (nm ? ', ' + nm : '') + '! आवाज़ साथी में आपका स्वागत है।';
+}
+function renderGreeting() {
+  var d = new Date();
+  greetLast = greetBand(d);
+  var g = $('#greet');
+  g.textContent = greetText(d);
+  g.setAttribute('lang', isEnglishUI() ? 'en' : 'hi');
+}
+function speakGreeting() {
+  if (greetSpoken || !speechOK || !S.selfspeak) return;
+  greetSpoken = true;
+  speakNow(greetText(new Date()));
+}
+/* ब्राउज़र बिना छुए बोलने नहीं देता, इसलिए पहली छूने/दबाने की क्रिया पर बोलें */
+function startGreetSpeech() {
+  if (!speechOK || !S.selfspeak) return;
+  var ua = navigator.userActivation;
+  if (!ua || ua.hasBeenActive) { speakGreeting(); return; }
+  var evs = ['touchstart', 'mousedown', 'keydown'];
+  var onGesture = function () {
+    evs.forEach(function (ev) { document.removeEventListener(ev, onGesture, true); });
+    speakGreeting();
+  };
+  evs.forEach(function (ev) { document.addEventListener(ev, onGesture, true); });
+}
+function showNamePanelIfFirst() {
+  if (readName() || askedBefore()) return;
+  $('#name-panel').hidden = false;
+}
+function fillNameFields() {
+  var n = readName();
+  $('#set-name-first').value = n ? n.first : '';
+  $('#set-name-last').value = n ? n.last : '';
+}
+function showNameNow() {
+  $('#set-name-now').textContent = readName() ? 'अभी आपका नाम सहेजा है: ' + fullName() + '।' : 'अभी कोई नाम सहेजा नहीं है।';
+}
+function nameSavedMsg(r) {
+  return r === 'saved' ? 'नाम सहेज लिया गया है। अभिवादन अब आपके नाम से है।' : 'नाम इस बार के लिए रखा गया है। यह ब्राउज़र इसे फ़ोन में सहेज नहीं सकता।';
+}
+
+$('#name-save').addEventListener('click', function () {
+  var r = writeName($('#name-first').value, $('#name-last').value);
+  if (r === 'empty') {
+    $('#name-msg').textContent = 'पहला नाम लिखें। नाम तभी सहेजा जाएगा।';
+    say('पहला नाम लिखें।');
+    $('#name-first').focus();
+    return;
+  }
+  markAsked();
+  $('#name-panel').hidden = true;
+  renderGreeting();
+  fillNameFields();
+  showNameNow();
+  $('#greet').focus();
+  notify('#mic-state', nameSavedMsg(r));
+});
+$('#name-skip').addEventListener('click', function () {
+  markAsked();
+  $('#name-panel').hidden = true;
+  renderGreeting();
+  $('#greet').focus();
+  notify('#mic-state', 'ठीक है, नाम नहीं लिखा गया। अभिवादन बिना नाम के है।');
+});
+$('#set-name-save').addEventListener('click', function () {
+  var r = writeName($('#set-name-first').value, $('#set-name-last').value);
+  if (r === 'empty') {
+    $('#set-name-msg').textContent = 'पहला नाम लिखें। नाम सहेजा नहीं गया।';
+    say('पहला नाम लिखें।');
+    $('#set-name-first').focus();
+    return;
+  }
+  markAsked();
+  $('#name-panel').hidden = true;
+  fillNameFields();
+  showNameNow();
+  renderGreeting();
+  notify('#set-name-msg', nameSavedMsg(r));
+});
+$('#set-name-del').addEventListener('click', function () {
+  eraseName();
+  markAsked();
+  fillNameFields();
+  showNameNow();
+  renderGreeting();
+  notify('#set-name-msg', 'नाम मिटा दिया गया है। अभिवादन बिना नाम के है।');
+});
+$('#set-lang').addEventListener('change', renderGreeting);
+
+/* समय बदले तो अभिवादन भी बदले */
+setInterval(function () {
+  if (greetBand(new Date()) !== greetLast) renderGreeting();
+}, 60000);
+
+renderGreeting();
+fillNameFields();
+showNameNow();
+showNamePanelIfFirst();
+startGreetSpeech();
 </script>
 </body>
 </html>
