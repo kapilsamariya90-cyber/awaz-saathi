@@ -215,7 +215,7 @@ html.hc body { background: #fff; color: #000; }
   <h1>आवाज़ साथी</h1>
   <p class="dev" data-dev-line>डेवलपर: कपिल</p>
   <button id="menu-btn" type="button" class="btn primary menu-btn" aria-expanded="false" aria-controls="menu-drawer" aria-describedby="hx-menu">मेन्यू</button>
-  <p id="hx-menu" class="hint">मेन्यू में ऐप की जानकारी, प्राइवेसी पॉलिसी, सेटिंग और संपर्क हैं। दबाने पर मेन्यू दाईं ओर खुलेगा।</p>
+  <p id="hx-menu" class="hint">इसे खोलने के लिए डबल टैप करें। मेन्यू में ऐप की जानकारी, ऐप का लिंक शेयर या कॉपी करना, सेटिंग, संपर्क और प्राइवेसी पॉलिसी हैं। दबाने पर मेन्यू दाईं ओर खुलेगा।</p>
 </header>
 
 <div id="status" role="status" aria-live="polite" class="status">आवाज़ साथी तैयार है। सबसे ऊपर का बड़ा बटन दबाकर बोल सकते हैं, या नीचे दिए किसी हिस्से तक स्क्रॉल करें।</div>
@@ -266,21 +266,26 @@ html.hc body { background: #fff; color: #000; }
   <div id="privacy-notice" class="notice" role="region" aria-label="प्राइवेसी की सूचना" hidden>
     <p><strong>आवाज़ साथी आपका कोई निजी डेटा इकट्ठा नहीं करता।</strong> सब काम आपके फ़ोन में ही होता है।</p>
     <div class="actions">
-      <button id="notice-read" type="button" class="btn primary" aria-describedby="hx-notice">प्राइवेसी पॉलिसी पढ़ें</button>
-      <button id="notice-close" type="button" class="btn" aria-describedby="hx-notice">सूचना बंद करें</button>
+      <button id="notice-read" type="button" class="btn primary" aria-describedby="hx-notice-read">प्राइवेसी पॉलिसी पढ़ें</button>
+      <button id="notice-close" type="button" class="btn" aria-describedby="hx-notice-close">सूचना बंद करें</button>
     </div>
-    <p id="hx-notice" class="hint">प्राइवेसी पॉलिसी पढ़ें: पूरी पॉलिसी नीचे सेटिंग वाले हिस्से में खुलेगी। सूचना बंद करें: यह सूचना हट जाएगी और दोबारा नहीं दिखेगी।</p>
+    <p id="hx-notice-read" class="hint">इसे खोलने के लिए डबल टैप करें। प्राइवेसी पॉलिसी पढ़ें: पूरी पॉलिसी नीचे सेटिंग वाले हिस्से में खुलेगी।</p>
+    <p id="hx-notice-close" class="hint">सूचना बंद करें: यह सूचना हट जाएगी और दोबारा नहीं दिखेगी।</p>
   </div>
   <h2 id="h-home" class="panel-title" tabindex="-1">होम</h2>
   <p class="lead">आवाज़ साथी में आपका स्वागत है। यहाँ देखें कि ऐप क्या करता है, किसके लिए है, और कौन-सा काम कहाँ मिलेगा।</p>
 
   <section aria-labelledby="h-about">
-    <h3 id="h-about" class="sec-title">इस ऐप के बारे में</h3>
+    <h3 id="h-about" class="sec-title" tabindex="-1" data-reveal="about-body">इस ऐप के बारे में</h3>
+    <button id="about-toggle" type="button" class="btn primary" aria-expanded="false" aria-controls="about-body" aria-describedby="hx-about-toggle" data-label-open="ऐप की जानकारी दिखाएँ" data-label-close="ऐप की जानकारी छिपाएँ">ऐप की जानकारी दिखाएँ</button>
+    <p id="hx-about-toggle" class="hint">इसे खोलने के लिए डबल टैप करें। दबाने पर ऐप के बारे में पूरी जानकारी नीचे खुलेगी। दोबारा दबाने पर वह बंद हो जाएगी।</p>
+    <div id="about-body" data-collapsible hidden>
     <p>आवाज़ साथी एक छोटा ऐप है जो आपके फ़ोन में ही चलता है। इसमें ये काम हैं: कई वीडियो एक के बाद एक जोड़ना; किसी वीडियो से आवाज़ निकालकर WAV फ़ाइल बनाना; वीडियो की अपनी आवाज़ की जगह नई आवाज़ या गाना मिलाना; गाना बजाकर उसके साथ अपनी आवाज़ रिकॉर्ड करना और दोनों को एक WAV फ़ाइल में मिलाना; एक तस्वीर और एक आवाज़ वाली फ़ाइल से वीडियो बनाना; और लिखा हुआ पाठ फ़ोन की आवाज़ में बोलकर सुनाना; कैमरे से रंग पहचानना; और कैमरे से रोशनी व हरकत के बारे में बोलकर मदद लेना।</p>
     <p>यह ऐप नेत्रहीन और कम दिखने वाले लोगों के लिए बनाया गया है, ताकि वे इसे TalkBack के साथ इस्तेमाल कर सकें। इसके बटनों और खानों पर TalkBack के लिए नाम लिखे गए हैं।</p>
     <p>अभी यह सिर्फ़ एंड्रॉयड फ़ोन के लिए है, कंप्यूटर या लैपटॉप के लिए नहीं।</p>
     <p>बनी हुई फ़ाइलें इस ऐप में नहीं रहतीं। डाउनलोड या शेयर करके अपने फ़ोन में रख लें।</p>
     <p>यहाँ कोई फ़ाइल किसी सर्वर पर नहीं भेजी जाती। रेडियो के स्टेशन इंटरनेट से आते हैं, इसलिए उसके लिए इंटरनेट चाहिए।</p>
+    </div>
   </section>
 
   <section aria-labelledby="h-tabs">
@@ -305,7 +310,7 @@ html.hc body { background: #fff; color: #000; }
     <h3 id="h-install" class="sec-title">फ़ोन में ऐप की तरह रखें</h3>
     <p>नीचे दिया बटन दबाने पर फ़ोन में जोड़ने के कदम दिखेंगे।</p>
     <button type="button" id="install-btn" aria-describedby="hx-install" class="btn primary" aria-label="होम स्क्रीन पर जोड़ें। दबाने पर जोड़ने के कदम दिखेंगे">होम स्क्रीन पर जोड़ें</button>
-    <p id="hx-install" class="hint">इससे फ़ोन की होम स्क्रीन पर ऐप का आइकन रखने के कदम दिखते हैं। बटन दबाने पर कदम नीचे खुलेंगे।</p>
+    <p id="hx-install" class="hint">इसे खोलने के लिए डबल टैप करें। इससे फ़ोन की होम स्क्रीन पर ऐप का आइकन रखने के कदम दिखते हैं। बटन दबाने पर कदम नीचे खुलेंगे।</p>
     <div id="install-help" tabindex="-1" aria-live="polite"></div>
     <p>ब्राउज़र के मेन्यू में "होम स्क्रीन पर जोड़ें" या "ऐप इंस्टॉल करें" चुनकर भी यह फ़ोन में ऐप की तरह दिखेगा।</p>
   </section>
@@ -675,9 +680,9 @@ html.hc body { background: #fff; color: #000; }
       <button id="book-file-btn" type="button" class="btn" aria-describedby="hx-book-file">.txt या PDF फ़ाइल चुनें</button>
       <button id="book-camera-btn" type="button" class="btn" aria-describedby="hx-book-camera">कैमरे से फ़ोटो लें</button>
     </div>
-    <p id="hx-book-gallery" class="hint">गैलरी से फ़ोटो चुनें दबाने पर ही फ़ोन की गैलरी खुलेगी। एक से ज़्यादा फ़ोटो चुन सकते हैं, और हर फ़ोटो एक अलग पेज बनेगी। ऐप उसके अक्षर पढ़कर बॉक्स में लिखेगा। इसमें समय लगता है, और पहली बार इंटरनेट चाहिए।</p>
-    <p id="hx-book-file" class="hint">.txt या PDF फ़ाइल चुनें दबाने पर ही फ़ाइल चुनने का पैनल खुलेगा। .txt फ़ाइल सीधे बॉक्स में आ जाएगी। PDF में लिखा पाठ हो तो वह आएगा, और हर PDF पन्ना अलग पेज बनेगा। स्कैन की हुई PDF में लिखा पाठ नहीं होता, उसे नहीं पढ़ा जा सकेगा।</p>
-    <p id="hx-book-camera" class="hint">कैमरे से फ़ोटो लें दबाने पर फ़ोन का कैमरा खुलेगा। पन्ना सीधा और अच्छी रोशनी में रखें। फ़ोटो से पढ़ा पाठ बॉक्स में आएगा, उसे जाँच लें।</p>
+    <p id="hx-book-gallery" class="hint">इसे खोलने के लिए डबल टैप करें। गैलरी से फ़ोटो चुनें दबाने पर ही फ़ोन की गैलरी खुलेगी। एक से ज़्यादा फ़ोटो चुन सकते हैं, और हर फ़ोटो एक अलग पेज बनेगी। ऐप उसके अक्षर पढ़कर बॉक्स में लिखेगा। इसमें समय लगता है, और पहली बार इंटरनेट चाहिए।</p>
+    <p id="hx-book-file" class="hint">इसे खोलने के लिए डबल टैप करें। .txt या PDF फ़ाइल चुनें दबाने पर ही फ़ाइल चुनने का पैनल खुलेगा। .txt फ़ाइल सीधे बॉक्स में आ जाएगी। PDF में लिखा पाठ हो तो वह आएगा, और हर PDF पन्ना अलग पेज बनेगा। स्कैन की हुई PDF में लिखा पाठ नहीं होता, उसे नहीं पढ़ा जा सकेगा।</p>
+    <p id="hx-book-camera" class="hint">इसे खोलने के लिए डबल टैप करें। कैमरे से फ़ोटो लें दबाने पर फ़ोन का कैमरा खुलेगा। पन्ना सीधा और अच्छी रोशनी में रखें। फ़ोटो से पढ़ा पाठ बॉक्स में आएगा, उसे जाँच लें।</p>
     <input type="file" id="book-gallery" accept="image/*" multiple tabindex="-1" aria-hidden="true" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden">
     <input type="file" id="book-file" accept=".txt,text/plain,.pdf,application/pdf" tabindex="-1" aria-hidden="true" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden">
     <input type="file" id="book-camera" accept="image/*" capture="environment" tabindex="-1" aria-hidden="true" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden">
@@ -879,7 +884,10 @@ html.hc body { background: #fff; color: #000; }
 
 <!-- ===== सेटिंग (हमेशा आख़िरी) ===== -->
 <div id="panel-settings" class="panel">
-  <h2 id="h-settings" class="panel-title" tabindex="-1">सेटिंग</h2>
+  <h2 id="h-settings" class="panel-title" tabindex="-1" data-reveal="settings-body">सेटिंग</h2>
+  <button id="settings-toggle" type="button" class="btn primary" aria-expanded="false" aria-controls="settings-body" aria-describedby="hx-settings-toggle" data-label-open="सेटिंग दिखाएँ" data-label-close="सेटिंग छिपाएँ">सेटिंग दिखाएँ</button>
+  <p id="hx-settings-toggle" class="hint">इसे खोलने के लिए डबल टैप करें। दबाने पर सेटिंग के सारे हिस्से नीचे खुलेंगे। दोबारा दबाने पर वे बंद हो जाएँगे।</p>
+  <div id="settings-body" data-collapsible hidden>
   <p class="lead">यहाँ अक्षरों का आकार, रंग, पढ़कर सुनाने की भाषा और गति बदल सकते हैं। बदलाव तुरंत दिखते हैं।</p>
 
   <section aria-labelledby="h-look">
@@ -987,10 +995,13 @@ html.hc body { background: #fff; color: #000; }
   </section>
 
   <section aria-labelledby="h-privacy" id="privacy-sec">
-    <h3 id="h-privacy" class="sec-title">प्राइवेसी पॉलिसी</h3>
+    <h3 id="h-privacy" class="sec-title" tabindex="-1" data-reveal="privacy-sec-body">प्राइवेसी पॉलिसी</h3>
+    <button id="privacy-sec-toggle" type="button" class="btn primary" aria-expanded="false" aria-controls="privacy-sec-body" aria-describedby="hx-privacy-sec-toggle" data-label-open="प्राइवेसी पॉलिसी दिखाएँ" data-label-close="प्राइवेसी पॉलिसी छिपाएँ">प्राइवेसी पॉलिसी दिखाएँ</button>
+    <p id="hx-privacy-sec-toggle" class="hint">इसे खोलने के लिए डबल टैप करें। दबाने पर प्राइवेसी पॉलिसी का हिस्सा नीचे खुलेगा, जिसमें पूरी पॉलिसी पढ़ने का बटन होगा।</p>
+    <div id="privacy-sec-body" data-collapsible hidden>
     <p>यहाँ लिखा है कि आवाज़ साथी आपकी जानकारी कैसे रखता है। पूरा पाठ इसी ऐप में है, बाहर कोई पेज नहीं खुलता।</p>
     <button id="privacy-open" type="button" class="btn primary" aria-describedby="hx-privacy-open">प्राइवेसी पॉलिसी पढ़ें</button>
-    <p id="hx-privacy-open" class="hint">दबाने पर पूरी प्राइवेसी पॉलिसी इसी पेज पर नीचे खुलेगी। खुलते ही उसका शीर्षक चुना जाएगा।</p>
+    <p id="hx-privacy-open" class="hint">इसे खोलने के लिए डबल टैप करें। दबाने पर पूरी प्राइवेसी पॉलिसी इसी पेज पर नीचे खुलेगी। खुलते ही उसका शीर्षक चुना जाएगा।</p>
     <div id="privacy-body" class="policy" role="region" aria-labelledby="privacy-title" hidden>
       <h4 id="privacy-title" tabindex="-1">आवाज़ साथी – प्राइवेसी पॉलिसी</h4>
       <p>डेवलपर: कपिल. संपर्क: 9896471058 (WhatsApp).</p>
@@ -1015,7 +1026,7 @@ html.hc body { background: #fff; color: #000; }
     </div>
 
     <button id="privacy-en-open" type="button" class="btn primary" aria-describedby="hx-privacy-en-open" lang="en">Read privacy policy in English</button>
-    <p id="hx-privacy-en-open" class="hint" lang="en">Press to open the full privacy policy in English on this page. Its title is selected when it opens. The Hindi policy above stays as it is.</p>
+    <p id="hx-privacy-en-open" class="hint" lang="en">इसे खोलने के लिए डबल टैप करें। Press to open the full privacy policy in English on this page. Its title is selected when it opens. The Hindi policy above stays as it is.</p>
     <div id="privacy-en-body" class="policy" lang="en" role="region" aria-labelledby="privacy-en-title" hidden>
       <h4 id="privacy-en-title" tabindex="-1">Awaz Saathi – Privacy Policy</h4>
       <p>Developer: Kapil. Contact: 9896471058 (WhatsApp).</p>
@@ -1038,6 +1049,7 @@ html.hc body { background: #fff; color: #000; }
       <button id="privacy-en-close" type="button" class="btn" aria-describedby="hx-privacy-en-close">Close and return to settings</button>
       <p id="hx-privacy-en-close" class="hint">Press to close the policy. Focus then goes back to the "Read privacy policy in English" button.</p>
     </div>
+    </div>
   </section>
 
   <section aria-labelledby="h-dl">
@@ -1051,10 +1063,10 @@ html.hc body { background: #fff; color: #000; }
     </ol>
     <p class="note">फ़ोन के हिसाब से बटनों के नाम थोड़े अलग हो सकते हैं।</p>
     <p><a class="btn primary" href="intent://#Intent;action=com.android.settings.TTS_SETTINGS;end" aria-describedby="hx-tts">टेक्स्ट-टू-स्पीच की सेटिंग खोलें</a></p>
-    <p id="hx-tts" class="hint">दबाने पर फ़ोन की टेक्स्ट-टू-स्पीच सेटिंग खुलेगी। अगर न खुले, तो फ़ोन की Settings में "Text-to-speech" लिखकर खोजें।</p>
+    <p id="hx-tts" class="hint">इसे खोलने के लिए डबल टैप करें। दबाने पर फ़ोन की टेक्स्ट-टू-स्पीच सेटिंग खुलेगी। अगर न खुले, तो फ़ोन की Settings में "Text-to-speech" लिखकर खोजें।</p>
     <p><a class="btn" href="market://details?id=com.google.android.tts" aria-describedby="hx-play">Play Store में Google टेक्स्ट-टू-स्पीच खोलें</a></p>
     <p><a class="btn" href="https://play.google.com/store/apps/details?id=com.google.android.tts" target="_blank" rel="noopener" aria-describedby="hx-play">Play Store का वेब पता (अगर ऊपर का न खुले)</a></p>
-    <p id="hx-play" class="hint">दोनों लिंक एक ही Google टेक्स्ट-टू-स्पीच ऐप के पन्ने पर ले जाते हैं। इंस्टॉल फ़ोन की Play Store से होगा, इस ऐप से नहीं।</p>
+    <p id="hx-play" class="hint">इसे खोलने के लिए डबल टैप करें। दोनों लिंक एक ही Google टेक्स्ट-टू-स्पीच ऐप के पन्ने पर ले जाते हैं। इंस्टॉल फ़ोन की Play Store से होगा, इस ऐप से नहीं।</p>
   </section>
 
   <section aria-labelledby="h-sr">
@@ -1085,6 +1097,7 @@ html.hc body { background: #fff; color: #000; }
     <p id="hx-sr-vol" class="hint">श्रुति की आवाज़ धीमी या तेज़ करने के लिए स्लाइडर पर टिक कर स्वाइप करें। 1.0 सबसे तेज़ है।</p>
     <p class="note">आवाज़ का स्तर: <span id="sr-vol-val">1.0</span></p>
   </section>
+  </div>
 </div>
 
 </main>
@@ -1096,24 +1109,41 @@ html.hc body { background: #fff; color: #000; }
 <div id="menu-back" class="drawer-back" hidden></div>
 <aside id="menu-drawer" class="drawer" role="dialog" aria-modal="true" aria-labelledby="menu-title" hidden>
   <h2 id="menu-title" class="panel-title" tabindex="-1">मेन्यू</h2>
-  <p id="hx-menu-nav" class="hint">किसी बटन पर दबाने से मेन्यू बंद होगा और वह हिस्सा खुलेगा। बंद करने के लिए नीचे का बटन, Escape, या फ़ोन का पीछे वाला बटन दबाएँ।</p>
-  <button type="button" id="menu-about" class="btn primary" aria-describedby="hx-menu-nav">ऐप की जानकारी</button>
-  <button type="button" id="menu-privacy" class="btn primary" aria-describedby="hx-menu-nav">प्राइवेसी पॉलिसी</button>
-  <button type="button" id="menu-settings" class="btn primary" aria-describedby="hx-menu-nav">सेटिंग</button>
+  <p id="hx-menu-nav" class="hint">ऐप की जानकारी, सेटिंग और प्राइवेसी पॉलिसी दबाने पर मेन्यू बंद होगा और वह हिस्सा खुलेगा। बंद करने के लिए नीचे का "मेन्यू बंद करें" बटन दबाएँ।</p>
+  <button type="button" id="menu-about" class="btn primary" aria-describedby="hx-menu-about">ऐप की जानकारी</button>
+  <p id="hx-menu-about" class="hint">इसे खोलने के लिए डबल टैप करें। दबाने पर मेन्यू बंद होगा और ऐप की जानकारी वाला हिस्सा खुलेगा।</p>
+  <button type="button" id="menu-share" class="btn primary" aria-describedby="hx-menu-share">ऐप का लिंक शेयर करो</button>
+  <p id="hx-menu-share" class="hint">दबाने पर फ़ोन का शेयर मेन्यू खुलेगा, जिससे ऐप का लिंक किसी को भेज सकते हैं। शेयर न हो सके तो लिंक अपने-आप कॉपी हो जाएगा।</p>
+  <button type="button" id="menu-copy" class="btn primary" aria-describedby="hx-menu-copy">लिंक कॉपी करो</button>
+  <p id="hx-menu-copy" class="hint">दबाने पर ऐप का लिंक फ़ोन में कॉपी होगा। कॉपी होने या न होने की खबर बोलकर सुनाई जाएगी।</p>
+  <button type="button" id="menu-settings" class="btn primary" aria-describedby="hx-menu-settings">सेटिंग</button>
+  <p id="hx-menu-settings" class="hint">इसे खोलने के लिए डबल टैप करें। दबाने पर मेन्यू बंद होगा और सेटिंग खुलेगी।</p>
   <button type="button" id="menu-contact" class="btn primary" aria-expanded="false" aria-controls="menu-contact-body" aria-describedby="hx-menu-contact">संपर्क</button>
-  <p id="hx-menu-contact" class="hint">दबाने पर कपिल से संपर्क के बटन नीचे खुलेंगे।</p>
+  <p id="hx-menu-contact" class="hint">इसे खोलने के लिए डबल टैप करें। दबाने पर कपिल से संपर्क के बटन नीचे खुलेंगे।</p>
   <div id="menu-contact-body" hidden>
     <p class="contact">संपर्क: 9896471058</p>
-    <p id="hx-help-m" class="note">अगर व्हाट्सऐप नहीं है तो कॉल बटन दबाएँ।</p>
-    <p><a class="btn primary" href="https://wa.me/919896471058?text=%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A5%87%20%E0%A4%95%E0%A4%AA%E0%A4%BF%E0%A4%B2%20%E0%A4%9C%E0%A5%80%2C%20%E0%A4%86%E0%A4%B5%E0%A4%BE%E0%A4%9C%E0%A4%BC%20%E0%A4%B8%E0%A4%BE%E0%A4%A5%E0%A5%80%20%E0%A4%90%E0%A4%AA%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AE%E0%A5%81%E0%A4%9D%E0%A5%87%20%E0%A4%AF%E0%A4%B9%20%E0%A4%95%E0%A4%AE%E0%A5%80%20%E0%A4%AE%E0%A4%BF%E0%A4%B2%E0%A5%80%20%E0%A4%B9%E0%A5%88%3A%20" target="_blank" rel="noopener" aria-describedby="hx-wa-m hx-help-m">कमी बताने के लिए यहाँ दबाओ</a></p>
-    <p id="hx-wa-m" class="hint">दबाने पर व्हाट्सऐप खुलेगा, जिसमें कपिल के लिए कमी बताने का संदेश पहले से लिखा होगा। उसे भेजने के लिए व्हाट्सऐप में भेजें दबाएँ।</p>
-    <p><a class="btn primary" href="tel:+919896471058" aria-describedby="hx-call-m hx-help-m">कॉल करने के लिए यहाँ दबाओ</a></p>
-    <p id="hx-call-m" class="hint">दबाने पर फ़ोन की कॉल शुरू होगी।</p>
-    <p><a class="btn primary" href="mailto:kapilsamariya90@gmail.com" aria-describedby="hx-mail-m">ईमेल भेजने के लिए यहाँ दबाओ</a></p>
-    <p id="hx-mail-m" class="hint">दबाने पर फ़ोन का ईमेल ऐप खुलेगा।</p>
     <p class="contact">ईमेल पता: kapilsamariya90@gmail.com</p>
+    <p><a class="btn primary" href="mailto:kapilsamariya90@gmail.com" aria-describedby="hx-mail-m">Gmail से ईमेल भेजने के लिए यहाँ दबाओ</a></p>
+    <p id="hx-mail-m" class="hint">इसे खोलने के लिए डबल टैप करें। दबाने पर फ़ोन का ईमेल ऐप खुलेगा, जिसमें कपिल का ईमेल पता पहले से होगा।</p>
+    <p><a class="btn primary" href="tel:+919896471058" aria-describedby="hx-call-m">कॉल करने के लिए यहाँ दबाओ</a></p>
+    <p id="hx-call-m" class="hint">इसे खोलने के लिए डबल टैप करें। दबाने पर कपिल के नंबर 9896471058 पर फ़ोन की कॉल शुरू होगी।</p>
+    <h3 class="sec-title" id="h-wa-m">व्हाट्सऐप पर संदेश</h3>
+    <p><a class="btn primary" href="https://wa.me/919896471058?text=%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A5%87%20%E0%A4%95%E0%A4%AA%E0%A4%BF%E0%A4%B2%20%E0%A4%9C%E0%A5%80%2C%20%E0%A4%AE%E0%A5%88%E0%A4%82%20%E0%A4%86%E0%A4%B5%E0%A4%BE%E0%A4%9C%E0%A4%BC%20%E0%A4%B8%E0%A4%BE%E0%A4%A5%E0%A5%80%20%E0%A4%90%E0%A4%AA%20%E0%A4%95%E0%A5%87%20%E0%A4%AC%E0%A4%BE%E0%A4%B0%E0%A5%87%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AC%E0%A4%BE%E0%A4%A4%20%E0%A4%95%E0%A4%B0%E0%A4%A8%E0%A4%BE%20%E0%A4%9A%E0%A4%BE%E0%A4%B9%E0%A4%A4%E0%A4%BE%2F%E0%A4%9A%E0%A4%BE%E0%A4%B9%E0%A4%A4%E0%A5%80%20%E0%A4%B9%E0%A5%82%E0%A4%81%E0%A5%A4" target="_blank" rel="noopener" aria-describedby="hx-wa-ready">पहले से लिखा संदेश भेजो</a></p>
+    <p id="hx-wa-ready" class="hint">इसे खोलने के लिए डबल टैप करें। दबाने पर व्हाट्सऐप खुलेगा, जिसमें यह संदेश पहले से लिखा होगा: नमस्ते कपिल जी, मैं आवाज़ साथी ऐप के बारे में बात करना चाहता/चाहती हूँ। उसे भेजने के लिए व्हाट्सऐप में भेजें दबाएँ।</p>
+    <label for="wa-own-text">अपना संदेश लिखें</label>
+    <textarea id="wa-own-text" class="big-text" rows="4" maxlength="1000" aria-describedby="hx-wa-own-text"></textarea>
+    <p id="hx-wa-own-text" class="hint">यहाँ अपना संदेश लिखें। लिखने के बाद नीचे का बटन दबाएँ।</p>
+    <p><button type="button" id="wa-own-send" class="btn primary" aria-describedby="hx-wa-own-send">व्हाट्सऐप पर अपना संदेश भेजो</button></p>
+    <p id="hx-wa-own-send" class="hint">इसे खोलने के लिए डबल टैप करें। दबाने पर व्हाट्सऐप खुलेगा, जिसमें आपका लिखा संदेश होगा। संदेश खाली हो तो कुछ नहीं खुलेगा।</p>
+    <p id="wa-own-msg" class="note" aria-live="polite"></p>
+    <p><a class="btn primary" href="https://wa.me/919896471058?text=%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A5%87%20%E0%A4%95%E0%A4%AA%E0%A4%BF%E0%A4%B2%20%E0%A4%9C%E0%A5%80%2C%20%E0%A4%86%E0%A4%B5%E0%A4%BE%E0%A4%9C%E0%A4%BC%20%E0%A4%B8%E0%A4%BE%E0%A4%A5%E0%A5%80%20%E0%A4%90%E0%A4%AA%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AE%E0%A5%81%E0%A4%9D%E0%A5%87%20%E0%A4%AF%E0%A4%B9%20%E0%A4%95%E0%A4%AE%E0%A5%80%20%E0%A4%AE%E0%A4%BF%E0%A4%B2%E0%A5%80%20%E0%A4%B9%E0%A5%88%3A%20" target="_blank" rel="noopener" aria-describedby="hx-wa-m hx-help-m">कमी बताने के लिए यहाँ दबाओ</a></p>
+    <p id="hx-wa-m" class="hint">इसे खोलने के लिए डबल टैप करें। दबाने पर व्हाट्सऐप खुलेगा, जिसमें कपिल के लिए कमी बताने का संदेश पहले से लिखा होगा।</p>
+    <p id="hx-help-m" class="note">अगर व्हाट्सऐप नहीं है तो कॉल बटन दबाएँ।</p>
   </div>
-  <p><button type="button" id="menu-close" class="btn" aria-describedby="hx-menu-nav">मेन्यू बंद करें</button></p>
+  <button type="button" id="menu-privacy" class="btn primary" aria-describedby="hx-menu-privacy">प्राइवेसी पॉलिसी</button>
+  <p id="hx-menu-privacy" class="hint">इसे खोलने के लिए डबल टैप करें। दबाने पर मेन्यू बंद होगा और प्राइवेसी पॉलिसी वाला हिस्सा खुलेगा।</p>
+  <p><button type="button" id="menu-close" class="btn" aria-describedby="hx-menu-close">मेन्यू बंद करें</button></p>
+  <p id="hx-menu-close" class="hint">दबाने पर मेन्यू बंद होगा और आप जहाँ थे वहीं लौट जाएँगे।</p>
 </aside>
 
 <audio id="track-audio" class="hidden-audio" preload="auto"></audio>
@@ -2430,6 +2460,7 @@ $('#speak-clear').addEventListener('click', function () { clearBox('#speak-text'
 $('#radio-clear').addEventListener('click', function () { clearBox('#radio-search', radioRender); });
 $('#notice-read').addEventListener('click', function () {
   hideNotice();
+  revealFor($('#privacy-open'));
   openPrivacy();
 });
 $('#notice-close').addEventListener('click', function () {
@@ -3238,7 +3269,7 @@ function setMicBtn(on) {
 }
 function goTo(id, msg) {
   var h = document.getElementById(id);
-  if (h) { h.setAttribute('tabindex', '-1'); h.focus(); }
+  if (h) { revealFor(h); h.setAttribute('tabindex', '-1'); h.focus(); }
   notify('#mic-state', msg);
 }
 function stopAllCams() {
@@ -3625,7 +3656,7 @@ function closeMenu(byBack) {
   menuBtn.focus();
 }
 function menuFocusables() {
-  return Array.prototype.slice.call(menuDrawer.querySelectorAll('button, a[href]')).filter(function (e) {
+  return Array.prototype.slice.call(menuDrawer.querySelectorAll('button, a[href], textarea')).filter(function (e) {
     return !e.disabled && !e.closest('[hidden]');
   });
 }
@@ -3654,6 +3685,98 @@ $('#menu-contact').addEventListener('click', function () {
   this.setAttribute('aria-expanded', open ? 'true' : 'false');
   $('#menu-contact-body').hidden = !open;
   say(open ? 'संपर्क के बटन खुल गए हैं।' : 'संपर्क के बटन बंद हैं।');
+});
+
+/* ---------- सिकुड़ने वाले हिस्से: पहले बंद रहते हैं, सिर्फ़ बटन दबाने पर खुलते हैं ---------- */
+function setCollapse(bodyId, open) {
+  var body = document.getElementById(bodyId);
+  if (!body) return;
+  if (open) body.removeAttribute('hidden'); else body.setAttribute('hidden', '');
+  var t = document.querySelector('[aria-controls="' + bodyId + '"][data-label-open]');
+  if (t) {
+    t.setAttribute('aria-expanded', open ? 'true' : 'false');
+    t.textContent = open ? t.getAttribute('data-label-close') : t.getAttribute('data-label-open');
+  }
+}
+function revealFor(el) {
+  var p = el;
+  while (p && p.nodeType === 1) {
+    if (p.getAttribute('data-reveal')) setCollapse(p.getAttribute('data-reveal'), true);
+    if (p.hasAttribute('data-collapsible') && p.hasAttribute('hidden')) setCollapse(p.id, true);
+    p = p.parentNode;
+  }
+}
+$$('button[data-label-open]').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var open = b.getAttribute('aria-expanded') !== 'true';
+    setCollapse(b.getAttribute('aria-controls'), open);
+    say(open ? 'हिस्सा खुल गया है।' : 'हिस्सा बंद हो गया है।');
+  });
+});
+
+/* ---------- ऐप का लिंक: शेयर और कॉपी ---------- */
+var SHARE_TEXT = 'आवाज़ साथी: नेत्रहीन और कम दिखने वाले लोगों के लिए हिंदी ऐप। यह लिंक खोलें।';
+var COPY_FAIL = 'लिंक अपने-आप कॉपी नहीं हो सका। ब्राउज़र के पते वाले खाने से लिंक कॉपी कर लें।';
+function fallbackCopy(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.setAttribute('readonly', '');
+  ta.setAttribute('aria-hidden', 'true');
+  ta.style.position = 'fixed';
+  ta.style.top = '0';
+  ta.style.left = '-9999px';
+  document.body.appendChild(ta);
+  var ok = false;
+  try { ta.select(); ok = document.execCommand('copy'); } catch (e) { ok = false; }
+  document.body.removeChild(ta);
+  return ok;
+}
+function copyAppLink(done) {
+  var text = window.location.href;
+  var cb = window.navigator.clipboard;
+  if (cb && typeof cb.writeText === 'function') {
+    try {
+      cb.writeText(text).then(function () { done(true); }, function () { done(fallbackCopy(text)); });
+      return;
+    } catch (e) { /* नीचे का तरीका */ }
+  }
+  done(fallbackCopy(text));
+}
+function announceCopy(ok) {
+  notify('#mic-state', ok ? 'ऐप का लिंक कॉपी हो गया है। अब उसे कहीं भी चिपका सकते हैं।' : COPY_FAIL);
+}
+$('#menu-copy').addEventListener('click', function () { copyAppLink(announceCopy); });
+$('#menu-share').addEventListener('click', function () {
+  var nav = window.navigator;
+  if (typeof nav.share === 'function') {
+    try {
+      nav.share({ title: 'आवाज़ साथी', text: SHARE_TEXT, url: window.location.href }).then(function () {
+        notify('#mic-state', 'शेयर का मेन्यू बंद हो गया।');
+      }, function (err) {
+        if (err && err.name === 'AbortError') notify('#mic-state', 'शेयर रद्द हुआ। कोई लिंक नहीं भेजा गया।');
+        else copyAppLink(announceCopy);
+      });
+      return;
+    } catch (e) { /* नीचे कॉपी वाला तरीका */ }
+  }
+  copyAppLink(announceCopy);
+});
+
+/* ---------- अपना लिखा व्हाट्सऐप संदेश ---------- */
+function openWhatsApp(url) {
+  var w = null;
+  try { w = window.open(url, '_blank'); } catch (e) { w = null; }
+  if (!w) window.location.href = url;
+}
+$('#wa-own-send').addEventListener('click', function () {
+  var txt = $('#wa-own-text').value.replace(/^\s+|\s+$/g, '');
+  if (!txt) {
+    notify('#wa-own-msg', 'पहले ऊपर के खाने में अपना संदेश लिखें, फिर यह बटन दबाएँ।');
+    $('#wa-own-text').focus();
+    return;
+  }
+  openWhatsApp('https://wa.me/919896471058?text=' + encodeURIComponent(txt));
+  notify('#wa-own-msg', 'व्हाट्सऐप खुल रहा है, जिसमें आपका संदेश लिखा है।');
 });
 
 /* ---------- शुरू करना ---------- */
