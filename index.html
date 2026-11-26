@@ -299,6 +299,7 @@ html.hc body { background: #fff; color: #000; }
       <li><strong>वोकल रिमूवर:</strong> गाने से गायक की आवाज़ कम करने की कोशिश, फ़ोन में ही। यह पूरी तरह साफ़ नहीं होती।</li>
       <li><strong>कैमरे से मदद:</strong> रंग पहचानना और बोलने वाला कैमरा।</li>
       <li><strong>रेडियो:</strong> कुछ रेडियो स्टेशन इंटरनेट से सुनना। स्टेशन न चले तो 8 सेकंड में अगला स्टेशन अपने-आप आज़माया जाएगा। इंटरनेट न हो तो ऐप बताएगा।</li>
+      <li><strong>मौसम:</strong> आपकी अपनी जगह का मौसम, या देश और शहर चुनकर किसी भी जगह का मौसम, बोलकर सुनना और लिखा हुआ देखना। इसके लिए इंटरनेट चाहिए। "मेरी जगह" के लिए फ़ोन की जगह की अनुमति माँगी जाएगी।</li>
       <li><strong>बुक रीडर:</strong> .txt या PDF फ़ाइल, किताब के पन्ने की फ़ोटो या चिपकाया पाठ फ़ोन की आवाज़ में अनुच्छेद-दर-अनुच्छेद पढ़ना। पढ़ने की गति, हिंदी या अंग्रेज़ी, और जहाँ रुके थे वहीं से आगे।</li>
       <li><strong>टेक्स्ट से इमेज और PDF:</strong> लिखा पाठ फ़ोन में ही PNG तस्वीर या PDF फ़ाइल बनना। PDF का पाठ तस्वीर होता है, इसलिए उसे चुना या खोजा नहीं जा सकता।</li>
       <li><strong>स्क्रीन रिकॉर्डर:</strong> जिस फ़ोन में अनुमति हो, उसकी स्क्रीन रिकॉर्ड करना, आवाज़ के साथ, और फ़ाइल सेव या शेयर करना। जहाँ यह सुविधा न हो, वहाँ फ़ोन का अपना रिकॉर्डर चलाने के कदम बताए जाएँगे।</li>
@@ -657,6 +658,92 @@ html.hc body { background: #fff; color: #000; }
   </section>
 </div>
 
+<!-- ===== मौसम ===== -->
+<div id="panel-weather" class="panel">
+  <h2 id="h-weather" class="panel-title" tabindex="-1">मौसम</h2>
+  <p class="lead">यहाँ अपनी जगह का या किसी भी शहर का अभी का मौसम सुन सकते हैं, और लिखा हुआ भी देख सकते हैं। इसके लिए फ़ोन में इंटरनेट चालू होना चाहिए।</p>
+
+  <section aria-labelledby="h-wx-my">
+    <h3 id="h-wx-my" class="sec-title" tabindex="-1">मेरी जगह का मौसम</h3>
+    <button id="wx-geo" type="button" class="btn primary" aria-describedby="hx-wx-geo">मेरी जगह का मौसम</button>
+    <p id="hx-wx-geo" class="hint">दबाने पर फ़ोन आपसे जगह की अनुमति माँगेगा। अनुमति देने पर उसी जगह का मौसम सुनाया जाएगा। आपकी जगह सिर्फ़ मौसम लाने के लिए इस्तेमाल होती है। वह फ़ोन में सेव नहीं होती, और मौसम वाली सेवा के सिवा कहीं नहीं भेजी जाती। अनुमति न दें तो नीचे जगह का नाम लिखकर भी मौसम सुन सकते हैं।</p>
+  </section>
+
+  <section aria-labelledby="h-wx-search">
+    <h3 id="h-wx-search" class="sec-title" tabindex="-1">किसी और जगह का मौसम</h3>
+    <label for="wx-country">देश चुनें</label>
+    <select id="wx-country" aria-describedby="hx-wx-country">
+      <option value="IN">भारत</option>
+      <option value="AE">संयुक्त अरब अमीरात</option>
+      <option value="SA">सऊदी अरब</option>
+      <option value="NP">नेपाल</option>
+      <option value="BD">बांग्लादेश</option>
+      <option value="PK">पाकिस्तान</option>
+      <option value="LK">श्रीलंका</option>
+      <option value="US">अमेरिका</option>
+      <option value="GB">यूनाइटेड किंगडम</option>
+      <option value="CA">कनाडा</option>
+      <option value="AU">ऑस्ट्रेलिया</option>
+      <option value="SG">सिंगापुर</option>
+      <option value="MY">मलेशिया</option>
+      <option value="QA">कतर</option>
+      <option value="OM">ओमान</option>
+      <option value="KW">कुवैत</option>
+      <option value="BH">बहरीन</option>
+      <option value="DE">जर्मनी</option>
+      <option value="FR">फ़्रांस</option>
+      <option value="IT">इटली</option>
+      <option value="ES">स्पेन</option>
+      <option value="JP">जापान</option>
+      <option value="CN">चीन</option>
+      <option value="ZA">दक्षिण अफ़्रीका</option>
+      <option value="KE">केन्या</option>
+      <option value="NG">नाइजीरिया</option>
+      <option value="MU">मॉरीशस</option>
+      <option value="TH">थाईलैंड</option>
+      <option value="ID">इंडोनेशिया</option>
+    </select>
+    <p id="hx-wx-country" class="hint">देश की सूची में भारत पहले से चुना है। जिस देश की जगह देखनी हो, उसे चुनें। खोज उसी देश में होगी।</p>
+    <label for="wx-place">जगह का नाम लिखें</label>
+    <input type="text" id="wx-place" aria-describedby="hx-wx-place" autocomplete="off">
+    <p id="hx-wx-place" class="hint">शहर या गाँव का नाम लिखें, जैसे दिल्ली या चंडीगढ़। लिखने के बाद "मौसम सुनाओ" दबाएँ। Enter दबाने पर भी खोज होगी।</p>
+    <div class="actions">
+      <button id="wx-clear" type="button" class="btn" aria-describedby="hx-wx-clear">साफ़ करें</button>
+      <button id="wx-search" type="button" class="btn primary" aria-describedby="hx-wx-search">मौसम सुनाओ</button>
+    </div>
+    <p id="hx-wx-clear" class="hint">दबाने पर लिखा हुआ जगह का नाम मिट जाएगा।</p>
+    <p id="hx-wx-search" class="hint">दबाने पर लिखी जगह का मौसम खोजा जाएगा और सुनाया जाएगा। इसके लिए इंटरनेट चाहिए।</p>
+  </section>
+
+  <section id="wx-pick" aria-labelledby="h-wx-pick" hidden>
+    <h3 id="h-wx-pick" class="sec-title" tabindex="-1">कौन-सी जगह?</h3>
+    <p id="hx-wx-pick" class="hint">एक ही नाम की कई जगहें मिली हैं। जिस जगह का मौसम चाहिए, उसका बटन दबाएँ। दबाते ही उसका मौसम सुनाया जाएगा।</p>
+    <div id="wx-list" class="actions"></div>
+    <p id="wx-count" class="note" aria-live="polite"></p>
+  </section>
+
+  <section aria-labelledby="h-wx-now">
+    <h3 id="h-wx-now" class="sec-title" tabindex="-1">मौसम का नतीजा</h3>
+    <p id="wx-state" class="note" aria-live="polite"></p>
+    <p id="wx-result" class="note" aria-live="polite"></p>
+    <ul id="wx-details" class="tab-list" aria-label="मौसम की पूरी जानकारी"></ul>
+    <div class="actions">
+      <button id="wx-again" type="button" class="btn primary" aria-describedby="hx-wx-again">दोबारा सुनाओ</button>
+      <button id="wx-stop" type="button" class="btn" aria-describedby="hx-wx-stop">रोको</button>
+    </div>
+    <p id="hx-wx-again" class="hint">दबाने पर आखिरी मौसम दोबारा सुनाया जाएगा। अगर ऐप अभी-अभी खुला है, तो पिछली सेव की हुई जगह का ताज़ा मौसम लिया जाएगा।</p>
+    <p id="hx-wx-stop" class="hint">दबाने पर बोलना तुरंत रुक जाएगा और चल रही खोज भी रद्द हो जाएगी।</p>
+    <p id="wx-last" class="note" aria-live="polite"></p>
+  </section>
+
+  <section aria-labelledby="h-wx-note">
+    <h3 id="h-wx-note" class="sec-title">ध्यान रखें</h3>
+    <p class="note">मौसम की जानकारी Open-Meteo नाम की मौसम सेवा से आती है। खोज के लिए जगह का नाम और चुना हुआ देश उसी सेवा को भेजे जाते हैं।</p>
+    <p class="note">आखिरी चुनी हुई जगह का नाम और जगह आपके फ़ोन में सेव रहती है, ताकि अगली बार वही जगह दिखे। "मेरी जगह" की अनुमति से मिली जगह सेव नहीं होती।</p>
+    <p class="note">इंटरनेट न हो तो ऐप बताएगा: "Internet से Connect करो"। मौसम का अनुमान सही भी हो सकता है और थोड़ा अलग भी।</p>
+  </section>
+</div>
+
 <!-- ===== बुक रीडर ===== -->
 <div id="panel-book" class="panel">
   <h2 id="h-book" class="panel-title" tabindex="-1">बुक रीडर</h2>
@@ -1005,7 +1092,7 @@ html.hc body { background: #fff; color: #000; }
     <div id="privacy-body" class="policy" role="region" aria-labelledby="privacy-title" hidden>
       <h4 id="privacy-title" tabindex="-1">आवाज़ साथी – प्राइवेसी पॉलिसी</h4>
       <p>डेवलपर: कपिल. संपर्क: 9896471058 (WhatsApp).</p>
-      <p><strong>1. हम क्या इकट्ठा करते हैं:</strong> आवाज़ साथी आपका कोई निजी डेटा इकट्ठा नहीं करता। इसमें न साइन-अप है, न अकाउंट, न विज्ञापन, न ट्रैकिंग।</p>
+      <p><strong>1. हम क्या इकट्ठा करते हैं:</strong> आवाज़ साथी आपका कोई निजी डेटा इकट्ठा नहीं करता। इसमें न साइन-अप है, न अकाउंट, न विज्ञापन, न ट्रैकिंग। एक छोटी बात: मौसम वाले हिस्से में आपकी आखिरी चुनी हुई जगह आपके फ़ोन में सेव रहती है। यह बात नीचे आइटम 15 में पूरी लिखी है।</p>
       <p><strong>2. आपकी फ़ाइलें और आवाज़:</strong> आप जो ऑडियो, वीडियो, फ़ोटो या रिकॉर्डिंग चुनते हैं, उन पर सारा काम आपके अपने फ़ोन में ही होता है। वे किसी सर्वर पर नहीं भेजी जातीं और हमें कभी नहीं मिलतीं।</p>
       <p><strong>3. परमिशन:</strong> माइक्रोफ़ोन सिर्फ़ तब, जब आप गाने के साथ रिकॉर्डिंग करना चुनते हैं या "बोलकर काम करें" का बटन दबाकर आदेश बोलते हैं; बिना आपके बटन दबाए रिकॉर्डिंग शुरू नहीं होती। फ़ाइलें/गैलरी सिर्फ़ वही फ़ाइल जो आप खुद चुनते हैं। बोलकर सुनाने की सुविधा आपके फ़ोन की अपनी आवाज़ का इस्तेमाल करती है।</p>
       <p><strong>4. आपकी सेटिंग:</strong> अक्षर का आकार, कंट्रास्ट, रंग, भाषा और गति जैसी सेटिंग सिर्फ़ आपके फ़ोन में सेव होती हैं। हमें नहीं दिखतीं।</p>
@@ -1020,6 +1107,7 @@ html.hc body { background: #fff; color: #000; }
       <p><strong>12. बुक रीडर:</strong> आप जो .txt फ़ाइल या पाठ चुनते या चिपकाते हैं, वह आपके फ़ोन में ही पढ़ा जाता है। वह किसी सर्वर पर नहीं भेजा जाता। पढ़ने की जगह (कौन-सा अनुच्छेद) सिर्फ़ आपके फ़ोन के ब्राउज़र में सेव होती है। "पढ़ना" की आवाज़ फ़ोन की अपनी बोलकर सुनाने वाली सेवा से आती है। फ़ोटो या PDF से पाठ निकालना, और टेक्स्ट से इमेज या PDF बनाना, यह भी आपके फ़ोन पर ही होता है। फ़ोटो या फ़ाइल किसी सर्वर पर नहीं भेजी जाती। पहली बार फ़ोटो से पढ़ने के लिए भाषा की फ़ाइलें और एक छोटा पढ़ने वाला प्रोग्राम jsDelivr और cdnjs नाम की सार्वजनिक साइटों से फ़ोन में आते हैं।</p>
       <p><strong>13. स्क्रीन रिकॉर्डर:</strong> स्क्रीन रिकॉर्डिंग सिर्फ़ आपके फ़ोन में बनती है और कहीं अपलोड नहीं होती। आवाज़ रिकॉर्ड करने के लिए माइक्रोफ़ोन की अनुमति आप खुद देते हैं। रिकॉर्डिंग तभी बनती है जब आप शुरू करने का बटन दबाते हैं, और फ़ाइल आप खुद सेव या शेयर करते हैं।</p>
       <p><strong>14. वोकल रिमूवर:</strong> गाने से आवाज़ कम करने का काम सिर्फ़ आपके फ़ोन में होता है। आपकी फ़ाइल किसी सर्वर पर नहीं भेजी जाती और हम उसे कभी नहीं देखते। बनी हुई फ़ाइल आप खुद सेव करते हैं।</p>
+      <p><strong>15. मौसम:</strong> मौसम वाला हिस्सा मौसम जानने के लिए Open-Meteo (open-meteo.com) नाम की मौसम सेवा से जुड़ता है। इस सेवा को जगह का नाम, चुना हुआ देश, या जगह के अक्षांश-देशांतर (latitude, longitude) भेजे जाते हैं, और आपके फ़ोन का इंटरनेट पता (IP address) भी दिखता है। "मेरी जगह का मौसम" दबाने पर फ़ोन की अनुमति से आपकी जगह ली जाती है। वह जगह सिर्फ़ उसी मौसम सेवा को भेजी जाती है। उसे आपके फ़ोन में सेव नहीं किया जाता, और वह कहीं और नहीं भेजी जाती। आखिरी चुनी हुई जगह (नाम, अक्षांश-देशांतर और देश का कोड) आपके फ़ोन के ब्राउज़र में सेव रहती है, ताकि अगली बार वही जगह दिखे। आप ब्राउज़र की साइट-डेटा सेटिंग से यह मिटा सकते हैं। Open-Meteo अपने सर्वर पर क्या रखता है, यह उसकी अपनी प्राइवेसी नीति में देखें। आवाज़ साथी उस नीति के लिए ज़िम्मेदार नहीं है।</p>
       <p>अंतिम अपडेट: 26 नवंबर 2026.</p>
       <button id="privacy-close" type="button" class="btn" aria-describedby="hx-privacy-close">बंद करें और सेटिंग पर लौटें</button>
       <p id="hx-privacy-close" class="hint">दबाने पर पॉलिसी बंद होगी और फ़ोकस फिर "प्राइवेसी पॉलिसी पढ़ें" बटन पर चला जाएगा।</p>
@@ -1030,7 +1118,7 @@ html.hc body { background: #fff; color: #000; }
     <div id="privacy-en-body" class="policy" lang="en" role="region" aria-labelledby="privacy-en-title" hidden>
       <h4 id="privacy-en-title" tabindex="-1">Awaz Saathi – Privacy Policy</h4>
       <p>Developer: Kapil. Contact: 9896471058 (WhatsApp).</p>
-      <p><strong>1. What we collect:</strong> Awaz Saathi does not collect any personal data about you. There is no sign-up, no account, no ads and no tracking.</p>
+      <p><strong>1. What we collect:</strong> Awaz Saathi does not collect any personal data about you. There is no sign-up, no account, no ads and no tracking. One small exception: in the weather part, your last chosen place is saved on your phone. Item 15 below explains this fully.</p>
       <p><strong>2. Your files and voice:</strong> All work on the audio, video, photos or recordings you choose happens only on your own phone. They are not sent to any server, and we never receive them.</p>
       <p><strong>3. Permissions:</strong> The microphone is used only when you choose to record along with a song, or when you press the "Work by voice" (बोलकर काम करें) button and speak a command. Recording never starts without you pressing a button. Files and gallery: only the file you pick yourself. The read-aloud feature uses your phone's own voice.</p>
       <p><strong>4. Your settings:</strong> Settings such as text size, contrast, colour, language and speed are saved only on your phone. We cannot see them.</p>
@@ -1045,6 +1133,7 @@ html.hc body { background: #fff; color: #000; }
       <p><strong>12. Book reader:</strong> The .txt file or text you choose or paste is read only on your phone. It is not sent to any server. Your reading place (which paragraph) is saved only in your phone's browser. The voice for reading comes from your phone's own read-aloud service. Reading text from photos or PDFs, and making text images or PDFs, also happens on your phone. Photos and files are not sent to any server. The first time you read a photo, the language files and a small reading program are downloaded from the public sites jsDelivr and cdnjs.</p>
       <p><strong>13. Screen recorder:</strong> Screen recording is made only on your phone and is not uploaded anywhere. You give the microphone permission yourself to record your voice. A recording is made only when you press the start button, and you save or share the file yourself.</p>
       <p><strong>14. Vocal remover:</strong> Removing the singer's voice from a song happens only on your own phone. Your file is not sent to any server and we never see it. You save the made file yourself.</p>
+      <p><strong>15. Weather:</strong> The weather part connects to the Open-Meteo weather service (open-meteo.com) to get the weather. This service receives the place name, the country you chose, or the latitude and longitude of the place, and it can see your phone's internet address (IP address). When you press "My place's weather", your location is taken with your phone's permission. That location is sent only to this weather service. It is not stored on your phone and is not sent anywhere else. Your last chosen place (name, latitude and longitude, and country code) is saved in your phone's browser so that the same place shows next time. You can clear this from your browser's site data settings. Your current location from "My place" is never saved. Open-Meteo's own privacy policy applies to what it keeps on its servers; please read it there. Awaz Saathi is not responsible for that policy.</p>
       <p>Last updated: 26 November 2026.</p>
       <button id="privacy-en-close" type="button" class="btn" aria-describedby="hx-privacy-en-close">Close and return to settings</button>
       <p id="hx-privacy-en-close" class="hint">Press to close the policy. Focus then goes back to the "Read privacy policy in English" button.</p>
@@ -2869,6 +2958,363 @@ if (radioLast) {
   $('#radio-now').textContent = 'पिछली बार का स्टेशन: ' + radioLast.name + '। फिर से सुनने के लिए "फिर से शुरू करें" दबाएँ।';
 }
 
+/* ---------- मौसम (Open-Meteo से; इंटरनेट चाहिए) ---------- */
+/* WX-PURE-BEGIN */
+var WX_TEXT = {
+  0: 'आसमान साफ़ है', 1: 'ज़्यादातर आसमान साफ़ है', 2: 'कहीं-कहीं बादल हैं', 3: 'बादल छाए हैं',
+  45: 'कोहरा है', 48: 'घना कोहरा है',
+  51: 'हल्की बूँदाबाँदी हो रही है', 53: 'बूँदाबाँदी हो रही है', 55: 'तेज़ बूँदाबाँदी हो रही है',
+  56: 'ठंडी बूँदाबाँदी हो रही है', 57: 'ठंडी तेज़ बूँदाबाँदी हो रही है',
+  61: 'हल्की बारिश हो रही है', 63: 'बारिश हो रही है', 65: 'भारी बारिश हो रही है',
+  66: 'ठंडी हल्की बारिश हो रही है', 67: 'ठंडी भारी बारिश हो रही है',
+  71: 'हल्की बर्फ़बारी हो रही है', 73: 'बर्फ़बारी हो रही है', 75: 'भारी बर्फ़बारी हो रही है',
+  77: 'बर्फ़ के कण गिर रहे हैं',
+  80: 'हल्की बौछारें पड़ रही हैं', 81: 'बौछारें पड़ रही हैं', 82: 'तेज़ बौछारें पड़ रही हैं',
+  85: 'हल्की बर्फ़ की बौछारें पड़ रही हैं', 86: 'भारी बर्फ़ की बौछारें पड़ रही हैं',
+  95: 'गरज के साथ बारिश हो रही है',
+  96: 'ओलों के साथ आँधी-बारिश हो रही है', 99: 'भारी ओलों के साथ आँधी-बारिश हो रही है'
+};
+
+function wxText(code) {
+  var t = WX_TEXT[code];
+  return t || 'मौसम की स्थिति साफ़ नहीं है';
+}
+
+function wxRound(n) {
+  if (typeof n !== 'number' || !isFinite(n)) return null;
+  return Math.round(n);
+}
+
+function wxUrl(lat, lon) {
+  return 'https://api.open-meteo.com/v1/forecast?latitude=' + Number(lat).toFixed(4) +
+    '&longitude=' + Number(lon).toFixed(4) +
+    '&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,weather_code,precipitation' +
+    '&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=auto&forecast_days=1';
+}
+
+function wxGeoUrl(name, cc) {
+  return 'https://geocoding-api.open-meteo.com/v1/search?name=' + encodeURIComponent(name) +
+    '&count=5&language=hi&countryCode=' + encodeURIComponent(cc);
+}
+
+/* forecast जवाब से मौजूदा मौसम और आज का हिस्सा निकालें */
+function wxFromForecast(json) {
+  if (!json || !json.current) return null;
+  var d = json.daily || {};
+  var pick = function (arr) { return arr && arr.length ? arr[0] : null; };
+  return {
+    cur: json.current,
+    day: {
+      max: pick(d.temperature_2m_max),
+      min: pick(d.temperature_2m_min),
+      pop: pick(d.precipitation_probability_max)
+    }
+  };
+}
+
+/* बोले जाने वाला वाक्य। lead जैसे "दिल्ली में" या "आपकी जगह पर" */
+function wxSentence(lead, cur, day) {
+  var first = [];
+  var t = wxRound(cur.temperature_2m);
+  if (t !== null) first.push(lead + ' अभी तापमान ' + t + ' डिग्री है');
+  else first.push(lead + ' अभी तापमान की जानकारी नहीं मिली');
+  var ap = wxRound(cur.apparent_temperature);
+  if (ap !== null && t !== null && ap !== t) first.push('महसूस होता है ' + ap + ' डिग्री');
+  first.push(wxText(cur.weather_code));
+  var h = wxRound(cur.relative_humidity_2m);
+  if (h !== null) first.push('नमी ' + h + ' प्रतिशत');
+  var w = wxRound(cur.wind_speed_10m);
+  if (w !== null) first.push('हवा ' + w + ' किलोमीटर प्रति घंटा');
+  if (typeof cur.precipitation === 'number' && cur.precipitation > 0) {
+    first.push('अभी बारिश ' + (Math.round(cur.precipitation * 10) / 10) + ' मिलीमीटर');
+  }
+  var s = first.join(', ') + '।';
+  var second = [];
+  if (day) {
+    var mx = wxRound(day.max), mn = wxRound(day.min), p = wxRound(day.pop);
+    if (mx !== null && mn !== null) second.push('आज अधिकतम ' + mx + ' और न्यूनतम ' + mn + ' डिग्री');
+    if (p !== null) second.push('बारिश की संभावना ' + p + ' प्रतिशत');
+  }
+  if (second.length) s += ' ' + second.join(', ') + '।';
+  return s;
+}
+
+/* लिखकर दिखाने वाली पूरी सूची */
+function wxDetailLines(cur, day) {
+  var out = [];
+  var t = wxRound(cur.temperature_2m), ap = wxRound(cur.apparent_temperature);
+  var h = wxRound(cur.relative_humidity_2m), w = wxRound(cur.wind_speed_10m);
+  if (t !== null) out.push('तापमान: ' + t + ' डिग्री');
+  if (ap !== null) out.push('महसूस होता है: ' + ap + ' डिग्री');
+  out.push(wxText(cur.weather_code));
+  if (h !== null) out.push('नमी: ' + h + ' प्रतिशत');
+  if (w !== null) out.push('हवा: ' + w + ' किलोमीटर प्रति घंटा');
+  if (typeof cur.precipitation === 'number') {
+    out.push('अभी बारिश: ' + (Math.round(cur.precipitation * 10) / 10) + ' मिलीमीटर');
+  }
+  if (day) {
+    var mx = wxRound(day.max), mn = wxRound(day.min), p = wxRound(day.pop);
+    if (mx !== null) out.push('आज अधिकतम तापमान: ' + mx + ' डिग्री');
+    if (mn !== null) out.push('आज न्यूनतम तापमान: ' + mn + ' डिग्री');
+    if (p !== null) out.push('बारिश की संभावना: ' + p + ' प्रतिशत');
+  }
+  return out;
+}
+
+/* geocoding जवाब को सूची में बदलें; देश का कोड मेल खाए तभी रखें */
+function wxPlaces(json, cc) {
+  var out = [];
+  var list = (json && json.results) ? json.results : [];
+  for (var i = 0; i < list.length; i++) {
+    var r = list[i];
+    if (!r || typeof r.latitude !== 'number' || typeof r.longitude !== 'number') continue;
+    var code = r.country_code ? String(r.country_code).toUpperCase() : '';
+    if (cc && code && code !== cc) continue;
+    var label = r.name || '';
+    if (r.admin1 && r.admin1 !== r.name) label += ', ' + r.admin1;
+    if (r.country) label += ', ' + r.country;
+    out.push({ name: r.name || '', label: label, lat: r.latitude, lon: r.longitude, cc: code || cc || '' });
+  }
+  return out;
+}
+/* WX-PURE-END */
+var WX_KEY = 'chitti-weather-v1';
+var WX_OFFLINE = 'इंटरनेट नहीं है। Internet से Connect करो, फिर दोबारा दबाएँ।';
+var WX_NET_FAIL = 'मौसम नहीं मिल सका। Internet से Connect करो, फिर दोबारा दबाएँ।';
+var WX_NO_GEO = 'इस फ़ोन में जगह बताने की सुविधा नहीं है। जगह का नाम लिखकर मौसम सुनाओ दबाएँ।';
+var wxPlace = null;        /* आखिरी जगह: {name, lat, lon, cc} या {kind: 'geo'}; जगह कभी सेव नहीं होती */
+var wxLastSentence = '';
+var wxSeq = 0;
+var wxAbort = null;
+
+function wxLoad() {
+  try {
+    var raw = window.localStorage.getItem(WX_KEY);
+    if (!raw) return null;
+    var o = JSON.parse(raw);
+    if (o && o.kind === 'geo') return { kind: 'geo' };
+    if (o && typeof o.name === 'string' && typeof o.lat === 'number' && typeof o.lon === 'number') {
+      return { name: o.name, lat: o.lat, lon: o.lon, cc: typeof o.cc === 'string' ? o.cc : '' };
+    }
+    return null;
+  } catch (e) { return null; }
+}
+
+function wxSave(p) {
+  try {
+    var o = p.kind === 'geo' ? { kind: 'geo' } : { name: p.name, lat: p.lat, lon: p.lon, cc: p.cc || '' };
+    window.localStorage.setItem(WX_KEY, JSON.stringify(o));
+  } catch (e) { /* सेव न हो सके तो भी मौसम दिखता और सुनाया जाता है */ }
+}
+
+function wxLabel(p) {
+  return p.kind === 'geo' ? 'मेरी जगह' : p.name;
+}
+
+function wxCountryName(cc) {
+  var o = document.querySelector('#wx-country option[value="' + cc + '"]');
+  return o ? o.textContent : cc;
+}
+
+function wxSay(msg) {
+  $('#wx-state').textContent = msg;
+  say(msg);
+  if (S.selfspeak) speakNow(msg);
+}
+
+function wxFail(msg) {
+  $('#wx-result').textContent = '';
+  $('#wx-details').innerHTML = '';
+  wxSay(msg);
+}
+
+function wxNetFail() {
+  wxFail(navigator.onLine === false ? WX_OFFLINE : WX_NET_FAIL);
+}
+
+function wxHideChoices() {
+  $('#wx-list').innerHTML = '';
+  $('#wx-count').textContent = '';
+  $('#wx-pick').hidden = true;
+}
+
+/* नई खोज शुरू: पुरानी खोज रद्द, और उसका जवाब अब नहीं माना जाएगा */
+function wxBegin(msg) {
+  wxSeq++;
+  if (wxAbort) { try { wxAbort.abort(); } catch (e) { /* ignore */ } wxAbort = null; }
+  wxHideChoices();
+  wxSay(msg);
+  return wxSeq;
+}
+
+function wxStop(quiet) {
+  wxSeq++;
+  if (wxAbort) { try { wxAbort.abort(); } catch (e) { /* ignore */ } wxAbort = null; }
+  if (window.speechSynthesis) { try { window.speechSynthesis.cancel(); } catch (e) { /* ignore */ } }
+  if (!quiet) wxSay('मौसम बोलना और खोज रोक दी गई है।');
+}
+
+function wxFetch(url) {
+  if (typeof fetch !== 'function') return Promise.reject(new Error('nofetch'));
+  var ctl = null;
+  try { ctl = new AbortController(); } catch (e) { ctl = null; }
+  wxAbort = ctl;
+  return fetch(url, ctl ? { signal: ctl.signal } : {}).then(function (r) {
+    if (!r.ok) throw new Error('http');
+    return r.json();
+  });
+}
+
+function wxShowSentence(sent) {
+  wxLastSentence = sent;
+  $('#wx-result').textContent = sent;
+  if (S.selfspeak) {
+    $('#wx-state').textContent = 'मौसम मिल गया।';
+    say('मौसम मिल गया।');
+    speakNow(sent);
+  } else {
+    $('#wx-state').textContent = 'मौसम मिल गया। ऐप खुद बोलना बंद है, इसलिए इसे लिखा हुआ पढ़ें। सुनने के लिए सेटिंग में "ऐप खुद बोले" चालू करें।';
+    say($('#wx-state').textContent);
+  }
+}
+
+function wxRender(sent, f, label) {
+  wxShowSentence(sent);
+  var box = $('#wx-details');
+  box.innerHTML = '';
+  wxDetailLines(f.cur, f.day).forEach(function (t) {
+    var li = document.createElement('li');
+    li.textContent = t;
+    box.appendChild(li);
+  });
+  $('#wx-last').textContent = 'पिछली जगह: ' + label + '। "दोबारा सुनाओ" दबाने पर इसी जगह का मौसम सुनाया जाएगा।';
+}
+
+function wxLoadForecast(id, lat, lon, place) {
+  wxFetch(wxUrl(lat, lon)).then(function (json) {
+    if (id !== wxSeq) return;
+    var f = wxFromForecast(json);
+    if (!f) { wxFail('मौसम की जानकारी नहीं मिली। थोड़ी देर बाद दोबारा कोशिश करें।'); return; }
+    var lead = place ? place.name + ' में' : 'आपकी जगह पर';
+    var sent = wxSentence(lead, f.cur, f.day);
+    var keep = place ? { name: place.name, lat: place.lat, lon: place.lon, cc: place.cc || '' } : { kind: 'geo' };
+    wxPlace = keep;
+    wxSave(keep);
+    wxRender(sent, f, wxLabel(keep));
+  }).catch(function (e) {
+    if (id !== wxSeq) return;
+    if (e && e.name === 'AbortError') return;
+    wxNetFail();
+  });
+}
+
+function wxGeoMsg(err) {
+  var c = err && err.code;
+  if (c === 1) return 'जगह की अनुमति नहीं मिली। फ़ोन की सेटिंग में इस ब्राउज़र को जगह की अनुमति दें, या जगह का नाम लिखकर मौसम सुनें।';
+  if (c === 3) return 'आपकी जगह पता करने में बहुत देर लगी। दोबारा दबाएँ, या जगह का नाम लिखें।';
+  return 'आपकी जगह नहीं मिल सकी। GPS चालू करके दोबारा दबाएँ, या जगह का नाम लिखें।';
+}
+
+function wxFromGeo() {
+  if (navigator.onLine === false) { wxFail(WX_OFFLINE); return; }
+  if (!navigator.geolocation) { wxFail(WX_NO_GEO); return; }
+  var id = wxBegin('आपकी जगह ढूँढी जा रही है।');
+  /* जगह सिर्फ़ इस एक मौसम के लिए इस्तेमाल होती है; कहीं सेव नहीं होती */
+  navigator.geolocation.getCurrentPosition(function (pos) {
+    if (id !== wxSeq) return;
+    wxLoadForecast(id, pos.coords.latitude, pos.coords.longitude, null);
+  }, function (err) {
+    if (id !== wxSeq) return;
+    wxFail(wxGeoMsg(err));
+  }, { enableHighAccuracy: false, timeout: 15000, maximumAge: 600000 });
+}
+
+function wxPickPlace(p) {
+  if (navigator.onLine === false) { wxFail(WX_OFFLINE); return; }
+  var id = wxBegin(p.name + ' का मौसम देखा जा रहा है।');
+  wxLoadForecast(id, p.lat, p.lon, p);
+}
+
+function wxChoices(list) {
+  var box = $('#wx-list');
+  box.innerHTML = '';
+  list.forEach(function (p) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'btn';
+    b.setAttribute('aria-describedby', 'hx-wx-pick');
+    b.textContent = p.label;
+    b.addEventListener('click', function () { wxPickPlace(p); });
+    box.appendChild(b);
+  });
+  $('#wx-pick').hidden = false;
+  var msg = list.length + ' जगहें मिलीं। जिस जगह का मौसम चाहिए, उसका बटन दबाएँ।';
+  $('#wx-count').textContent = msg;
+  wxSay(msg);
+  if (box.firstChild) box.firstChild.focus();
+}
+
+function wxSearch() {
+  var q = oneLine($('#wx-place').value);
+  if (!q) { wxFail('पहले जगह का नाम लिखें, जैसे दिल्ली।'); return; }
+  if (navigator.onLine === false) { wxFail(WX_OFFLINE); return; }
+  var cc = $('#wx-country').value || 'IN';
+  var cname = wxCountryName(cc);
+  var id = wxBegin('"' + q + '" की जगह ढूँढी जा रही है।');
+  wxFetch(wxGeoUrl(q, cc)).then(function (json) {
+    if (id !== wxSeq) return;
+    var list = wxPlaces(json, cc);
+    if (!list.length) {
+      wxFail('"' + q + '" नाम की जगह ' + cname + ' में नहीं मिली। नाम की वर्तनी जाँचें, या दूसरा देश चुनें।');
+      return;
+    }
+    if (list.length === 1) { wxPickPlace(list[0]); return; }
+    wxChoices(list);
+  }).catch(function (e) {
+    if (id !== wxSeq) return;
+    if (e && e.name === 'AbortError') return;
+    wxNetFail();
+  });
+}
+
+function wxClear() {
+  $('#wx-place').value = '';
+  wxHideChoices();
+  wxSay('जगह का नाम मिटा दिया गया है।');
+  $('#wx-place').focus();
+}
+
+function wxAgain() {
+  if (wxLastSentence) {
+    $('#wx-state').textContent = 'दोबारा सुना रहे हैं।';
+    if (S.selfspeak) speakNow(wxLastSentence);
+    else say('ऐप खुद बोलना बंद है। मौसम ऊपर लिखा हुआ है।');
+    return;
+  }
+  if (!wxPlace) {
+    wxSay('अभी कोई जगह सेव नहीं है। "मेरी जगह का मौसम" दबाएँ, या जगह का नाम लिखकर "मौसम सुनाओ" दबाएँ।');
+    return;
+  }
+  if (wxPlace.kind === 'geo') wxFromGeo();
+  else wxPickPlace(wxPlace);
+}
+
+$('#wx-geo').addEventListener('click', wxFromGeo);
+$('#wx-search').addEventListener('click', wxSearch);
+$('#wx-place').addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') { e.preventDefault(); wxSearch(); }
+});
+$('#wx-clear').addEventListener('click', wxClear);
+$('#wx-again').addEventListener('click', wxAgain);
+$('#wx-stop').addEventListener('click', function () { wxStop(false); });
+window.addEventListener('pagehide', function () { wxStop(true); });
+
+var wxSaved = wxLoad();
+if (wxSaved) {
+  wxPlace = wxSaved;
+  $('#wx-last').textContent = 'पिछली बार की जगह: ' + wxLabel(wxSaved) + '। "दोबारा सुनाओ" दबाने पर उसका ताज़ा मौसम मिलेगा।';
+}
+
 /* ---------- बुक रीडर (.txt फ़ाइल या चिपकाया पाठ) ---------- */
 var BKEY = 'chitti-book-v1';
 var bookParas = [];
@@ -3276,6 +3722,7 @@ function stopAllCams() {
   colStop(false);
   tcStop(false);
   radioStop(true);
+  wxStop(true);
   if (scrRec) scrStop();
   bookRun++;
   bookPlaying = false;
@@ -3297,10 +3744,11 @@ var COMMANDS = [
   { w: ['सेटिंग'], run: function () { goTo('h-settings', 'सेटिंग खुली है।'); } },
   { w: ['होम', 'घर'], run: function () { goTo('h-home', 'होम पेज खुला है।'); } },
   { w: ['रेडियो'], run: function () { goTo('h-radio', 'रेडियो वाला हिस्सा खुला है।'); } },
+  { w: ['मौसम'], run: function () { goTo('h-weather', 'मौसम वाला हिस्सा खुला है। अपनी जगह का मौसम के लिए "मेरी जगह का मौसम" दबाएँ, या देश चुनकर जगह का नाम लिखें।'); } },
   { w: ['पढ़कर', 'सुनाओ', 'सुनाएँ', 'पढ़ो', 'पढ़ें'], run: function () { goTo('h-speak', 'बोलकर सुनाने वाला हिस्सा खुला है। लिखा पाठ यहाँ चिपकाएँ।'); } },
   { w: ['रुको', 'रोको', 'बंद करो', 'चुप'], run: function () { stopAllCams(); notify('#mic-state', 'सब रोक दिया गया।'); } },
   { w: ['मेन्यू'], run: function () { openMenu(); } },
-  { w: ['मदद', 'क्या बोल'], run: function () { notify('#mic-state', 'मेन्यू खोलने के लिए "मेन्यू" बोलें। आदेश: वीडियो जोड़ो, आवाज़ निकालो, मिलाओ, गाना, वोकल रिमूवर, तस्वीर, रंग पहचानें, कैमरा, सेटिंग, होम, पढ़कर सुनाओ, किताब, स्क्रीन रिकॉर्डर, रेडियो, नाम बदलो, रुको।'); } },
+  { w: ['मदद', 'क्या बोल'], run: function () { notify('#mic-state', 'मेन्यू खोलने के लिए "मेन्यू" बोलें। आदेश: वीडियो जोड़ो, आवाज़ निकालो, मिलाओ, गाना, वोकल रिमूवर, तस्वीर, रंग पहचानें, कैमरा, सेटिंग, होम, पढ़कर सुनाओ, किताब, स्क्रीन रिकॉर्डर, रेडियो, मौसम, नाम बदलो, रुको।'); } },
   { w: ['वोकल रिमूवर', 'वोकल'], run: function () { goTo('h-vocal', 'वोकल रिमूवर वाला हिस्सा खुला है। गाने की फ़ाइल चुनें।'); } },
   { w: ['आवाज़'], run: function () { goTo('h-sound', 'आवाज़ वाला हिस्सा खुला है।'); } }
 ];
