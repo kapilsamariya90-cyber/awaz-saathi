@@ -99,6 +99,8 @@ input[type=range] { flex: 1 1 auto; min-width: 0; width: 100%; min-height: 56px;
 .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--surf); }
 .btn:disabled { border-style: dashed; cursor: not-allowed; color: var(--muted); }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0; }
+.book-view { border: 2px solid currentColor; border-radius: 8px; padding: 14px; margin: 12px 0; font-size: 1.2em; line-height: 1.8; min-height: 3em; white-space: pre-wrap; }
+.big-btn { min-height: 56px; min-width: 150px; font-size: 1.15em; }
 .actions .btn { flex: 1 1 200px; }
 .group { margin: 14px 0; }
 .group > p { font-weight: 700; margin-bottom: 8px; }
@@ -197,7 +199,7 @@ html.hc body { background: #fff; color: #000; }
     <button id="mic-btn" type="button" class="btn primary big-mic" aria-describedby="hx-mic" aria-pressed="false" aria-label="बोलकर आदेश देने के लिए दबाएँ">बोलकर काम करें</button>
     <p id="hx-mic" class="hint">दबाने पर फ़ोन सुनने लगेगा। पहली बार फ़ोन माइक्रोफ़ोन की इजाज़त माँग सकता है। बटन दोबारा दबाने पर सुनना बंद होता है।</p>
     <p id="mic-state" class="note" aria-live="polite"></p>
-    <p class="note">बोलने के नमूने: "वीडियो जोड़ो", "आवाज़ निकालो", "मिलाओ", "गाना", "तस्वीर", "रंग पहचानें", "कैमरा", "सेटिंग", "होम", "पढ़कर सुनाओ", "रुको", "मदद"।</p>
+    <p class="note">बोलने के नमूने: "वीडियो जोड़ो", "आवाज़ निकालो", "मिलाओ", "गाना", "तस्वीर", "रंग पहचानें", "कैमरा", "सेटिंग", "होम", "पढ़कर सुनाओ", "किताब", "स्क्रीन रिकॉर्डर", "रुको", "मदद"।</p>
     <p class="note">बोली पहचानने का काम फ़ोन की अपनी बोली-पहचान सेवा करती है। यह सुविधा फ़ोन और ब्राउज़र पर निर्भर है। अगर फ़ोन में नहीं चलती, तो ऐप खुद बोलकर और लिखकर बताएगा।</p>
   </section>
 </div>
@@ -232,7 +234,9 @@ html.hc body { background: #fff; color: #000; }
       <li><strong>वीडियो:</strong> कई वीडियो जोड़ना, वीडियो से आवाज़ निकालना, और वीडियो में नई आवाज़ मिलाना।</li>
       <li><strong>आवाज़:</strong> गाने के साथ अपनी रिकॉर्डिंग, तस्वीर और आवाज़ से वीडियो बनाना, और लिखा पाठ बोलकर सुनाना।</li>
       <li><strong>कैमरे से मदद:</strong> रंग पहचानना और बोलने वाला कैमरा।</li>
-      <li><strong>रेडियो:</strong> आकाशवाणी के कुछ स्टेशन इंटरनेट से सुनना। इंटरनेट न हो तो ऐप बताएगा।</li>
+      <li><strong>रेडियो:</strong> कुछ रेडियो स्टेशन इंटरनेट से सुनना। स्टेशन न चले तो 8 सेकंड में अगला स्टेशन अपने-आप आज़माया जाएगा। इंटरनेट न हो तो ऐप बताएगा।</li>
+      <li><strong>बुक रीडर:</strong> .txt फ़ाइल या चिपकाया पाठ फ़ोन की आवाज़ में अनुच्छेद-दर-अनुच्छेद पढ़ना। पढ़ने की गति, हिंदी या अंग्रेज़ी, और जहाँ रुके थे वहीं से आगे।</li>
+      <li><strong>स्क्रीन रिकॉर्डर:</strong> जिस फ़ोन में अनुमति हो, उसकी स्क्रीन रिकॉर्ड करना, आवाज़ के साथ, और फ़ाइल सेव या शेयर करना। जहाँ यह सुविधा न हो, वहाँ फ़ोन का अपना रिकॉर्डर चलाने के कदम बताए जाएँगे।</li>
       <li><strong>सेटिंग:</strong> अक्षरों का आकार, उच्च कंट्रास्ट, ऐप का रंग, ऐप खुद बोले, पढ़कर सुनाने की भाषा और गति, घोषणाएँ, और प्राइवेसी पॉलिसी।</li>
     </ul>
   </section>
@@ -552,6 +556,118 @@ html.hc body { background: #fff; color: #000; }
   </section>
 </div>
 
+<!-- ===== बुक रीडर ===== -->
+<div id="panel-book" class="panel">
+  <h2 id="h-book" class="panel-title" tabindex="-1">बुक रीडर</h2>
+  <p class="lead">यहाँ अपनी किताब की .txt फ़ाइल चुनें, या पाठ सीधे चिपकाएँ। ऐप उसे अनुच्छेद-दर-अनुच्छेद फ़ोन की आवाज़ में पढ़कर सुनाएगा। फ़ाइल फ़ोन से बाहर कहीं नहीं जाती।</p>
+
+  <section aria-labelledby="h-book-load">
+    <h3 id="h-book-load" class="sec-title">किताब चुनें</h3>
+    <label for="book-file">.txt फ़ाइल चुनें</label>
+    <input type="file" id="book-file" accept=".txt,text/plain" aria-describedby="hx-book-file">
+    <p id="hx-book-file" class="hint">फ़ोन की फ़ाइलों में से .txt फ़ाइल चुनें। PDF और EPUB फ़ाइलें इस ऐप में अभी नहीं पढ़ी जातीं। उनका पाठ कॉपी करके नीचे चिपकाएँ।</p>
+    <label for="book-text">या पाठ यहाँ चिपकाएँ</label>
+    <textarea id="book-text" class="big-text" rows="6" aria-describedby="hx-book-text"></textarea>
+    <p id="hx-book-text" class="hint">किताब का पाठ यहाँ चिपकाएँ। फ़ाइल चुनी हो तो वही लोड होगी।</p>
+    <button id="book-load" type="button" class="btn primary" aria-describedby="hx-book-load-btn">किताब लोड करें</button>
+    <p id="hx-book-load-btn" class="hint">दबाने पर चुनी फ़ाइल या चिपकाया पाठ तैयार होगा। पढ़ने की जगह फ़ोन में याद रहेगी।</p>
+    <p id="book-status" class="status" aria-live="polite"></p>
+  </section>
+
+  <section aria-labelledby="h-book-set">
+    <h3 id="h-book-set" class="sec-title">भाषा और गति</h3>
+    <label for="book-lang">पढ़ने की भाषा</label>
+    <select id="book-lang" aria-describedby="hx-book-lang" class="big">
+      <option value="hi-IN" selected>हिंदी</option>
+      <option value="en-IN">अंग्रेज़ी (भारत)</option>
+    </select>
+    <p id="hx-book-lang" class="hint">किताब हिंदी में है तो हिंदी, अंग्रेज़ी में है तो अंग्रेज़ी चुनें। फ़ोन में उस भाषा की आवाज़ होनी चाहिए।</p>
+    <label for="book-rate">पढ़ने की गति (0.5 से 2 गुना)</label>
+    <input id="book-rate" type="range" min="0.5" max="2" step="0.1" value="1" aria-describedby="hx-book-rate">
+    <p id="hx-book-rate" class="hint">स्लाइडर दाएँ खिसकाएँ तो तेज़, बाएँ खिसकाएँ तो धीमा पढ़ेगा। बदलते ही अगले वाक्य से असर होगा।</p>
+    <p class="note">अभी गति: <span id="book-rate-val">1.0</span> गुना</p>
+  </section>
+
+  <section aria-labelledby="h-book-play">
+    <h3 id="h-book-play" class="sec-title">पढ़ना और चलाना</h3>
+    <p id="book-now" class="note" aria-live="polite">अभी कोई किताब नहीं खुली है।</p>
+    <div id="book-view" class="book-view" role="region" aria-label="चालू अनुच्छेद" aria-describedby="hx-book-view"></div>
+    <p id="hx-book-view" class="hint">यहाँ चालू अनुच्छेद का पाठ दिखता है।</p>
+    <div class="actions">
+      <button id="book-play" type="button" class="btn primary big-btn" aria-describedby="hx-book-play">पढ़ना शुरू</button>
+      <button id="book-pause" type="button" class="btn big-btn" aria-describedby="hx-book-pause">रोकें / जारी</button>
+    </div>
+    <p id="hx-book-play" class="hint">पढ़ना शुरू: चालू अनुच्छेद से फ़ोन की आवाज़ में पढ़कर सुनाता है और आगे बढ़ता जाता है।</p>
+    <p id="hx-book-pause" class="hint">रोकें / जारी: बोलना रोकता है। दोबारा दबाने पर वहीं से आगे पढ़ता है। पढ़ते समय कोई और बटन छूने पर ऐप उसका नाम बोल सकता है, तब "रोकें / जारी" दबाकर फिर सुनें।</p>
+    <div class="actions">
+      <button id="book-prev" type="button" class="btn big-btn" aria-describedby="hx-book-nav">पिछला अनुच्छेद</button>
+      <button id="book-next" type="button" class="btn big-btn" aria-describedby="hx-book-nav">अगला अनुच्छेद</button>
+    </div>
+    <p id="hx-book-nav" class="hint">पिछला या अगला अनुच्छेद: एक अनुच्छेद पीछे या आगे जाता है। पढ़ते समय हो तो वहीं से पढ़ने लगता है।</p>
+    <p id="book-pos" class="note" aria-live="polite"></p>
+  </section>
+
+  <section aria-labelledby="h-book-note">
+    <h3 id="h-book-note" class="sec-title">ध्यान रखें</h3>
+    <p class="note">आवाज़ आपके फ़ोन की अपनी टेक्स्ट-टू-स्पीच से आती है। किताब बहुत लंबी हो तो शुरू होने में थोड़ा समय लग सकता है।</p>
+    <p class="note">आपकी आख़िरी पढ़ी जगह इसी फ़ोन में सेव होती है। वही किताब दोबारा लोड करने पर वहीं से शुरू होगी।</p>
+  </section>
+</div>
+
+<!-- ===== स्क्रीन रिकॉर्डर ===== -->
+<div id="panel-screen" class="panel">
+  <h2 id="h-screen" class="panel-title" tabindex="-1">स्क्रीन रिकॉर्डर</h2>
+  <p class="lead">यहाँ फ़ोन की स्क्रीन रिकॉर्ड की जा सकती है, अगर फ़ोन और ब्राउज़र इसकी इजाज़त दें। रिकॉर्डिंग फ़ोन में ही रहती है, कहीं अपलोड नहीं होती।</p>
+
+  <div id="screen-unsupported" hidden>
+    <section aria-labelledby="h-screen-no">
+      <h3 id="h-screen-no" class="sec-title">इस फ़ोन में क्या है</h3>
+      <p id="screen-no-msg" class="status">इस फ़ोन/ब्राउज़र में स्क्रीन रिकॉर्डिंग ऐप के अंदर से नहीं हो सकती।</p>
+      <button id="screen-explain" type="button" class="btn primary big-btn" aria-describedby="hx-screen-explain">यह संदेश और तरीका सुनें</button>
+      <p id="hx-screen-explain" class="hint">दबाने पर यही संदेश फ़ोन की आवाज़ में सुनाया जाएगा।</p>
+    </section>
+
+    <section aria-labelledby="h-screen-steps">
+      <h3 id="h-screen-steps" class="sec-title">फ़ोन का अपना रिकॉर्डर कैसे चलाएँ</h3>
+      <p class="note"><strong>सैमसंग फ़ोन:</strong> स्क्रीन के ऊपर से दो उँगलियों से नीचे खींचें। फिर Quick Panel में "स्क्रीन रिकॉर्डर" बटन दबाएँ।</p>
+      <p class="note"><strong>दूसरे Android फ़ोन:</strong> स्क्रीन के ऊपर से नीचे खींचकर Quick Settings खोलें। वहाँ "स्क्रीन रिकॉर्ड" टाइल दबाएँ।</p>
+      <p class="note">रिकॉर्डिंग रोकने के लिए स्क्रीन के ऊपर दिखने वाली सूचना-पट्टी में रिकॉर्डिंग का "रोकें" बटन दबाएँ। बटनों के नाम आपके फ़ोन के हिसाब से थोड़े अलग हो सकते हैं।</p>
+    </section>
+  </div>
+
+  <div id="screen-supported" hidden>
+    <section aria-labelledby="h-screen-set">
+      <h3 id="h-screen-set" class="sec-title">सेटिंग</h3>
+      <label class="choice"><input type="checkbox" id="screen-mic" aria-describedby="hx-screen-mic"> <span>अपनी आवाज़ भी रिकॉर्ड करें</span></label>
+      <p id="hx-screen-mic" class="hint">चालू करने पर माइक से आपकी आवाज़ भी रिकॉर्ड होगी। बंद हो तो सिर्फ़ स्क्रीन रिकॉर्ड होगी।</p>
+      <label for="screen-quality">रिकॉर्डिंग की क्वालिटी</label>
+      <select id="screen-quality" aria-describedby="hx-screen-quality" class="big">
+        <option value="1000000">कम (छोटी फ़ाइल)</option>
+        <option value="2500000" selected>सामान्य</option>
+        <option value="5000000">अच्छी (बड़ी फ़ाइल)</option>
+      </select>
+      <p id="hx-screen-quality" class="hint">क्वालिटी जितनी अच्छी, फ़ाइल उतनी बड़ी होगी और फ़ोन की जगह ज़्यादा लगेगी।</p>
+    </section>
+
+    <section aria-labelledby="h-screen-do">
+      <h3 id="h-screen-do" class="sec-title">रिकॉर्ड करना</h3>
+      <div class="actions">
+        <button id="screen-start" type="button" class="btn primary big-btn" aria-describedby="hx-screen-start">रिकॉर्डिंग शुरू करें</button>
+        <button id="screen-stop" type="button" class="btn big-btn" aria-describedby="hx-screen-stop" disabled>रिकॉर्डिंग रोकें</button>
+      </div>
+      <p id="hx-screen-start" class="hint">दबाने पर फ़ोन पूछेगा कि कौन-सी स्क्रीन रिकॉर्ड करनी है। "शेयर" या "अनुमति दें" चुनें।</p>
+      <p id="hx-screen-stop" class="hint">रिकॉर्डिंग रोकने पर वीडियो तैयार होगा और नीचे सेव या शेयर करने के बटन दिखेंगे।</p>
+      <div class="actions">
+        <a id="screen-save" class="btn big-btn" aria-describedby="hx-screen-save" hidden>रिकॉर्डिंग सेव करें</a>
+        <button id="screen-share" type="button" class="btn big-btn" aria-describedby="hx-screen-share" hidden>रिकॉर्डिंग शेयर करें</button>
+      </div>
+      <p id="hx-screen-save" class="hint">सेव करने पर फ़ाइल फ़ोन की डाउनलोड फ़ोल्डर में जाएगी।</p>
+      <p id="hx-screen-share" class="hint">शेयर करने पर फ़ोन का शेयर मेन्यू खुलेगा, जहाँ से आप फ़ाइल किसी ऐप में भेज सकते हैं।</p>
+      <p id="screen-state" class="status" aria-live="polite"></p>
+    </section>
+  </div>
+</div>
+
 <!-- ===== सेटिंग (हमेशा आख़िरी) ===== -->
 <div id="panel-settings" class="panel">
   <h2 id="h-settings" class="panel-title" tabindex="-1">सेटिंग</h2>
@@ -646,6 +762,8 @@ html.hc body { background: #fff; color: #000; }
       <p><strong>9. कैमरा:</strong> कैमरा सिर्फ़ तब चलता है जब आप "रंग पहचानें" या "बोलने वाला कैमरा" वाला हिस्सा खोलकर उसका बटन दबाते हैं। कैमरे की तस्वीर फ़ोन में ही, उसी समय देखी जाती है और किसी सर्वर पर नहीं भेजी जाती। कोई तस्वीर तभी बनती या सेव होती है जब आप "फ़ोटो लें" या सेव करने वाला बटन दबाते हैं। कैमरा बंद करने या ऐप छोड़ने पर कैमरा बंद हो जाता है।</p>
       <p><strong>10. बोलकर आदेश:</strong> "बोलकर काम करें" चालू करने पर आपकी बोली फ़ोन की अपनी बोली-पहचान सेवा से समझी जाती है। वह सेवा फ़ोन या ब्राउज़र की अपनी है, और उसकी अपनी प्राइवेसी नियम लागू होते हैं। आवाज़ साथी उस सेवा को आदेश के सिवा कुछ नहीं भेजता।</p>
       <p><strong>11. रेडियो:</strong> रेडियो वाला हिस्सा चुने हुए स्टेशन इंटरनेट से चलाता है। स्टेशन के सर्वर से जुड़ते समय उस संस्था को आपके फ़ोन का इंटरनेट पता (IP address) दिखता है, जैसे किसी भी स्ट्रीमिंग में होता है। आवाज़ साथी यह पता अपने पास नहीं रखता और आपका कोई निजी डेटा इकट्ठा नहीं करता। आख़िरी चुना स्टेशन सिर्फ़ आपके फ़ोन में सेव होता है।</p>
+      <p><strong>12. बुक रीडर:</strong> आप जो .txt फ़ाइल या पाठ चुनते या चिपकाते हैं, वह आपके फ़ोन में ही पढ़ा जाता है। वह किसी सर्वर पर नहीं भेजा जाता। पढ़ने की जगह (कौन-सा अनुच्छेद) सिर्फ़ आपके फ़ोन के ब्राउज़र में सेव होती है। "पढ़ना" की आवाज़ फ़ोन की अपनी बोलकर सुनाने वाली सेवा से आती है।</p>
+      <p><strong>13. स्क्रीन रिकॉर्डर:</strong> स्क्रीन रिकॉर्डिंग सिर्फ़ आपके फ़ोन में बनती है और कहीं अपलोड नहीं होती। आवाज़ रिकॉर्ड करने के लिए माइक्रोफ़ोन की अनुमति आप खुद देते हैं। रिकॉर्डिंग तभी बनती है जब आप शुरू करने का बटन दबाते हैं, और फ़ाइल आप खुद सेव या शेयर करते हैं।</p>
       <p>अंतिम अपडेट: 26 नवंबर 2026.</p>
       <button id="privacy-close" type="button" class="btn" aria-describedby="hx-privacy-close">बंद करें और सेटिंग पर लौटें</button>
       <p id="hx-privacy-close" class="hint">दबाने पर पॉलिसी बंद होगी और फ़ोकस फिर "प्राइवेसी पॉलिसी पढ़ें" बटन पर चला जाएगा।</p>
@@ -1835,16 +1953,29 @@ document.addEventListener('focusin', selfSpeakFor);
 
 /* ---------- रेडियो (इंटरनेट से आकाशवाणी के स्टेशन) ---------- */
 var RKEY = 'chitti-radio-v1';
+/* हर स्टेशन का पता जाँचा गया है (सर्वर की तरफ़ से)। hls: true वाले स्टेशन (.m3u8) के लिए hls.js ज़रूरी है। */
 var RADIO_STATIONS = [
-  { id: 'vb-cuttack', name: 'आकाशवाणी विविध भारती – कटक', country: 'IN', lang: 'hi', url: 'https://air.pc.cdn.bitgravity.com/air/live/pbaudio001/playlist.m3u8' },
-  { id: 'vb-hyderabad', name: 'आकाशवाणी विविध भारती – हैदराबाद', country: 'IN', lang: 'hi', url: 'https://air.pc.cdn.bitgravity.com/air/live/pbaudio034/playlist.m3u8' },
-  { id: 'rb-delhi', name: 'आकाशवाणी एफ़एम रेनबो – दिल्ली', country: 'IN', lang: 'hi', url: 'https://d3r9rhourdc02u.cloudfront.net/assets/radio/airdelhi02/air002_Auto.m3u8' },
-  { id: 'rb-chennai', name: 'आकाशवाणी एफ़एम रेनबो – चेन्नई', country: 'IN', lang: 'ta', url: 'https://air.pc.cdn.bitgravity.com/air/live/pbaudio022/playlist.m3u8' },
-  { id: 'gold-chennai', name: 'आकाशवाणी एफ़एम गोल्ड – चेन्नई', country: 'IN', lang: 'ta', url: 'https://air.pc.cdn.bitgravity.com/air/live/pbaudio021/playlist.m3u8' }
+  { id: 'big927', name: 'बिग एफ़एम 92.7', country: 'IN', lang: 'hi', url: 'https://stream.zeno.fm/dbstwo3dvhhtv' },
+  { id: 'hungama-dilse', name: 'रेडियो हंगामा – बॉलीवुड दिल से', country: 'IN', lang: 'hi', url: 'https://stream.zeno.fm/143d7gty24zuv' },
+  { id: 'hindi-gold', name: 'हिंदी गोल्ड रेडियो', country: 'IN', lang: 'hi', url: 'https://azuracast.vibesounds.in:8010/radio.mp3' },
+  { id: 'suno-1024', name: 'रेडियो सुनो 1024 FM', country: 'IN', lang: 'hi', url: 'https://eu8.fastcast4u.com/proxy/clyedupq/stream' },
+  { id: 'mixify-hits', name: 'मिक्सिफ़ाई हिंदी हिट्स', country: 'IN', lang: 'hi', url: 'https://server.mixify.in/listen/new_hits/radio.mp3' },
+  { id: 'gyansthali', name: 'ज्ञानस्थली रेडियो', country: 'IN', lang: 'hi', url: 'https://streamasiacdn.atc-labs.com/gyansthali.aac' },
+  { id: 'suno-sharda', name: 'सुनो शारदा रेडियो', country: 'IN', lang: 'hi', url: 'https://streamasiacdn.atc-labs.com/shardaradio.aac' },
+  { id: 'vb-cuttack', name: 'आकाशवाणी विविध भारती – कटक', country: 'IN', lang: 'hi', hls: true, url: 'https://air.pc.cdn.bitgravity.com/air/live/pbaudio001/playlist.m3u8' },
+  { id: 'vb-hyderabad', name: 'आकाशवाणी विविध भारती – हैदराबाद', country: 'IN', lang: 'hi', hls: true, url: 'https://air.pc.cdn.bitgravity.com/air/live/pbaudio034/playlist.m3u8' },
+  { id: 'rb-delhi', name: 'आकाशवाणी एफ़एम रेनबो – दिल्ली', country: 'IN', lang: 'hi', hls: true, url: 'https://d3r9rhourdc02u.cloudfront.net/assets/radio/airdelhi02/air002_Auto.m3u8' },
+  { id: 'rb-chennai', name: 'आकाशवाणी एफ़एम रेनबो – चेन्नई', country: 'IN', lang: 'ta', hls: true, url: 'https://air.pc.cdn.bitgravity.com/air/live/pbaudio022/playlist.m3u8' },
+  { id: 'gold-chennai', name: 'आकाशवाणी एफ़एम गोल्ड – चेन्नई', country: 'IN', lang: 'ta', hls: true, url: 'https://air.pc.cdn.bitgravity.com/air/live/pbaudio021/playlist.m3u8' }
 ];
+var RADIO_STALL_MS = 8000;
+var HLS_LIB = ['https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.5.13/hls.min.js', 'https://cdn.jsdelivr.net/npm/hls.js@1.5.13/dist/hls.min.js'];
 var radioPick = null;
 var radioWanted = false;
 var radioRetry = false;
+var radioTried = [];
+var radioStallTimer = 0;
+var radioHls = null;
 var radioAudio = $('#radio-audio');
 
 function radioSaveLast(st) {
@@ -1887,11 +2018,86 @@ function radioRender() {
     ? items.length + ' स्टेशन मिले।'
     : 'इन चुनावों में कोई स्टेशन नहीं मिला। देश, भाषा या खोज बदलकर देखें।';
 }
-function radioLoad() {
-  radioAudio.src = radioPick.url;
-  radioAudio.load();
+function radioClearStall() {
+  if (radioStallTimer) { window.clearTimeout(radioStallTimer); radioStallTimer = 0; }
+}
+function radioStartStall() {
+  radioClearStall();
+  radioStallTimer = window.setTimeout(function () {
+    radioStallTimer = 0;
+    radioFailover('यह स्टेशन आठ सेकंड से नहीं चल रहा।');
+  }, RADIO_STALL_MS);
+}
+function radioDetachHls() {
+  if (radioHls) { try { radioHls.destroy(); } catch (e) { /* बंद करते समय गड़बड़ी छोड़ दें */ } radioHls = null; }
+}
+function radioPlayAudio() {
   var p = radioAudio.play();
-  if (p && p.catch) p.catch(function () { /* असली कारण 'error' घटना में दिखेगा */ });
+  if (p && p.catch) p.catch(function () { /* असली कारण 'error' या स्टॉल वाली जाँच में दिखेगा */ });
+}
+/* hls.js फ़ोन में पहले से है, या पहली बार इंटरनेट से लोड होती है। */
+function radioLoadHlsLib(cb) {
+  if (window.Hls) { cb(true); return; }
+  var i = 0;
+  function tryNext() {
+    if (i >= HLS_LIB.length) { cb(false); return; }
+    var s = document.createElement('script');
+    s.src = HLS_LIB[i];
+    i++;
+    s.onload = function () { cb(!!window.Hls); };
+    s.onerror = tryNext;
+    document.head.appendChild(s);
+  }
+  tryNext();
+}
+function radioNeedsHls(st) {
+  return !!st.hls && !radioAudio.canPlayType('application/vnd.apple.mpegurl');
+}
+function radioLoad() {
+  var st = radioPick;
+  radioDetachHls();
+  radioStartStall();
+  if (radioNeedsHls(st)) {
+    radioLoadHlsLib(function (ok) {
+      if (!radioWanted || radioPick !== st) return;
+      if (!ok) { radioFailover('इस स्टेशन के लिए ज़रूरी सॉफ़्टवेयर इंटरनेट से नहीं खुल सका।'); return; }
+      radioDetachHls();
+      radioHls = new window.Hls({ enableWorker: false });
+      radioHls.on(window.Hls.Events.ERROR, function (ev, data) {
+        if (data && data.fatal) radioFailover('यह स्टेशन अभी नहीं चल रहा।');
+      });
+      radioHls.loadSource(st.url);
+      radioHls.attachMedia(radioAudio);
+      radioPlayAudio();
+    });
+    return;
+  }
+  radioAudio.src = st.url;
+  radioAudio.load();
+  radioPlayAudio();
+}
+/* स्टेशन न चले तो अगला स्टेशन अपने-आप; सबके बाद रुककर बताना */
+function radioFailover(why) {
+  radioClearStall();
+  if (!radioWanted || !radioPick) return;
+  if (navigator.onLine === false) { radioOffline(); return; }
+  radioDetachHls();
+  radioAudio.pause();
+  if (radioTried.indexOf(radioPick.id) === -1) radioTried.push(radioPick.id);
+  var next = null;
+  for (var i = 0; i < RADIO_STATIONS.length; i++) {
+    if (radioTried.indexOf(RADIO_STATIONS[i].id) === -1) { next = RADIO_STATIONS[i]; break; }
+  }
+  if (!next) {
+    radioStop(true);
+    notify('#radio-state', why + ' सभी स्टेशन आज़माए, कोई नहीं चल पाया। इंटरनेट जाँचें और थोड़ी देर बाद "फिर से शुरू करें" दबाएँ।');
+    return;
+  }
+  radioPick = next;
+  radioSaveLast(next);
+  $('#radio-now').textContent = 'शुरू हो रहा है: ' + next.name;
+  notify('#radio-state', why + ' अगला स्टेशन आज़मा रहे हैं: ' + next.name + '।');
+  radioLoad();
 }
 function radioOffline() {
   radioRetry = true;
@@ -1900,7 +2106,7 @@ function radioOffline() {
   notify('#radio-state', 'इंटरनेट से कनेक्ट करो');
 }
 function radioPlay(st) {
-  if (st) { radioPick = st; radioSaveLast(st); }
+  if (st) { radioPick = st; radioSaveLast(st); radioTried = []; }
   if (!radioPick) { notify('#radio-state', 'पहले कोई स्टेशन चुनें।'); return; }
   radioWanted = true;
   radioRetry = false;
@@ -1913,6 +2119,8 @@ function radioPlay(st) {
 function radioStop(quiet) {
   radioWanted = false;
   radioRetry = false;
+  radioClearStall();
+  radioDetachHls();
   radioAudio.pause();
   radioAudio.removeAttribute('src');
   radioAudio.load();
@@ -1924,15 +2132,16 @@ function radioStop(quiet) {
 radioAudio.addEventListener('playing', function () {
   if (radioWanted && radioPick) {
     radioRetry = false;
+    radioClearStall();
     $('#radio-now').textContent = 'चल रहा है: ' + radioPick.name;
   }
 });
+radioAudio.addEventListener('waiting', function () { if (radioWanted) radioStartStall(); });
 radioAudio.addEventListener('error', function () {
   if (!radioWanted) return;
   if (navigator.onLine === false) { radioOffline(); return; }
   radioRetry = false;
-  $('#radio-now').textContent = 'यह स्टेशन अभी नहीं चल रहा।';
-  notify('#radio-state', 'यह स्टेशन अभी नहीं चल रहा। फिर से शुरू करें दबाएँ, या दूसरा स्टेशन चुनें।');
+  radioFailover('यह स्टेशन अभी नहीं चल रहा।');
 });
 $('#radio-country').addEventListener('change', radioRender);
 $('#radio-lang').addEventListener('change', radioRender);
@@ -1951,6 +2160,313 @@ if (radioLast) {
   radioPick = radioLast;
   $('#radio-now').textContent = 'पिछली बार का स्टेशन: ' + radioLast.name + '। फिर से सुनने के लिए "फिर से शुरू करें" दबाएँ।';
 }
+
+/* ---------- बुक रीडर (.txt फ़ाइल या चिपकाया पाठ) ---------- */
+var BKEY = 'chitti-book-v1';
+var bookParas = [];
+var bookPi = 0;
+var bookSi = 0;
+var bookRun = 0;
+var bookPlaying = false;
+var bookName = '';
+var bookKey = '';
+
+function bookStatus(msg) { $('#book-status').textContent = msg; say(msg); }
+
+/* पाठ को अनुच्छेदों में बाँटें; बहुत लंबे अनुच्छेद को छोटे हिस्सों में */
+function bookSplit(text) {
+  var out = [];
+  text.replace(/\r/g, '').split(/\n\s*\n/).forEach(function (p) {
+    var t = oneLine(p);
+    if (!t) return;
+    if (t.length <= 600) { out.push(t); return; }
+    var cur = '';
+    chunkText(t).forEach(function (s) {
+      if (cur && (cur + ' ' + s).length > 500) { out.push(cur); cur = s; }
+      else cur = cur ? cur + ' ' + s : s;
+    });
+    if (cur) out.push(cur);
+  });
+  return out;
+}
+function bookSave() {
+  try { window.localStorage.setItem(BKEY, JSON.stringify({ key: bookKey, pi: bookPi })); } catch (e) { /* सेव न हो तो भी पढ़ना चलेगा */ }
+}
+function bookRestore() {
+  try {
+    var o = JSON.parse(window.localStorage.getItem(BKEY) || 'null');
+    if (o && o.key === bookKey && typeof o.pi === 'number' && o.pi >= 0 && o.pi < bookParas.length) return o.pi;
+  } catch (e) { /* स्टोरेज बंद हो तो शुरू से */ }
+  return 0;
+}
+function bookShow() {
+  if (!bookParas.length) {
+    $('#book-view').textContent = '';
+    $('#book-now').textContent = 'अभी कोई किताब नहीं खुली है।';
+    $('#book-pos').textContent = '';
+    return;
+  }
+  $('#book-view').textContent = bookParas[bookPi];
+  $('#book-now').textContent = 'खुली किताब: ' + bookName;
+  $('#book-pos').textContent = 'अनुच्छेद ' + (bookPi + 1) + ' कुल ' + bookParas.length + ' में से';
+}
+function bookVoiceOK() {
+  if (!speechOK) { bookStatus('इस फ़ोन में बोलकर सुनाने की सुविधा नहीं है। Chrome ब्राउज़र में खोलकर देखें।'); return false; }
+  if (!speechVoices.length) speechVoices = window.speechSynthesis.getVoices() || [];
+  if (!speechVoices.length) { bookStatus('फ़ोन की आवाज़ों की सूची अभी नहीं आई। थोड़ी देर बाद फिर दबाएँ।'); return false; }
+  if (!voiceFor($('#book-lang').value)) {
+    bookStatus('इस भाषा की आवाज़ इस फ़ोन में नहीं मिली। फ़ोन की टेक्स्ट-टू-स्पीच सेटिंग में यह भाषा डाउनलोड करें, या दूसरी भाषा चुनें।');
+    return false;
+  }
+  return true;
+}
+/* एक-एक वाक्य बोलना; हर वाक्य के बाद अगला। रुकने या बदलने पर पुराना दौर अपने-आप बंद। */
+function bookSpeakSent(run) {
+  if (run !== bookRun) return;
+  if (bookPi >= bookParas.length) {
+    bookPi = 0; bookSi = 0; bookPlaying = false;
+    bookSave(); bookShow();
+    bookStatus('पूरी किताब पढ़ दी गई। शुरू से पढ़ने के लिए "पढ़ना शुरू" दबाएँ।');
+    return;
+  }
+  var sents = chunkText(bookParas[bookPi]);
+  if (bookSi >= sents.length) {
+    bookPi++; bookSi = 0;
+    bookSave(); bookShow();
+    bookSpeakSent(run);
+    return;
+  }
+  var u = new SpeechSynthesisUtterance(sents[bookSi]);
+  u.lang = $('#book-lang').value;
+  var v = voiceFor(u.lang);
+  if (v) u.voice = v;
+  u.rate = +$('#book-rate').value;
+  u.volume = (typeof speechVol === 'number') ? speechVol : 1;
+  u.onend = function () {
+    if (run !== bookRun) return;
+    bookSi++;
+    bookSpeakSent(run);
+  };
+  u.onerror = function (e) {
+    if (run !== bookRun) return;
+    var code = e && e.error;
+    if (code === 'interrupted' || code === 'canceled') return;
+    bookPlaying = false;
+    bookStatus('आवाज़ में दिक्कत आई। "पढ़ना शुरू" दबाकर फिर कोशिश करें।');
+  };
+  window.speechSynthesis.speak(u);
+}
+function bookStart() {
+  if (!bookVoiceOK()) return;
+  bookRun++;
+  window.speechSynthesis.cancel();
+  bookPlaying = true;
+  bookSpeakSent(bookRun);
+  bookStatus('पढ़ रहे हैं। रोकने के लिए "रोकें / जारी" दबाएँ।');
+}
+function bookPause() {
+  if (!bookParas.length) { bookStatus('पहले किताब लोड करें।'); return; }
+  if (!bookPlaying) { bookStart(); return; }
+  bookRun++;
+  bookPlaying = false;
+  window.speechSynthesis.cancel();
+  bookSave();
+  var msg = 'रोक दिया गया। "रोकें / जारी" दबाने पर यहीं से आगे पढ़ेंगे।';
+  bookStatus(msg);
+  speakNow(msg);
+}
+function bookMove(d) {
+  if (!bookParas.length) { bookStatus('पहले किताब लोड करें।'); return; }
+  var n = bookPi + d;
+  if (n < 0) { bookStatus('यह पहला अनुच्छेद है।'); return; }
+  if (n >= bookParas.length) { bookStatus('यह आख़िरी अनुच्छेद है।'); return; }
+  var was = bookPlaying;
+  bookRun++;
+  window.speechSynthesis.cancel();
+  bookPi = n; bookSi = 0;
+  bookSave(); bookShow();
+  if (was) {
+    bookPlaying = true;
+    bookSpeakSent(bookRun);
+    bookStatus('अनुच्छेद ' + (bookPi + 1) + ' से पढ़ रहे हैं।');
+  } else {
+    bookStatus('अनुच्छेद ' + (bookPi + 1) + ' चुना गया। "पढ़ना शुरू" दबाकर सुनें।');
+  }
+}
+function bookLoad(text, name) {
+  var paras = bookSplit(text.replace(/^﻿/, ''));
+  if (!paras.length) { bookStatus('इस पाठ में कुछ लिखा नहीं मिला। फ़ाइल या चिपकाया पाठ दोबारा जाँचें।'); return; }
+  bookRun++;
+  bookPlaying = false;
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  bookParas = paras;
+  bookName = name;
+  bookKey = name + '|' + paras.length + '|' + paras[0].slice(0, 30);
+  bookPi = bookRestore();
+  bookSi = 0;
+  bookSave();
+  bookShow();
+  bookStatus(bookPi > 0
+    ? 'किताब तैयार है। पिछली बार अनुच्छेद ' + (bookPi + 1) + ' पर थे। "पढ़ना शुरू" दबाएँ।'
+    : 'किताब तैयार है। कुल ' + paras.length + ' अनुच्छेद। "पढ़ना शुरू" दबाएँ।');
+}
+
+$('#book-load').addEventListener('click', function () {
+  var f = $('#book-file').files && $('#book-file').files[0];
+  if (f) {
+    if (!/\.txt$/i.test(f.name) && f.type !== 'text/plain') {
+      bookStatus('इस फ़ाइल को ऐप अभी नहीं पढ़ता। .txt फ़ाइल चुनें, या पाठ कॉपी करके नीचे चिपकाएँ।');
+      return;
+    }
+    var r = new FileReader();
+    r.onload = function () { bookLoad(String(r.result || ''), f.name); };
+    r.onerror = function () { bookStatus('फ़ाइल नहीं पढ़ी जा सकी। कोई दूसरी .txt फ़ाइल चुनें।'); };
+    r.readAsText(f, 'utf-8');
+    return;
+  }
+  var t = $('#book-text').value;
+  if (!t.trim()) { bookStatus('पहले .txt फ़ाइल चुनें या पाठ चिपकाएँ।'); return; }
+  bookLoad(t, 'चिपकाया गया पाठ');
+});
+$('#book-play').addEventListener('click', function () {
+  if (!bookParas.length) { bookStatus('पहले किताब लोड करें।'); return; }
+  bookSi = 0;
+  bookStart();
+});
+$('#book-pause').addEventListener('click', bookPause);
+$('#book-prev').addEventListener('click', function () { bookMove(-1); });
+$('#book-next').addEventListener('click', function () { bookMove(1); });
+function bookRateShow() {
+  var v = +$('#book-rate').value;
+  $('#book-rate-val').textContent = v.toFixed(1);
+  $('#book-rate').setAttribute('aria-valuetext', v.toFixed(1) + ' गुना');
+}
+$('#book-rate').addEventListener('input', bookRateShow);
+bookRateShow();
+window.addEventListener('pagehide', function () {
+  bookRun++;
+  bookPlaying = false;
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+});
+
+/* ---------- स्क्रीन रिकॉर्डर (सिर्फ़ जहाँ फ़ोन/ब्राउज़र सहारा दे) ---------- */
+var SCREEN_OK = !!(navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia && window.MediaRecorder);
+var SCREEN_NO = 'इस फ़ोन/ब्राउज़र में स्क्रीन रिकॉर्डिंग ऐप के अंदर से नहीं हो सकती। नीचे दिए तरीके से फ़ोन का अपना रिकॉर्डर चलाएँ। सैमसंग फ़ोन में दो उँगलियों से ऊपर से नीचे खींचकर Quick Panel में "स्क्रीन रिकॉर्डर" दबाएँ। दूसरे Android फ़ोन में ऊपर से नीचे खींचकर "स्क्रीन रिकॉर्ड" टाइल दबाएँ।';
+var scrRec = null;
+var scrStream = null;
+var scrMicStream = null;
+var scrChunks = [];
+var scrBlob = null;
+var scrUrl = '';
+var scrName = '';
+var scrType = '';
+
+function scrCleanTracks() {
+  [scrStream, scrMicStream].forEach(function (s) {
+    if (s && s.getTracks) s.getTracks().forEach(function (t) { t.stop(); });
+  });
+  scrStream = null;
+  scrMicStream = null;
+}
+function scrMime() {
+  if (!window.MediaRecorder || !window.MediaRecorder.isTypeSupported) return '';
+  var list = ['video/webm;codecs=vp8,opus', 'video/webm', 'video/mp4'];
+  for (var i = 0; i < list.length; i++) {
+    if (window.MediaRecorder.isTypeSupported(list[i])) return list[i];
+  }
+  return '';
+}
+function scrBegin(disp, mic, bps, micFailed) {
+  scrMicStream = mic;
+  var tracks = disp.getVideoTracks().slice();
+  if (mic) mic.getAudioTracks().forEach(function (t) { tracks.push(t); });
+  var opts = { videoBitsPerSecond: bps };
+  var m = scrMime();
+  if (m) opts.mimeType = m;
+  try {
+    scrRec = new window.MediaRecorder(new window.MediaStream(tracks), opts);
+  } catch (e) {
+    scrCleanTracks();
+    scrRec = null;
+    notify('#screen-state', 'इस फ़ोन में यह रिकॉर्डिंग नहीं चल सकी। फ़ोन का अपना रिकॉर्डर आज़माएँ।');
+    return;
+  }
+  scrChunks = [];
+  scrType = scrRec.mimeType || m || 'video/webm';
+  scrRec.ondataavailable = function (e) { if (e.data && e.data.size) scrChunks.push(e.data); };
+  scrRec.onstop = scrFinish;
+  disp.getVideoTracks().forEach(function (t) { t.onended = function () { scrStop(); }; });
+  scrRec.start(1000);
+  $('#screen-start').disabled = true;
+  $('#screen-stop').disabled = false;
+  $('#screen-save').setAttribute('hidden', '');
+  $('#screen-share').setAttribute('hidden', '');
+  notify('#screen-state', 'रिकॉर्डिंग शुरू हो गई।' + (micFailed ? ' माइक नहीं चला, इसलिए आवाज़ नहीं जुड़ेगी।' : (mic ? ' आपकी आवाज़ भी रिकॉर्ड हो रही है।' : '')));
+}
+function scrStart() {
+  if (!SCREEN_OK) { notify('#screen-no-msg', SCREEN_NO); return; }
+  if (scrRec) { notify('#screen-state', 'रिकॉर्डिंग पहले से चल रही है।'); return; }
+  var wantMic = $('#screen-mic').checked;
+  var bps = +$('#screen-quality').value;
+  notify('#screen-state', 'स्क्रीन साझा करने की इजाज़त माँगी जा रही है।');
+  navigator.mediaDevices.getDisplayMedia({ video: true, audio: false }).then(function (disp) {
+    scrStream = disp;
+    if (!wantMic || !navigator.mediaDevices.getUserMedia) { scrBegin(disp, null, bps, wantMic); return; }
+    navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(function (mic) {
+      scrBegin(disp, mic, bps, false);
+    }, function () {
+      scrBegin(disp, null, bps, true);
+    });
+  }, function () {
+    notify('#screen-state', 'स्क्रीन रिकॉर्डिंग शुरू नहीं हुई। जब फ़ोन पूछे, तो स्क्रीन साझा करने की इजाज़त दें।');
+  });
+}
+function scrStop() {
+  if (!scrRec) return;
+  $('#screen-stop').disabled = true;
+  notify('#screen-state', 'रिकॉर्डिंग रोकी जा रही है। वीडियो तैयार हो रहा है।');
+  try {
+    if (scrRec.state !== 'inactive') scrRec.stop(); else scrFinish();
+  } catch (e) { scrFinish(); }
+}
+function scrFinish() {
+  var type = (scrType || 'video/webm').split(';')[0];
+  scrBlob = new Blob(scrChunks, { type: type });
+  scrChunks = [];
+  scrCleanTracks();
+  scrRec = null;
+  $('#screen-start').disabled = false;
+  $('#screen-stop').disabled = true;
+  if (!scrBlob.size) {
+    notify('#screen-state', 'रिकॉर्डिंग खाली रही। फिर से कोशिश करें।');
+    return;
+  }
+  if (scrUrl) URL.revokeObjectURL(scrUrl);
+  scrUrl = URL.createObjectURL(scrBlob);
+  scrName = 'screen-' + Date.now() + '.' + (type.indexOf('mp4') !== -1 ? 'mp4' : 'webm');
+  var a = $('#screen-save');
+  a.setAttribute('href', scrUrl);
+  a.setAttribute('download', scrName);
+  a.removeAttribute('hidden');
+  var canShare = false;
+  try {
+    canShare = !!(navigator.share && navigator.canShare && navigator.canShare({ files: [new File([scrBlob], scrName, { type: type })] }));
+  } catch (e) { canShare = false; }
+  if (canShare) $('#screen-share').removeAttribute('hidden');
+  notify('#screen-state', 'रिकॉर्डिंग तैयार है। सेव करने या शेयर करने का बटन दबाएँ।');
+}
+$('#screen-start').addEventListener('click', scrStart);
+$('#screen-stop').addEventListener('click', scrStop);
+$('#screen-share').addEventListener('click', function () {
+  if (!scrBlob) return;
+  var file = new File([scrBlob], scrName, { type: scrBlob.type });
+  navigator.share({ files: [file], title: 'स्क्रीन रिकॉर्डिंग' }).catch(function () {
+    notify('#screen-state', 'शेयर नहीं हो सका। "रिकॉर्डिंग सेव करें" दबाकर फ़ाइल सेव करें।');
+  });
+});
+$('#screen-explain').addEventListener('click', function () { notify('#screen-no-msg', SCREEN_NO); });
+if (SCREEN_OK) $('#screen-supported').removeAttribute('hidden');
+else $('#screen-unsupported').removeAttribute('hidden');
 
 /* ---------- आवाज़ से आदेश (फ़ोन की बोली-पहचान) ---------- */
 var SRClass = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -1980,9 +2496,14 @@ function stopAllCams() {
   colStop(false);
   tcStop(false);
   radioStop(true);
+  if (scrRec) scrStop();
+  bookRun++;
+  bookPlaying = false;
   window.speechSynthesis && window.speechSynthesis.cancel();
 }
 var COMMANDS = [
+  { w: ['स्क्रीन रिकॉर्ड', 'स्क्रीन'], run: function () { goTo('h-screen', 'स्क्रीन रिकॉर्डर वाला हिस्सा खुला है।'); } },
+  { w: ['किताब', 'बुक रीडर', 'बुक'], run: function () { goTo('h-book', 'बुक रीडर वाला हिस्सा खुला है। .txt फ़ाइल चुनें या पाठ चिपकाएँ।'); } },
   { w: ['वीडियो जोड़'], run: function () { goTo('h-join', 'वीडियो जोड़ने वाला हिस्सा खुला है।'); } },
   { w: ['आवाज़ निकाल'], run: function () { goTo('h-extract', 'आवाज़ निकालने वाला हिस्सा खुला है।'); } },
   { w: ['मिलाओ', 'मिला'], run: function () { goTo('h-merge', 'आवाज़ मिलाने वाला हिस्सा खुला है।'); } },
@@ -1995,7 +2516,7 @@ var COMMANDS = [
   { w: ['रेडियो'], run: function () { goTo('h-radio', 'रेडियो वाला हिस्सा खुला है।'); } },
   { w: ['पढ़कर', 'सुनाओ', 'सुनाएँ', 'पढ़ो', 'पढ़ें'], run: function () { goTo('h-speak', 'बोलकर सुनाने वाला हिस्सा खुला है। लिखा पाठ यहाँ चिपकाएँ।'); } },
   { w: ['रुको', 'रोको', 'बंद करो', 'चुप'], run: function () { stopAllCams(); notify('#mic-state', 'सब रोक दिया गया।'); } },
-  { w: ['मदद', 'क्या बोल'], run: function () { notify('#mic-state', 'आदेश: वीडियो जोड़ो, आवाज़ निकालो, मिलाओ, गाना, तस्वीर, रंग पहचानें, कैमरा, सेटिंग, होम, पढ़कर सुनाओ, रुको।'); } },
+  { w: ['मदद', 'क्या बोल'], run: function () { notify('#mic-state', 'आदेश: वीडियो जोड़ो, आवाज़ निकालो, मिलाओ, गाना, तस्वीर, रंग पहचानें, कैमरा, सेटिंग, होम, पढ़कर सुनाओ, किताब, स्क्रीन रिकॉर्डर, रेडियो, रुको।'); } },
   { w: ['आवाज़'], run: function () { goTo('h-sound', 'आवाज़ वाला हिस्सा खुला है।'); } }
 ];
 
