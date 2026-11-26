@@ -173,6 +173,7 @@ html.hc body { background: #fff; color: #000; }
 .cam-preview { display: block; width: 100%; max-width: 420px; min-height: 120px; background: #000; border: 2px solid var(--ink); border-radius: 12px; margin: 10px 0; }
 .photo { display: block; max-width: 100%; height: auto; border: 2px solid var(--ink); border-radius: 12px; margin: 10px 0; }
 #tc-result .btn { margin: 6px 0; }
+.big-contact { display: block; min-height: 64px; font-size: 1.25em; text-align: center; width: 100%; box-sizing: border-box; padding: 16px; }
 </style>
 </head>
 <body>
@@ -199,7 +200,7 @@ html.hc body { background: #fff; color: #000; }
     <button id="mic-btn" type="button" class="btn primary big-mic" aria-describedby="hx-mic" aria-pressed="false" aria-label="बोलकर आदेश देने के लिए दबाएँ">बोलकर काम करें</button>
     <p id="hx-mic" class="hint">दबाने पर फ़ोन सुनने लगेगा। पहली बार फ़ोन माइक्रोफ़ोन की इजाज़त माँग सकता है। बटन दोबारा दबाने पर सुनना बंद होता है।</p>
     <p id="mic-state" class="note" aria-live="polite"></p>
-    <p class="note">बोलने के नमूने: "वीडियो जोड़ो", "आवाज़ निकालो", "मिलाओ", "गाना", "तस्वीर", "रंग पहचानें", "कैमरा", "सेटिंग", "होम", "पढ़कर सुनाओ", "किताब", "स्क्रीन रिकॉर्डर", "रुको", "मदद"।</p>
+    <p class="note">बोलने के नमूने: "वीडियो जोड़ो", "आवाज़ निकालो", "मिलाओ", "गाना", "वोकल रिमूवर", "तस्वीर", "रंग पहचानें", "कैमरा", "सेटिंग", "होम", "पढ़कर सुनाओ", "किताब", "स्क्रीन रिकॉर्डर", "रुको", "मदद"।</p>
     <p class="note">बोली पहचानने का काम फ़ोन की अपनी बोली-पहचान सेवा करती है। यह सुविधा फ़ोन और ब्राउज़र पर निर्भर है। अगर फ़ोन में नहीं चलती, तो ऐप खुद बोलकर और लिखकर बताएगा।</p>
   </section>
 </div>
@@ -243,6 +244,7 @@ html.hc body { background: #fff; color: #000; }
       <li><strong>होम:</strong> यही पेज। ऐप का परिचय, फ़ोन में जोड़ने के कदम और संपर्क।</li>
       <li><strong>वीडियो:</strong> कई वीडियो जोड़ना, वीडियो से आवाज़ निकालना, और वीडियो में नई आवाज़ मिलाना।</li>
       <li><strong>आवाज़:</strong> गाने के साथ अपनी रिकॉर्डिंग, तस्वीर और आवाज़ से वीडियो बनाना, और लिखा पाठ बोलकर सुनाना।</li>
+      <li><strong>वोकल रिमूवर:</strong> गाने से गायक की आवाज़ कम करने की कोशिश, फ़ोन में ही। यह पूरी तरह साफ़ नहीं होती।</li>
       <li><strong>कैमरे से मदद:</strong> रंग पहचानना और बोलने वाला कैमरा।</li>
       <li><strong>रेडियो:</strong> कुछ रेडियो स्टेशन इंटरनेट से सुनना। स्टेशन न चले तो 8 सेकंड में अगला स्टेशन अपने-आप आज़माया जाएगा। इंटरनेट न हो तो ऐप बताएगा।</li>
       <li><strong>बुक रीडर:</strong> .txt फ़ाइल या चिपकाया पाठ फ़ोन की आवाज़ में अनुच्छेद-दर-अनुच्छेद पढ़ना। पढ़ने की गति, हिंदी या अंग्रेज़ी, और जहाँ रुके थे वहीं से आगे।</li>
@@ -402,6 +404,37 @@ html.hc body { background: #fff; color: #000; }
     </div>
     <p id="hx-k-mix" class="hint">गाना और आपकी आवाज़ मिलाकर एक WAV फ़ाइल बनाता है। पहले रिकॉर्डिंग कर लें।</p>
     <div id="k-mix-result" class="result"></div>
+  </section>
+
+  <!-- 4b. वोकल रिमूवर -->
+  <section id="vocal" aria-labelledby="h-vocal">
+    <h3 id="h-vocal" class="sec-title">वोकल रिमूवर</h3>
+    <p>गाने की फ़ाइल चुनें। गायक की आवाज़ कम करने की कोशिश होगी, और बनी हुई WAV फ़ाइल आप यहीं सुन और सेव कर सकते हैं।</p>
+    <p class="note"><strong>ज़रूरी बात:</strong> यह सिर्फ़ एक कोशिश है। आवाज़ पूरी तरह नहीं हटती, और कई गानों में बदलाव साफ़ नहीं दिखता। जिस गाने में आवाज़ बीच में और दोनों तरफ़ बराबर हो, वहीं सबसे अच्छा काम करता है। बहुत लंबी फ़ाइल (लगभग 15 मिनट से ज़्यादा) नहीं चलेगी, और एक ही चैनल की (मोनो) फ़ाइल पर यह काम नहीं करेगा।</p>
+    <label for="vr-file">गाने की फ़ाइल चुनें</label>
+    <input id="vr-file" aria-describedby="hx-vr-file" type="file" accept="audio/*">
+    <p id="hx-vr-file" class="hint">गाने की ऑडियो फ़ाइल चुनने के लिए दबाएँ।</p>
+    <fieldset aria-describedby="hx-vr-str">
+      <legend>कितनी आवाज़ कम करें</legend>
+      <p id="hx-vr-str" class="hint">हल्का: कम बदलाव। मध्यम: ठीक-ठाक। पूरा: सबसे ज़्यादा कटौती, पर संगीत भी कुछ कम हो सकता है।</p>
+      <div class="actions">
+        <label><input type="radio" name="vr-strength" value="0.5" aria-describedby="hx-vr-str"> हल्का</label>
+        <label><input type="radio" name="vr-strength" value="0.8" checked aria-describedby="hx-vr-str"> मध्यम</label>
+        <label><input type="radio" name="vr-strength" value="1" aria-describedby="hx-vr-str"> पूरा</label>
+      </div>
+    </fieldset>
+    <div class="actions">
+      <button id="vr-go" aria-describedby="hx-vr-go" type="button" class="btn primary" data-ac>आवाज़ कम करें</button>
+    </div>
+    <p id="hx-vr-go" class="hint">चुने हुए गाने से गायक की आवाज़ कम करके WAV फ़ाइल बनाता है।</p>
+    <p id="vr-status" class="hint" role="status" aria-live="polite"></p>
+    <div class="actions">
+      <button id="vr-play" aria-describedby="hx-vr-play" type="button" class="btn" disabled>बनी फ़ाइल सुनें</button>
+      <button id="vr-stop" aria-describedby="hx-vr-play" type="button" class="btn" disabled>रोकें और शुरू से</button>
+    </div>
+    <p id="hx-vr-play" class="hint">बनी हुई फ़ाइल फ़ोन पर सुनने के लिए दबाएँ। सुनना रोकने के लिए फिर दबाएँ।</p>
+    <audio id="vr-audio" class="hidden-audio"></audio>
+    <div id="vr-result" class="result"></div>
   </section>
 
   <!-- 5. ऑडियो को वीडियो में बदलना -->
@@ -786,6 +819,7 @@ html.hc body { background: #fff; color: #000; }
       <p><strong>11. रेडियो:</strong> रेडियो वाला हिस्सा चुने हुए स्टेशन इंटरनेट से चलाता है। स्टेशन के सर्वर से जुड़ते समय उस संस्था को आपके फ़ोन का इंटरनेट पता (IP address) दिखता है, जैसे किसी भी स्ट्रीमिंग में होता है। आवाज़ साथी यह पता अपने पास नहीं रखता और आपका कोई निजी डेटा इकट्ठा नहीं करता। आख़िरी चुना स्टेशन सिर्फ़ आपके फ़ोन में सेव होता है।</p>
       <p><strong>12. बुक रीडर:</strong> आप जो .txt फ़ाइल या पाठ चुनते या चिपकाते हैं, वह आपके फ़ोन में ही पढ़ा जाता है। वह किसी सर्वर पर नहीं भेजा जाता। पढ़ने की जगह (कौन-सा अनुच्छेद) सिर्फ़ आपके फ़ोन के ब्राउज़र में सेव होती है। "पढ़ना" की आवाज़ फ़ोन की अपनी बोलकर सुनाने वाली सेवा से आती है।</p>
       <p><strong>13. स्क्रीन रिकॉर्डर:</strong> स्क्रीन रिकॉर्डिंग सिर्फ़ आपके फ़ोन में बनती है और कहीं अपलोड नहीं होती। आवाज़ रिकॉर्ड करने के लिए माइक्रोफ़ोन की अनुमति आप खुद देते हैं। रिकॉर्डिंग तभी बनती है जब आप शुरू करने का बटन दबाते हैं, और फ़ाइल आप खुद सेव या शेयर करते हैं।</p>
+      <p><strong>14. वोकल रिमूवर:</strong> गाने से आवाज़ कम करने का काम सिर्फ़ आपके फ़ोन में होता है। आपकी फ़ाइल किसी सर्वर पर नहीं भेजी जाती और हम उसे कभी नहीं देखते। बनी हुई फ़ाइल आप खुद सेव करते हैं।</p>
       <p>अंतिम अपडेट: 26 नवंबर 2026.</p>
       <button id="privacy-close" type="button" class="btn" aria-describedby="hx-privacy-close">बंद करें और सेटिंग पर लौटें</button>
       <p id="hx-privacy-close" class="hint">दबाने पर पॉलिसी बंद होगी और फ़ोकस फिर "प्राइवेसी पॉलिसी पढ़ें" बटन पर चला जाएगा।</p>
@@ -809,6 +843,7 @@ html.hc body { background: #fff; color: #000; }
       <p><strong>11. Radio:</strong> The radio part plays the station you choose over the internet. When connecting to the station's server, that organisation can see your phone's internet address (IP address), as happens with any streaming. Awaz Saathi does not keep this address and does not collect any personal data. The last station you chose is saved only on your phone.</p>
       <p><strong>12. Book reader:</strong> The .txt file or text you choose or paste is read only on your phone. It is not sent to any server. Your reading place (which paragraph) is saved only in your phone's browser. The voice for reading comes from your phone's own read-aloud service.</p>
       <p><strong>13. Screen recorder:</strong> Screen recording is made only on your phone and is not uploaded anywhere. You give the microphone permission yourself to record your voice. A recording is made only when you press the start button, and you save or share the file yourself.</p>
+      <p><strong>14. Vocal remover:</strong> Removing the singer's voice from a song happens only on your own phone. Your file is not sent to any server and we never see it. You save the made file yourself.</p>
       <p>Last updated: 26 November 2026.</p>
       <button id="privacy-en-close" type="button" class="btn" aria-describedby="hx-privacy-en-close">Close and return to settings</button>
       <p id="hx-privacy-en-close" class="hint">Press to close the policy. Focus then goes back to the "Read privacy policy in English" button.</p>
@@ -819,10 +854,13 @@ html.hc body { background: #fff; color: #000; }
     <h3 id="h-contact-set" class="sec-title">संपर्क</h3>
   <p class="contact">संपर्क: 9896471058</p>
   <p id="hx-help-2" class="note">अगर व्हाट्सऐप नहीं है तो कॉल बटन दबाएँ।</p>
-  <p><a class="btn primary" href="https://wa.me/919896471058?text=%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A5%87%20%E0%A4%95%E0%A4%AA%E0%A4%BF%E0%A4%B2%20%E0%A4%9C%E0%A5%80%2C%20%E0%A4%86%E0%A4%B5%E0%A4%BE%E0%A4%9C%E0%A4%BC%20%E0%A4%B8%E0%A4%BE%E0%A4%A5%E0%A5%80%20%E0%A4%90%E0%A4%AA%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AE%E0%A5%81%E0%A4%9D%E0%A5%87%20%E0%A4%AF%E0%A4%B9%20%E0%A4%95%E0%A4%AE%E0%A5%80%20%E0%A4%AE%E0%A4%BF%E0%A4%B2%E0%A5%80%20%E0%A4%B9%E0%A5%88%3A%20" target="_blank" rel="noopener" aria-describedby="hx-wa-2 hx-help-2">कमी बताने के लिए यहाँ दबाओ</a></p>
+  <p><a class="btn primary big-contact" href="https://wa.me/919896471058?text=%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A5%87%20%E0%A4%95%E0%A4%AA%E0%A4%BF%E0%A4%B2%20%E0%A4%9C%E0%A5%80%2C%20%E0%A4%86%E0%A4%B5%E0%A4%BE%E0%A4%9C%E0%A4%BC%20%E0%A4%B8%E0%A4%BE%E0%A4%A5%E0%A5%80%20%E0%A4%90%E0%A4%AA%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AE%E0%A5%81%E0%A4%9D%E0%A5%87%20%E0%A4%AF%E0%A4%B9%20%E0%A4%95%E0%A4%AE%E0%A5%80%20%E0%A4%AE%E0%A4%BF%E0%A4%B2%E0%A5%80%20%E0%A4%B9%E0%A5%88%3A%20" target="_blank" rel="noopener" aria-describedby="hx-wa-2 hx-help-2">कमी बताने के लिए यहाँ दबाओ</a></p>
   <p id="hx-wa-2" class="hint">दबाने पर व्हाट्सऐप खुलेगा, जिसमें कपिल के लिए कमी बताने का संदेश पहले से लिखा होगा। उसे भेजने के लिए व्हाट्सऐप में भेजें दबाएँ।</p>
-  <p><a class="btn primary" href="tel:+919896471058" aria-describedby="hx-call-2 hx-help-2">कॉल करने के लिए यहाँ दबाओ</a></p>
+  <p><a class="btn primary big-contact" href="tel:+919896471058" aria-describedby="hx-call-2 hx-help-2">कॉल करने के लिए यहाँ दबाओ</a></p>
   <p id="hx-call-2" class="hint">दबाने पर फ़ोन की कॉल शुरू होगी।</p>
+  <p><a class="btn primary big-contact" href="mailto:kapilsamariya90@gmail.com" aria-describedby="hx-mail-2 hx-help-2">ईमेल भेजने के लिए यहाँ दबाओ</a></p>
+  <p id="hx-mail-2" class="hint">दबाने पर फ़ोन का ईमेल ऐप खुलेगा।</p>
+  <p class="contact">ईमेल पता: kapilsamariya90@gmail.com</p>
   </section>
 </div>
 
@@ -1230,6 +1268,115 @@ $('#join-go').addEventListener('click', function () {
 });
 
 $('#join-stop').addEventListener('click', function () { stopReq = true; say('रोका जा रहा है। जो बना है वह तैयार होगा।'); });
+
+/* ---------- 2b. वोकल रिमूवर ---------- */
+var vrUrl = null;
+
+function vrRemove(file, amount) {
+  var dec = new AC();
+  var close = function () { dec.close().catch(function () {}); };
+  return file.arrayBuffer()
+    .then(function (ab) { return dec.decodeAudioData(ab); })
+    .then(function (buf) {
+      close();
+      if (buf.numberOfChannels < 2) throw new Error('mono');
+      if (buf.duration > 900) throw new Error('long');
+      var Off = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+      var oc = new Off(2, buf.length, buf.sampleRate);
+      var src = oc.createBufferSource();
+      src.buffer = buf;
+      var split = oc.createChannelSplitter(2);
+      var merge = oc.createChannelMerger(2);
+      var rToL = oc.createGain(); rToL.gain.value = -amount;
+      var lToR = oc.createGain(); lToR.gain.value = -amount;
+      var mid = oc.createGain(); mid.gain.value = 0.5;
+      var lp = oc.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 150;
+      var bass = oc.createGain(); bass.gain.value = 1;
+      src.connect(split);
+      split.connect(merge, 0, 0);
+      split.connect(merge, 1, 1);
+      split.connect(rToL, 1); rToL.connect(merge, 0, 0);
+      split.connect(lToR, 0); lToR.connect(merge, 0, 1);
+      split.connect(mid, 0); split.connect(mid, 1);
+      mid.connect(lp); lp.connect(bass);
+      bass.connect(merge, 0, 0); bass.connect(merge, 0, 1);
+      merge.connect(oc.destination);
+      src.start(0);
+      return oc.startRendering();
+    })
+    .then(function (out) {
+      var peak = 0, c, i, d;
+      for (c = 0; c < out.numberOfChannels; c++) {
+        d = out.getChannelData(c);
+        for (i = 0; i < d.length; i++) { if (Math.abs(d[i]) > peak) peak = Math.abs(d[i]); }
+      }
+      if (peak > 0.95) {
+        for (c = 0; c < out.numberOfChannels; c++) {
+          d = out.getChannelData(c);
+          for (i = 0; i < d.length; i++) d[i] *= 0.9 / peak;
+        }
+      }
+      return audioBufferToWav(out);
+    });
+}
+
+function vrSetResult(blob, name) {
+  if (vrUrl) URL.revokeObjectURL(vrUrl);
+  vrUrl = URL.createObjectURL(blob);
+  var a = $('#vr-audio');
+  a.pause();
+  a.src = vrUrl;
+  $('#vr-play').disabled = false;
+  $('#vr-stop').disabled = false;
+  $('#vr-play').textContent = 'बनी फ़ाइल सुनें';
+  showResult($('#vr-result'), blob, name);
+}
+
+$('#vr-go').addEventListener('click', function () {
+  job(function () {
+    var f = $('#vr-file').files[0];
+    if (!f) return say('पहले गाने की फ़ाइल चुनें।');
+    var amount = parseFloat(document.querySelector('input[name="vr-strength"]:checked').value);
+    var working = 'गायक की आवाज़ कम की जा रही है। बड़ी फ़ाइल में कुछ मिनट लग सकते हैं।';
+    $('#vr-status').textContent = working;
+    say(working);
+    return vrRemove(f, amount).then(function (blob) {
+      var done = 'तैयार है। बनी फ़ाइल सुनने के लिए बटन दबाएँ, या डाउनलोड करें।';
+      $('#vr-status').textContent = done;
+      vrSetResult(blob, 'chitti-bina-vocal-' + stamp() + '.wav');
+      say(done);
+    }, function (e) {
+      var m = (e && e.message === 'mono') ? 'यह फ़ाइल एक ही चैनल की (मोनो) है। इस काम के लिए स्टीरियो गाना चुनें।'
+        : (e && e.message === 'long') ? 'यह फ़ाइल बहुत लंबी है। लगभग 15 मिनट तक की फ़ाइल चुनें।'
+        : 'इस फ़ाइल पर आवाज़ कम नहीं हो पाई। कोई दूसरी ऑडियो फ़ाइल चुनें।';
+      $('#vr-status').textContent = m;
+      say(m);
+    });
+  }, 'इस फ़ाइल पर आवाज़ कम नहीं हो पाई। कोई दूसरी ऑडियो फ़ाइल चुनें।');
+});
+
+$('#vr-play').addEventListener('click', function () {
+  var a = $('#vr-audio');
+  if (!vrUrl) return;
+  if (a.paused) {
+    var p = a.play();
+    if (p && p.catch) p.catch(function () { say('फ़ोन पर सुनना शुरू नहीं हो पाया। डाउनलोड करके सुनें।'); });
+    $('#vr-play').textContent = 'सुनना रोकें';
+    say('बनी फ़ाइल चल रही है।');
+  } else {
+    a.pause();
+    $('#vr-play').textContent = 'फिर से सुनें';
+    say('रोक दिया गया।');
+  }
+});
+$('#vr-audio').addEventListener('ended', function () { $('#vr-play').textContent = 'फिर से सुनें'; });
+$('#vr-stop').addEventListener('click', function () {
+  var a = $('#vr-audio');
+  a.pause();
+  a.currentTime = 0;
+  $('#vr-play').textContent = 'बनी फ़ाइल सुनें';
+  say('शुरू से रोक दिया गया।');
+});
 
 /* ---------- 2. वीडियो से आवाज़ निकालना ---------- */
 function extractAudio(file) {
@@ -2037,7 +2184,6 @@ var RADIO_STATIONS = [
   { id: 'suno-sharda', name: 'सुनो शारदा रेडियो', country: 'IN', lang: 'hi', url: 'https://streamasiacdn.atc-labs.com/shardaradio.aac' },
   { id: 'vb-cuttack', name: 'आकाशवाणी विविध भारती – कटक', country: 'IN', lang: 'hi', hls: true, url: 'https://air.pc.cdn.bitgravity.com/air/live/pbaudio001/playlist.m3u8' },
   { id: 'vb-hyderabad', name: 'आकाशवाणी विविध भारती – हैदराबाद', country: 'IN', lang: 'hi', hls: true, url: 'https://air.pc.cdn.bitgravity.com/air/live/pbaudio034/playlist.m3u8' },
-  { id: 'rb-delhi', name: 'आकाशवाणी एफ़एम रेनबो – दिल्ली', country: 'IN', lang: 'hi', hls: true, url: 'https://d3r9rhourdc02u.cloudfront.net/assets/radio/airdelhi02/air002_Auto.m3u8' },
   { id: 'rb-chennai', name: 'आकाशवाणी एफ़एम रेनबो – चेन्नई', country: 'IN', lang: 'ta', hls: true, url: 'https://air.pc.cdn.bitgravity.com/air/live/pbaudio022/playlist.m3u8' },
   { id: 'gold-chennai', name: 'आकाशवाणी एफ़एम गोल्ड – चेन्नई', country: 'IN', lang: 'ta', hls: true, url: 'https://air.pc.cdn.bitgravity.com/air/live/pbaudio021/playlist.m3u8' }
 ];
@@ -2589,7 +2735,8 @@ var COMMANDS = [
   { w: ['रेडियो'], run: function () { goTo('h-radio', 'रेडियो वाला हिस्सा खुला है।'); } },
   { w: ['पढ़कर', 'सुनाओ', 'सुनाएँ', 'पढ़ो', 'पढ़ें'], run: function () { goTo('h-speak', 'बोलकर सुनाने वाला हिस्सा खुला है। लिखा पाठ यहाँ चिपकाएँ।'); } },
   { w: ['रुको', 'रोको', 'बंद करो', 'चुप'], run: function () { stopAllCams(); notify('#mic-state', 'सब रोक दिया गया।'); } },
-  { w: ['मदद', 'क्या बोल'], run: function () { notify('#mic-state', 'आदेश: वीडियो जोड़ो, आवाज़ निकालो, मिलाओ, गाना, तस्वीर, रंग पहचानें, कैमरा, सेटिंग, होम, पढ़कर सुनाओ, किताब, स्क्रीन रिकॉर्डर, रेडियो, रुको।'); } },
+  { w: ['मदद', 'क्या बोल'], run: function () { notify('#mic-state', 'आदेश: वीडियो जोड़ो, आवाज़ निकालो, मिलाओ, गाना, वोकल रिमूवर, तस्वीर, रंग पहचानें, कैमरा, सेटिंग, होम, पढ़कर सुनाओ, किताब, स्क्रीन रिकॉर्डर, रेडियो, रुको।'); } },
+  { w: ['वोकल रिमूवर', 'वोकल'], run: function () { goTo('h-vocal', 'वोकल रिमूवर वाला हिस्सा खुला है। गाने की फ़ाइल चुनें।'); } },
   { w: ['आवाज़'], run: function () { goTo('h-sound', 'आवाज़ वाला हिस्सा खुला है।'); } }
 ];
 
