@@ -304,7 +304,7 @@ html.hc body { background: #fff; color: #000; }
       <li><strong>बुक रीडर:</strong> .txt या PDF फ़ाइल, किताब के पन्ने की फ़ोटो या चिपकाया पाठ फ़ोन की आवाज़ में अनुच्छेद-दर-अनुच्छेद पढ़ना। पढ़ने की गति, हिंदी या अंग्रेज़ी, और जहाँ रुके थे वहीं से आगे।</li>
       <li><strong>टेक्स्ट से इमेज और PDF:</strong> लिखा पाठ फ़ोन में ही PNG तस्वीर या PDF फ़ाइल बनना। PDF का पाठ तस्वीर होता है, इसलिए उसे चुना या खोजा नहीं जा सकता।</li>
       <li><strong>स्क्रीन रिकॉर्डर:</strong> जिस फ़ोन में अनुमति हो, उसकी स्क्रीन रिकॉर्ड करना, आवाज़ के साथ, और फ़ाइल सेव या शेयर करना। जहाँ यह सुविधा न हो, वहाँ फ़ोन का अपना रिकॉर्डर चलाने के कदम बताए जाएँगे।</li>
-      <li><strong>सेटिंग:</strong> अक्षरों का आकार, उच्च कंट्रास्ट, ऐप का रंग, ऐप खुद बोले, पढ़कर सुनाने की भाषा और गति, घोषणाएँ, स्क्रीन चालू रखो, प्राइवेसी पॉलिसी, आवाज़ें डाउनलोड करने के कदम और गुनगुन (ऐप की अपनी आवाज़ वाला स्क्रीन रीडर)।</li>
+      <li><strong>सेटिंग:</strong> अक्षरों का आकार, उच्च कंट्रास्ट, ऐप का रंग, ऐप खुद बोले, पढ़कर सुनाने की भाषा और गति, घोषणाएँ, स्क्रीन चालू रखो, प्राइवेसी पॉलिसी, आवाज़ें डाउनलोड करने के कदम और गुनू (ऐप की अपनी आवाज़ वाला स्क्रीन रीडर)।</li>
     </ul>
   </section>
 
@@ -651,7 +651,7 @@ html.hc body { background: #fff; color: #000; }
 <!-- ===== रेडियो ===== -->
 <div id="panel-radio" class="panel">
   <h2 id="h-radio" class="panel-title" tabindex="-1">रेडियो</h2>
-  <p class="lead">यहाँ आकाशवाणी के कुछ स्टेशन इंटरनेट से सुन सकते हैं। इसके लिए फ़ोन में इंटरनेट चालू होना चाहिए।</p>
+  <p class="lead">यहाँ आकाशवाणी और कुछ दूसरे रेडियो स्टेशन इंटरनेट से सुन सकते हैं। इसके लिए फ़ोन में इंटरनेट चालू होना चाहिए।</p>
 
   <section aria-labelledby="h-radio-find">
     <h3 id="h-radio-find" class="sec-title" tabindex="-1">स्टेशन खोजें</h3>
@@ -660,12 +660,13 @@ html.hc body { background: #fff; color: #000; }
       <option value="all">सभी देश</option>
       <option value="IN">भारत</option>
     </select>
-    <p id="hx-radio-country" class="hint">देश चुनने पर उसी देश के स्टेशन दिखेंगे। अभी सूची में सिर्फ़ भारत के स्टेशन हैं।</p>
+    <p id="hx-radio-country" class="hint">देश चुनने पर उसी देश के स्टेशन दिखेंगे। अभी सूची में ज़्यादातर भारत के स्टेशन हैं। बोल पंजाबी रेडियो का देश पक्का नहीं पता, इसलिए वह सिर्फ़ "सभी देश" चुनने पर दिखेगा।</p>
     <label for="radio-lang">भाषा</label>
     <select id="radio-lang" aria-describedby="hx-radio-lang">
       <option value="all">सभी भाषाएँ</option>
       <option value="hi">हिंदी</option>
       <option value="ta">तमिल</option>
+      <option value="pa">पंजाबी</option>
     </select>
     <p id="hx-radio-lang" class="hint">भाषा चुनने पर उसी भाषा के स्टेशन दिखेंगे।</p>
     <label for="radio-search">स्टेशन का नाम लिखें</label>
@@ -1108,7 +1109,7 @@ html.hc body { background: #fff; color: #000; }
     <h3 id="h-save" class="sec-title">सेटिंग्स सहेजना</h3>
     <p id="set-store-note" class="support" hidden>इस ब्राउज़र में सेटिंग्स फ़ोन में सहेजी नहीं जा सकतीं। ये सेटिंग्स इसी बार चलेंगी। ऐप बंद करने पर ये वापस पहले जैसी हो जाएँगी।</p>
     <button id="set-reset" type="button" class="btn" aria-describedby="hx-reset">सेटिंग्स पहले जैसी करें</button>
-    <p id="hx-reset" class="hint">आकार, कंट्रास्ट, रंग, थीम, भाषा, गति, घोषणा, स्क्रीन चालू रखो और गुनगुन (आवाज़, गति, सुर, आवाज़ का स्तर), सब सेटिंग्स पहले जैसी कर देता है।</p>
+    <p id="hx-reset" class="hint">आकार, कंट्रास्ट, रंग, थीम, भाषा, गति, घोषणा, स्क्रीन चालू रखो और गुनू (आवाज़, गति, सुर, आवाज़ का स्तर), सब सेटिंग्स पहले जैसी कर देता है।</p>
   </section>
 
   <section aria-labelledby="h-myname" id="myname-sec">
@@ -1193,9 +1194,9 @@ html.hc body { background: #fff; color: #000; }
     <p class="notice">ईमानदारी से: आवाज़ साथी खुद कोई आवाज़ डाउनलोड नहीं करता, और अपनी आवाज़ें फ़ोन में नहीं ला सकता। इसके लिए एक सर्वर चाहिए, जो इस ऐप में नहीं है। नई आवाज़ें फ़ोन की अपनी बोलकर सुनाने वाली सेटिंग से आती हैं। यह ऐप सिर्फ़ Android फ़ोन के लिए है।</p>
     <ol>
       <li>नीचे दिया "टेक्स्ट-टू-स्पीच की सेटिंग खोलें" बटन दबाएँ।</li>
-      <li>वहाँ पसंदीदा इंजन में Google टेक्स्ट-टू-स्पीच चुनें। अगर वह फ़ोन में नहीं है, तो गुनगुन की सेटिंग में नीचे "मुफ़्त आवाज़ें डाउनलोड करें" वाले लिंक से इंस्टॉल करें।</li>
+      <li>वहाँ पसंदीदा इंजन में Google टेक्स्ट-टू-स्पीच चुनें। अगर वह फ़ोन में नहीं है, तो गुनू की सेटिंग में नीचे "मुफ़्त आवाज़ें डाउनलोड करें" वाले लिंक से इंस्टॉल करें।</li>
       <li>"आवाज़ें" या "भाषा" वाला हिस्सा खोलें। जिस भाषा की आवाज़ चाहिए (हिंदी, पंजाबी या अंग्रेज़ी), उसके आगे का डाउनलोड बटन दबाएँ और पूरा होने दें।</li>
-      <li>वापस आवाज़ साथी में आएँ, ऐप बंद करके दोबारा खोलें, और नीचे "गुनगुन" की आवाज़ों की सूची देखें।</li>
+      <li>वापस आवाज़ साथी में आएँ, ऐप बंद करके दोबारा खोलें, और नीचे "गुनू" की आवाज़ों की सूची देखें।</li>
     </ol>
     <p class="note">फ़ोन के हिसाब से बटनों के नाम थोड़े अलग हो सकते हैं।</p>
     <p><a class="btn primary" href="intent://#Intent;action=com.android.settings.TTS_SETTINGS;end" aria-describedby="hx-tts">टेक्स्ट-टू-स्पीच की सेटिंग खोलें</a></p>
@@ -1203,40 +1204,104 @@ html.hc body { background: #fff; color: #000; }
   </section>
 
   <section aria-labelledby="h-sr">
-    <h3 id="h-sr" class="sec-title">गुनगुन (ऐप की अपनी आवाज़)</h3>
-    <p class="notice">गुनगुन सिर्फ़ इसी ऐप के अंदर बोलती है। फ़ोन का TalkBack इसकी जगह नहीं ले सकता, और कोई ऐप TalkBack को बदल नहीं सकता। यह ऐप सिर्फ़ Android फ़ोन के लिए है।</p>
-    <p id="sr-welcome" class="note" lang="hi">गुनगुन में आपका स्वागत है। गुनगुन स्क्रीन रीडर आपकी समस्या को हल करने के लिए बनाया गया है। इसमें आप नेविगेशन अच्छे से कर पाएँगे, और इसकी सेटिंग में भी जा सकते हैं, और बहुत कुछ।</p>
-    <p id="hx-sr-welcome" class="hint">गुनगुन चालू करने पर, और ऐप खुलने पर जब गुनगुन चालू हो, यही स्वागत संदेश फ़ोन की आवाज़ में एक बार बोला जाता है। गुनगुन बंद करने या कोई स्टॉप बटन दबाने पर यह बीच में रुक जाता है।</p>
-    <label class="switch-row"><input id="set-sr-on" aria-describedby="hx-sr-on" type="checkbox" role="switch" checked> <span>गुनगुन चालू करें</span></label>
-    <p id="hx-sr-on" class="hint">चालू हो तो बटन, खाना, लिंक या शीर्षक पर फ़ोकस जाने, छूने या टैप करने पर गुनगुन उसका नाम और मदद फ़ोन की आवाज़ में बोलती है। बंद करने पर गुनगुन चुप रहती है।</p>
+    <h3 id="h-sr" class="sec-title">गुनू (ऐप की अपनी आवाज़)</h3>
+    <p class="notice">गुनू सिर्फ़ इसी ऐप के अंदर बोलती है। फ़ोन का TalkBack इसकी जगह नहीं ले सकता, और कोई ऐप TalkBack को बदल नहीं सकता। यह ऐप सिर्फ़ Android फ़ोन के लिए है।</p>
+    <p id="sr-welcome" class="note" lang="hi">गुनू स्क्रीन रीडर में आपका स्वागत है। आगे बढ़ने के लिए दाईं ओर स्वाइप करें।</p>
+    <p id="hx-sr-welcome" class="hint">गुनू चालू करने पर, और ऐप खुलने पर जब गुनू चालू हो, यही स्वागत संदेश फ़ोन की आवाज़ में एक बार बोला जाता है। गुनू बंद करने पर यह बीच में रुक जाता है।</p>
+    <div class="sr-info">
+      <button id="sr-info-what-btn" type="button" class="btn" aria-expanded="false" aria-controls="sr-info-what" aria-describedby="hx-sr-info-what" data-label-open="गुनू क्या है दिखाएँ" data-label-close="गुनू क्या है छिपाएँ">गुनू क्या है</button>
+      <p id="hx-sr-info-what" class="hint">इसे खोलने के लिए डबल टैप करें। दबाने पर बताया जाएगा कि गुनू क्या है।</p>
+      <div id="sr-info-what" data-collapsible hidden>
+        <div id="sr-info-what-text">
+          <p>गुनू इस ऐप के अंदर बोलने वाला स्क्रीन रीडर है। बटन, खाने, लिंक और शीर्षक पर जाने या छूने पर यह उसका नाम और छोटी मदद फ़ोन की आवाज़ में बोलती है, ताकि आप ऐप आसानी से चला सकें।</p>
+          <p>गुनू सिर्फ़ इसी ऐप के अंदर बोलती है। यह फ़ोन के TalkBack की जगह नहीं लेती, और TalkBack को बदलती भी नहीं।</p>
+        </div>
+        <button id="sr-info-what-listen" type="button" class="btn" aria-describedby="hx-sr-info-what-listen" data-listen="sr-info-what-text">सुनो</button>
+        <p id="hx-sr-info-what-listen" class="hint">इसे सुनने के लिए डबल टैप करें। दबाने पर यह हिस्सा चुनी आवाज़ में बोलकर सुनाया जाएगा।</p>
+      </div>
+    </div>
+    <div class="sr-info">
+      <button id="sr-info-do-btn" type="button" class="btn" aria-expanded="false" aria-controls="sr-info-do" aria-describedby="hx-sr-info-do" data-label-open="गुनू क्या-क्या करता है दिखाएँ" data-label-close="गुनू क्या-क्या करता है छिपाएँ">गुनू क्या-क्या करता है</button>
+      <p id="hx-sr-info-do" class="hint">इसे खोलने के लिए डबल टैप करें। दबाने पर गुनू के काम की सूची खुलेगी।</p>
+      <div id="sr-info-do" data-collapsible hidden>
+        <div id="sr-info-do-text">
+          <ul>
+            <li>बटन, खाने, लिंक और शीर्षक पर फ़ोकस जाने या छूने पर उसका नाम और मदद बोलती है।</li>
+            <li>ऐप खुलने पर, और गुनू चालू करने पर, स्वागत संदेश एक बार बोलती है। फ़ोन के नियम के हिसाब से यह पहली बार स्क्रीन छूने के बाद बोला जाता है।</li>
+            <li>मौसम जैसे कुछ हिस्सों के मुख्य संदेश भी बोलती है।</li>
+            <li>चुनी हुई आवाज़, गति, सुर और आवाज़ के स्तर से बोलती है।</li>
+            <li>गुनू बंद करने पर बोलना तुरंत रुक जाता है। नई बात शुरू होने पर पुरानी बात रुक जाती है।</li>
+          </ul>
+        </div>
+        <button id="sr-info-do-listen" type="button" class="btn" aria-describedby="hx-sr-info-do-listen" data-listen="sr-info-do-text">सुनो</button>
+        <p id="hx-sr-info-do-listen" class="hint">इसे सुनने के लिए डबल टैप करें। दबाने पर यह हिस्सा चुनी आवाज़ में बोलकर सुनाया जाएगा।</p>
+      </div>
+    </div>
+    <div class="sr-info">
+      <button id="sr-info-how-btn" type="button" class="btn" aria-expanded="false" aria-controls="sr-info-how" aria-describedby="hx-sr-info-how" data-label-open="कैसे इस्तेमाल करें दिखाएँ" data-label-close="कैसे इस्तेमाल करें छिपाएँ">कैसे इस्तेमाल करें</button>
+      <p id="hx-sr-info-how" class="hint">इसे खोलने के लिए डबल टैप करें। दबाने पर चरण-दर-चरण तरीका खुलेगा।</p>
+      <div id="sr-info-how" data-collapsible hidden>
+        <div id="sr-info-how-text">
+          <ol>
+            <li>नीचे "गुनू चालू करें" स्विच चालू रखें।</li>
+            <li>ऐप में कोई बटन, खाना या लिंक छुएँ, या उस पर फ़ोकस ले जाएँ। गुनू उसका नाम और मदद बोलेगी।</li>
+            <li>आवाज़ की सूची में से कोई आवाज़ चुनें। फिर "चुनी हुई आवाज़ सुनें" बटन दबाकर उसे जाँच लें।</li>
+            <li>गति, सुर और आवाज़ का स्तर स्लाइडर पर टिक कर स्वाइप करके ठीक करें।</li>
+            <li>पूरा बंद करना हो तो "गुनू चालू करें" स्विच बंद कर दें। फिर गुनू चुप रहेगी।</li>
+          </ol>
+        </div>
+        <button id="sr-info-how-listen" type="button" class="btn" aria-describedby="hx-sr-info-how-listen" data-listen="sr-info-how-text">सुनो</button>
+        <p id="hx-sr-info-how-listen" class="hint">इसे सुनने के लिए डबल टैप करें। दबाने पर यह हिस्सा चुनी आवाज़ में बोलकर सुनाया जाएगा।</p>
+      </div>
+    </div>
+    <div class="sr-info">
+      <button id="sr-info-settings-btn" type="button" class="btn" aria-expanded="false" aria-controls="sr-info-settings" aria-describedby="hx-sr-info-settings" data-label-open="सेटिंग कैसे काम करती है दिखाएँ" data-label-close="सेटिंग कैसे काम करती है छिपाएँ">सेटिंग कैसे काम करती है</button>
+      <p id="hx-sr-info-settings" class="hint">इसे खोलने के लिए डबल टैप करें। दबाने पर गुनू की हर सेटिंग का मतलब खुलेगा।</p>
+      <div id="sr-info-settings" data-collapsible hidden>
+        <div id="sr-info-settings-text">
+          <ul>
+            <li><strong>आवाज़:</strong> सूची में फ़ोन में मिली असली आवाज़ें हैं, भाषा के हिसाब से: हिंदी, अंग्रेज़ी, पंजाबी और बाकी। "अपने-आप चुनें" हिंदी आवाज़ को पहले चुनती है।</li>
+            <li><strong>मिक्स:</strong> एक हिंदी और एक अंग्रेज़ी आवाज़ चुनती है। हर हिस्सा उसकी लिपि से बोला जाता है: देवनागरी हिंदी से, रोमन अक्षर अंग्रेज़ी से, और गुरमुखी पंजाबी से। फ़ोन में पंजाबी आवाज़ न हो तो उस हिस्से को फ़ोन की डिफ़ॉल्ट आवाज़ से बोलती है।</li>
+            <li><strong>गति (0.5 से 2 गुना):</strong> बोलने की रफ़्तार। 1.0 सामान्य है।</li>
+            <li><strong>सुर (0.5 से 2):</strong> आवाज़ ऊँची या नीची करना। 1.0 सामान्य है।</li>
+            <li><strong>आवाज़ का स्तर (0.1 से 1):</strong> आवाज़ धीमी या तेज़ करना। 1.0 सबसे तेज़ है।</li>
+            <li><strong>आवाज़ डाउनलोड:</strong> नई आवाज़ें इस ऐप से नहीं आतीं, फ़ोन की Play Store से Google टेक्स्ट-टू-स्पीच लगाने पर मिलती हैं। लगाने के बाद ऐप बंद करके दोबारा खोलें, फिर "आवाज़" की सूची देखें। नीचे "मुफ़्त आवाज़ें डाउनलोड करें" वाला हिस्सा भी देखें।</li>
+          </ul>
+        </div>
+        <button id="sr-info-settings-listen" type="button" class="btn" aria-describedby="hx-sr-info-settings-listen" data-listen="sr-info-settings-text">सुनो</button>
+        <p id="hx-sr-info-settings-listen" class="hint">इसे सुनने के लिए डबल टैप करें। दबाने पर यह हिस्सा चुनी आवाज़ में बोलकर सुनाया जाएगा।</p>
+      </div>
+    </div>
+    <label class="switch-row"><input id="set-sr-on" aria-describedby="hx-sr-on" type="checkbox" role="switch" checked> <span>गुनू चालू करें</span></label>
+    <p id="hx-sr-on" class="hint">चालू हो तो बटन, खाना, लिंक या शीर्षक पर फ़ोकस जाने, छूने या टैप करने पर गुनू उसका नाम और मदद फ़ोन की आवाज़ में बोलती है। बंद करने पर गुनू चुप रहती है।</p>
     <label for="sr-voice">आवाज़</label>
     <select id="sr-voice" aria-describedby="hx-sr-voice sr-count sr-note" class="big">
       <option value="auto">अपने-आप चुनें (हिंदी पहले)</option>
       <option value="mix">मिक्स: एक हिंदी और एक अंग्रेज़ी आवाज़</option>
     </select>
-    <p id="hx-sr-voice" class="hint">सूची में फ़ोन में मिली असली आवाज़ें हैं, भाषा के हिसाब से: हिंदी, अंग्रेज़ी, पंजाबी और बाकी। नाम कुछ साफ़ करके दिखाए गए हैं, असली नाम कोष्ठक में है। "मिक्स" चुनने पर गुनगुन एक हिंदी और एक अंग्रेज़ी आवाज़ चुनती है, और हर हिस्सा उसकी लिपि से पहचानकर बोलती है: देवनागरी हिंदी से, रोमन अक्षर अंग्रेज़ी से, और गुरमुखी पंजाबी से।</p>
+    <p id="hx-sr-voice" class="hint">सूची में फ़ोन में मिली असली आवाज़ें हैं, भाषा के हिसाब से: हिंदी, अंग्रेज़ी, पंजाबी और बाकी। नाम कुछ साफ़ करके दिखाए गए हैं, असली नाम कोष्ठक में है। "मिक्स" चुनने पर गुनू एक हिंदी और एक अंग्रेज़ी आवाज़ चुनती है, और हर हिस्सा उसकी लिपि से पहचानकर बोलती है: देवनागरी हिंदी से, रोमन अक्षर अंग्रेज़ी से, और गुरमुखी पंजाबी से।</p>
     <p id="sr-count" class="note" aria-live="polite"></p>
     <p id="sr-note" class="note" aria-live="polite"></p>
     <button id="sr-test" type="button" class="btn primary" aria-describedby="hx-sr-test">चुनी हुई आवाज़ सुनें</button>
     <p id="hx-sr-test" class="hint">दबाने पर चुनी आवाज़ में एक छोटा नमूना बोला जाएगा, ताकि आप आवाज़ और गति जाँच सकें।</p>
-    <label for="sr-rate">गुनगुन की गति (0.5 से 2 गुना)</label>
+    <label for="sr-rate">गुनू की गति (0.5 से 2 गुना)</label>
     <input id="sr-rate" aria-describedby="hx-sr-rate" type="range" min="0.5" max="2" step="0.1" value="1">
     <p id="hx-sr-rate" class="hint">गति बदलने के लिए स्लाइडर पर टिक कर ऊपर/नीचे स्वाइप करें। हर बार 0.1 गुना बदलेगा।</p>
-    <p class="note">गुनगुन की गति: <span id="sr-rate-val">1.0</span> गुना</p>
-    <label for="sr-pitch">गुनगुन का सुर (0.5 से 2)</label>
+    <p class="note">गुनू की गति: <span id="sr-rate-val">1.0</span> गुना</p>
+    <label for="sr-pitch">गुनू का सुर (0.5 से 2)</label>
     <input id="sr-pitch" aria-describedby="hx-sr-pitch" type="range" min="0.5" max="2" step="0.1" value="1">
     <p id="hx-sr-pitch" class="hint">सुर ऊँचा या नीचा करने के लिए स्लाइडर पर टिक कर स्वाइप करें। 1.0 सामान्य है।</p>
     <p class="note">सुर: <span id="sr-pitch-val">1.0</span></p>
-    <label for="sr-vol">गुनगुन का आवाज़ का स्तर (0.1 से 1)</label>
+    <label for="sr-vol">गुनू का आवाज़ का स्तर (0.1 से 1)</label>
     <input id="sr-vol" aria-describedby="hx-sr-vol" type="range" min="0.1" max="1" step="0.1" value="1">
-    <p id="hx-sr-vol" class="hint">गुनगुन की आवाज़ धीमी या तेज़ करने के लिए स्लाइडर पर टिक कर स्वाइप करें। 1.0 सबसे तेज़ है।</p>
+    <p id="hx-sr-vol" class="hint">गुनू की आवाज़ धीमी या तेज़ करने के लिए स्लाइडर पर टिक कर स्वाइप करें। 1.0 सबसे तेज़ है।</p>
     <p class="note">आवाज़ का स्तर: <span id="sr-vol-val">1.0</span></p>
     <section aria-labelledby="h-free">
       <h4 id="h-free" class="sec-title">मुफ़्त आवाज़ें डाउनलोड करें</h4>
       <p class="note">ये लिंक फ़ोन की Play Store खोलेंगे। इंस्टॉल फ़ोन की Play Store से होगा, इस ऐप से नहीं। यह ऐप सिर्फ़ Android फ़ोन के लिए है।</p>
       <p><a class="btn" href="https://play.google.com/store/apps/details?id=com.google.android.tts" target="_blank" rel="noopener" aria-describedby="hx-free-google">Google टेक्स्ट-टू-स्पीच, Play Store में खोलें (नई टैब)</a></p>
       <p id="hx-free-google" class="hint">इसे खोलने के लिए डबल टैप करें। यह Google की अपनी टेक्स्ट-टू-स्पीच ऐप है, मुफ़्त है, और इसमें हिंदी और अंग्रेज़ी (भारत) की आवाज़ें हैं।</p>
-      <p class="note">इंस्टॉल होने के बाद: फ़ोन की Settings में "Text-to-speech output" खोलें, "पसंदीदा इंजन" में Google टेक्स्ट-टू-स्पीच चुनें। फिर वापस गुनगुन में आएँ, ऐप बंद करके दोबारा खोलें, और "आवाज़" की सूची में नई आवाज़ देखें।</p>
+      <p class="note">इंस्टॉल होने के बाद: फ़ोन की Settings में "Text-to-speech output" खोलें, "पसंदीदा इंजन" में Google टेक्स्ट-टू-स्पीच चुनें। फिर वापस गुनू में आएँ, ऐप बंद करके दोबारा खोलें, और "आवाज़" की सूची में नई आवाज़ देखें।</p>
     </section>
   </section>
   <section aria-labelledby="h-contact" id="contact-sec">
@@ -2845,7 +2910,7 @@ $('#sr-voice').addEventListener('change', function () {
   S.srVoice = this.value;
   applySettings();
   saveSettings();
-  say('गुनगुन की आवाज़ बदल दी गई है।');
+  say('गुनू की आवाज़ बदल दी गई है।');
 });
 $('#sr-rate').addEventListener('input', function () {
   S.srRate = Math.round(+this.value * 10) / 10;
@@ -2867,6 +2932,25 @@ $('#sr-test').addEventListener('click', function () {
   var v = srVoiceObj();
   var en = !!v && /^en/i.test(v.lang || '');
   speakNow(en ? 'Hello. This is the screen reader of Awaz Saathi.' : 'नमस्ते। यह आवाज़ साथी का स्क्रीन रीडर है।');
+});
+/* "सुनो" बटन: उस हिस्से का पाठ चुनी आवाज़ से बोलता है */
+function listenText(box) {
+  var out = [];
+  var nodes = box ? box.querySelectorAll('p, li') : [];
+  for (var i = 0; i < nodes.length; i++) {
+    var t = oneLine(nodes[i].textContent);
+    if (t) out.push(t);
+  }
+  return out.join(' ');
+}
+$$('button[data-listen]').forEach(function (b) {
+  b.addEventListener('click', function () {
+    if (!speechOK) { say('इस फ़ोन में बोलने की सुविधा नहीं है।'); return; }
+    var txt = listenText(document.getElementById(b.getAttribute('data-listen')));
+    speechCancelAll();
+    speakNow(txt);
+    say('यह हिस्सा सुनाया जा रहा है।');
+  });
 });
 $('#set-announce').addEventListener('change', function () {
   S.announce = this.checked;
@@ -3065,7 +3149,7 @@ function srUtt(text, v, kind) {
 function speakOne(text, v, kind) {
   window.speechSynthesis.speak(srUtt(text, v, kind));
 }
-/* गुनगुन का पाठ टुकड़ों में: चुनी आवाज़ से, या "मिक्स" में लिपि के हिसाब से */
+/* गुनू का पाठ टुकड़ों में: चुनी आवाज़ से, या "मिक्स" में लिपि के हिसाब से */
 function srPieces(s) {
   var out = [];
   if (srPref() !== 'mix') { out.push({ text: s, v: srVoiceObj(), kind: '' }); return out; }
@@ -3087,8 +3171,8 @@ function speakNow(text) {
   } catch (e) { /* फ़ोन बोल न सके तो चुप रहें */ }
 }
 
-/* ---------- गुनगुन का स्वागत संदेश ---------- */
-var WELCOME_TEXT = 'गुनगुन में आपका स्वागत है। गुनगुन स्क्रीन रीडर आपकी समस्या को हल करने के लिए बनाया गया है। इसमें आप नेविगेशन अच्छे से कर पाएँगे, और इसकी सेटिंग में भी जा सकते हैं, और बहुत कुछ।';
+/* ---------- गुनू का स्वागत संदेश ---------- */
+var WELCOME_TEXT = 'गुनू स्क्रीन रीडर में आपका स्वागत है। आगे बढ़ने के लिए दाईं ओर स्वाइप करें।';
 var welcomeActive = false;
 var welcomeRun = 0;
 var welcomeTimer = 0;
@@ -3200,6 +3284,7 @@ var RADIO_STATIONS = [
   { id: 'vb-cuttack', name: 'आकाशवाणी विविध भारती – कटक', country: 'IN', lang: 'hi', hls: true, url: 'https://air.pc.cdn.bitgravity.com/air/live/pbaudio001/playlist.m3u8' },
   { id: 'vb-hyderabad', name: 'आकाशवाणी विविध भारती – हैदराबाद', country: 'IN', lang: 'hi', hls: true, url: 'https://air.pc.cdn.bitgravity.com/air/live/pbaudio034/playlist.m3u8' },
   { id: 'rb-chennai', name: 'आकाशवाणी एफ़एम रेनबो – चेन्नई', country: 'IN', lang: 'ta', hls: true, url: 'https://air.pc.cdn.bitgravity.com/air/live/pbaudio022/playlist.m3u8' },
+  { id: 'bol-punjabi', name: 'बोल पंजाबी रेडियो', country: 'other', lang: 'pa', url: 'https://bolpunjabi-ekamsoftware.radioca.st/stream' },
   { id: 'gold-chennai', name: 'आकाशवाणी एफ़एम गोल्ड – चेन्नई', country: 'IN', lang: 'ta', hls: true, url: 'https://air.pc.cdn.bitgravity.com/air/live/pbaudio021/playlist.m3u8' }
 ];
 var RADIO_STALL_MS = 8000;
