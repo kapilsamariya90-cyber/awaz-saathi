@@ -201,11 +201,6 @@ html.hc body { background: #fff; color: #000; }
 #tc-result .btn { margin: 6px 0; }
 .big-contact { display: block; min-height: 64px; font-size: 1.25em; text-align: center; width: 100%; box-sizing: border-box; padding: 16px; }
 
-.menu-btn{margin:8px 0}
-.drawer-back{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:50}
-.drawer{position:fixed;top:0;right:0;bottom:0;width:min(90vw,380px);overflow-y:auto;background:Canvas;color:CanvasText;z-index:51;padding:16px;box-shadow:-4px 0 16px rgba(0,0,0,.35)}
-.drawer[hidden],.drawer-back[hidden]{display:none}
-.drawer .btn{display:block;width:100%;margin:8px 0;box-sizing:border-box}
 
 .cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:14px 0 18px}
 .cat-tile{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:8px;min-height:150px;padding:16px;border:0;border-radius:18px;background:var(--tile);color:#fff;font:inherit;font-size:1.3rem;font-weight:700;text-align:start;cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.25)}
@@ -219,13 +214,14 @@ html.hc body { background: #fff; color: #000; }
 </style>
 </head>
 <body>
+<span class="sr-only" id="hx-back">पिछली स्क्रीन पर लौटने के लिए दबाएँ।</span>
 <noscript><p>इस पेज को चलाने के लिए ब्राउज़र में JavaScript चालू होना चाहिए।</p></noscript>
 <a class="skip" href="#main">सीधे मुख्य सामग्री पर जाएँ</a>
 <header>
 <h1>आवाज़ साथी</h1>
 <p class="dev" data-dev-line="">डेवलपर: कपिल</p>
 </header>
-<div aria-live="polite" class="status" id="status" role="status">आवाज़ साथी तैयार है। सबसे ऊपर का बड़ा बटन दबाकर बोल सकते हैं, या नीचे दिए किसी हिस्से तक स्क्रॉल करें।</div>
+<div aria-live="polite" class="status" id="status" role="status">आवाज़ साथी तैयार है।<br>सबसे ऊपर का बड़ा बटन दबाकर बोल सकते हैं।<br>या नीचे दिए किसी हिस्से तक स्क्रॉल करें।</div>
 <main id="main" tabindex="-1">
 <!-- ===== अभिवादन (समय के हिसाब से) और पहली बार का वैकल्पिक नाम ===== -->
 <div id="greet-box">
@@ -234,7 +230,7 @@ html.hc body { background: #fff; color: #000; }
 <div aria-labelledby="h-name" class="notice" hidden="" id="name-panel" role="region">
 <h2 class="panel-title" id="h-name" tabindex="-1">आपका नाम (वैकल्पिक)</h2>
 <ul class="bullets"><li>अगर आप चाहें तो अपना नाम लिखें।</li><li>तब ऐप अभिवादन में आपका नाम लेगा।</li><li>नहीं लिखना चाहें तो "छोड़ें" दबाएँ।</li></ul>
-<ul class="bullets"><li><strong>साफ़ बात:</strong> यह नाम सिर्फ़ इसी फ़ोन में सहेजा जाएगा और कहीं भेजा नहीं जाएगा।</li><li>ऐप आपके Gmail या Google खाते से नाम नहीं पढ़ता।</li><li>इसलिए नाम आपको खुद लिखना होगा।</li><li>फ़ोन नंबर नहीं माँगा जाता।</li></ul>
+<ul class="bullets"><li><strong>साफ़ बात:</strong> यह नाम सिर्फ़ इसी फ़ोन में सहेजा जाएगा।<br>यह कहीं भेजा नहीं जाएगा।</li><li>ऐप आपके Gmail या Google खाते से नाम नहीं पढ़ता।</li><li>इसलिए नाम आपको खुद लिखना होगा।</li><li>फ़ोन नंबर नहीं माँगा जाता।</li></ul>
 <label for="name-first">पहला नाम</label>
 <input aria-describedby="hx-name-first" autocomplete="given-name" id="name-first" maxlength="40" type="text"/>
 <p class="hint" id="hx-name-first">पहला नाम लिखें, जैसे रमेश। इसके बिना नाम सहेजा नहीं जाएगा।</p>
@@ -245,8 +241,8 @@ html.hc body { background: #fff; color: #000; }
 <button aria-describedby="hx-name-save" class="btn primary" id="name-save" type="button">नाम सहेजें</button>
 <button aria-describedby="hx-name-skip" class="btn" id="name-skip" type="button">छोड़ें / <span lang="en">Skip</span></button>
 </div>
-<p class="hint" id="hx-name-save">नाम सहेजें: जो लिखा है वह इसी फ़ोन में रहेगा और अभिवादन में लिया जाएगा।</p>
-<p class="hint" id="hx-name-skip">छोड़ें: नाम नहीं लिखा जाएगा और अभिवादन बिना नाम के होगा। यह सवाल दोबारा नहीं पूछा जाएगा। नाम बाद में सेटिंग में जोड़ सकते हैं।</p>
+<p class="hint" id="hx-name-save">नाम सहेजें: जो लिखा है वह इसी फ़ोन में रहेगा। अभिवादन में यही नाम लिया जाएगा।</p>
+<p class="hint" id="hx-name-skip">छोड़ें: नाम नहीं लिखा जाएगा। अभिवादन बिना नाम के होगा। यह सवाल दोबारा नहीं पूछा जाएगा। नाम बाद में सेटिंग में जोड़ सकते हैं।</p>
 <p aria-live="polite" class="note" id="name-msg"></p>
 </div>
 <!-- ===== बोलकर काम करें ===== -->
@@ -258,18 +254,18 @@ html.hc body { background: #fff; color: #000; }
 <button aria-describedby="hx-notice-read" class="btn primary" id="notice-read" type="button">प्राइवेसी पॉलिसी पढ़ें</button>
 <button aria-describedby="hx-notice-close" class="btn" id="notice-close" type="button">सूचना बंद करें</button>
 </div>
-<p class="hint" id="hx-notice-read">इसे खोलने के लिए डबल टैप करें। प्राइवेसी पॉलिसी पढ़ें: पूरी पॉलिसी नीचे सेटिंग वाले हिस्से में खुलेगी।</p>
+<p class="hint" id="hx-notice-read">इसे खोलने के लिए डबल टैप करें। प्राइवेसी पॉलिसी पूरी सेटिंग वाले हिस्से में खुलेगी।</p>
 <p class="hint" id="hx-notice-close">सूचना बंद करें: यह सूचना हट जाएगी और दोबारा नहीं दिखेगी।</p>
 </div>
 <h2 class="panel-title" id="h-home" tabindex="-1">होम</h2>
-<p class="lead">आवाज़ साथी में आपका स्वागत है। नीचे से एक श्रेणी चुनें।</p><h3 class="sec-title" id="h-grid">श्रेणी चुनें</h3><div aria-labelledby="h-grid" class="cat-grid" role="group"><button class="cat-tile" data-cat="cat-voice" style="--tile:#1d4ed8" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z"></path><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg><span>बोलकर काम करें</span><small>आवाज़ से आदेश दें</small></button><button class="cat-tile" data-cat="cat-video" style="--tile:#6d28d9" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect height="12" rx="2" width="13" x="3" y="6"></rect><path d="M16 10l5-3v10l-5-3z"></path></svg><span>वीडियो</span><small>जोड़ें, आवाज़ निकालें, मिलाएँ</small></button><button class="cat-tile" data-cat="cat-sound" style="--tile:#9d174d" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M9 18V5l11-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="17" cy="16" r="3"></circle></svg><span>आवाज़ और गाना</span><small>गाना, वोकल रिमूवर, तस्वीर से वीडियो</small></button><button class="cat-tile" data-cat="cat-camera" style="--tile:#115e59" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M3 8h4l2-3h6l2 3h4v11H3z"></path><circle cx="12" cy="13" r="3.5"></circle></svg><span>कैमरे से मदद</span><small>रंग पहचानें, बोलने वाला कैमरा</small></button><button class="cat-tile" data-cat="cat-radio" style="--tile:#92400e" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect height="12" rx="2" width="18" x="3" y="8"></rect><path d="M7 8l10-5M8 14h8"></path></svg><span>रेडियो</span><small>इंटरनेट से स्टेशन सुनें</small></button><button class="cat-tile" data-cat="cat-weather" style="--tile:#075985" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M7 18a4 4 0 0 1 0-8 6 6 0 0 1 11.5 1.5A3.5 3.5 0 0 1 18 18z"></path></svg><span>मौसम</span><small>अपनी जगह या कोई भी शहर</small></button><button class="cat-tile" data-cat="cat-yt" style="--tile:#155e75" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect height="13" rx="2" width="18" x="3" y="4"></rect><path d="M10 8v5l4-2.5z"></path><path d="M8 21h8"></path></svg><span>मेरा YouTube चैनल</span><small>चैनल नए टैब में खोलें</small></button><button class="cat-tile" data-cat="cat-read" style="--tile:#3f6212" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"></path><path d="M4 19V5"></path></svg><span>पढ़ना और लिखना</span><small>किताब, टेक्स्ट से इमेज और PDF</small></button><button class="cat-tile" data-cat="cat-phone" style="--tile:#334155" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect height="20" rx="2" width="10" x="7" y="2"></rect><path d="M11 18h2"></path></svg><span>फ़ोन के काम</span><small>स्क्रीन रिकॉर्डर, स्पीकर क्लीनर</small></button></div><button class="btn cat-settings" data-cat="cat-settings" type="button">सेटिंग और ऐप का लिंक</button>
+<p class="lead">आवाज़ साथी में आपका स्वागत है। नीचे से एक श्रेणी चुनें।</p><h3 class="sec-title" id="h-grid">श्रेणी चुनें</h3><div aria-labelledby="h-grid" class="cat-grid" role="group"><button aria-describedby="hx-tile-voice" class="cat-tile" data-cat="cat-voice" style="--tile:#1d4ed8" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z"></path><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg><span>बोलकर काम करें</span><small id="hx-tile-voice">आवाज़ से आदेश दें</small></button><button aria-describedby="hx-tile-video" class="cat-tile" data-cat="cat-video" style="--tile:#6d28d9" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect height="12" rx="2" width="13" x="3" y="6"></rect><path d="M16 10l5-3v10l-5-3z"></path></svg><span>वीडियो</span><small id="hx-tile-video">जोड़ें, आवाज़ निकालें, मिलाएँ</small></button><button aria-describedby="hx-tile-sound" class="cat-tile" data-cat="cat-sound" style="--tile:#9d174d" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M9 18V5l11-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="17" cy="16" r="3"></circle></svg><span>आवाज़ और गाना</span><small id="hx-tile-sound">गाना, वोकल रिमूवर, तस्वीर से वीडियो</small></button><button aria-describedby="hx-tile-camera" class="cat-tile" data-cat="cat-camera" style="--tile:#115e59" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M3 8h4l2-3h6l2 3h4v11H3z"></path><circle cx="12" cy="13" r="3.5"></circle></svg><span>कैमरे से मदद</span><small id="hx-tile-camera">रंग पहचानें, बोलने वाला कैमरा</small></button><button aria-describedby="hx-tile-radio" class="cat-tile" data-cat="cat-radio" style="--tile:#92400e" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect height="12" rx="2" width="18" x="3" y="8"></rect><path d="M7 8l10-5M8 14h8"></path></svg><span>रेडियो</span><small id="hx-tile-radio">इंटरनेट से स्टेशन सुनें</small></button><button aria-describedby="hx-tile-weather" class="cat-tile" data-cat="cat-weather" style="--tile:#075985" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M7 18a4 4 0 0 1 0-8 6 6 0 0 1 11.5 1.5A3.5 3.5 0 0 1 18 18z"></path></svg><span>मौसम</span><small id="hx-tile-weather">अपनी जगह या कोई भी शहर</small></button><button aria-describedby="hx-tile-yt" class="cat-tile" data-cat="cat-yt" style="--tile:#155e75" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect height="13" rx="2" width="18" x="3" y="4"></rect><path d="M10 8v5l4-2.5z"></path><path d="M8 21h8"></path></svg><span>मेरा YouTube चैनल</span><small id="hx-tile-yt">चैनल नए टैब में खोलें</small></button><button aria-describedby="hx-tile-read" class="cat-tile" data-cat="cat-read" style="--tile:#3f6212" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"></path><path d="M4 19V5"></path></svg><span>पढ़ना और लिखना</span><small id="hx-tile-read">किताब, टेक्स्ट से इमेज और PDF</small></button><button aria-describedby="hx-tile-phone" class="cat-tile" data-cat="cat-phone" style="--tile:#334155" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect height="20" rx="2" width="10" x="7" y="2"></rect><path d="M11 18h2"></path></svg><span>फ़ोन के काम</span><small id="hx-tile-phone">स्क्रीन रिकॉर्डर, स्पीकर क्लीनर</small></button></div><button aria-describedby="hx-cat-settings" class="btn cat-settings" data-cat="cat-settings" type="button">सेटिंग और ऐप का लिंक</button><p class="hint" id="hx-cat-settings">सेटिंग में गोपनीयता, गाइड, शेयर और संपर्क हैं।</p>
 <section aria-labelledby="h-about">
 <h3 class="sec-title" data-reveal="about-body" id="h-about" tabindex="-1">इस ऐप के बारे में</h3>
 <button aria-controls="about-body" aria-describedby="hx-about-toggle" aria-expanded="false" class="btn primary" data-label-close="ऐप की जानकारी छिपाएँ" data-label-open="ऐप की जानकारी दिखाएँ" id="about-toggle" type="button">ऐप की जानकारी दिखाएँ</button>
-<p class="hint" id="hx-about-toggle">इसे खोलने के लिए डबल टैप करें। दबाने पर ऐप के बारे में पूरी जानकारी नीचे खुलेगी। दोबारा दबाने पर वह बंद हो जाएगी।</p>
+<p class="hint" id="hx-about-toggle">इसे खोलने के लिए डबल टैप करें। दबाने पर ऐप की पूरी जानकारी नीचे खुलेगी। दोबारा दबाने पर वह बंद होगी।</p>
 <div data-collapsible="" hidden="" id="about-body">
-<ul class="bullets"><li>आवाज़ साथी एक छोटा ऐप है जो आपके फ़ोन में ही चलता है।</li><li>इसमें ये काम हैं: कई वीडियो एक के बाद एक जोड़ना।</li><li>किसी वीडियो से आवाज़ निकालकर WAV फ़ाइल बनाना।</li><li>वीडियो की अपनी आवाज़ की जगह नई आवाज़ या गाना मिलाना।</li><li>गाना बजाकर उसके साथ अपनी आवाज़ रिकॉर्ड करना और दोनों को एक WAV फ़ाइल में मिलाना।</li><li>एक तस्वीर और एक आवाज़ वाली फ़ाइल से वीडियो बनाना।</li><li>और लिखा हुआ पाठ फ़ोन की आवाज़ में बोलकर सुनाना।</li><li>कैमरे से रंग पहचानना।</li><li>और कैमरे से रोशनी व हरकत के बारे में बोलकर मदद लेना।</li></ul>
-<ul class="bullets"><li>यह ऐप नेत्रहीन और कम दिखने वाले लोगों के लिए बनाया गया है।</li><li>ताकि वे इसे TalkBack के साथ इस्तेमाल कर सकें।</li><li>इसके बटनों और खानों पर TalkBack के लिए नाम लिखे गए हैं।</li></ul>
+<ul class="bullets"><li>आवाज़ साथी एक छोटा ऐप है।<br>यह आपके फ़ोन में ही चलता है।</li><li>इसमें ये काम हैं: कई वीडियो एक के बाद एक जोड़ना।</li><li>किसी वीडियो से आवाज़ निकालकर WAV फ़ाइल बनाना।</li><li>वीडियो की अपनी आवाज़ की जगह नई आवाज़ या गाना मिलाना।</li><li>गाना बजाकर उसके साथ अपनी आवाज़ रिकॉर्ड करें।<br>फिर दोनों को एक WAV फ़ाइल में मिलाएँ।</li><li>एक तस्वीर और एक आवाज़ वाली फ़ाइल से वीडियो बनाना।</li><li>और लिखा हुआ पाठ फ़ोन की आवाज़ में बोलकर सुनाना।</li><li>कैमरे से रंग पहचानना।</li><li>और कैमरे से रोशनी व हरकत के बारे में बोलकर मदद लेना।</li></ul>
+<ul class="bullets"><li>यह ऐप नेत्रहीन और कम दिखने वाले लोगों के लिए है।</li><li>ताकि वे इसे TalkBack के साथ इस्तेमाल कर सकें।</li><li>इसके बटनों और खानों पर TalkBack के लिए नाम लिखे गए हैं।</li></ul>
 <ul class="bullets"><li>यह ऐप Android फ़ोन के लिए है (सैमसंग, ओप्पो, वीवो, रियलमी, आदि)।</li><li>iPhone और PC/कंप्यूटर पर नहीं चलेगा।</li><li>नए Android में बेहतर चलेगा, पुराने में कोशिश कर सकते हैं।</li></ul>
 <ul class="bullets"><li>बनी हुई फ़ाइलें इस ऐप में नहीं रहतीं।</li><li>डाउनलोड या शेयर करके अपने फ़ोन में रख लें।</li></ul>
 <ul class="bullets"><li>यहाँ कोई फ़ाइल किसी सर्वर पर नहीं भेजी जाती।</li><li>रेडियो के स्टेशन इंटरनेट से आते हैं, इसलिए उसके लिए इंटरनेट चाहिए।</li></ul>
@@ -294,7 +290,7 @@ html.hc body { background: #fff; color: #000; }
 <h3 class="sec-title" id="h-install">फ़ोन में ऐप की तरह रखें</h3>
 <p>नीचे दिया बटन दबाने पर फ़ोन में जोड़ने के कदम दिखेंगे।</p>
 <button aria-describedby="hx-install" aria-label="होम स्क्रीन पर जोड़ें। दबाने पर जोड़ने के कदम दिखेंगे" class="btn primary" id="install-btn" type="button">होम स्क्रीन पर जोड़ें</button>
-<p class="hint" id="hx-install">इसे खोलने के लिए डबल टैप करें। इससे फ़ोन की होम स्क्रीन पर ऐप का आइकन रखने के कदम दिखते हैं। बटन दबाने पर कदम नीचे खुलेंगे।</p>
+<p class="hint" id="hx-install">इसे खोलने के लिए डबल टैप करें। होम स्क्रीन पर ऐप का आइकन रखने के कदम दिखेंगे। कदम नीचे खुलेंगे।</p>
 <div aria-live="polite" id="install-help" tabindex="-1"></div>
 <ul class="bullets"><li>ब्राउज़र के मेन्यू में "होम स्क्रीन पर जोड़ें" चुनें।</li><li>फिर यह फ़ोन में ऐप की तरह दिखेगा।</li></ul>
 </section>
@@ -311,18 +307,18 @@ html.hc body { background: #fff; color: #000; }
 <!-- ===== स्क्रीन रिकॉर्डर ===== -->
 <!-- ===== स्पीकर क्लीनर (सिर्फ़ बटन दबाने पर खुलता है) ===== -->
 <!-- ===== सेटिंग (हमेशा आख़िरी) ===== -->
-<div class="panel cat-screen" hidden="" id="cat-voice"><button class="btn back" data-back="" type="button">वापस</button>
+<div class="panel cat-screen" hidden="" id="cat-voice"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button>
 <h2 class="panel-title" id="h-voice" tabindex="-1">बोलकर काम करें</h2>
 <ul class="bullets"><li>नीचे बड़ा बटन दबाएँ, फिर एक आदेश साफ़ आवाज़ में बोलें।</li><li>ऐप वही हिस्सा खोल देगा।</li></ul>
 <section aria-labelledby="h-voice-cmd">
 <h3 class="sec-title" id="h-voice-cmd" tabindex="-1">आदेश बोलें</h3>
 <button aria-describedby="hx-mic" aria-label="बोलकर आदेश देने के लिए दबाएँ" aria-pressed="false" class="btn primary big-mic" id="mic-btn" type="button">बोलकर काम करें</button>
-<p class="hint" id="hx-mic">दबाने पर फ़ोन सुनने लगेगा। पहली बार फ़ोन माइक्रोफ़ोन की इजाज़त माँग सकता है। बटन दोबारा दबाने पर सुनना बंद होता है।</p>
+<p class="hint" id="hx-mic">दबाने पर फ़ोन सुनने लगेगा। पहली बार माइक्रोफ़ोन की इजाज़त माँग सकता है। दोबारा दबाने पर सुनना बंद होगा।</p>
 <p aria-live="polite" class="note" id="mic-state"></p>
 <ul class="bullets note"><li>बोलने के नमूने: "वीडियो जोड़ो", "आवाज़ निकालो", "मिलाओ", "गाना", "वोकल रिमूवर", "तस्वीर"।</li><li>"रंग पहचानें", "कैमरा", "सेटिंग", "होम", "मेन्यू", "पढ़कर सुनाओ", "किताब", "स्क्रीन रिकॉर्डर"।</li><li>"स्पीकर साफ़ करो", "नाम बदलो", "रुको", "मदद"।</li></ul>
 <ul class="bullets note"><li>बोली पहचानने का काम फ़ोन की अपनी बोली-पहचान सेवा करती है।</li><li>यह सुविधा फ़ोन और ब्राउज़र पर निर्भर है।</li><li>अगर फ़ोन में नहीं चलती, तो ऐप खुद बोलकर और लिखकर बताएगा।</li></ul>
 </section>
-</div><div class="panel cat-screen" hidden="" id="cat-video"><button class="btn back" data-back="" type="button">वापस</button>
+</div><div class="panel cat-screen" hidden="" id="cat-video"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button>
 <h2 class="panel-title" id="h-video" tabindex="-1">वीडियो</h2>
 <ul class="bullets"><li>यहाँ कई वीडियो एक साथ जोड़ सकते हैं।</li><li>वीडियो से आवाज़ निकाल सकते हैं।</li><li>और वीडियो में नई आवाज़ मिला सकते हैं।</li></ul>
 <!-- 1. वीडियो जोड़ना -->
@@ -333,15 +329,15 @@ html.hc body { background: #fff; color: #000; }
 <ul class="bullets"><li>इस ब्राउज़र में वीडियो जोड़ने की सुविधा नहीं है।</li><li>Chrome या Firefox में खोलकर देखें।</li></ul>
 <label for="join-files">वीडियो फ़ाइलें चुनें (एक से ज़्यादा चुन सकते हैं)</label>
 <input accept="video/*" aria-describedby="hx-join-files" id="join-files" multiple="" type="file"/>
-<p class="hint" id="hx-join-files">वीडियो फ़ाइलें चुनने के लिए दबाएँ। एक से ज़्यादा वीडियो एक साथ चुन सकते हैं। चुने हुए वीडियो नीचे सूची में आएँगे।</p>
+<p class="hint" id="hx-join-files">वीडियो फ़ाइलें चुनने के लिए दबाएँ। एक से ज़्यादा वीडियो एक साथ चुन सकते हैं। चुने वीडियो नीचे सूची में आएँगे।</p>
 <p id="join-count">अभी कोई वीडियो नहीं चुना गया</p>
 <ol aria-label="चुने हुए वीडियो, क्रम से" class="list" id="join-list"></ol>
-<p class="hint" id="hx-join-list">हर वीडियो के "ऊपर" या "नीचे" बटन से उसका क्रम बदलें। "हटाएँ" से वीडियो सूची से निकल जाएगा।</p>
+<p class="hint" id="hx-join-list">हर वीडियो के "ऊपर" या "नीचे" बटन से क्रम बदलें। "हटाएँ" से वीडियो सूची से निकल जाएगा।</p>
 <div class="actions">
 <button aria-describedby="hx-join-btns" aria-label="चुने हुए वीडियो एक के बाद एक जोड़कर नया वीडियो बनाएँ" class="btn primary" data-rec="" id="join-go" type="button">वीडियो जोड़ें</button>
 <button aria-describedby="hx-join-btns" aria-label="वीडियो जोड़ना जल्दी रोकें, जो बन चुका है वह मिलेगा" class="btn" disabled="" id="join-stop" type="button">जल्दी रोकें (जो बना है वह मिलेगा)</button>
 </div>
-<p class="hint" id="hx-join-btns">वीडियो जोड़ें: सूची के सारे वीडियो एक के बाद एक जुड़कर नया वीडियो बनेगा। जल्दी रोकें: अभी तक जो बना है, वही मिलेगा।</p>
+<p class="hint" id="hx-join-btns">वीडियो जोड़ें: सूची के सारे वीडियो एक के बाद एक जुड़ेंगे। जल्दी रोकें: अभी तक जो बना है, वही मिलेगा।</p>
 <p aria-hidden="true" class="progress" id="join-progress"></p>
 <div class="result" id="join-result"></div>
 </section>
@@ -374,7 +370,7 @@ html.hc body { background: #fff; color: #000; }
 <button aria-describedby="hx-merge-btns" aria-label="चुने हुए वीडियो में नई आवाज़ मिलाकर नया वीडियो बनाएँ" class="btn primary" data-rec="" id="merge-go" type="button">मिलाएँ और वीडियो बनाएँ</button>
 <button aria-describedby="hx-merge-btns" aria-label="आवाज़ मिलाना जल्दी रोकें, जो बन चुका है वह मिलेगा" class="btn" disabled="" id="merge-stop" type="button">जल्दी रोकें (जो बना है वह मिलेगा)</button>
 </div>
-<p class="hint" id="hx-merge-btns">मिलाएँ और वीडियो बनाएँ: वीडियो में नई आवाज़ मिलाकर नया वीडियो बनेगा। जल्दी रोकें: अभी तक जो बना है, वही मिलेगा।</p>
+<p class="hint" id="hx-merge-btns">मिलाएँ और वीडियो बनाएँ: नई आवाज़ मिलाकर नया वीडियो बनेगा। जल्दी रोकें: अभी तक जो बना है, वही मिलेगा।</p>
 <p aria-hidden="true" class="progress" id="merge-progress"></p>
 <div class="result" id="merge-result"></div>
 </section>
@@ -383,7 +379,7 @@ html.hc body { background: #fff; color: #000; }
 <h3 class="sec-title" id="h-sc">वीडियो से स्टेटस क्लिप</h3>
 <ul class="bullets"><li>वीडियो चुनें, बताएँ कहाँ से शुरू करना है।</li><li>और कितने सेकंड की क्लिप चाहिए।</li><li>ऐप उसे आपके फ़ोन में ही काटेगा।</li></ul>
 <ul class="bullets note"><li><strong>ज़रूरी बात:</strong> यह ऐप WhatsApp पर स्टेटस खुद नहीं लगा सकता।</li><li>क्लिप बनने के बाद "WhatsApp पर शेयर करो" दबाएँ।</li><li>फिर फ़ोन के शेयर पैनल में WhatsApp चुनें।</li><li>और WhatsApp में "My status / मेरा स्टेटस" चुनें।</li></ul>
-<ul class="bullets note"><li>क्लिप काटने में असली समय लगता है: 30 सेकंड की क्लिप बनने में लगभग 30 सेकंड लगेंगे।</li><li>बनते समय यह पेज खुला रखें।</li></ul>
+<ul class="bullets note"><li>क्लिप काटने में असली समय लगता है।<br>30 सेकंड की क्लिप बनने में लगभग 30 सेकंड लगेंगे।</li><li>बनते समय यह पेज खुला रखें।</li></ul>
 <ul class="bullets"><li>इस ब्राउज़र में क्लिप बनाने की सुविधा नहीं चलती।</li><li>Chrome या Firefox में खोलकर देखें।</li></ul>
 <label for="sc-file">वीडियो फ़ाइल चुनें</label>
 <input accept="video/*" aria-describedby="hx-sc-file" id="sc-file" type="file"/>
@@ -398,7 +394,7 @@ html.hc body { background: #fff; color: #000; }
 <div class="actions">
 <button aria-describedby="hx-sc-take" class="btn" id="sc-take" type="button">पूर्वावलोकन में जहाँ है, वहाँ का समय लें</button>
 </div>
-<p class="hint" id="hx-sc-take">पूर्वावलोकन में जिस जगह वीडियो अभी रुका है, उसका समय ऊपर भर देता है।</p>
+<p class="hint" id="hx-sc-take">पूर्वावलोकन में वीडियो जहाँ रुका है, उसका समय ऊपर भर देता है।</p>
 <fieldset aria-describedby="hx-sc-len">
 <legend>क्लिप कितनी लंबी हो</legend>
 <p class="hint" id="hx-sc-len">15, 30 या 60 सेकंड। डिफ़ॉल्ट 30 सेकंड है।</p>
@@ -409,7 +405,7 @@ html.hc body { background: #fff; color: #000; }
 </div>
 </fieldset>
 <label><input aria-describedby="hx-sc-all" id="sc-all" type="checkbox"/> सारे हिस्से बनाओ</label>
-<p class="hint" id="hx-sc-all">चालू करने पर शुरू के समय से वीडियो के आख़िर तक, ऊपर चुनी लंबाई के हिस्से एक के बाद एक बनेंगे। हर हिस्सा अलग फ़ाइल होगा।</p>
+<p class="hint" id="hx-sc-all">चालू करने पर शुरू से आख़िर तक हिस्से बनेंगे।<br>एक के बाद एक, हर हिस्सा अलग फ़ाइल होगा।<br>लंबाई ऊपर चुनी हुई होगी।</p>
 <div class="actions">
 <button aria-describedby="hx-sc-btns" aria-label="चुने हुए समय से स्टेटस क्लिप बनाएँ" class="btn primary" data-rec="" id="sc-go" type="button">क्लिप बनाओ</button>
 <button aria-describedby="hx-sc-btns" aria-label="क्लिप बनाना रोकें, जो बन चुका है वह मिलेगा" class="btn" disabled="" id="sc-stop" type="button">रोको (जो बना है वह मिलेगा)</button>
@@ -419,7 +415,7 @@ html.hc body { background: #fff; color: #000; }
 <p aria-hidden="true" class="note" id="sc-clock"></p>
 <div id="sc-results"></div>
 </section>
-</div><div class="panel cat-screen" hidden="" id="cat-sound"><button class="btn back" data-back="" type="button">वापस</button>
+</div><div class="panel cat-screen" hidden="" id="cat-sound"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button>
 <h2 class="panel-title" id="h-sound" tabindex="-1">आवाज़</h2>
 <ul class="bullets"><li>यहाँ गाने के साथ अपनी आवाज़ रिकॉर्ड कर सकते हैं।</li><li>तस्वीर और आवाज़ से वीडियो बना सकते हैं।</li><li>और लिखा पाठ बोलकर सुन सकते हैं।</li></ul>
 <!-- 4. गाने के साथ रिकॉर्डिंग -->
@@ -438,7 +434,7 @@ html.hc body { background: #fff; color: #000; }
 <button aria-describedby="hx-k-play-track" aria-label="चुना हुआ गाना चलाएँ" class="btn" id="k-play-track" type="button">गाना चलाएँ</button>
 <button aria-describedby="hx-k-play-track" aria-label="चल रहा गाना रोकें" class="btn" id="k-pause-track" type="button">गाना रोकें</button>
 </div>
-<p class="hint" id="hx-k-play-track">गाना चलाएँ: चुना हुआ गाना बजाता है। गाना रोकें: बजता गाना रोक देता है।</p>
+<p class="hint" id="hx-k-play-track">गाना चलाएँ: चुना हुआ गाना बजता है। गाना रोकें: बजता गाना रुक जाता है।</p>
 </div>
 <div aria-label="रिकॉर्डिंग के बटन" class="group" role="group">
 <p>रिकॉर्डिंग</p>
@@ -446,7 +442,7 @@ html.hc body { background: #fff; color: #000; }
 <button aria-describedby="hx-k-rec" aria-label="माइक्रोफ़ोन से रिकॉर्डिंग शुरू करें, गाना भी साथ बजेगा" class="btn primary" data-mic="" data-rec="" id="k-rec-start" type="button">रिकॉर्डिंग शुरू करें</button>
 <button aria-describedby="hx-k-rec" aria-label="चल रही रिकॉर्डिंग रोकें" class="btn" id="k-rec-stop" type="button">रिकॉर्डिंग रोकें</button>
 </div>
-<p class="hint" id="hx-k-rec">रिकॉर्डिंग शुरू करें: माइक्रोफ़ोन से आपकी आवाज़ रिकॉर्ड होगी और गाना साथ बजेगा। रिकॉर्डिंग रोकें: रिकॉर्डिंग बंद करता है।</p>
+<p class="hint" id="hx-k-rec">रिकॉर्डिंग शुरू करें: आपकी आवाज़ रिकॉर्ड होगी और गाना साथ बजेगा। रिकॉर्डिंग रोकें: रिकॉर्डिंग बंद होगी।</p>
 <p aria-hidden="true" class="note" id="k-state">अभी रिकॉर्डिंग नहीं हो रही।</p>
 </div>
 <div class="group">
@@ -456,14 +452,14 @@ html.hc body { background: #fff; color: #000; }
 <input aria-describedby="hx-k-vol-track" aria-label="गाने की आवाज़ का स्तर" id="k-vol-track" max="100" min="0" step="5" type="range" value="80"/>
 <button aria-describedby="hx-k-vol-track" aria-label="गाने की आवाज़ बढ़ाएँ" class="btn" id="k-track-up" type="button">बढ़ाएँ</button>
 </div>
-<p class="hint" id="hx-k-vol-track">गाने की आवाज़ बदलने के लिए: स्क्रीन-रीडर चालू हो तो स्लाइडर पर टिक कर ऊपर/नीचे स्वाइप करें; या बगल के कम/बढ़ाएँ बटन दबाएँ। हर बार 10 प्रतिशत बदलेगा।</p>
+<p class="hint" id="hx-k-vol-track">गाने की आवाज़ बदलने के लिए:<br>स्लाइडर पर टिक कर ऊपर या नीचे स्वाइप करें।<br>या कम या बढ़ाएँ बटन दबाएँ।<br>हर बार 10 प्रतिशत बदलेगा।</p>
 <label for="k-vol-vocal">आपकी आवाज़ (0 से 100)</label>
 <div class="vol">
 <button aria-describedby="hx-k-vol-vocal" aria-label="आपकी आवाज़ कम करें" class="btn" id="k-vocal-down" type="button">कम</button>
 <input aria-describedby="hx-k-vol-vocal" aria-label="आपकी आवाज़ का स्तर" id="k-vol-vocal" max="100" min="0" step="5" type="range" value="100"/>
 <button aria-describedby="hx-k-vol-vocal" aria-label="आपकी आवाज़ बढ़ाएँ" class="btn" id="k-vocal-up" type="button">बढ़ाएँ</button>
 </div>
-<p class="hint" id="hx-k-vol-vocal">आपकी आवाज़ बदलने के लिए: स्क्रीन-रीडर चालू हो तो स्लाइडर पर टिक कर ऊपर/नीचे स्वाइप करें; या बगल के कम/बढ़ाएँ बटन दबाएँ। हर बार 10 प्रतिशत बदलेगा।</p>
+<p class="hint" id="hx-k-vol-vocal">आपकी आवाज़ बदलने के लिए:<br>स्लाइडर पर टिक कर ऊपर या नीचे स्वाइप करें।<br>या कम या बढ़ाएँ बटन दबाएँ।<br>हर बार 10 प्रतिशत बदलेगा।</p>
 </div>
 <div aria-label="सुनने के बटन" class="group" role="group">
 <p>सुनना</p>
@@ -479,25 +475,25 @@ html.hc body { background: #fff; color: #000; }
 <div class="actions">
 <button aria-describedby="hx-k-mix" aria-label="गाना और आपकी आवाज़ मिलाकर WAV फ़ाइल बनाएँ" class="btn primary" data-rec="" id="k-mix" type="button">गाना और आवाज़ मिलाकर WAV बनाएँ</button>
 </div>
-<p class="hint" id="hx-k-mix">गाना और आपकी आवाज़ मिलाकर एक WAV फ़ाइल बनाता है। पहले रिकॉर्डिंग कर लें।</p>
+<p class="hint" id="hx-k-mix">गाना और आपकी आवाज़ मिलाकर एक WAV फ़ाइल बनती है। पहले रिकॉर्डिंग कर लें।</p>
 <div class="result" id="k-mix-result"></div>
 <div class="actions">
 <button aria-describedby="hx-k-video" aria-label="रिकॉर्डिंग से वीडियो बनाएँ" class="btn primary" data-rec="" id="k-video" type="button">वीडियो बनाएँ</button>
 </div>
-<p class="hint" id="hx-k-video">वीडियो बनाएँ: एक सादी तस्वीर पर आपकी रिकॉर्डिंग चलती है। गाना चुना हो तो गाना और आपकी आवाज़ दोनों साथ। वीडियो का फ़ॉर्मेट आपके ब्राउज़र पर निर्भर है: ज़्यादातर फ़ोन में MP4 या WebM बनेगा, जो बनने के बाद बताया जाएगा। पहले रिकॉर्डिंग कर लें।</p>
+<p class="hint" id="hx-k-video">वीडियो बनाएँ: सादी तस्वीर पर आपकी रिकॉर्डिंग चलेगी। गाना चुना हो तो गाना भी साथ होगा। फ़ॉर्मेट आपके ब्राउज़र पर निर्भर है। ज़्यादातर फ़ोन में MP4 या WebM बनेगा। बनने के बाद बताया जाएगा। पहले रिकॉर्डिंग कर लें।</p>
 <div class="result" id="k-video-result"></div>
 </section>
 <!-- 4b. वोकल रिमूवर -->
 <section aria-labelledby="h-vocal" id="vocal">
 <h3 class="sec-title" id="h-vocal">वोकल रिमूवर</h3>
-<ul class="bullets"><li>गाने की फ़ाइल चुनें।</li><li>गायक की आवाज़ कम करने की कोशिश होगी।</li><li>और बनी हुई WAV फ़ाइल आप यहीं सुन और सेव कर सकते हैं।</li></ul>
+<ul class="bullets"><li>गाने की फ़ाइल चुनें।</li><li>गायक की आवाज़ कम करने की कोशिश होगी।</li><li>और बनी हुई WAV फ़ाइल आप यहीं सुन सकते हैं।<br>सेव भी यहीं से कर सकते हैं।</li></ul>
 <ul class="bullets note"><li><strong>ज़रूरी बात:</strong> यह सिर्फ़ एक कोशिश है।</li><li>आवाज़ पूरी तरह नहीं हटती।</li><li>और कई गानों में बदलाव साफ़ नहीं दिखता।</li><li>जिस गाने में आवाज़ बीच में और दोनों तरफ़ बराबर हो।</li><li>वहीं सबसे अच्छा काम करता है।</li><li>बहुत लंबी फ़ाइल (लगभग 15 मिनट से ज़्यादा) नहीं चलेगी।</li><li>और एक ही चैनल की (मोनो) फ़ाइल पर यह काम नहीं करेगा।</li></ul>
 <label for="vr-file">गाने की फ़ाइल चुनें</label>
 <input accept="audio/*" aria-describedby="hx-vr-file" id="vr-file" type="file"/>
 <p class="hint" id="hx-vr-file">गाने की ऑडियो फ़ाइल चुनने के लिए दबाएँ।</p>
 <fieldset aria-describedby="hx-vr-str">
 <legend>कितनी आवाज़ कम करें</legend>
-<p class="hint" id="hx-vr-str">हल्का: कम बदलाव। मध्यम: ठीक-ठाक। पूरा: सबसे ज़्यादा कटौती, पर संगीत भी कुछ कम हो सकता है।</p>
+<p class="hint" id="hx-vr-str">हल्का: कम बदलाव। मध्यम: ठीक-ठाक। पूरा: सबसे ज़्यादा कटौती। इससे संगीत भी कुछ कम हो सकता है।</p>
 <div class="actions">
 <label><input aria-describedby="hx-vr-str" name="vr-strength" type="radio" value="0.5"/> हल्का</label>
 <label><input aria-describedby="hx-vr-str" checked="" name="vr-strength" type="radio" value="0.8"/> मध्यम</label>
@@ -507,7 +503,7 @@ html.hc body { background: #fff; color: #000; }
 <div class="actions">
 <button aria-describedby="hx-vr-go" class="btn primary" data-ac="" id="vr-go" type="button">आवाज़ कम करें</button>
 </div>
-<p class="hint" id="hx-vr-go">चुने हुए गाने से गायक की आवाज़ कम करके WAV फ़ाइल बनाता है।</p>
+<p class="hint" id="hx-vr-go">चुने हुए गाने से गायक की आवाज़ कम की जाती है।<br>फिर उससे WAV फ़ाइल बनती है।</p>
 <p aria-live="polite" class="hint" id="vr-status" role="status"></p>
 <div class="actions">
 <button aria-describedby="hx-vr-play" class="btn" disabled="" id="vr-play" type="button">बनी फ़ाइल सुनें</button>
@@ -522,14 +518,14 @@ html.hc body { background: #fff; color: #000; }
 <section aria-labelledby="h-imgvid" id="imgvid">
 <h3 class="sec-title" id="h-imgvid">तस्वीर और आवाज़ से वीडियो</h3>
 <ul class="bullets"><li>एक तस्वीर और एक ऑडियो फ़ाइल चुनें।</li><li>नया वीडियो उतना ही लंबा होगा जितनी ऑडियो फ़ाइल है।</li><li>और तस्वीर पूरे समय दिखेगी।</li><li>तस्वीर न चुनें तो सादी हरी स्क्रीन आएगी।</li></ul>
-<ul class="bullets note"><li>लंबी ऑडियो फ़ाइल भी बन जाती है।</li><li>पर उतना ही समय लगता है: 10 मिनट की ऑडियो में लगभग 10 मिनट।</li><li>बनते समय यह पेज खुला रखें और फ़ोन की स्क्रीन बंद न होने दें।</li></ul>
+<ul class="bullets note"><li>लंबी ऑडियो फ़ाइल भी बन जाती है।</li><li>पर उतना ही समय लगता है।<br>10 मिनट की ऑडियो में लगभग 10 मिनट लगेंगे।</li><li>बनते समय यह पेज खुला रखें।<br>फ़ोन की स्क्रीन बंद न होने दें।</li></ul>
 <ul class="bullets"><li>इस ब्राउज़र में यह सुविधा नहीं चलती।</li><li>Chrome या Firefox में खोलकर देखें।</li></ul>
 <label for="img-file">तस्वीर चुनें (गैलरी या फ़ाइलों से)</label>
 <input accept="image/*" aria-describedby="hx-img-file" id="img-file" type="file"/>
 <p class="hint" id="hx-img-file">तस्वीर चुनने के लिए दबाएँ। गैलरी या फ़ाइलों से चुन सकते हैं। न चुनें तो सादी स्क्रीन बनेगी।</p>
 <label for="img-audio">ऑडियो फ़ाइल चुनें</label>
 <input accept="audio/*" aria-describedby="hx-img-audio" id="img-audio" type="file"/>
-<p class="hint" id="hx-img-audio">आवाज़ वाली फ़ाइल चुनने के लिए दबाएँ। वीडियो उतना ही लंबा बनेगा, और बनने में भी उतना ही समय लगेगा।</p>
+<p class="hint" id="hx-img-audio">आवाज़ वाली फ़ाइल चुनने के लिए दबाएँ। वीडियो उतना ही लंबा बनेगा। बनने में भी उतना ही समय लगेगा।</p>
 <div class="actions">
 <button aria-describedby="hx-imgvid-btns" aria-label="चुनी हुई तस्वीर और आवाज़ से वीडियो बनाएँ" class="btn primary" data-rec="" id="imgvid-go" type="button">वीडियो बनाएँ</button>
 <button aria-describedby="hx-imgvid-btns" aria-label="वीडियो बनाना जल्दी रोकें, जो बन चुका है वह मिलेगा" class="btn" disabled="" id="imgvid-stop" type="button">जल्दी रोकें (जो बना है वह मिलेगा)</button>
@@ -548,7 +544,7 @@ html.hc body { background: #fff; color: #000; }
 <div class="actions">
 <button aria-describedby="hx-speak-clear" class="btn" id="speak-clear" type="button">साफ़ करें / <span lang="en">Clear</span></button>
 </div>
-<p class="hint" id="hx-speak-clear">दबाने पर ऊपर के खाने का सारा लिखा मिट जाएगा और फ़ोकस फिर उसी खाने में चला जाएगा। मिटाया पाठ वापस नहीं आएगा।</p>
+<p class="hint" id="hx-speak-clear">दबाने पर ऊपर का सारा लिखा मिट जाएगा। फ़ोकस उसी खाने में चला जाएगा। मिटाया पाठ वापस नहीं आएगा।</p>
 <label for="speak-lang">भाषा चुनें</label>
 <select aria-describedby="hx-speak-lang" class="big" id="speak-lang">
 <option selected="" value="hi-IN">हिंदी</option>
@@ -565,7 +561,7 @@ html.hc body { background: #fff; color: #000; }
 <option value="en-US">अंग्रेज़ी (US)</option>
 <option value="en-GB">अंग्रेज़ी (UK)</option>
 </select>
-<p class="hint" id="hx-speak-lang">भाषा चुनें। फ़ोन में उस भाषा की आवाज़ होनी चाहिए, नहीं तो आवाज़ नहीं आएगी।</p>
+<p class="hint" id="hx-speak-lang">भाषा चुनें। फ़ोन में उस भाषा की आवाज़ होनी चाहिए। नहीं तो आवाज़ नहीं आएगी।</p>
 <p aria-live="polite" class="note" id="speak-voice"></p>
 <label for="speak-rate">बोलने की गति (0.5 से 2 गुना)</label>
 <div class="vol">
@@ -573,7 +569,7 @@ html.hc body { background: #fff; color: #000; }
 <input aria-describedby="hx-speak-rate" id="speak-rate" max="2" min="0.5" step="0.1" type="range" value="1"/>
 <button aria-describedby="hx-speak-rate" aria-label="बोलने की गति तेज़ करें" class="btn" id="speak-fast" type="button">तेज़ करें</button>
 </div>
-<p class="hint" id="hx-speak-rate">बोलने की गति बदलने के लिए: स्क्रीन-रीडर चालू हो तो स्लाइडर पर टिक कर ऊपर/नीचे स्वाइप करें; या बगल के धीमा करें/तेज़ करें बटन दबाएँ। हर बार 0.1 गुना बदलेगा।</p>
+<p class="hint" id="hx-speak-rate">बोलने की गति बदलने के लिए:<br>स्लाइडर पर टिक कर ऊपर या नीचे स्वाइप करें।<br>या धीमा करें या तेज़ करें बटन दबाएँ।<br>हर बार 0.1 गुना बदलेगा।</p>
 <p class="note">अभी गति: <span id="speak-rate-val">1.0</span> गुना</p>
 <label for="speak-vol">बोलने की आवाज़ (0 से 100)</label>
 <div class="vol">
@@ -581,22 +577,22 @@ html.hc body { background: #fff; color: #000; }
 <input aria-describedby="hx-speak-vol" aria-label="बोलने की आवाज़ का स्तर" id="speak-vol" max="100" min="0" step="5" type="range" value="100"/>
 <button aria-describedby="hx-speak-vol" aria-label="बोलने की आवाज़ बढ़ाएँ" class="btn" id="speak-vol-up" type="button">बढ़ाएँ</button>
 </div>
-<p class="hint" id="hx-speak-vol">बोलने की आवाज़ बदलने के लिए: स्क्रीन-रीडर चालू हो तो स्लाइडर पर टिक कर ऊपर/नीचे स्वाइप करें; या बगल के कम/बढ़ाएँ बटन दबाएँ। हर बार 10 प्रतिशत बदलेगा।</p>
+<p class="hint" id="hx-speak-vol">बोलने की आवाज़ बदलने के लिए:<br>स्लाइडर पर टिक कर ऊपर या नीचे स्वाइप करें।<br>या कम या बढ़ाएँ बटन दबाएँ।<br>हर बार 10 प्रतिशत बदलेगा।</p>
 <div class="actions">
 <button aria-describedby="hx-speak-btns" aria-label="लिखा हुआ पाठ फ़ोन की आवाज़ में बोलकर सुनाएँ" class="btn primary" id="speak-go" type="button">बोलकर सुनाएँ</button>
 <button aria-describedby="hx-speak-btns" aria-label="बोलकर सुनाना रोकें" class="btn" id="speak-pause" type="button">रोकें</button>
 <button aria-describedby="hx-speak-btns" aria-label="पूरा पाठ शुरू से फिर से बोलकर सुनाएँ" class="btn" id="speak-restart" type="button">फिर से शुरू</button>
 </div>
 <p class="hint" id="hx-speak-btns">बोलकर सुनाएँ: लिखा पाठ फ़ोन की आवाज़ में सुनाता है। रोकें: बोलना बंद करता है। फिर से शुरू: पूरा पाठ शुरू से सुनाता है।</p>
-<ul class="bullets note"><li>बोलकर सुनाने की आवाज़ को फ़ाइल (MP3 या WAV) में सेव करने का बटन इस ऐप में नहीं है।</li><li>फ़ोन की आवाज़ को फ़ाइल में बदलने का तरीका ब्राउज़र में भरोसेमंद नहीं है।</li><li>इसके लिए इंटरनेट की आवाज़-सेवा या सर्वर चाहिए।</li><li>यह आगे का एक संभावित कदम हो सकता है, अभी नहीं।</li></ul>
+<ul class="bullets note"><li>बोलकर सुनाने की आवाज़ फ़ाइल में सेव नहीं होती।<br>MP3 या WAV में सेव करने का बटन नहीं है।</li><li>फ़ोन की आवाज़ को फ़ाइल में बदलना।<br>ब्राउज़र में यह तरीका भरोसेमंद नहीं है।</li><li>इसके लिए इंटरनेट की आवाज़-सेवा या सर्वर चाहिए।</li><li>यह आगे का एक संभावित कदम हो सकता है, अभी नहीं।</li></ul>
 <p aria-live="polite" class="status" id="speak-status"></p>
 </section>
-</div><div class="panel cat-screen" hidden="" id="cat-camera"><button class="btn back" data-back="" type="button">वापस</button>
+</div><div class="panel cat-screen" hidden="" id="cat-camera"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button>
 <h2 class="panel-title" id="h-camera" tabindex="-1">कैमरे से मदद</h2>
-<ul class="bullets"><li>ये हिस्से कैमरा तभी चालू करते हैं जब आप उनका बटन दबाते हैं।</li><li>तस्वीरें फ़ोन में ही देखी जाती हैं।</li></ul>
+<ul class="bullets"><li>ये हिस्से कैमरा तभी चालू करते हैं।<br>जब आप उनका बटन दबाते हैं।</li><li>तस्वीरें फ़ोन में ही देखी जाती हैं।</li></ul>
 <section aria-labelledby="h-color">
 <h3 class="sec-title" id="h-color" tabindex="-1">रंग पहचानें</h3>
-<ul class="bullets"><li>पीछे वाला कैमरा चालू होगा और बीच की जगह का रंग बोलकर बताएगा।</li><li>रंग बदलने पर ही नया नाम बोला जाएगा।</li></ul>
+<ul class="bullets"><li>पीछे वाला कैमरा चालू होगा।<br>बीच की जगह का रंग बोलकर बताएगा।</li><li>रंग बदलने पर ही नया नाम बोला जाएगा।</li></ul>
 <ul class="bullets note"><li>रोशनी के हिसाब से रंग थोड़ा अलग दिख सकता है।</li><li>यह सिर्फ़ अंदाज़ा है।</li></ul>
 <p class="support" hidden="" id="col-support">इस फ़ोन या ब्राउज़र में कैमरा नहीं चलता। Chrome ब्राउज़र में खोलकर देखें।</p>
 <div class="actions">
@@ -610,7 +606,7 @@ html.hc body { background: #fff; color: #000; }
 <section aria-labelledby="h-talkcam">
 <h3 class="sec-title" id="h-talkcam" tabindex="-1">बोलने वाला कैमरा</h3>
 <ul class="bullets"><li>कैमरा चालू करें।</li><li>ऐप रोशनी और हाथ की हरकत के बारे में बोलकर बताएगा।</li><li>फ़ोन यह सुविधा दे तो चेहरे की जगह भी बताएगा।</li><li>"फ़ोटो लें" से एक तस्वीर बनेगी।</li></ul>
-<ul class="bullets note"><li>कैमरा सिर्फ़ इसी हिस्से के खुले रहने पर और बटन दबाने पर चलता है।</li><li>ऐप छोड़ने पर बंद हो जाता है।</li></ul>
+<ul class="bullets note"><li>कैमरा सिर्फ़ इसी हिस्से के खुले रहने पर चलता है।<br>और बटन दबाने पर चलता है।</li><li>ऐप छोड़ने पर बंद हो जाता है।</li></ul>
 <p class="support" hidden="" id="tc-support">इस फ़ोन या ब्राउज़र में कैमरा नहीं चलता। Chrome ब्राउज़र में खोलकर देखें।</p>
 <div class="actions">
 <button aria-describedby="hx-tc-btns" class="btn primary" id="tc-start" type="button">कैमरा चालू करें</button>
@@ -623,7 +619,7 @@ html.hc body { background: #fff; color: #000; }
 <p aria-live="off" class="note" id="tc-face"></p>
 <div class="result" id="tc-result"></div>
 </section>
-</div><div class="panel cat-screen" hidden="" id="cat-radio"><button class="btn back" data-back="" type="button">वापस</button>
+</div><div class="panel cat-screen" hidden="" id="cat-radio"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button>
 <h2 class="panel-title" id="h-radio" tabindex="-1">रेडियो</h2>
 <ul class="bullets"><li>यहाँ आकाशवाणी और कुछ दूसरे रेडियो स्टेशन इंटरनेट से सुन सकते हैं।</li><li>इसके लिए फ़ोन में इंटरनेट चालू होना चाहिए।</li></ul>
 <section aria-labelledby="h-radio-find">
@@ -633,7 +629,7 @@ html.hc body { background: #fff; color: #000; }
 <option value="all">सभी देश</option>
 <option value="IN">भारत</option>
 </select>
-<p class="hint" id="hx-radio-country">देश चुनने पर उसी देश के स्टेशन दिखेंगे। अभी सूची में ज़्यादातर भारत के स्टेशन हैं। बोल पंजाबी रेडियो का देश पक्का नहीं है, इसलिए वह सिर्फ़ "सभी देश" चुनने पर दिखेगा।</p>
+<p class="hint" id="hx-radio-country">देश चुनने पर उसी देश के स्टेशन दिखेंगे। अभी सूची में ज़्यादातर भारत के स्टेशन हैं। पंजाबी रेडियो का देश पक्का नहीं है। इसलिए वह सिर्फ़ "सभी देश" चुनने पर दिखेगा।</p>
 <label for="radio-lang">भाषा</label>
 <select aria-describedby="hx-radio-lang" id="radio-lang">
 <option value="all">सभी भाषाएँ</option>
@@ -648,7 +644,7 @@ html.hc body { background: #fff; color: #000; }
 <div class="actions">
 <button aria-describedby="hx-radio-clear" class="btn" id="radio-clear" type="button">साफ़ करें / <span lang="en">Clear</span></button>
 </div>
-<p class="hint" id="hx-radio-clear">दबाने पर स्टेशन का नाम मिट जाएगा और सारे स्टेशन फिर से दिखेंगे।</p>
+<p class="hint" id="hx-radio-clear">दबाने पर स्टेशन का नाम मिट जाएगा। सारे स्टेशन फिर से दिखेंगे।</p>
 <p aria-live="polite" class="note" id="radio-count"></p>
 </section>
 <section aria-labelledby="h-radio-list">
@@ -663,7 +659,7 @@ html.hc body { background: #fff; color: #000; }
 <button aria-describedby="hx-radio-again" class="btn primary" id="radio-again" type="button">फिर से शुरू करें</button>
 <button aria-describedby="hx-radio-stop" class="btn" disabled="" id="radio-stop" type="button">रेडियो बंद करें</button>
 </div>
-<p class="hint" id="hx-radio-again">दबाने पर पिछला या चुना हुआ स्टेशन दोबारा शुरू होगा। इंटरनेट लौटने पर, अगर स्टेशन चल रहा था, तो ऐप अपने-आप यही करता है।</p>
+<p class="hint" id="hx-radio-again">दबाने पर पिछला या चुना हुआ स्टेशन दोबारा शुरू होगा। इंटरनेट लौटने पर ऐप यही अपने-आप करता है। यह तब होगा, जब स्टेशन चल रहा था।</p>
 <p class="hint" id="hx-radio-stop">दबाने पर चल रहा स्टेशन तुरंत बंद होगा।</p>
 <div id="radio-player"></div>
 <p aria-live="polite" class="note" id="radio-state"></p>
@@ -674,13 +670,13 @@ html.hc body { background: #fff; color: #000; }
 <ul class="bullets note"><li>रेडियो इंटरनेट से चलता है, इसलिए इंटरनेट का डेटा खर्च होगा।</li><li>स्टेशन चलाने वाली संस्था को आपके फ़ोन का इंटरनेट पता दिखता है।</li><li>जैसे किसी भी स्ट्रीमिंग में होता है।</li><li>आवाज़ साथी खुद कोई निजी डेटा इकट्ठा नहीं करता।</li></ul>
 <p class="note">ऐप छोड़ने पर या "रुको" बोलने पर रेडियो बंद हो जाता है।</p>
 </section>
-</div><div class="panel cat-screen" hidden="" id="cat-weather"><button class="btn back" data-back="" type="button">वापस</button>
+</div><div class="panel cat-screen" hidden="" id="cat-weather"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button>
 <h2 class="panel-title" id="h-weather" tabindex="-1">मौसम</h2>
-<ul class="bullets"><li>यहाँ अपनी जगह का या किसी भी शहर का अभी का मौसम सुन सकते हैं।</li><li>और लिखा हुआ भी देख सकते हैं।</li><li>इसके लिए फ़ोन में इंटरनेट चालू होना चाहिए।</li></ul>
+<ul class="bullets"><li>यहाँ अपनी जगह या किसी शहर का अभी का मौसम सुनें।</li><li>और लिखा हुआ भी देख सकते हैं।</li><li>इसके लिए फ़ोन में इंटरनेट चालू होना चाहिए।</li></ul>
 <section aria-labelledby="h-wx-my">
 <h3 class="sec-title" id="h-wx-my" tabindex="-1">मेरी जगह का मौसम</h3>
 <button aria-describedby="hx-wx-geo" class="btn primary" id="wx-geo" type="button">मेरी जगह का मौसम</button>
-<p class="hint" id="hx-wx-geo">दबाने पर फ़ोन आपसे जगह की अनुमति माँगेगा। अनुमति देने पर उसी जगह का मौसम सुनाया जाएगा। आपकी जगह सिर्फ़ मौसम लाने के लिए इस्तेमाल होती है। वह फ़ोन में सेव नहीं होती, और मौसम वाली सेवा के सिवा कहीं नहीं भेजी जाती। अनुमति न दें तो नीचे जगह का नाम लिखकर भी मौसम सुन सकते हैं।</p>
+<p class="hint" id="hx-wx-geo">दबाने पर फ़ोन आपसे जगह की अनुमति माँगेगा। अनुमति देने पर उसी जगह का मौसम सुनाया जाएगा। आपकी जगह सिर्फ़ मौसम लाने के लिए इस्तेमाल होती है। वह फ़ोन में सेव नहीं होती। मौसम वाली सेवा के सिवा कहीं नहीं भेजी जाती। अनुमति न दें तो जगह का नाम लिखकर भी सुन सकते हैं।</p>
 </section>
 <section aria-labelledby="h-wx-search">
 <h3 class="sec-title" id="h-wx-search" tabindex="-1">किसी और जगह का मौसम</h3>
@@ -719,13 +715,13 @@ html.hc body { background: #fff; color: #000; }
 <p class="hint" id="hx-wx-country">देश की सूची में भारत पहले से चुना है। जिस देश की जगह देखनी हो, उसे चुनें। खोज उसी देश में होगी।</p>
 <label for="wx-place">जगह का नाम लिखें</label>
 <input aria-describedby="hx-wx-place" autocomplete="off" id="wx-place" type="text"/>
-<p class="hint" id="hx-wx-place">शहर या गाँव का नाम लिखें, जैसे दिल्ली या चंडीगढ़। लिखने के बाद "मौसम सुनाओ" दबाएँ। Enter दबाने पर भी खोज होगी।</p>
+<p class="hint" id="hx-wx-place">शहर या गाँव का नाम लिखें, जैसे दिल्ली या चंडीगढ़। फिर "मौसम सुनाओ" दबाएँ। Enter दबाने पर भी खोज होगी।</p>
 <div class="actions">
 <button aria-describedby="hx-wx-clear" class="btn" id="wx-clear" type="button">साफ़ करें</button>
 <button aria-describedby="hx-wx-search" class="btn primary" id="wx-search" type="button">मौसम सुनाओ</button>
 </div>
 <p class="hint" id="hx-wx-clear">दबाने पर लिखा हुआ जगह का नाम मिट जाएगा।</p>
-<p class="hint" id="hx-wx-search">दबाने पर लिखी जगह का मौसम खोजा जाएगा और सुनाया जाएगा। इसके लिए इंटरनेट चाहिए।</p>
+<p class="hint" id="hx-wx-search">दबाने पर लिखी जगह का मौसम खोजा जाएगा। फिर वह सुनाया जाएगा। इसके लिए इंटरनेट चाहिए।</p>
 </section>
 <section aria-labelledby="h-wx-pick" hidden="" id="wx-pick">
 <h3 class="sec-title" id="h-wx-pick" tabindex="-1">कौन-सी जगह?</h3>
@@ -742,17 +738,17 @@ html.hc body { background: #fff; color: #000; }
 <button aria-describedby="hx-wx-again" class="btn primary" id="wx-again" type="button">दोबारा सुनाओ</button>
 <button aria-describedby="hx-wx-stop" class="btn" id="wx-stop" type="button">रोको</button>
 </div>
-<p class="hint" id="hx-wx-again">दबाने पर आखिरी मौसम दोबारा सुनाया जाएगा। अगर ऐप अभी-अभी खुला है, तो पिछली सेव की हुई जगह का ताज़ा मौसम लिया जाएगा।</p>
-<p class="hint" id="hx-wx-stop">दबाने पर बोलना तुरंत रुक जाएगा और चल रही खोज भी रद्द हो जाएगी।</p>
+<p class="hint" id="hx-wx-again">दबाने पर आखिरी मौसम दोबारा सुनाया जाएगा। ऐप अभी-अभी खुला हो तो ताज़ा मौसम लिया जाएगा। यह सेव की हुई जगह का होगा।</p>
+<p class="hint" id="hx-wx-stop">दबाने पर बोलना तुरंत रुक जाएगा। चल रही खोज भी रद्द हो जाएगी।</p>
 <p aria-live="polite" class="note" id="wx-last"></p>
 </section>
 <section aria-labelledby="h-wx-note">
 <h3 class="sec-title" id="h-wx-note">ध्यान रखें</h3>
-<ul class="bullets note"><li>मौसम की जानकारी Open-Meteo नाम की मौसम सेवा से आती है।</li><li>खोज के लिए जगह का नाम और चुना हुआ देश उसी सेवा को भेजे जाते हैं।</li></ul>
-<ul class="bullets note"><li>आखिरी चुनी हुई जगह का नाम और जगह आपके फ़ोन में सेव रहती है।</li><li>ताकि अगली बार वही जगह दिखे।</li><li>"मेरी जगह" की अनुमति से मिली जगह सेव नहीं होती।</li></ul>
+<ul class="bullets note"><li>मौसम की जानकारी Open-Meteo नाम की मौसम सेवा से आती है।</li><li>खोज के लिए जगह का नाम और चुना हुआ देश।<br>ये उसी मौसम सेवा को भेजे जाते हैं।</li></ul>
+<ul class="bullets note"><li>आखिरी चुनी हुई जगह का नाम सेव रहता है।<br>उसकी जगह भी आपके फ़ोन में सेव रहती है।</li><li>ताकि अगली बार वही जगह दिखे।</li><li>"मेरी जगह" की अनुमति से मिली जगह सेव नहीं होती।</li></ul>
 <ul class="bullets note"><li>इंटरनेट न हो तो ऐप बताएगा: "Internet से Connect करो"।</li><li>मौसम का अनुमान सही भी हो सकता है और थोड़ा अलग भी।</li></ul>
 </section>
-</div><div class="panel cat-screen" hidden="" id="cat-yt"><button class="btn back" data-back="" type="button">वापस</button>
+</div><div class="panel cat-screen" hidden="" id="cat-yt"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button>
 <h2 class="panel-title" id="h-yt" tabindex="-1">मेरा YouTube चैनल</h2>
 <ul class="bullets"><li>यहाँ अपने YouTube चैनल को नए टैब में खोल सकते हैं।</li><li>चैनल का नाम "Career &amp; Info" है।</li><li>इसमें हिंदी में करियर, जानकारी और डरावनी कहानियाँ हैं।</li><li>जैसे वीडियो "रात की आख़िरी बस"।</li></ul>
 <ul class="bullets note"><li><strong>ज़रूरी बात:</strong> इस चैनल का सही लिंक अभी पक्का नहीं हो पाया है।</li><li>इसलिए ऐप में कोई लिंक पहले से नहीं डाला गया है।</li><li>चैनल का लिंक नीचे डालकर सहेजें।</li></ul>
@@ -772,18 +768,18 @@ html.hc body { background: #fff; color: #000; }
 <iframe allowfullscreen="" height="315" id="yt-frame" loading="lazy" title="मेरे YouTube चैनल के नए वीडियो" width="100%"></iframe>
 <p class="note">नए वीडियो देखने के लिए इंटरनेट चाहिए। वीडियो YouTube से आते हैं।</p>
 </div>
-</div><div class="panel cat-screen" hidden="" id="cat-read"><button class="btn back" data-back="" type="button">वापस</button><h2 class="panel-title" id="h-cat-read" tabindex="-1">पढ़ना और लिखना</h2>
+</div><div class="panel cat-screen" hidden="" id="cat-read"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button><h2 class="panel-title" id="h-cat-read" tabindex="-1">पढ़ना और लिखना</h2>
 <h3 class="panel-title sub-title" id="h-book" tabindex="-1">बुक रीडर</h3>
 <ul class="bullets"><li>यहाँ अपनी किताब की .txt या PDF फ़ाइल चुनें।</li><li>किताब के पन्ने की फ़ोटो लें, या पाठ सीधे चिपकाएँ।</li><li>ऐप उसे अनुच्छेद-दर-अनुच्छेद फ़ोन की आवाज़ में पढ़कर सुनाएगा।</li><li>फ़ाइल फ़ोन से बाहर कहीं नहीं जाती।</li></ul>
 <section aria-labelledby="h-book-load">
 <h3 class="sec-title" id="h-book-load">किताब का पाठ</h3>
 <label for="book-text">यहाँ पाठ लिखें या चिपकाएँ</label>
 <textarea aria-describedby="hx-book-text" class="big-text" id="book-text" rows="8"></textarea>
-<p class="hint" id="hx-book-text">यहाँ सीधे टाइप करें या कॉपी किया हुआ पाठ चिपकाएँ। नीचे फ़ाइल, PDF या फ़ोटो से भी पाठ यहीं भर सकते हैं।</p>
+<p class="hint" id="hx-book-text">यहाँ सीधे टाइप करें या कॉपी किया पाठ चिपकाएँ। नीचे फ़ाइल, PDF या फ़ोटो से भी पाठ यहीं भर सकते हैं।</p>
 <div class="actions">
 <button aria-describedby="hx-book-clear" class="btn" id="book-clear" type="button">साफ़ करो</button>
 </div>
-<p class="hint" id="hx-book-clear">दबाने पर बॉक्स का सारा लिखा मिट जाएगा। जो किताब पहले से लोड है, उस पर इसका असर नहीं होता।</p>
+<p class="hint" id="hx-book-clear">दबाने पर बॉक्स का सारा लिखा मिट जाएगा। जो किताब पहले से लोड है, उस पर असर नहीं होता।</p>
 </section>
 <section aria-labelledby="h-book-up">
 <h3 class="sec-title" id="h-book-up">फ़ाइल या फ़ोटो से पाठ लाएँ</h3>
@@ -792,9 +788,9 @@ html.hc body { background: #fff; color: #000; }
 <button aria-describedby="hx-book-file" class="btn" id="book-file-btn" type="button">.txt या PDF फ़ाइल चुनें</button>
 <button aria-describedby="hx-book-camera" class="btn" id="book-camera-btn" type="button">कैमरे से फ़ोटो लें</button>
 </div>
-<p class="hint" id="hx-book-gallery">इसे खोलने के लिए डबल टैप करें। गैलरी से फ़ोटो चुनें दबाने पर ही फ़ोन की गैलरी खुलेगी। एक से ज़्यादा फ़ोटो चुन सकते हैं, और हर फ़ोटो एक अलग पेज बनेगी। ऐप उसके अक्षर पढ़कर बॉक्स में लिखेगा। इसमें समय लगता है, और पहली बार इंटरनेट चाहिए।</p>
-<p class="hint" id="hx-book-file">इसे खोलने के लिए डबल टैप करें। .txt या PDF फ़ाइल चुनें दबाने पर ही फ़ाइल चुनने का पैनल खुलेगा। .txt फ़ाइल सीधे बॉक्स में आ जाएगी। PDF में लिखा पाठ हो तो वह आएगा, और हर PDF पन्ना अलग पेज बनेगा। स्कैन की हुई PDF में लिखा पाठ नहीं होता, उसे नहीं पढ़ा जा सकेगा।</p>
-<p class="hint" id="hx-book-camera">इसे खोलने के लिए डबल टैप करें। कैमरे से फ़ोटो लें दबाने पर फ़ोन का कैमरा खुलेगा। पन्ना सीधा और अच्छी रोशनी में रखें। फ़ोटो से पढ़ा पाठ बॉक्स में आएगा, उसे जाँच लें।</p>
+<p class="hint" id="hx-book-gallery">इसे खोलने के लिए डबल टैप करें। गैलरी से फ़ोटो चुनें दबाने पर ही फ़ोन की गैलरी खुलेगी। एक से ज़्यादा फ़ोटो चुन सकते हैं। हर फ़ोटो एक अलग पेज बनेगी। ऐप उसके अक्षर पढ़कर बॉक्स में लिखेगा। इसमें समय लगता है। पहली बार इंटरनेट चाहिए।</p>
+<p class="hint" id="hx-book-file">इसे खोलने के लिए डबल टैप करें। .txt या PDF फ़ाइल चुनें। दबाने पर ही फ़ाइल चुनने का पैनल खुलेगा। .txt फ़ाइल सीधे बॉक्स में आ जाएगी। PDF में लिखा पाठ हो तो वह आएगा। हर PDF पन्ना अलग पेज बनेगा। स्कैन की हुई PDF में लिखा पाठ नहीं होता। उसे नहीं पढ़ा जा सकेगा।</p>
+<p class="hint" id="hx-book-camera">इसे खोलने के लिए डबल टैप करें। कैमरे से फ़ोटो लें दबाने पर फ़ोन का कैमरा खुलेगा। पन्ना सीधा और अच्छी रोशनी में रखें। फ़ोटो से पढ़ा पाठ बॉक्स में आएगा। उसे जाँच लें।</p>
 <input accept="image/*" aria-hidden="true" id="book-gallery" multiple="" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden" tabindex="-1" type="file"/>
 <input accept=".txt,text/plain,.pdf,application/pdf" aria-hidden="true" id="book-file" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden" tabindex="-1" type="file"/>
 <input accept="image/*" aria-hidden="true" capture="environment" id="book-camera" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden" tabindex="-1" type="file"/>
@@ -810,10 +806,10 @@ html.hc body { background: #fff; color: #000; }
 <option selected="" value="hi-IN">हिंदी</option>
 <option value="en-IN">अंग्रेज़ी (भारत)</option>
 </select>
-<p class="hint" id="hx-book-lang">किताब हिंदी में है तो हिंदी, अंग्रेज़ी में है तो अंग्रेज़ी चुनें। फ़ोन में उस भाषा की आवाज़ होनी चाहिए।</p>
+<p class="hint" id="hx-book-lang">किताब हिंदी में है तो हिंदी चुनें। अंग्रेज़ी में है तो अंग्रेज़ी चुनें। फ़ोन में उस भाषा की आवाज़ होनी चाहिए।</p>
 <label for="book-rate">पढ़ने की गति (0.5 से 2 गुना)</label>
 <input aria-describedby="hx-book-rate" id="book-rate" max="2" min="0.5" step="0.1" type="range" value="1"/>
-<p class="hint" id="hx-book-rate">स्लाइडर दाएँ खिसकाएँ तो तेज़, बाएँ खिसकाएँ तो धीमा पढ़ेगा। बदलते ही अगले वाक्य से असर होगा।</p>
+<p class="hint" id="hx-book-rate">स्लाइडर दाएँ खिसकाएँ तो तेज़ पढ़ेगा। बाएँ खिसकाएँ तो धीमा। बदलते ही अगले वाक्य से असर होगा।</p>
 <p class="note">अभी गति: <span id="book-rate-val">1.0</span> गुना</p>
 </section>
 <section aria-labelledby="h-book-play">
@@ -826,13 +822,13 @@ html.hc body { background: #fff; color: #000; }
 <button aria-describedby="hx-book-sent" class="btn big-btn" id="book-back" type="button">पीछे जाओ</button>
 <button aria-describedby="hx-book-sent" class="btn big-btn" id="book-fwd" type="button">आगे बढ़ाओ</button>
 </div>
-<p class="hint" id="hx-book-sent">पीछे जाओ: एक वाक्य पीछे से फिर पढ़ता है। आगे बढ़ाओ: एक वाक्य आगे जाता है। फ़ोन की आवाज़ में सीधे खिसकना नहीं होता, इसलिए ऐप वाक्य-वाक्य बदलता है।</p>
+<p class="hint" id="hx-book-sent">पीछे जाओ: एक वाक्य पीछे से फिर पढ़ता है। आगे बढ़ाओ: एक वाक्य आगे जाता है। फ़ोन की आवाज़ में सीधे खिसकना नहीं होता। इसलिए ऐप वाक्य-वाक्य बदलता है।</p>
 <div class="actions">
 <button aria-describedby="hx-book-play" class="btn primary big-btn" id="book-play" type="button">चलाओ / प्ले</button>
 <button aria-describedby="hx-book-play" class="btn big-btn" id="book-pause" type="button">रोकें / पॉज़</button>
 <button aria-describedby="hx-book-play" class="btn big-btn" id="book-stop" type="button">बंद करो</button>
 </div>
-<p class="hint" id="hx-book-play">चलाओ / प्ले: चालू वाक्य से पढ़ना शुरू या फिर शुरू करता है। रोकें / पॉज़: बोलना रोकता है, दोबारा दबाने पर वहीं से आगे पढ़ता है। बंद करो: बोलना पूरी तरह बंद करता है, और जगह याद रहती है।</p>
+<p class="hint" id="hx-book-play">चलाओ या प्ले: चालू वाक्य से पढ़ना शुरू होता है। रोकें या पॉज़: बोलना रुकता है। दोबारा दबाने पर वहीं से आगे पढ़ता है। बंद करो: बोलना पूरी तरह बंद होता है। जगह याद रहती है।</p>
 <div class="actions">
 <button aria-describedby="hx-book-page" class="btn big-btn" id="book-prev-page" type="button">पिछला पेज</button>
 <button aria-describedby="hx-book-page" class="btn big-btn" id="book-next-page" type="button">अगला पेज</button>
@@ -842,7 +838,7 @@ html.hc body { background: #fff; color: #000; }
 <input aria-describedby="hx-book-page" id="book-goto" inputmode="numeric" min="1" type="number" value="1"/>
 <button aria-describedby="hx-book-page" class="btn" id="book-goto-btn" type="button">इस पेज पर जाओ</button>
 </div>
-<p class="hint" id="hx-book-page">पिछला पेज और अगला पेज: एक पेज पीछे या आगे जाता है। PDF या कई फ़ोटो हों तो हर पन्ना अलग पेज होता है। पेज नंबर लिखकर "इस पेज पर जाओ" दबाने से सीधे वहाँ पहुँचते हैं। पेज बदलते ही ऐप बताता है।</p>
+<p class="hint" id="hx-book-page">पिछला पेज और अगला पेज: एक पेज पीछे या आगे जाता है। PDF या कई फ़ोटो हों तो हर पन्ना अलग पेज होता है। पेज नंबर लिखकर "इस पेज पर जाओ" दबाएँ। सीधे वहाँ पहुँच जाएँगे। पेज बदलते ही ऐप बताता है।</p>
 <div class="actions">
 <button aria-describedby="hx-book-nav" class="btn" id="book-prev" type="button">पिछला अनुच्छेद</button>
 <button aria-describedby="hx-book-nav" class="btn" id="book-next" type="button">अगला अनुच्छेद</button>
@@ -851,7 +847,7 @@ html.hc body { background: #fff; color: #000; }
 </section>
 <section aria-labelledby="h-book-note">
 <h3 class="sec-title" id="h-book-note">ध्यान रखें</h3>
-<ul class="bullets note"><li>आवाज़ आपके फ़ोन की अपनी टेक्स्ट-टू-स्पीच से आती है।</li><li>किताब बहुत लंबी हो तो शुरू होने में थोड़ा समय लग सकता है।</li></ul>
+<ul class="bullets note"><li>आवाज़ आपके फ़ोन की अपनी टेक्स्ट-टू-स्पीच से आती है।</li><li>किताब बहुत लंबी हो, तो शुरू होने में समय लग सकता है।</li></ul>
 <ul class="bullets note"><li>आपकी आख़िरी पढ़ी जगह इसी फ़ोन में सेव होती है।</li><li>वही किताब दोबारा लोड करने पर वहीं से शुरू होगी।</li></ul>
 </section>
 <h3 class="panel-title sub-title" id="h-timg" tabindex="-1">टेक्स्ट से इमेज</h3>
@@ -860,7 +856,7 @@ html.hc body { background: #fff; color: #000; }
 <h3 class="sec-title" id="h-timg-in">पाठ लिखें</h3>
 <label for="timg-text">यहाँ पाठ लिखें या चिपकाएँ</label>
 <textarea aria-describedby="hx-timg-text" class="big-text" id="timg-text" rows="8"></textarea>
-<p class="hint" id="hx-timg-text">जितना लिखा होगा, उतना तस्वीरों में आएगा। बहुत लंबा पाठ हो तो ऐप उसे कई तस्वीरों (पेज) में बाँट देगा।</p>
+<p class="hint" id="hx-timg-text">जितना लिखा होगा, उतना तस्वीरों में आएगा। बहुत लंबा पाठ हो तो ऐप उसे कई तस्वीरों में बाँट देगा।</p>
 <div class="actions">
 <button aria-describedby="hx-timg-clear" class="btn" id="timg-clear" type="button">साफ़ करो</button>
 </div>
@@ -873,13 +869,13 @@ html.hc body { background: #fff; color: #000; }
 <option selected="" value="1080x1920">फ़ोन जैसा लंबा (1080 × 1920)</option>
 <option value="1080x1080">चौकोर (1080 × 1080)</option>
 </select>
-<p class="hint" id="hx-timg-size">फ़ोन पर देखने या WhatsApp पर भेजने के लिए लंबा आकार अच्छा है।</p>
+<p class="hint" id="hx-timg-size">फ़ोन पर देखने या WhatsApp पर भेजने के लिए।<br>लंबा आकार अच्छा है।</p>
 <label for="timg-theme">रंग</label>
 <select aria-describedby="hx-timg-theme" class="big" id="timg-theme">
 <option selected="" value="light">हल्का: सफ़ेद पर काला</option>
 <option value="dark">गहरा: काले पर सफ़ेद</option>
 </select>
-<p class="hint" id="hx-timg-theme">कम रोशनी में या आँखों के लिए जो ज़्यादा आरामदेह हो, वह चुनें।</p>
+<p class="hint" id="hx-timg-theme">कम रोशनी में या आँखों के लिए जो आरामदेह हो, वह चुनें।</p>
 </section>
 <section aria-labelledby="h-timg-make">
 <h3 class="sec-title" id="h-timg-make">तस्वीर बनाएँ</h3>
@@ -916,11 +912,11 @@ html.hc body { background: #fff; color: #000; }
 <section aria-labelledby="h-tpdf-make">
 <h3 class="sec-title" id="h-tpdf-make">PDF बनाएँ</h3>
 <button aria-describedby="hx-tpdf-make" class="btn primary big-btn" id="tpdf-make" type="button">PDF बनाएँ</button>
-<p class="hint" id="hx-tpdf-make">दबाने पर PDF बनेगी। फिर उसे डाउनलोड कर सकते हैं या शेयर कर सकते हैं।</p>
+<p class="hint" id="hx-tpdf-make">दबाने पर PDF बनेगी। फिर उसे डाउनलोड या शेयर कर सकते हैं।</p>
 <p aria-live="polite" class="status" id="tpdf-status"></p>
 <div id="tpdf-result"></div>
 </section>
-</div><div class="panel cat-screen" hidden="" id="cat-phone"><button class="btn back" data-back="" type="button">वापस</button><h2 class="panel-title" id="h-cat-phone" tabindex="-1">फ़ोन के काम</h2>
+</div><div class="panel cat-screen" hidden="" id="cat-phone"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button><h2 class="panel-title" id="h-cat-phone" tabindex="-1">फ़ोन के काम</h2>
 <h3 class="panel-title sub-title" id="h-screen" tabindex="-1">स्क्रीन रिकॉर्डर</h3>
 <ul class="bullets"><li>यहाँ फ़ोन की स्क्रीन रिकॉर्ड की जा सकती है।</li><li>अगर फ़ोन और ब्राउज़र इसकी इजाज़त दें।</li><li>रिकॉर्डिंग फ़ोन में ही रहती है, कहीं अपलोड नहीं होती।</li></ul>
 <div hidden="" id="screen-unsupported">
@@ -933,8 +929,8 @@ html.hc body { background: #fff; color: #000; }
 <section aria-labelledby="h-screen-steps">
 <h3 class="sec-title" id="h-screen-steps">फ़ोन का अपना रिकॉर्डर कैसे चलाएँ</h3>
 <ul class="bullets note"><li><strong>ज़्यादातर Android फ़ोन में:</strong> स्क्रीन के ऊपर से नीचे खींचकर त्वरित सेटिंग्स खोलें।</li><li>वहाँ "स्क्रीन रिकॉर्डर" या "स्क्रीन रिकॉर्ड" बटन दबाएँ।</li></ul>
-<ul class="bullets note"><li>हर फ़ोन में खींचने का तरीका और बटन का नाम थोड़ा अलग हो सकता है।</li><li>अपने फ़ोन की सेटिंग्स में "स्क्रीन रिकॉर्ड" खोजें।</li></ul>
-<ul class="bullets note"><li>रिकॉर्डिंग रोकने के लिए स्क्रीन के ऊपर दिखने वाली सूचना-पट्टी में रिकॉर्डिंग का "रोकें" बटन दबाएँ।</li><li>बटनों के नाम आपके फ़ोन के हिसाब से थोड़े अलग हो सकते हैं।</li></ul>
+<ul class="bullets note"><li>हर फ़ोन में खींचने का तरीका अलग हो सकता है।<br>बटन का नाम भी थोड़ा अलग हो सकता है।</li><li>अपने फ़ोन की सेटिंग्स में "स्क्रीन रिकॉर्ड" खोजें।</li></ul>
+<ul class="bullets note"><li>रिकॉर्डिंग रोकने के लिए ऊपर की सूचना-पट्टी देखें।<br>वहाँ रिकॉर्डिंग का "रोकें" बटन दबाएँ।</li><li>बटनों के नाम आपके फ़ोन के हिसाब से अलग हो सकते हैं।</li></ul>
 </section>
 </div>
 <div hidden="" id="screen-supported">
@@ -948,7 +944,7 @@ html.hc body { background: #fff; color: #000; }
 <option selected="" value="2500000">सामान्य</option>
 <option value="5000000">अच्छी (बड़ी फ़ाइल)</option>
 </select>
-<p class="hint" id="hx-screen-quality">क्वालिटी जितनी अच्छी, फ़ाइल उतनी बड़ी होगी और फ़ोन की जगह ज़्यादा लगेगी।</p>
+<p class="hint" id="hx-screen-quality">क्वालिटी जितनी अच्छी, फ़ाइल उतनी बड़ी होगी। फ़ोन की जगह भी ज़्यादा लगेगी।</p>
 </section>
 <section aria-labelledby="h-screen-do">
 <h3 class="sec-title" id="h-screen-do">रिकॉर्ड करना</h3>
@@ -957,26 +953,26 @@ html.hc body { background: #fff; color: #000; }
 <button aria-describedby="hx-screen-stop" class="btn big-btn" disabled="" id="screen-stop" type="button">रिकॉर्डिंग रोकें</button>
 </div>
 <p class="hint" id="hx-screen-start">दबाने पर फ़ोन पूछेगा कि कौन-सी स्क्रीन रिकॉर्ड करनी है। "शेयर" या "अनुमति दें" चुनें।</p>
-<p class="hint" id="hx-screen-stop">रिकॉर्डिंग रोकने पर वीडियो तैयार होगा और नीचे सेव या शेयर करने के बटन दिखेंगे।</p>
+<p class="hint" id="hx-screen-stop">रिकॉर्डिंग रोकने पर वीडियो तैयार होगा। नीचे सेव या शेयर करने के बटन दिखेंगे।</p>
 <div class="actions">
 <a aria-describedby="hx-screen-save" class="btn big-btn" hidden="" id="screen-save">रिकॉर्डिंग सेव करें</a>
 <button aria-describedby="hx-screen-share" class="btn big-btn" hidden="" id="screen-share" type="button">रिकॉर्डिंग शेयर करें</button>
 </div>
 <p class="hint" id="hx-screen-save">सेव करने पर फ़ाइल फ़ोन की डाउनलोड फ़ोल्डर में जाएगी।</p>
-<p class="hint" id="hx-screen-share">शेयर करने पर फ़ोन का शेयर मेन्यू खुलेगा, जहाँ से आप फ़ाइल किसी ऐप में भेज सकते हैं।</p>
+<p class="hint" id="hx-screen-share">शेयर करने पर फ़ोन का शेयर मेन्यू खुलेगा। उससे फ़ाइल किसी ऐप में भेज सकते हैं।</p>
 <p aria-live="polite" class="status" id="screen-state"></p>
 </section>
 </div>
 <h3 class="panel-title sub-title" data-reveal="speaker-body" id="h-speaker" tabindex="-1">स्पीकर क्लीनर</h3>
-<ul class="bullets"><li>यह छोटा औज़ार फ़ोन के स्पीकर में धीमी आवाज़ की लहर बजाता है।</li><li>इससे स्पीकर में फँसे पानी को थोड़ा बाहर निकालने में मदद मिल सकती है।</li></ul>
+<ul class="bullets"><li>यह छोटा औज़ार स्पीकर में धीमी आवाज़ की लहर बजाता है।</li><li>इससे स्पीकर में फँसे पानी निकालने में मदद मिल सकती है।</li></ul>
 <button aria-controls="speaker-body" aria-describedby="hx-speaker-toggle" aria-expanded="false" class="btn primary" data-label-close="स्पीकर क्लीनर बंद करें" data-label-open="स्पीकर क्लीनर खोलें" id="speaker-toggle" type="button">स्पीकर क्लीनर खोलें</button>
-<p class="hint" id="hx-speaker-toggle">इसे खोलने के लिए डबल टैप करें। दबाने पर स्पीकर क्लीनर के सारे बटन और जानकारी नीचे खुलेंगे। दोबारा दबाने पर सब बंद हो जाएगा, और चल रही सफ़ाई रुक जाएगी।</p>
+<p class="hint" id="hx-speaker-toggle">इसे खोलने के लिए डबल टैप करें। दबाने पर स्पीकर क्लीनर के बटन नीचे खुलेंगे। दोबारा दबाने पर सब बंद होगा। चल रही सफ़ाई भी रुक जाएगी।</p>
 <div data-collapsible="" hidden="" id="speaker-body">
 <section aria-labelledby="h-spk-how">
 <h3 class="sec-title" id="h-spk-how">यह कैसे काम करता है</h3>
-<ul class="bullets"><li>फ़ोन के स्पीकर से कम आवाज़ की लहर बजती है।</li><li>एक तरीके में लगातार 165 Hz का सुर रहता है।</li><li>और दूसरे में सुर 100 से 500 Hz तक धीरे-धीरे ऊपर-नीचे होता है।</li><li>इसका मकसद है स्पीकर के छेद में फँसा पानी हिलाकर बाहर निकालना।</li><li>और हल्की धूल को थोड़ा ढीला करना।</li></ul>
+<ul class="bullets"><li>फ़ोन के स्पीकर से कम आवाज़ की लहर बजती है।</li><li>एक तरीके में लगातार 165 Hz का सुर रहता है।</li><li>और दूसरे में सुर 100 से 500 Hz तक ऊपर-नीचे होता है।</li><li>इसका मकसद है स्पीकर के छेद में फँसा पानी हिलाकर बाहर निकालना।</li><li>और हल्की धूल को थोड़ा ढीला करना।</li></ul>
 <ul class="bullets"><li><strong>साफ़ बात:</strong> यह पानी के लिए सबसे अच्छा काम करता है।</li><li>धूल पर इसका असर बहुत थोड़ा होता है।</li><li>यह पक्की सफ़ाई की गारंटी नहीं है।</li><li>और इससे फ़ोन ठीक हो जाएगा, यह नहीं कहा जा सकता।</li></ul>
-<ul class="bullets"><li><strong>ध्यान रखें:</strong> फ़ोन को कान से दूर रखें और आवाज़ पूरी तेज़ पर न रखें।</li><li>चलते समय फ़ोन को ऐसे रखें कि स्पीकर वाला हिस्सा नीचे की ओर हो।</li><li>ताकि पानी बाहर निकल सके।</li></ul>
+<ul class="bullets"><li><strong>ध्यान रखें:</strong> फ़ोन को कान से दूर रखें।<br>आवाज़ पूरी तेज़ पर न रखें।</li><li>चलते समय फ़ोन को ऐसे रखें।<br>स्पीकर वाला हिस्सा नीचे की ओर हो।</li><li>ताकि पानी बाहर निकल सके।</li></ul>
 </section>
 <section aria-labelledby="h-spk-set">
 <h3 class="sec-title" id="h-spk-set">सेटिंग</h3>
@@ -992,14 +988,14 @@ html.hc body { background: #fff; color: #000; }
 <option selected="" value="steady">एक ही सुर (165 Hz)</option>
 <option value="sweep">सुर बदलता हुआ (100 से 500 Hz)</option>
 </select>
-<p class="hint" id="hx-spk-mode">एक ही सुर में लगातार 165 Hz की लहर चलती है। सुर बदलने वाले तरीके में आवाज़ 100 से 500 Hz तक ऊपर-नीचे होती है। चलने के बीच में यह बदला नहीं जा सकता।</p>
+<p class="hint" id="hx-spk-mode">एक ही सुर में लगातार 165 Hz की लहर चलती है।<br>दूसरे तरीके में सुर 100 से 500 Hz तक ऊपर-नीचे होता है।<br>चलने के बीच में यह बदला नहीं जा सकता।</p>
 <label for="spk-vol">आवाज़ का स्तर (10 से 60)</label>
 <input aria-describedby="hx-spk-vol" id="spk-vol" max="60" min="10" step="5" type="range" value="30"/>
-<p class="hint" id="hx-spk-vol">स्लाइडर पर टिक कर स्वाइप करें। शुरू में 30 पर रखा है। इसे 60 से ऊपर नहीं ले जा सकते, ताकि आवाज़ बहुत तेज़ न हो। फ़ोन का मीडिया वाला स्तर भी असर डालता है।</p>
+<p class="hint" id="hx-spk-vol">स्लाइडर पर टिक कर स्वाइप करें। शुरू में 30 पर रखा है। इसे 60 से ऊपर नहीं ले जा सकते। ताकि आवाज़ बहुत तेज़ न हो। फ़ोन का मीडिया वाला स्तर भी असर डालता है।</p>
 <p class="note">आवाज़ का स्तर: <span id="spk-vol-val">30</span></p>
 <ul class="bullets"><li><strong>चेतावनी:</strong> चलते समय फ़ोन को कान से दूर रखें।</li><li>तेज़ आवाज़ कान के लिए ठीक नहीं होती।</li></ul>
 <label class="choice"><input aria-describedby="hx-spk-vib" id="spk-vib" type="checkbox"/> <span>कंपन भी चलाओ</span></label>
-<p class="hint" id="hx-spk-vib">चालू हो तो सफ़ाई के दौरान फ़ोन हल्का-हल्का काँपेगा। यह सुविधा हर फ़ोन में नहीं होती। न हो तो बस आवाज़ चलेगी।</p>
+<p class="hint" id="hx-spk-vib">चालू हो तो सफ़ाई के दौरान फ़ोन हल्का-हल्का काँपेगा। यह हर फ़ोन में नहीं होता। न हो तो बस आवाज़ चलेगी।</p>
 <p class="note" hidden="" id="spk-vib-note">इस फ़ोन में कंपन की सुविधा नहीं है।</p>
 </section>
 <section aria-labelledby="h-spk-do">
@@ -1008,7 +1004,7 @@ html.hc body { background: #fff; color: #000; }
 <button aria-describedby="hx-spk-start" class="btn primary big-btn" id="spk-start" type="button">सफ़ाई शुरू करो</button>
 <button aria-describedby="hx-spk-stop" class="btn big-btn" disabled="" id="spk-stop" type="button">सफ़ाई रोको</button>
 </div>
-<p class="hint" id="hx-spk-start">दबाने पर चुनी देर तक, चुनी लहर और आवाज़ के स्तर पर स्पीकर बजेगा। हर 10 सेकंड पर बाकी समय सुनाई देगा।</p>
+<p class="hint" id="hx-spk-start">दबाने पर चुनी देर तक स्पीकर बजेगा। चुनी लहर और आवाज़ के स्तर पर बजेगा। हर 10 सेकंड पर बाकी समय सुनाई देगा।</p>
 <p class="hint" id="hx-spk-stop">दबाने पर सफ़ाई तुरंत रुक जाएगी और आवाज़ बंद हो जाएगी।</p>
 <p aria-live="polite" class="status" id="spk-count"></p>
 <button aria-describedby="hx-spk-test" class="btn" id="spk-test" type="button">स्पीकर टेस्ट</button>
@@ -1019,7 +1015,7 @@ html.hc body { background: #fff; color: #000; }
 <h3 class="sec-title" id="h-spk-mic">माइक की सफ़ाई के टिप्स</h3>
 <ul class="bullets"><li><strong>साफ़ बात:</strong> यह ऐप माइक को साफ़ नहीं कर सकता।</li><li>माइक के छेद सॉफ़्टवेयर से साफ़ नहीं होते।</li><li>नीचे कुछ सावधानियाँ हैं।</li></ul>
 <ul>
-<li>नरम।</li><li>सूखे ब्रश से माइक के छेद के ऊपर हल्के हाथ से धीरे-धीरे घुमाएँ।</li>
+<li>नरम।</li><li>सूखे ब्रश से माइक के छेद के ऊपर घुमाएँ।<br>हल्के हाथ से धीरे-धीरे चलाएँ।</li>
 <li>कंप्रेस्ड एयर का डिब्बा हो तो उसे कुछ दूरी से।</li><li>हल्की और छोटी फूँक में इस्तेमाल करें।</li>
 <li>छेद में सुई, पिन, टूथपिक या कोई नुकीली चीज़ न डालें।</li><li>इससे माइक खराब हो सकता है।</li>
 <li>पानी या गीला कपड़ा इस्तेमाल न करें।</li>
@@ -1029,17 +1025,17 @@ html.hc body { background: #fff; color: #000; }
 <section aria-labelledby="h-spk-limit">
 <h3 class="sec-title" id="h-spk-limit">इसकी सीमाएँ</h3>
 <ul>
-<li>यह ऐप फ़ोन के ऊपर वाले स्पीकर (जिससे कान पर फ़ोन सुनते हैं) को अलग से नहीं चुन सकता।</li><li>आवाज़ फ़ोन के सामान्य स्पीकर से ही बजती है।</li>
+<li>यह ऐप फ़ोन का ऊपर वाला स्पीकर अलग से नहीं चुन सकता।<br>यही वह स्पीकर है जिससे कान पर फ़ोन सुनते हैं।</li><li>आवाज़ फ़ोन के सामान्य स्पीकर से ही बजती है।</li>
 <li>यह ऐप माइक को साफ़ नहीं कर सकता।</li><li>माइक के लिए ऊपर दिए टिप्स देखें।</li>
 <li>यह पक्की सफ़ाई की गारंटी नहीं है।</li><li>पानी या धूल कुछ रह भी सकती है।</li>
 <li>सफ़ाई के बाद फ़ोन को साफ़ कपड़े से पोंछ लें।</li>
 </ul>
 </section>
 </div>
-</div><div class="panel cat-screen" hidden="" id="cat-settings"><button class="btn back" data-back="" type="button">वापस</button>
+</div><div class="panel cat-screen" hidden="" id="cat-settings"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button>
 <h2 class="panel-title" data-reveal="settings-body" id="h-settings" tabindex="-1">सेटिंग</h2>
 <button aria-controls="settings-body" aria-describedby="hx-settings-toggle" aria-expanded="false" class="btn primary" data-label-close="सेटिंग छिपाएँ" data-label-open="सेटिंग दिखाएँ" id="settings-toggle" type="button">सेटिंग दिखाएँ</button>
-<p class="hint" id="hx-settings-toggle">इसे खोलने के लिए डबल टैप करें। दबाने पर सेटिंग के सारे हिस्से नीचे खुलेंगे। दोबारा दबाने पर वे बंद हो जाएँगे।</p>
+<p class="hint" id="hx-settings-toggle">इसे खोलने के लिए डबल टैप करें। दबाने पर सेटिंग के सारे हिस्से नीचे खुलेंगे। दोबारा दबाने पर वे बंद होंगे।</p>
 <div data-collapsible="" hidden="" id="settings-body">
 <ul class="bullets"><li>यहाँ अक्षरों का आकार, रंग।</li><li>पढ़कर सुनाने की भाषा और गति बदल सकते हैं।</li><li>बदलाव तुरंत दिखते हैं।</li></ul>
 <section aria-labelledby="h-look">
@@ -1074,7 +1070,7 @@ html.hc body { background: #fff; color: #000; }
 <label class="choice"><input aria-describedby="hx-theme" name="theme" type="radio" value="yellow"/> <span>पीला-काला (बहुत साफ़ दिखे)</span></label>
 <label class="choice"><input aria-describedby="hx-theme" name="theme" type="radio" value="whiteblue"/> <span>सफ़ेद-नीला</span></label>
 <label class="choice"><input aria-describedby="hx-theme" name="theme" type="radio" value="talkback"/> <span>TalkBack जैसी (गहरा, हरा फ़ोकस)</span></label>
-<p class="hint" id="hx-theme">पूरे ऐप का रूप चुनें: छह में से एक। डार्क, पीला-काला, सफ़ेद-नीला और TalkBack जैसी थीम में बटनों का रंग थीम का ही रहता है। ऊपर का रंग वाला चुनाव सिर्फ़ क्लासिक और एप्पल जैसी थीम में बदलता है।</p>
+<p class="hint" id="hx-theme">पूरे ऐप का रूप चुनें: छह में से एक। डार्क, पीला-काला, सफ़ेद-नीला और TalkBack जैसी थीम हैं। इनमें बटनों का रंग थीम का ही रहता है। ऊपर का रंग सिर्फ़ क्लासिक और एप्पल जैसी थीम में बदलता है।</p>
 </fieldset>
 </section>
 <section aria-labelledby="h-read">
@@ -1098,13 +1094,13 @@ html.hc body { background: #fff; color: #000; }
 <p class="hint" id="hx-set-lang">पढ़कर सुनाने की डिफ़ॉल्ट भाषा चुनें। बोलकर सुनाएँ वाले हिस्से में भी यही भाषा आएगी।</p>
 <label for="set-rate">डिफ़ॉल्ट गति (0.5 से 2 गुना)</label>
 <input aria-describedby="hx-set-rate" aria-label="डिफ़ॉल्ट बोलने की गति" id="set-rate" max="2" min="0.5" step="0.1" type="range" value="1"/>
-<p class="hint" id="hx-set-rate">डिफ़ॉल्ट गति बदलने के लिए स्लाइडर पर टिक कर ऊपर/नीचे स्वाइप करें। हर बार 0.1 गुना बदलेगा।</p>
+<p class="hint" id="hx-set-rate">डिफ़ॉल्ट गति बदलने के लिए:<br>स्लाइडर पर टिक कर ऊपर या नीचे स्वाइप करें।<br>हर बार 0.1 गुना बदलेगा।</p>
 <p class="note">डिफ़ॉल्ट गति: <span id="set-rate-val">1.0</span> गुना</p>
 </section>
 <section aria-labelledby="h-wake">
 <h3 class="sec-title" id="h-wake">स्क्रीन चालू रखो</h3>
 <label class="switch-row"><input aria-describedby="hx-wake" checked="" id="set-wake" role="switch" type="checkbox"/> <span>स्क्रीन चालू रखो</span></label>
-<p class="hint" id="hx-wake">चालू हो तो ऐप खुला रहते समय फ़ोन की स्क्रीन अपने-आप बंद नहीं होगी। इससे बैटरी ज़्यादा लगती है, इसलिए काम खत्म होने पर बंद कर दें।</p>
+<p class="hint" id="hx-wake">चालू हो तो ऐप खुला रहते समय स्क्रीन अपने-आप बंद नहीं होगी। इससे बैटरी ज़्यादा लगती है। काम खत्म होने पर बंद कर दें।</p>
 <p aria-live="polite" class="support" id="wake-state"></p>
 </section>
 <section aria-labelledby="h-ann">
@@ -1115,13 +1111,13 @@ html.hc body { background: #fff; color: #000; }
 <section aria-labelledby="h-speakself">
 <h3 class="sec-title" id="h-speakself">ऐप खुद बोले</h3>
 <label class="switch-row"><input aria-describedby="hx-selfspeak" checked="" id="set-selfspeak" role="switch" type="checkbox"/> <span>ऐप खुद बोले</span></label>
-<p class="hint" id="hx-selfspeak">चालू हो तो बटन, खाने और शीर्षक पर जाने या छूने पर ऐप उसका नाम और छोटी मदद फ़ोन की आवाज़ में खुद बोलता है। अगर फ़ोन में TalkBack चालू है, तो इसे बंद कर दें, ताकि दोनों एक साथ न बोलें।</p>
+<p class="hint" id="hx-selfspeak">चालू हो तो बटन, खाना या शीर्षक छूने पर नाम बोला जाएगा। साथ में छोटी मदद भी फ़ोन की आवाज़ में बोली जाएगी। TalkBack चालू हो तो इसे बंद कर दें। तब दोनों एक साथ नहीं बोलेंगे।</p>
 </section>
 <section aria-labelledby="h-save">
 <h3 class="sec-title" id="h-save">सेटिंग्स सहेजना</h3>
 <p class="support" hidden="" id="set-store-note">इस ब्राउज़र में सेटिंग्स फ़ोन में सहेजी नहीं जा सकतीं। ये सेटिंग्स इसी बार चलेंगी। ऐप बंद करने पर ये वापस पहले जैसी हो जाएँगी।</p>
 <button aria-describedby="hx-reset" class="btn" id="set-reset" type="button">सेटिंग्स पहले जैसी करें</button>
-<p class="hint" id="hx-reset">आकार, कंट्रास्ट, रंग, थीम, भाषा, गति, घोषणा, स्क्रीन चालू रखो और गुनू (आवाज़, गति, सुर, आवाज़ का स्तर), सब सेटिंग्स पहले जैसी कर देता है।</p>
+<p class="hint" id="hx-reset">आकार, कंट्रास्ट, रंग, थीम, भाषा और गति वापस डिफ़ॉल्ट पर आ जाएँगे। घोषणा, स्क्रीन चालू रखो और गुनू की सेटिंग भी। सब सेटिंग्स पहले जैसी हो जाएँगी।</p>
 </section>
 <section aria-labelledby="h-myname" id="myname-sec">
 <h3 class="sec-title" id="h-myname">मेरा नाम</h3>
@@ -1136,13 +1132,13 @@ html.hc body { background: #fff; color: #000; }
 <button aria-describedby="hx-set-name-save" class="btn primary" id="set-name-save" type="button">नाम सहेजें</button>
 <p class="hint" id="hx-set-name-save">दबाने पर लिखा हुआ नाम इसी फ़ोन में सहेजा जाएगा।</p>
 <button aria-describedby="hx-set-name-del" class="btn" id="set-name-del" type="button">नाम मिटाएँ</button>
-<p class="hint" id="hx-set-name-del">दबाने पर सहेजा हुआ नाम फ़ोन से मिट जाएगा और अभिवादन बिना नाम के होगा।</p>
+<p class="hint" id="hx-set-name-del">दबाने पर सहेजा हुआ नाम फ़ोन से मिट जाएगा। अभिवादन बिना नाम के होगा।</p>
 <p aria-live="polite" class="support" id="set-name-msg"></p>
 </section>
 <section aria-labelledby="h-privacy" id="privacy-sec">
 <h3 class="sec-title" data-reveal="privacy-sec-body" id="h-privacy" tabindex="-1">प्राइवेसी पॉलिसी</h3>
 <button aria-controls="privacy-sec-body" aria-describedby="hx-privacy-sec-toggle" aria-expanded="false" class="btn primary" data-label-close="प्राइवेसी पॉलिसी छिपाएँ" data-label-open="प्राइवेसी पॉलिसी दिखाएँ" id="privacy-sec-toggle" type="button">प्राइवेसी पॉलिसी दिखाएँ</button>
-<p class="hint" id="hx-privacy-sec-toggle">इसे खोलने के लिए डबल टैप करें। दबाने पर प्राइवेसी पॉलिसी का हिस्सा नीचे खुलेगा, जिसमें पूरी पॉलिसी पढ़ने का बटन होगा।</p>
+<p class="hint" id="hx-privacy-sec-toggle">इसे खोलने के लिए डबल टैप करें। दबाने पर प्राइवेसी पॉलिसी का हिस्सा नीचे खुलेगा। उसमें पूरी पॉलिसी पढ़ने का बटन होगा।</p>
 <div data-collapsible="" hidden="" id="privacy-sec-body">
 <p>यहाँ लिखा है कि आवाज़ साथी आपकी जानकारी कैसे रखता है। पूरा पाठ इसी ऐप में है, बाहर कोई पेज नहीं खुलता।</p>
 <button aria-describedby="hx-privacy-open" class="btn primary" id="privacy-open" type="button">प्राइवेसी पॉलिसी पढ़ें</button>
@@ -1150,50 +1146,50 @@ html.hc body { background: #fff; color: #000; }
 <div aria-labelledby="privacy-title" class="policy" hidden="" id="privacy-body" role="region">
 <h4 id="privacy-title" tabindex="-1">आवाज़ साथी – प्राइवेसी पॉलिसी</h4>
 <p>डेवलपर: कपिल. संपर्क: 9896471058 (WhatsApp).</p>
-<p><strong>1. हम क्या इकट्ठा करते हैं:</strong> आवाज़ साथी आपका कोई निजी डेटा इकट्ठा नहीं करता। इसमें न साइन-अप है, न अकाउंट, न विज्ञापन, न ट्रैकिंग। एक छोटी बात: मौसम वाले हिस्से में आपकी आखिरी चुनी हुई जगह आपके फ़ोन में सेव रहती है। यह बात नीचे आइटम 15 में पूरी लिखी है।</p>
-<p><strong>2. आपकी फ़ाइलें और आवाज़:</strong> आप जो ऑडियो, वीडियो, फ़ोटो या रिकॉर्डिंग चुनते हैं, उन पर सारा काम आपके अपने फ़ोन में ही होता है। वे किसी सर्वर पर नहीं भेजी जातीं और हमें कभी नहीं मिलतीं।</p>
-<p><strong>3. परमिशन:</strong> माइक्रोफ़ोन सिर्फ़ तब, जब आप गाने के साथ रिकॉर्डिंग करना चुनते हैं या "बोलकर काम करें" का बटन दबाकर आदेश बोलते हैं; बिना आपके बटन दबाए रिकॉर्डिंग शुरू नहीं होती। फ़ाइलें/गैलरी सिर्फ़ वही फ़ाइल जो आप खुद चुनते हैं। बोलकर सुनाने की सुविधा आपके फ़ोन की अपनी आवाज़ का इस्तेमाल करती है।</p>
-<p><strong>4. आपकी सेटिंग:</strong> अक्षर का आकार, कंट्रास्ट, रंग, भाषा और गति जैसी सेटिंग सिर्फ़ आपके फ़ोन में सेव होती हैं। हमें नहीं दिखतीं।</p>
-<p><strong>4क. वैकल्पिक नाम:</strong> अगर आप चाहें तो अपना नाम लिख सकते हैं, ताकि अभिवादन में वह लिया जाए। यह नाम सिर्फ़ आपके फ़ोन में सेव होता है, कहीं भेजा नहीं जाता, और सेटिंग में जाकर कभी भी बदला या मिटाया जा सकता है। हम आपके Gmail या Google खाते से नाम नहीं पढ़ते।</p>
+<p><strong>1. हम क्या इकट्ठा करते हैं:</strong> आवाज़ साथी आपका कोई निजी डेटा इकट्ठा नहीं करता। इसमें न साइन-अप है, न अकाउंट, न विज्ञापन, न ट्रैकिंग।<br>एक छोटी बात है।<br>मौसम में आखिरी चुनी जगह आपके फ़ोन में सेव रहती है।<br>यह बात नीचे आइटम 15 में पूरी लिखी है।</p>
+<p><strong>2. आपकी फ़ाइलें और आवाज़:</strong> आप जो ऑडियो, वीडियो, फ़ोटो या रिकॉर्डिंग चुनते हैं।<br>उन पर सारा काम आपके अपने फ़ोन में ही होता है।<br>वे किसी सर्वर पर नहीं भेजी जातीं।<br>हमें वे कभी नहीं मिलतीं।</p>
+<p><strong>3. परमिशन:</strong> माइक्रोफ़ोन सिर्फ़ दो मौकों पर चलता है।<br>पहला, जब आप गाने के साथ रिकॉर्डिंग चुनते हैं।<br>दूसरा, जब आप "बोलकर काम करें" बटन दबाकर बोलते हैं।<br>बिना आपके बटन दबाए रिकॉर्डिंग शुरू नहीं होती।<br>फ़ाइलें या गैलरी: सिर्फ़ वही फ़ाइल जो आप खुद चुनते हैं।<br>बोलकर सुनाने में फ़ोन की अपनी आवाज़ इस्तेमाल होती है।</p>
+<p><strong>4. आपकी सेटिंग:</strong> अक्षर का आकार, कंट्रास्ट, रंग, भाषा और गति जैसी सेटिंग।<br>ये सिर्फ़ आपके फ़ोन में सेव होती हैं।<br>हमें ये नहीं दिखतीं।</p>
+<p><strong>4क. वैकल्पिक नाम:</strong> अगर आप चाहें तो अपना नाम लिख सकते हैं।<br>इससे अभिवादन में वह नाम लिया जाता है।<br>यह नाम सिर्फ़ आपके फ़ोन में सेव होता है।<br>यह कहीं भेजा नहीं जाता।<br>सेटिंग में जाकर कभी भी बदला या मिटाया जा सकता है।<br>हम आपके Gmail या Google खाते से नाम नहीं पढ़ते।</p>
 <p><strong>5. तीसरे पक्ष से साझा:</strong> हम आपकी कोई जानकारी किसी को बेचते या देते नहीं।</p>
 <p><strong>6. बच्चे:</strong> ऐप सबके लिए है और हम बच्चों से कोई जानकारी नहीं लेते।</p>
 <p><strong>7. बदलाव:</strong> नीति बदली तो नई तारीख के साथ यहीं अपडेट होगी।</p>
 <p><strong>8. संपर्क:</strong> कोई सवाल हो तो कपिल से WhatsApp पर 9896471058 पर संपर्क करें।</p>
-<p><strong>9. कैमरा:</strong> कैमरा सिर्फ़ तब चलता है जब आप "रंग पहचानें" या "बोलने वाला कैमरा" वाला हिस्सा खोलकर उसका बटन दबाते हैं। कैमरे की तस्वीर फ़ोन में ही, उसी समय देखी जाती है और किसी सर्वर पर नहीं भेजी जाती। कोई तस्वीर तभी बनती या सेव होती है जब आप "फ़ोटो लें" या सेव करने वाला बटन दबाते हैं। कैमरा बंद करने या ऐप छोड़ने पर कैमरा बंद हो जाता है।</p>
-<p><strong>10. बोलकर आदेश:</strong> "बोलकर काम करें" चालू करने पर आपकी बोली फ़ोन की अपनी बोली-पहचान सेवा से समझी जाती है। वह सेवा फ़ोन या ब्राउज़र की अपनी है, और उसकी अपनी प्राइवेसी नियम लागू होते हैं। आवाज़ साथी उस सेवा को आदेश के सिवा कुछ नहीं भेजता।</p>
-<p><strong>11. रेडियो:</strong> रेडियो वाला हिस्सा चुने हुए स्टेशन इंटरनेट से चलाता है। स्टेशन के सर्वर से जुड़ते समय उस संस्था को आपके फ़ोन का इंटरनेट पता (IP address) दिखता है, जैसे किसी भी स्ट्रीमिंग में होता है। आवाज़ साथी यह पता अपने पास नहीं रखता और आपका कोई निजी डेटा इकट्ठा नहीं करता। आख़िरी चुना स्टेशन सिर्फ़ आपके फ़ोन में सेव होता है।</p>
-<p><strong>12. बुक रीडर:</strong> आप जो .txt फ़ाइल या पाठ चुनते या चिपकाते हैं, वह आपके फ़ोन में ही पढ़ा जाता है। वह किसी सर्वर पर नहीं भेजा जाता। पढ़ने की जगह (कौन-सा अनुच्छेद) सिर्फ़ आपके फ़ोन के ब्राउज़र में सेव होती है। "पढ़ना" की आवाज़ फ़ोन की अपनी बोलकर सुनाने वाली सेवा से आती है। फ़ोटो या PDF से पाठ निकालना, और टेक्स्ट से इमेज या PDF बनाना, यह भी आपके फ़ोन पर ही होता है। फ़ोटो या फ़ाइल किसी सर्वर पर नहीं भेजी जाती। पहली बार फ़ोटो से पढ़ने के लिए भाषा की फ़ाइलें और एक छोटा पढ़ने वाला प्रोग्राम jsDelivr और cdnjs नाम की सार्वजनिक साइटों से फ़ोन में आते हैं।</p>
-<p><strong>13. स्क्रीन रिकॉर्डर:</strong> स्क्रीन रिकॉर्डिंग सिर्फ़ आपके फ़ोन में बनती है और कहीं अपलोड नहीं होती। आवाज़ रिकॉर्ड करने के लिए माइक्रोफ़ोन की अनुमति आप खुद देते हैं। रिकॉर्डिंग तभी बनती है जब आप शुरू करने का बटन दबाते हैं, और फ़ाइल आप खुद सेव या शेयर करते हैं।</p>
-<p><strong>14. वोकल रिमूवर:</strong> गाने से आवाज़ कम करने का काम सिर्फ़ आपके फ़ोन में होता है। आपकी फ़ाइल किसी सर्वर पर नहीं भेजी जाती और हम उसे कभी नहीं देखते। बनी हुई फ़ाइल आप खुद सेव करते हैं।</p>
-<p><strong>15. मौसम:</strong> मौसम वाला हिस्सा मौसम जानने के लिए Open-Meteo (open-meteo.com) नाम की मौसम सेवा से जुड़ता है। इस सेवा को जगह का नाम, चुना हुआ देश, या जगह के अक्षांश-देशांतर (latitude, longitude) भेजे जाते हैं, और आपके फ़ोन का इंटरनेट पता (IP address) भी दिखता है। "मेरी जगह का मौसम" दबाने पर फ़ोन की अनुमति से आपकी जगह ली जाती है। वह जगह सिर्फ़ उसी मौसम सेवा को भेजी जाती है। उसे आपके फ़ोन में सेव नहीं किया जाता, और वह कहीं और नहीं भेजी जाती। आखिरी चुनी हुई जगह (नाम, अक्षांश-देशांतर और देश का कोड) आपके फ़ोन के ब्राउज़र में सेव रहती है, ताकि अगली बार वही जगह दिखे। आप ब्राउज़र की साइट-डेटा सेटिंग से यह मिटा सकते हैं। Open-Meteo अपने सर्वर पर क्या रखता है, यह उसकी अपनी प्राइवेसी नीति में देखें। आवाज़ साथी उस नीति के लिए ज़िम्मेदार नहीं है।</p>
+<p><strong>9. कैमरा:</strong> कैमरा सिर्फ़ तब चलता है जब आप उसका बटन दबाते हैं।<br>यह "रंग पहचानें" या "बोलने वाला कैमरा" हिस्से में होता है।<br>कैमरे की तस्वीर सिर्फ़ फ़ोन में, उसी समय देखी जाती है।<br>वह किसी सर्वर पर नहीं भेजी जाती।<br>तस्वीर तभी बनती या सेव होती है।<br>जब आप "फ़ोटो लें" या सेव बटन दबाते हैं।<br>कैमरा बंद करने या ऐप छोड़ने पर कैमरा बंद होता है।</p>
+<p><strong>10. बोलकर आदेश:</strong> "बोलकर काम करें" चालू करने पर आपकी बोली समझी जाती है।<br>यह फ़ोन या ब्राउज़र की अपनी बोली-पहचान सेवा से होता है।<br>उस सेवा के अपने प्राइवेसी नियम लागू होते हैं।<br>आवाज़ साथी उस सेवा को आदेश के सिवा कुछ नहीं भेजता।</p>
+<p><strong>11. रेडियो:</strong> रेडियो वाला हिस्सा चुने हुए स्टेशन इंटरनेट से चलाता है।<br>स्टेशन से जुड़ते समय, उसे आपका इंटरनेट पता (IP address) दिखता है।<br>यह हर स्ट्रीमिंग में होता है।<br>आवाज़ साथी यह पता अपने पास नहीं रखता।<br>वह आपका कोई निजी डेटा इकट्ठा नहीं करता।<br>आख़िरी चुना स्टेशन सिर्फ़ आपके फ़ोन में सेव होता है।</p>
+<p><strong>12. बुक रीडर:</strong> आप .txt फ़ाइल या पाठ चुनते या चिपकाते हैं।<br>वह आपके फ़ोन में ही पढ़ा जाता है।<br>वह किसी सर्वर पर नहीं भेजा जाता।<br>पढ़ने की जगह (कौन-सा अनुच्छेद) सेव होती है।<br>वह सिर्फ़ आपके फ़ोन के ब्राउज़र में रहती है।<br>"पढ़ना" की आवाज़ फ़ोन की अपनी सेवा से आती है।<br>फ़ोटो या PDF से पाठ निकालना भी फ़ोन पर होता है।<br>टेक्स्ट से इमेज या PDF बनाना भी फ़ोन पर होता है।<br>फ़ोटो या फ़ाइल किसी सर्वर पर नहीं भेजी जाती।<br>पहली बार फ़ोटो से पढ़ने के लिए भाषा की फ़ाइलें आती हैं।<br>इनके साथ एक छोटा पढ़ने वाला प्रोग्राम भी आता है।<br>ये jsDelivr और cdnjs सार्वजनिक साइटों से फ़ोन में आते हैं।</p>
+<p><strong>13. स्क्रीन रिकॉर्डर:</strong> स्क्रीन रिकॉर्डिंग सिर्फ़ आपके फ़ोन में बनती है।<br>यह कहीं अपलोड नहीं होती।<br>आवाज़ रिकॉर्ड करने के लिए माइक्रोफ़ोन की अनुमति आप खुद देते हैं।<br>रिकॉर्डिंग तभी बनती है जब आप शुरू करने का बटन दबाते हैं।<br>फ़ाइल आप खुद सेव या शेयर करते हैं।</p>
+<p><strong>14. वोकल रिमूवर:</strong> गाने से आवाज़ कम करना सिर्फ़ आपके फ़ोन में होता है।<br>आपकी फ़ाइल किसी सर्वर पर नहीं भेजी जाती।<br>हम उसे कभी नहीं देखते।<br>बनी हुई फ़ाइल आप खुद सेव करते हैं।</p>
+<p><strong>15. मौसम:</strong> मौसम वाला हिस्सा Open-Meteo (open-meteo.com) मौसम सेवा से जुड़ता है।<br>इस सेवा को जगह का नाम और देश भेजा जाता है।<br>या जगह के अक्षांश-देशांतर (latitude, longitude) भेजे जाते हैं।<br>आपके फ़ोन का इंटरनेट पता (IP address) भी इसे दिखता है।<br>"मेरी जगह का मौसम" दबाने पर आपकी जगह ली जाती है।<br>यह फ़ोन की अनुमति से होता है।<br>वह जगह सिर्फ़ उसी मौसम सेवा को भेजी जाती है।<br>उसे आपके फ़ोन में सेव नहीं किया जाता।<br>वह कहीं और नहीं भेजी जाती।<br>आखिरी चुनी जगह आपके फ़ोन के ब्राउज़र में सेव रहती है।<br>ताकि अगली बार वही जगह दिखे।<br>इसमें नाम, अक्षांश-देशांतर और देश का कोड होता है।<br>आप ब्राउज़र की साइट-डेटा सेटिंग से यह मिटा सकते हैं।<br>Open-Meteo अपने सर्वर पर क्या रखता है, उसकी नीति में देखें।<br>आवाज़ साथी उस नीति के लिए ज़िम्मेदार नहीं है।</p>
 <p>अंतिम अपडेट: 26 नवंबर 2026.</p>
 <button aria-describedby="hx-privacy-close" class="btn" id="privacy-close" type="button">बंद करें और सेटिंग पर लौटें</button>
-<p class="hint" id="hx-privacy-close">दबाने पर पॉलिसी बंद होगी और फ़ोकस फिर "प्राइवेसी पॉलिसी पढ़ें" बटन पर चला जाएगा।</p>
+<p class="hint" id="hx-privacy-close">दबाने पर पॉलिसी बंद होगी। फ़ोकस फिर "प्राइवेसी पॉलिसी पढ़ें" बटन पर जाएगा।</p>
 </div>
 <button aria-describedby="hx-privacy-en-open" class="btn primary" id="privacy-en-open" lang="en" type="button">Read privacy policy in English</button>
-<p class="hint" id="hx-privacy-en-open" lang="en">इसे खोलने के लिए डबल टैप करें। Press to open the full privacy policy in English on this page. Its title is selected when it opens. The Hindi policy above stays as it is.</p>
+<p class="hint" id="hx-privacy-en-open" lang="en">इसे खोलने के लिए डबल टैप करें। दबाने पर पूरी अंग्रेज़ी प्राइवेसी पॉलिसी नीचे खुलेगी। खुलते ही उसका शीर्षक चुना जाएगा। ऊपर की हिंदी पॉलिसी वैसी ही रहेगी।</p>
 <div aria-labelledby="privacy-en-title" class="policy" hidden="" id="privacy-en-body" lang="en" role="region">
 <h4 id="privacy-en-title" tabindex="-1">Awaz Saathi – Privacy Policy</h4>
 <p>Developer: Kapil. Contact: 9896471058 (WhatsApp).</p>
-<p><strong>1. What we collect:</strong> Awaz Saathi does not collect any personal data about you. There is no sign-up, no account, no ads and no tracking. One small exception: in the weather part, your last chosen place is saved on your phone. Item 15 below explains this fully.</p>
-<p><strong>2. Your files and voice:</strong> All work on the audio, video, photos or recordings you choose happens only on your own phone. They are not sent to any server, and we never receive them.</p>
-<p><strong>3. Permissions:</strong> The microphone is used only when you choose to record along with a song, or when you press the "Work by voice" (बोलकर काम करें) button and speak a command. Recording never starts without you pressing a button. Files and gallery: only the file you pick yourself. The read-aloud feature uses your phone's own voice.</p>
-<p><strong>4. Your settings:</strong> Settings such as text size, contrast, colour, language and speed are saved only on your phone. We cannot see them.</p>
-<p><strong>4a. Optional name:</strong> If you wish, you can type your name so the greeting can use it. The name is saved only on your phone, is never sent anywhere, and can be changed or deleted in Settings at any time. We do not read your name from your Gmail or Google account.</p>
+<p><strong>1. What we collect:</strong> Awaz Saathi does not collect any personal data about you.<br>There is no sign-up, no account, no ads and no tracking.<br>One small exception: weather saves your last chosen place.<br>It is saved only on your phone.<br>Item 15 below explains this fully.</p>
+<p><strong>2. Your files and voice:</strong> All work on the files you choose happens only on your phone.<br>They are not sent to any server.<br>We never receive them.</p>
+<p><strong>3. Permissions:</strong> The microphone is used in only two cases.<br>First, when you choose to record along with a song.<br>Second, when you press "Work by voice" (बोलकर काम करें) and speak.<br>Recording never starts without you pressing a button.<br>Files and gallery: only the file you pick yourself.<br>The read-aloud feature uses your phone's own voice.</p>
+<p><strong>4. Your settings:</strong> Settings such as text size, contrast, colour, language and speed.<br>They are saved only on your phone.<br>We cannot see them.</p>
+<p><strong>4a. Optional name:</strong> If you wish, you can type your name for the greeting.<br>The name is saved only on your phone.<br>It is never sent anywhere.<br>You can change or delete it in Settings at any time.<br>We do not read your name from your Gmail or Google account.</p>
 <p><strong>5. Sharing with third parties:</strong> We do not sell or give any of your information to anyone.</p>
-<p><strong>6. Children:</strong> The app is for everyone, and we do not collect any information from children.</p>
-<p><strong>7. Changes:</strong> If the policy changes, it will be updated here with a new date.</p>
+<p><strong>6. Children:</strong> The app is for everyone.<br>We do not collect any information from children.</p>
+<p><strong>7. Changes:</strong> If the policy changes, we will update it here.<br>It will show a new date.</p>
 <p><strong>8. Contact:</strong> If you have any question, contact Kapil on WhatsApp at 9896471058.</p>
-<p><strong>9. Camera:</strong> The camera runs only when you open the "Identify colours" (रंग पहचानें) or "Talking camera" (बोलने वाला कैमरा) part and press its button. The camera picture is seen only on your phone, at that moment, and is not sent to any server. A picture is made or saved only when you press the "Take photo" (फ़ोटो लें) button or a save button. The camera turns off when you stop it or leave the app.</p>
-<p><strong>10. Voice commands:</strong> When you turn on "Work by voice" (बोलकर काम करें), your speech is understood by your phone's own speech-recognition service. That service belongs to the phone or browser, and its own privacy rules apply. Awaz Saathi sends that service nothing except the command.</p>
-<p><strong>11. Radio:</strong> The radio part plays the station you choose over the internet. When connecting to the station's server, that organisation can see your phone's internet address (IP address), as happens with any streaming. Awaz Saathi does not keep this address and does not collect any personal data. The last station you chose is saved only on your phone.</p>
-<p><strong>12. Book reader:</strong> The .txt file or text you choose or paste is read only on your phone. It is not sent to any server. Your reading place (which paragraph) is saved only in your phone's browser. The voice for reading comes from your phone's own read-aloud service. Reading text from photos or PDFs, and making text images or PDFs, also happens on your phone. Photos and files are not sent to any server. The first time you read a photo, the language files and a small reading program are downloaded from the public sites jsDelivr and cdnjs.</p>
-<p><strong>13. Screen recorder:</strong> Screen recording is made only on your phone and is not uploaded anywhere. You give the microphone permission yourself to record your voice. A recording is made only when you press the start button, and you save or share the file yourself.</p>
-<p><strong>14. Vocal remover:</strong> Removing the singer's voice from a song happens only on your own phone. Your file is not sent to any server and we never see it. You save the made file yourself.</p>
-<p><strong>15. Weather:</strong> The weather part connects to the Open-Meteo weather service (open-meteo.com) to get the weather. This service receives the place name, the country you chose, or the latitude and longitude of the place, and it can see your phone's internet address (IP address). When you press "My place's weather", your location is taken with your phone's permission. That location is sent only to this weather service. It is not stored on your phone and is not sent anywhere else. Your last chosen place (name, latitude and longitude, and country code) is saved in your phone's browser so that the same place shows next time. You can clear this from your browser's site data settings. Your current location from "My place" is never saved. Open-Meteo's own privacy policy applies to what it keeps on its servers; please read it there. Awaz Saathi is not responsible for that policy.</p>
+<p><strong>9. Camera:</strong> The camera runs only when you press its button.<br>It is in "Identify colours" (रंग पहचानें) part.<br>Or in "Talking camera" (बोलने वाला कैमरा) part.<br>The camera picture is seen only on your phone, at that moment.<br>It is not sent to any server.<br>A picture is made or saved only when you press a button.<br>That button is "Take photo" (फ़ोटो लें) or a save button.<br>The camera turns off when you stop it or leave the app.</p>
+<p><strong>10. Voice commands:</strong> Your speech is handled by your phone's speech service.<br>This happens when you turn on "Work by voice" (बोलकर काम करें).<br>That service belongs to the phone or browser.<br>Its own privacy rules apply.<br>Awaz Saathi sends that service nothing except the command.</p>
+<p><strong>11. Radio:</strong> The radio part plays the station you choose over the internet.<br>When connecting, the station's organisation can see your internet address (IP address).<br>This happens with any streaming.<br>Awaz Saathi does not keep this address.<br>It does not collect any personal data.<br>The last station you chose is saved only on your phone.</p>
+<p><strong>12. Book reader:</strong> Your .txt file or pasted text is read only on your phone.<br>It is not sent to any server.<br>Your reading place (which paragraph) is saved only in your phone's browser.<br>The voice for reading comes from your phone's own read-aloud service.<br>Reading text from photos or PDFs also happens on your phone.<br>Making text images or PDFs also happens on your phone.<br>Photos and files are not sent to any server.<br>The first time you read a photo, some files are downloaded.<br>They include language files and a small reading program.<br>They come from the public sites jsDelivr and cdnjs.</p>
+<p><strong>13. Screen recorder:</strong> Screen recording is made only on your phone.<br>It is not uploaded anywhere.<br>You give the microphone permission yourself to record your voice.<br>A recording is made only when you press the start button.<br>You save or share the file yourself.</p>
+<p><strong>14. Vocal remover:</strong> Removing the singer's voice happens only on your own phone.<br>Your file is not sent to any server.<br>We never see it.<br>You save the made file yourself.</p>
+<p><strong>15. Weather:</strong> The weather part connects to the Open-Meteo weather service (open-meteo.com).<br>This service receives the place name and country you chose.<br>Or it receives the latitude and longitude of the place.<br>It can also see your phone's internet address (IP address).<br>When you press "My place's weather", your location is taken.<br>Your phone asks for your permission first.<br>That location is sent only to this weather service.<br>It is not stored on your phone.<br>It is not sent anywhere else.<br>Your last chosen place is saved in your phone's browser.<br>It includes the name, latitude, longitude and country code.<br>This lets the same place show next time.<br>You can clear this from your browser's site data settings.<br>Your current location from "My place" is never saved.<br>Open-Meteo's own privacy policy applies to what it keeps on its servers.<br>Please read it there.<br>Awaz Saathi is not responsible for that policy.</p>
 <p>Last updated: 26 November 2026.</p>
 <button aria-describedby="hx-privacy-en-close" class="btn" id="privacy-en-close" type="button">Close and return to settings</button>
-<p class="hint" id="hx-privacy-en-close">Press to close the policy. Focus then goes back to the "Read privacy policy in English" button.</p>
+<p class="hint" id="hx-privacy-en-close">दबाने पर पॉलिसी बंद होगी। फ़ोकस फिर अंग्रेज़ी पॉलिसी वाले बटन पर जाएगा।</p>
 </div>
 </div>
 </section>
@@ -1202,30 +1198,30 @@ html.hc body { background: #fff; color: #000; }
 <ul class="bullets"><li>ईमानदारी से: आवाज़ साथी खुद कोई आवाज़ डाउनलोड नहीं करता।</li><li>और अपनी आवाज़ें फ़ोन में नहीं ला सकता।</li><li>इसके लिए एक सर्वर चाहिए, जो इस ऐप में नहीं है।</li><li>नई आवाज़ें फ़ोन की अपनी बोलकर सुनाने वाली सेटिंग से आती हैं।</li><li>यह ऐप सिर्फ़ Android फ़ोन के लिए है।</li></ul>
 <ol>
 <li>नीचे दिया "टेक्स्ट-टू-स्पीच की सेटिंग खोलें" बटन दबाएँ।</li>
-<li>वहाँ पसंदीदा इंजन में Google टेक्स्ट-टू-स्पीच चुनें। अगर वह फ़ोन में नहीं है, तो गुनू की सेटिंग में नीचे "मुफ़्त आवाज़ें डाउनलोड करें" वाले लिंक से इंस्टॉल करें।</li>
-<li>"आवाज़ें" या "भाषा" वाला हिस्सा खोलें। जिस भाषा की आवाज़ चाहिए (हिंदी, पंजाबी या अंग्रेज़ी), उसके आगे का डाउनलोड बटन दबाएँ और पूरा होने दें।</li>
-<li>वापस आवाज़ साथी में आएँ, ऐप बंद करके दोबारा खोलें, और नीचे "गुनू" की आवाज़ों की सूची देखें।</li>
+<li>वहाँ पसंदीदा इंजन में Google टेक्स्ट-टू-स्पीच चुनें।<br>अगर वह फ़ोन में नहीं है, तो गुनू की सेटिंग देखें।<br>नीचे "मुफ़्त आवाज़ें डाउनलोड करें" वाला लिंक दबाकर इंस्टॉल करें।</li>
+<li>"आवाज़ें" या "भाषा" वाला हिस्सा खोलें।<br>जिस भाषा की आवाज़ चाहिए, उसका डाउनलोड बटन दबाएँ।<br>भाषाएँ: हिंदी, पंजाबी या अंग्रेज़ी।<br>पूरा होने दें।</li>
+<li>वापस आवाज़ साथी में आएँ।<br>ऐप बंद करके दोबारा खोलें।<br>फिर नीचे "गुनू" की आवाज़ों की सूची देखें।</li>
 </ol>
 <p class="note">फ़ोन के हिसाब से बटनों के नाम थोड़े अलग हो सकते हैं।</p>
 <p><a aria-describedby="hx-tts" class="btn primary" href="intent://#Intent;action=com.android.settings.TTS_SETTINGS;end">टेक्स्ट-टू-स्पीच की सेटिंग खोलें</a></p>
-<p class="hint" id="hx-tts">इसे खोलने के लिए डबल टैप करें। दबाने पर फ़ोन की टेक्स्ट-टू-स्पीच सेटिंग खुलेगी। अगर न खुले, तो फ़ोन की Settings में "Text-to-speech" लिखकर खोजें।</p>
+<p class="hint" id="hx-tts">इसे खोलने के लिए डबल टैप करें। दबाने पर फ़ोन की टेक्स्ट-टू-स्पीच सेटिंग खुलेगी। न खुले तो Settings में "Text-to-speech" लिखकर खोजें।</p>
 </section>
 <section aria-labelledby="h-sr">
 <h3 class="sec-title" id="h-sr">गुनू (ऐप की अपनी आवाज़)</h3>
 <ul class="bullets"><li>गुनू सिर्फ़ इसी ऐप के अंदर बोलती है।</li><li>फ़ोन का TalkBack इसकी जगह नहीं ले सकता।</li><li>और कोई ऐप TalkBack को बदल नहीं सकता।</li><li>यह ऐप सिर्फ़ Android फ़ोन के लिए है।</li></ul>
 <p class="note" id="sr-welcome" lang="hi">गुनू स्क्रीन रीडर में आपका स्वागत है। आगे बढ़ने के लिए दाईं ओर स्वाइप करें।</p>
-<p class="hint" id="hx-sr-welcome">गुनू चालू करने पर, और ऐप खुलने पर जब गुनू चालू हो, यही स्वागत संदेश फ़ोन की आवाज़ में एक बार बोला जाता है। गुनू बंद करने पर यह बीच में रुक जाता है।</p>
+<p class="hint" id="hx-sr-welcome">गुनू चालू हो और ऐप खुले, तो स्वागत संदेश बोला जाता है।<br>यह स्वागत संदेश एक बार ही बोला जाता है।<br>गुनू बंद करने पर यह बीच में रुक जाता है।</p>
 <div class="sr-info">
 <p aria-live="assertive" class="hint" id="tts-alert"></p>
 <button aria-controls="sr-info-what" aria-describedby="hx-sr-info-what" aria-expanded="false" class="btn" data-label-close="गुनू क्या है छिपाएँ" data-label-open="गुनू क्या है दिखाएँ" id="sr-info-what-btn" type="button">गुनू क्या है</button>
 <p class="hint" id="hx-sr-info-what">इसे खोलने के लिए डबल टैप करें। दबाने पर बताया जाएगा कि गुनू क्या है।</p>
 <div data-collapsible="" hidden="" id="sr-info-what">
 <div id="sr-info-what-text">
-<ul class="bullets"><li>गुनू इस ऐप के अंदर बोलने वाला स्क्रीन रीडर है।</li><li>बटन, खाने।</li><li>लिंक और शीर्षक पर जाने या छूने पर यह उसका नाम और छोटी मदद फ़ोन की आवाज़ में बोलती है।</li><li>ताकि आप ऐप आसानी से चला सकें।</li></ul>
+<ul class="bullets"><li>गुनू इस ऐप के अंदर बोलने वाला स्क्रीन रीडर है।</li><li>बटन, खाने।</li><li>जब लिंक या शीर्षक पर जाएँ या उसे छुएँ।<br>तब फ़ोन की आवाज़ में उसका नाम और छोटी मदद बोलती है।</li><li>ताकि आप ऐप आसानी से चला सकें।</li></ul>
 <ul class="bullets"><li>गुनू सिर्फ़ इसी ऐप के अंदर बोलती है।</li><li>यह फ़ोन के TalkBack की जगह नहीं लेती।</li><li>और TalkBack को बदलती भी नहीं।</li></ul>
 </div>
 <button aria-describedby="hx-sr-info-what-listen" class="btn" data-listen="sr-info-what-text" id="sr-info-what-listen" type="button">सुनो</button>
-<p class="hint" id="hx-sr-info-what-listen">इसे सुनने के लिए डबल टैप करें। दबाने पर यह हिस्सा चुनी आवाज़ में बोलकर सुनाया जाएगा।</p>
+<p class="hint" id="hx-sr-info-what-listen">इसे सुनने के लिए डबल टैप करें। दबाने पर यह हिस्सा चुनी आवाज़ में सुनाया जाएगा।</p>
 <button aria-describedby="hx-sr-info-what-stop" class="btn" data-stop="" id="sr-info-what-stop" type="button">रोको</button>
 <p class="hint" id="hx-sr-info-what-stop">बोलना तुरंत रोकने के लिए डबल टैप करें।</p>
 </div>
@@ -1236,15 +1232,15 @@ html.hc body { background: #fff; color: #000; }
 <div data-collapsible="" hidden="" id="sr-info-do">
 <div id="sr-info-do-text">
 <ul>
-<li>बटन, खाने।</li><li>लिंक और शीर्षक पर फ़ोकस जाने या छूने पर उसका नाम और मदद बोलती है।</li>
-<li>ऐप खुलने पर, और गुनू चालू करने पर।</li><li>स्वागत संदेश एक बार बोलती है।</li><li>फ़ोन के नियम के हिसाब से यह पहली बार स्क्रीन छूने के बाद बोला जाता है।</li>
+<li>बटन, खाने।</li><li>जब लिंक या शीर्षक पर फ़ोकस जाए या उसे छुएँ।<br>तब उसका नाम और मदद बोली जाती है।</li>
+<li>ऐप खुलने पर, और गुनू चालू करने पर।</li><li>स्वागत संदेश एक बार बोलती है।</li><li>फ़ोन के नियम से पहली बार स्क्रीन छूने के बाद बोलता है।</li>
 <li>मौसम जैसे कुछ हिस्सों के मुख्य संदेश भी बोलती है।</li>
 <li>चुनी हुई आवाज़, गति, सुर और आवाज़ के स्तर से बोलती है।</li>
 <li>गुनू बंद करने पर बोलना तुरंत रुक जाता है।</li><li>नई बात शुरू होने पर पुरानी बात रुक जाती है।</li>
 </ul>
 </div>
 <button aria-describedby="hx-sr-info-do-listen" class="btn" data-listen="sr-info-do-text" id="sr-info-do-listen" type="button">सुनो</button>
-<p class="hint" id="hx-sr-info-do-listen">इसे सुनने के लिए डबल टैप करें। दबाने पर यह हिस्सा चुनी आवाज़ में बोलकर सुनाया जाएगा।</p>
+<p class="hint" id="hx-sr-info-do-listen">इसे सुनने के लिए डबल टैप करें। दबाने पर यह हिस्सा चुनी आवाज़ में सुनाया जाएगा।</p>
 <button aria-describedby="hx-sr-info-do-stop" class="btn" data-stop="" id="sr-info-do-stop" type="button">रोको</button>
 <p class="hint" id="hx-sr-info-do-stop">बोलना तुरंत रोकने के लिए डबल टैप करें।</p>
 </div>
@@ -1256,14 +1252,14 @@ html.hc body { background: #fff; color: #000; }
 <div id="sr-info-how-text">
 <ol>
 <li>नीचे "गुनू चालू करें" स्विच चालू रखें।</li>
-<li>ऐप में कोई बटन, खाना या लिंक छुएँ, या उस पर फ़ोकस ले जाएँ। गुनू उसका नाम और मदद बोलेगी।</li>
+<li>ऐप में कोई बटन, खाना या लिंक छुएँ।<br>या उस पर फ़ोकस ले जाएँ।<br>गुनू उसका नाम और मदद बोलेगी।</li>
 <li>आवाज़ की सूची में से कोई आवाज़ चुनें। फिर "चुनी हुई आवाज़ सुनें" बटन दबाकर उसे जाँच लें।</li>
-<li>गति, सुर और आवाज़ का स्तर स्लाइडर पर टिक कर स्वाइप करके ठीक करें।</li>
+<li>गति, सुर और आवाज़ का स्तर ठीक करें।<br>स्लाइडर पर टिक कर स्वाइप करें।</li>
 <li>पूरा बंद करना हो तो "गुनू चालू करें" स्विच बंद कर दें। फिर गुनू चुप रहेगी।</li>
 </ol>
 </div>
 <button aria-describedby="hx-sr-info-how-listen" class="btn" data-listen="sr-info-how-text" id="sr-info-how-listen" type="button">सुनो</button>
-<p class="hint" id="hx-sr-info-how-listen">इसे सुनने के लिए डबल टैप करें। दबाने पर यह हिस्सा चुनी आवाज़ में बोलकर सुनाया जाएगा।</p>
+<p class="hint" id="hx-sr-info-how-listen">इसे सुनने के लिए डबल टैप करें। दबाने पर यह हिस्सा चुनी आवाज़ में सुनाया जाएगा।</p>
 <button aria-describedby="hx-sr-info-how-stop" class="btn" data-stop="" id="sr-info-how-stop" type="button">रोको</button>
 <p class="hint" id="hx-sr-info-how-stop">बोलना तुरंत रोकने के लिए डबल टैप करें।</p>
 </div>
@@ -1275,7 +1271,7 @@ html.hc body { background: #fff; color: #000; }
 <div id="sr-info-settings-text">
 <ul>
 <li><strong>आवाज़:</strong> सूची में फ़ोन में मिली असली आवाज़ें हैं।</li><li>भाषा के हिसाब से: हिंदी, अंग्रेज़ी, पंजाबी और बाकी।</li><li>"अपने-आप चुनें" हिंदी आवाज़ को पहले चुनती है।</li>
-<li><strong>मिक्स:</strong> एक हिंदी और एक अंग्रेज़ी आवाज़ चुनती है।</li><li>हर हिस्सा उसकी लिपि से बोला जाता है: देवनागरी हिंदी से।</li><li>रोमन अक्षर अंग्रेज़ी से, और गुरमुखी पंजाबी से।</li><li>फ़ोन में पंजाबी आवाज़ न हो तो उस हिस्से को फ़ोन की डिफ़ॉल्ट आवाज़ से बोलती है।</li>
+<li><strong>मिक्स:</strong> एक हिंदी और एक अंग्रेज़ी आवाज़ चुनती है।</li><li>हर हिस्सा उसकी लिपि से बोला जाता है: देवनागरी हिंदी से।</li><li>रोमन अक्षर अंग्रेज़ी से, और गुरमुखी पंजाबी से।</li><li>अगर फ़ोन में पंजाबी आवाज़ न हो।<br>तो उस हिस्से को फ़ोन की डिफ़ॉल्ट आवाज़ से बोला जाता है।</li>
 <li><strong>गति (0.5 से 2 गुना):</strong> बोलने की रफ़्तार। 1.0 सामान्य है।</li>
 <li><strong>सुर (0.5 से 2):</strong> आवाज़ ऊँची या नीची करना। 1.0 सामान्य है।</li>
 <li><strong>आवाज़ का स्तर (0.1 से 1):</strong> आवाज़ धीमी या तेज़ करना।</li><li>1.0 सबसे तेज़ है।</li>
@@ -1283,65 +1279,65 @@ html.hc body { background: #fff; color: #000; }
 </ul>
 </div>
 <button aria-describedby="hx-sr-info-settings-listen" class="btn" data-listen="sr-info-settings-text" id="sr-info-settings-listen" type="button">सुनो</button>
-<p class="hint" id="hx-sr-info-settings-listen">इसे सुनने के लिए डबल टैप करें। दबाने पर यह हिस्सा चुनी आवाज़ में बोलकर सुनाया जाएगा।</p>
+<p class="hint" id="hx-sr-info-settings-listen">इसे सुनने के लिए डबल टैप करें। दबाने पर यह हिस्सा चुनी आवाज़ में सुनाया जाएगा।</p>
 <button aria-describedby="hx-sr-info-settings-stop" class="btn" data-stop="" id="sr-info-settings-stop" type="button">रोको</button>
 <p class="hint" id="hx-sr-info-settings-stop">बोलना तुरंत रोकने के लिए डबल टैप करें।</p>
 </div>
 </div>
 <label class="switch-row"><input aria-describedby="hx-sr-on" checked="" id="set-sr-on" role="switch" type="checkbox"/> <span>गुनू चालू करें</span></label>
-<p class="hint" id="hx-sr-on">चालू हो तो बटन, खाना, लिंक या शीर्षक पर फ़ोकस जाने, छूने या टैप करने पर गुनू उसका नाम और मदद फ़ोन की आवाज़ में बोलती है। बंद करने पर गुनू चुप रहती है।</p>
+<p class="hint" id="hx-sr-on">चालू हो तो गुनू बटन, खाना या लिंक का नाम बोलती है। फ़ोकस जाने या छूने पर मदद भी बोली जाती है। बंद करने पर गुनू चुप रहती है।</p>
 <label for="sr-voice">आवाज़</label>
 <select aria-describedby="hx-sr-voice sr-count sr-note" class="big" id="sr-voice">
 <option value="auto">अपने-आप चुनें (हिंदी पहले)</option>
 <option value="mix">मिक्स: एक हिंदी और एक अंग्रेज़ी आवाज़</option>
 </select>
-<p class="hint" id="hx-sr-voice">सूची में फ़ोन में मिली असली आवाज़ें हैं, भाषा के हिसाब से: हिंदी, अंग्रेज़ी, पंजाबी और बाकी। नाम कुछ साफ़ करके दिखाए गए हैं, असली नाम कोष्ठक में है। "मिक्स" चुनने पर गुनू एक हिंदी और एक अंग्रेज़ी आवाज़ चुनती है, और हर हिस्सा उसकी लिपि से पहचानकर बोलती है: देवनागरी हिंदी से, रोमन अक्षर अंग्रेज़ी से, और गुरमुखी पंजाबी से।</p>
+<p class="hint" id="hx-sr-voice">सूची में फ़ोन में मिली असली आवाज़ें हैं।<br>वे भाषा के हिसाब से दिखती हैं।<br>हिंदी, अंग्रेज़ी, पंजाबी और बाकी भाषाएँ।<br>कुछ नाम साफ़ करके दिखाए गए हैं।<br>असली नाम कोष्ठक में है।<br>"मिक्स" चुनने पर एक हिंदी और एक अंग्रेज़ी आवाज़ चुनी जाती है।<br>हर हिस्सा उसकी लिपि से पहचानकर बोला जाता है।<br>देवनागरी अक्षर हिंदी से बोले जाते हैं।<br>रोमन अक्षर अंग्रेज़ी से।<br>गुरमुखी अक्षर पंजाबी से।</p>
 <p aria-live="polite" class="note" id="sr-count"></p>
 <p aria-live="polite" class="note" id="sr-note"></p>
 <button aria-describedby="hx-sr-test" class="btn primary" id="sr-test" type="button">चुनी हुई आवाज़ सुनें</button>
-<p class="hint" id="hx-sr-test">दबाने पर चुनी आवाज़ में एक छोटा नमूना बोला जाएगा, ताकि आप आवाज़ और गति जाँच सकें।</p>
+<p class="hint" id="hx-sr-test">दबाने पर चुनी आवाज़ में एक छोटा नमूना बोला जाएगा। इससे आवाज़ और गति जाँच सकते हैं।</p>
 <label for="sr-rate">गुनू की गति (0.5 से 2 गुना)</label>
 <input aria-describedby="hx-sr-rate" id="sr-rate" max="2" min="0.5" step="0.1" type="range" value="1"/>
-<p class="hint" id="hx-sr-rate">गति बदलने के लिए स्लाइडर पर टिक कर ऊपर/नीचे स्वाइप करें। हर बार 0.1 गुना बदलेगा।</p>
+<p class="hint" id="hx-sr-rate">गति बदलने के लिए:<br>स्लाइडर पर टिक कर ऊपर या नीचे स्वाइप करें।<br>हर बार 0.1 गुना बदलेगा।</p>
 <p class="note">गुनू की गति: <span id="sr-rate-val">1.0</span> गुना</p>
 <label for="sr-pitch">गुनू का सुर (0.5 से 2)</label>
 <input aria-describedby="hx-sr-pitch" id="sr-pitch" max="2" min="0.5" step="0.1" type="range" value="1"/>
-<p class="hint" id="hx-sr-pitch">सुर ऊँचा या नीचा करने के लिए स्लाइडर पर टिक कर स्वाइप करें। 1.0 सामान्य है।</p>
+<p class="hint" id="hx-sr-pitch">सुर ऊँचा या नीचा करने के लिए:<br>स्लाइडर पर टिक कर स्वाइप करें।<br>1.0 सामान्य स्तर है।</p>
 <p class="note">सुर: <span id="sr-pitch-val">1.0</span></p>
 <label for="sr-vol">गुनू का आवाज़ का स्तर (0.1 से 1)</label>
 <input aria-describedby="hx-sr-vol" id="sr-vol" max="1" min="0.1" step="0.1" type="range" value="1"/>
-<p class="hint" id="hx-sr-vol">गुनू की आवाज़ धीमी या तेज़ करने के लिए स्लाइडर पर टिक कर स्वाइप करें। 1.0 सबसे तेज़ है।</p>
+<p class="hint" id="hx-sr-vol">गुनू की आवाज़ धीमी या तेज़ करें। स्लाइडर पर टिक कर स्वाइप करें। 1.0 सबसे तेज़ है।</p>
 <p class="note">आवाज़ का स्तर: <span id="sr-vol-val">1.0</span></p>
 <section aria-labelledby="h-free">
 <h4 class="sec-title" id="h-free">मुफ़्त आवाज़ें डाउनलोड करें</h4>
 <ul class="bullets note"><li>ये लिंक फ़ोन की Play Store खोलेंगे।</li><li>इंस्टॉल फ़ोन की Play Store से होगा, इस ऐप से नहीं।</li><li>यह ऐप सिर्फ़ Android फ़ोन के लिए है।</li></ul>
 <p><a aria-describedby="hx-free-google" class="btn" href="https://play.google.com/store/apps/details?id=com.google.android.tts" rel="noopener" target="_blank">Google टेक्स्ट-टू-स्पीच, Play Store में खोलें (नई टैब)</a></p>
-<p class="hint" id="hx-free-google">इसे खोलने के लिए डबल टैप करें। यह Google की अपनी टेक्स्ट-टू-स्पीच ऐप है, मुफ़्त है, और इसमें हिंदी और अंग्रेज़ी (भारत) की आवाज़ें हैं।</p>
+<p class="hint" id="hx-free-google">इसे खोलने के लिए डबल टैप करें। यह Google की अपनी टेक्स्ट-टू-स्पीच ऐप है। यह मुफ़्त है। इसमें हिंदी और अंग्रेज़ी (भारत) की आवाज़ें हैं।</p>
 <ul class="bullets note"><li>इंस्टॉल होने के बाद: फ़ोन की Settings में "Text-to-speech output" खोलें।</li><li>"पसंदीदा इंजन" में Google टेक्स्ट-टू-स्पीच चुनें।</li><li>फिर वापस गुनू में आएँ, ऐप बंद करके दोबारा खोलें।</li><li>और "आवाज़" की सूची में नई आवाज़ देखें।</li></ul>
 </section>
 </section>
-<section aria-labelledby="h-share" id="share-sec"><h3 class="sec-title" id="h-share" tabindex="-1">ऐप का लिंक</h3><p class="hint" id="hx-menu-copy">दबाने पर ऐप का लिंक फ़ोन में कॉपी होगा। कॉपी होने या न होने की खबर बोलकर सुनाई जाएगी।</p><button aria-describedby="hx-menu-copy" class="btn primary" id="menu-copy" type="button">लिंक कॉपी करो</button><p class="hint" id="hx-menu-share">दबाने पर फ़ोन का शेयर मेन्यू खुलेगा, जिससे ऐप का लिंक किसी को भेज सकते हैं। शेयर न हो सके तो लिंक अपने-आप कॉपी हो जाएगा।</p><button aria-describedby="hx-menu-share" class="btn primary" id="menu-share" type="button">ऐप का लिंक शेयर करो</button></section><section aria-labelledby="h-contact" id="contact-sec">
+<section aria-labelledby="h-share" id="share-sec"><h3 class="sec-title" id="h-share" tabindex="-1">ऐप का लिंक</h3><p class="hint" id="hx-menu-copy">दबाने पर ऐप का लिंक फ़ोन में कॉपी होगा। कॉपी हुआ या नहीं, यह बोलकर सुनाया जाएगा।</p><button aria-describedby="hx-menu-copy" class="btn primary" id="menu-copy" type="button">लिंक कॉपी करो</button><p class="hint" id="hx-menu-share">दबाने पर फ़ोन का शेयर मेन्यू खुलेगा। उससे ऐप का लिंक किसी को भेज सकते हैं। शेयर न हो सके तो लिंक अपने-आप कॉपी हो जाएगा।</p><button aria-describedby="hx-menu-share" class="btn primary" id="menu-share" type="button">ऐप का लिंक शेयर करो</button></section><section aria-labelledby="h-contact" id="contact-sec">
 <h3 class="sec-title" data-reveal="contact-body" id="h-contact" tabindex="-1">संपर्क</h3>
 <button aria-controls="contact-body" aria-describedby="hx-contact-toggle" aria-expanded="false" class="btn primary" data-label-close="संपर्क छिपाएँ" data-label-open="संपर्क दिखाएँ" id="contact-toggle" type="button">संपर्क दिखाएँ</button>
-<p class="hint" id="hx-contact-toggle">इसे खोलने के लिए डबल टैप करें। दबाने पर कपिल से संपर्क के बटन नीचे खुलेंगे। दोबारा दबाने पर वे बंद हो जाएँगे।</p>
+<p class="hint" id="hx-contact-toggle">इसे खोलने के लिए डबल टैप करें। दबाने पर कपिल से संपर्क के बटन नीचे खुलेंगे। दोबारा दबाने पर वे बंद होंगे।</p>
 <div data-collapsible="" hidden="" id="contact-body">
 <p class="contact">संपर्क: 9896471058</p>
 <p class="contact">ईमेल पता: kapilsamariya90@gmail.com</p>
 <p><a aria-describedby="hx-mail-m" class="btn primary" href="mailto:kapilsamariya90@gmail.com">Gmail से ईमेल भेजने के लिए यहाँ दबाओ</a></p>
-<p class="hint" id="hx-mail-m">इसे खोलने के लिए डबल टैप करें। दबाने पर फ़ोन का ईमेल ऐप खुलेगा, जिसमें कपिल का ईमेल पता पहले से होगा।</p>
+<p class="hint" id="hx-mail-m">इसे खोलने के लिए डबल टैप करें। दबाने पर ईमेल ऐप खुलेगा। उसमें कपिल का ईमेल पता पहले से होगा।</p>
 <p><a aria-describedby="hx-call-m" class="btn primary" href="tel:+919896471058">कॉल करने के लिए यहाँ दबाओ</a></p>
-<p class="hint" id="hx-call-m">इसे खोलने के लिए डबल टैप करें। दबाने पर कपिल के नंबर 9896471058 पर फ़ोन की कॉल शुरू होगी।</p>
+<p class="hint" id="hx-call-m">इसे खोलने के लिए डबल टैप करें। दबाने पर कपिल के नंबर 9896471058 पर कॉल शुरू होगी।</p>
 <h3 class="sec-title" id="h-wa-m">व्हाट्सऐप पर संदेश</h3>
 <p><a aria-describedby="hx-wa-ready" class="btn primary" href="https://wa.me/919896471058?text=%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A5%87%20%E0%A4%95%E0%A4%AA%E0%A4%BF%E0%A4%B2%20%E0%A4%9C%E0%A5%80%2C%20%E0%A4%AE%E0%A5%88%E0%A4%82%20%E0%A4%86%E0%A4%B5%E0%A4%BE%E0%A4%9C%E0%A4%BC%20%E0%A4%B8%E0%A4%BE%E0%A4%A5%E0%A5%80%20%E0%A4%90%E0%A4%AA%20%E0%A4%95%E0%A5%87%20%E0%A4%AC%E0%A4%BE%E0%A4%B0%E0%A5%87%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AC%E0%A4%BE%E0%A4%A4%20%E0%A4%95%E0%A4%B0%E0%A4%A8%E0%A4%BE%20%E0%A4%9A%E0%A4%BE%E0%A4%B9%E0%A4%A4%E0%A4%BE%2F%E0%A4%9A%E0%A4%BE%E0%A4%B9%E0%A4%A4%E0%A5%80%20%E0%A4%B9%E0%A5%82%E0%A4%81%E0%A5%A4" rel="noopener" target="_blank">पहले से लिखा संदेश भेजो</a></p>
-<p class="hint" id="hx-wa-ready">इसे खोलने के लिए डबल टैप करें। दबाने पर व्हाट्सऐप खुलेगा, जिसमें यह संदेश पहले से लिखा होगा: नमस्ते कपिल जी, मैं आवाज़ साथी ऐप के बारे में बात करना चाहता/चाहती हूँ। उसे भेजने के लिए व्हाट्सऐप में भेजें दबाएँ।</p>
+<p class="hint" id="hx-wa-ready">इसे खोलने के लिए डबल टैप करें। दबाने पर व्हाट्सऐप खुलेगा, संदेश पहले से लिखा होगा। संदेश: नमस्ते कपिल जी। मैं आवाज़ साथी के बारे में बात करना चाहता/चाहती हूँ। भेजने के लिए व्हाट्सऐप में भेजें दबाएँ।</p>
 <label for="wa-own-text">अपना संदेश लिखें</label>
 <textarea aria-describedby="hx-wa-own-text" class="big-text" id="wa-own-text" maxlength="1000" rows="4"></textarea>
 <p class="hint" id="hx-wa-own-text">यहाँ अपना संदेश लिखें। लिखने के बाद नीचे का बटन दबाएँ।</p>
 <p><button aria-describedby="hx-wa-own-send" class="btn primary" id="wa-own-send" type="button">व्हाट्सऐप पर अपना संदेश भेजो</button></p>
-<p class="hint" id="hx-wa-own-send">इसे खोलने के लिए डबल टैप करें। दबाने पर व्हाट्सऐप खुलेगा, जिसमें आपका लिखा संदेश होगा। संदेश खाली हो तो कुछ नहीं खुलेगा।</p>
+<p class="hint" id="hx-wa-own-send">इसे खोलने के लिए डबल टैप करें। दबाने पर व्हाट्सऐप खुलेगा। उसमें आपका लिखा संदेश होगा। संदेश खाली हो तो कुछ नहीं खुलेगा।</p>
 <p aria-live="polite" class="note" id="wa-own-msg"></p>
 <p><a aria-describedby="hx-wa-m hx-help-m" class="btn primary" href="https://wa.me/919896471058?text=%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A5%87%20%E0%A4%95%E0%A4%AA%E0%A4%BF%E0%A4%B2%20%E0%A4%9C%E0%A5%80%2C%20%E0%A4%86%E0%A4%B5%E0%A4%BE%E0%A4%9C%E0%A4%BC%20%E0%A4%B8%E0%A4%BE%E0%A4%A5%E0%A5%80%20%E0%A4%90%E0%A4%AA%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AE%E0%A5%81%E0%A4%9D%E0%A5%87%20%E0%A4%AF%E0%A4%B9%20%E0%A4%95%E0%A4%AE%E0%A5%80%20%E0%A4%AE%E0%A4%BF%E0%A4%B2%E0%A5%80%20%E0%A4%B9%E0%A5%88%3A%20" rel="noopener" target="_blank">कमी बताने के लिए यहाँ दबाओ</a></p>
-<p class="hint" id="hx-wa-m">इसे खोलने के लिए डबल टैप करें। दबाने पर व्हाट्सऐप खुलेगा, जिसमें कपिल के लिए कमी बताने का संदेश पहले से लिखा होगा।</p>
+<p class="hint" id="hx-wa-m">इसे खोलने के लिए डबल टैप करें। दबाने पर व्हाट्सऐप खुलेगा। उसमें कपिल के लिए कमी बताने का संदेश पहले से होगा।</p>
 <p class="note" id="hx-help-m">अगर व्हाट्सऐप नहीं है तो कॉल बटन दबाएँ।</p>
 </div>
 </section>
@@ -1539,7 +1535,7 @@ function addVolume(parent, media, label) {
   var vh = document.createElement('p');
   vh.className = 'hint';
   vh.id = vhId;
-  vh.textContent = label + ' बदलने के लिए: स्क्रीन-रीडर चालू हो तो स्लाइडर पर टिक कर ऊपर/नीचे स्वाइप करें; या बगल के कम/बढ़ाएँ बटन दबाएँ। हर बार 10 प्रतिशत बदलेगा।';
+  vh.textContent = label + ' बदलने के लिए। स्क्रीन-रीडर चालू हो तो स्लाइडर पर टिक कर ऊपर/नीचे स्वाइप करें। या बगल के कम/बढ़ाएँ बटन दबाएँ। हर बार 10 प्रतिशत बदलेगा।';
   rng.setAttribute('aria-describedby', vhId);
   down.setAttribute('aria-describedby', vhId);
   up.setAttribute('aria-describedby', vhId);
@@ -2002,7 +1998,7 @@ function mkPlayer(cfg) {
     say('रोक दिया गया।');
   };
   var seekable = cfg.seekable !== false;
-  var noSeek = 'लाइव रेडियो में आगे-पीछे नहीं जा सकते, इसलिए यह बटन अभी नहीं चलता।';
+  var noSeek = 'लाइव रेडियो में आगे-पीछे नहीं जा सकते। इसलिए यह बटन अभी नहीं चलता।';
   btn('rew', '10 सेकंड पीछे (रिवाइंड)', seekable ? 'यह बटन 10 सेकंड पीछे ले जाता है।' : noSeek, function () { seek(-10); }, !seekable);
   btn('fwd', '10 सेकंड आगे (फास्ट फॉरवर्ड)', seekable ? 'यह बटन 10 सेकंड आगे ले जाता है।' : noSeek, function () { seek(10); }, !seekable);
   if (cfg.prev) btn('prev', 'पिछला', 'पिछली फ़ाइल या स्टेशन पर जाकर उसे चलाता है।', function () { cfg.prev(); });
@@ -2290,8 +2286,8 @@ $('#k-player').appendChild(mkPlayer({
   name: 'गाने के साथ रिकॉर्डिंग का प्लेयर',
   media: kActive,
   pause: function () { trackAudio.pause(); recAudio.pause(); say('सब रोक दिया गया।'); },
-  playHelp: 'चुनी गई सुनने वाली चीज़ चलाता है: अपनी रिकॉर्डिंग, या गाने के साथ वाली। रुकी जगह से आगे चलेगा।',
-  note: 'यह प्लेयर उसी को चलाता है जो आख़िरी बार "सुनना" वाले बटन से चुना गया।'
+  playHelp: 'चुनी गई सुनने वाली चीज़ चलाता है। यह अपनी रिकॉर्डिंग हो सकती है, या गाने के साथ वाली। रुकी जगह से आगे चलेगा।',
+  note: 'यह प्लेयर उसी को चलाता है। जो आख़िरी बार "सुनना" वाले बटन से चुना गया।'
 }));
 $('#vr-player').appendChild(mkPlayer({
   name: 'आवाज़ कम की गई फ़ाइल का प्लेयर',
@@ -2371,7 +2367,7 @@ function waButton(blob, fileName) {
   h.id = hid;
   h.textContent = can
     ? 'दबाने पर फ़ोन का शेयर पैनल खुलेगा। उसमें WhatsApp चुनें। स्टेटस के लिए WhatsApp में "My status / मेरा स्टेटस" चुनें।'
-    : 'इस फ़ोन या ब्राउज़र में फ़ाइल सीधे शेयर नहीं हो सकती। डाउनलोड करें बटन से फ़ाइल फ़ोन में लें, फिर WhatsApp में चुनकर भेजें।';
+    : 'इस फ़ोन या ब्राउज़र में फ़ाइल सीधे शेयर नहीं हो सकती। डाउनलोड करें बटन से फ़ाइल फ़ोन में लें। फिर WhatsApp में चुनकर भेजें।';
   w.appendChild(b);
   w.appendChild(h);
   return w;
@@ -2468,7 +2464,7 @@ $('#sc-take').addEventListener('click', function () {
 $('#sc-player').appendChild(mkPlayer({
   name: 'वीडियो पूर्वावलोकन का प्लेयर',
   media: function () { return [scPreview]; },
-  note: 'इस प्लेयर से सही जगह ढूँढें, फिर "पूर्वावलोकन में जहाँ है, वहाँ का समय लें" दबाएँ।'
+  note: 'इस प्लेयर से सही जगह ढूँढें। फिर "पूर्वावलोकन में जहाँ है, वहाँ का समय लें" दबाएँ।'
 }));
 $('#sc-go').addEventListener('click', function () { scMake(); });
 $('#sc-stop').addEventListener('click', function () { scStop = true; say('रोका जा रहा है। जो बना है वह मिलेगा।'); });
@@ -2542,7 +2538,7 @@ function showVoiceNote() {
   if (!speechVoices.length) { note.textContent = 'फ़ोन की आवाज़ों की सूची अभी नहीं आई। थोड़ी देर बाद भाषा दोबारा चुनें।'; return; }
   note.textContent = voiceFor($('#speak-lang').value)
     ? 'इस भाषा की आवाज़ फ़ोन में मिल गई है।'
-    : 'इस भाषा की आवाज़ इस फ़ोन में नहीं मिली। फ़ोन की टेक्स्ट-टू-स्पीच सेटिंग में यह भाषा डाउनलोड करें, या दूसरी भाषा चुनें।';
+    : 'इस भाषा की आवाज़ इस फ़ोन में नहीं मिली। फ़ोन की टेक्स्ट-टू-स्पीच सेटिंग में यह भाषा डाउनलोड करें। या दूसरी भाषा चुनें।';
 }
 
 function loadVoices() {
@@ -2578,7 +2574,7 @@ function startSpeech(fromStart) {
   if (!speechVoices.length) { spStatus('फ़ोन की आवाज़ों की सूची अभी नहीं आई। थोड़ी देर बाद फिर दबाएँ।'); return; }
   var voice = voiceFor(lang);
   if (!voice) {
-    spStatus('इस भाषा की आवाज़ इस फ़ोन में नहीं मिली। फ़ोन की टेक्स्ट-टू-स्पीच सेटिंग में यह भाषा डाउनलोड करें, या दूसरी भाषा चुनें।');
+    spStatus('इस भाषा की आवाज़ इस फ़ोन में नहीं मिली। फ़ोन की टेक्स्ट-टू-स्पीच सेटिंग में यह भाषा डाउनलोड करें। या दूसरी भाषा चुनें।');
     return;
   }
   var key = lang + '|' + text;
@@ -2658,9 +2654,9 @@ function showInstallSteps() {
   ol.className = 'steps';
   [
     'Chrome: ऊपर दाएँ कोने में तीन बिंदुओं वाला मेन्यू दबाएँ। फिर "होम स्क्रीन पर जोड़ें" या "ऐप इंस्टॉल करें" चुनें। फिर "जोड़ें" या "इंस्टॉल" दबाएँ।',
-    'दूसरे ब्राउज़र में: मेन्यू खोलें, फिर "होम स्क्रीन पर जोड़ें" या "इंस्टॉल करें" खोजकर चुनें।',
+    'दूसरे ब्राउज़र में: मेन्यू खोलें। फिर "होम स्क्रीन पर जोड़ें" या "इंस्टॉल करें" खोजकर चुनें।',
     'Firefox: ऊपर या नीचे दाएँ कोने में तीन बिंदुओं वाला मेन्यू दबाएँ। फिर "इंस्टॉल" या "होम स्क्रीन पर जोड़ें" चुनें।',
-    'जोड़ने के बाद फ़ोन की होम स्क्रीन पर "आवाज़ साथी" का आइकन दिखेगा। उसी से ऐप खुलेगी।'
+    'जोड़ने के बाद फ़ोन की होम स्क्रीन पर आइकन दिखेगा। उसका नाम "आवाज़ साथी" होगा। उसी से ऐप खुलेगी।'
   ].forEach(function (t) {
     var li = document.createElement('li');
     li.textContent = t;
@@ -2682,10 +2678,10 @@ function showFrameHelp() {
   installHelp.replaceChildren();
   var h = document.createElement('p');
   h.className = 'dev';
-  h.textContent = 'यह पेज किसी और पेज के अंदर खुला है, इसलिए यहाँ से फ़ोन में सीधे नहीं जुड़ेगा।';
+  h.textContent = 'यह पेज किसी और पेज के अंदर खुला है। इसलिए यहाँ से फ़ोन में सीधे नहीं जुड़ेगा।';
   installHelp.appendChild(h);
   var p1 = document.createElement('p');
-  p1.textContent = 'पहले नीचे का बटन दबाकर इस पेज को अलग से खोलें। वह Chrome ब्राउज़र में खुले, फिर Chrome का मेन्यू (तीन बिंदु) दबाकर "होम स्क्रीन पर जोड़ें" चुनें।';
+  p1.textContent = 'पहले नीचे का बटन दबाकर इस पेज को अलग से खोलें। वह Chrome ब्राउज़र में खुले। फिर Chrome का मेन्यू (तीन बिंदु) दबाकर "होम स्क्रीन पर जोड़ें" चुनें।';
   installHelp.appendChild(p1);
   var addr = pageAddress();
   if (addr) {
@@ -2695,11 +2691,11 @@ function showFrameHelp() {
     a.target = '_blank';
     a.rel = 'noopener';
     a.textContent = 'इस पेज को अलग से खोलें';
-    a.setAttribute('aria-label', 'इस पेज को अलग से नई विंडो में खोलें, ताकि उसे फ़ोन में जोड़ा जा सके');
+    a.setAttribute('aria-label', 'इस पेज को नई विंडो में खोलें, ताकि फ़ोन में जोड़ सकें');
     installHelp.appendChild(a);
   } else {
     var p2 = document.createElement('p');
-    p2.textContent = 'इस पेज का पता अपने ब्राउज़र के ऊपर वाले खाने में लिखकर उसे Chrome में खोलें।';
+    p2.textContent = 'ब्राउज़र के ऊपर वाले खाने में इस पेज का पता लिखें। फिर उसे Chrome में खोलें।';
     installHelp.appendChild(p2);
   }
   installHelp.focus();
@@ -3095,7 +3091,7 @@ function showSrNote() {
     note.textContent = 'अंग्रेज़ी आवाज़ चुनी गई है। हिंदी में लिखा पाठ इसमें ठीक से नहीं बोला जाएगा।';
     return;
   }
-  if (!hasHi) { note.textContent = 'इस फ़ोन में हिंदी की कोई आवाज़ नहीं मिली। हिंदी आवाज़ के लिए फ़ोन की टेक्स्ट-टू-स्पीच सेटिंग में हिंदी आवाज़ डाउनलोड करें। तब तक हिंदी शब्द ठीक से नहीं बोले जाएँगे।'; return; }
+  if (!hasHi) { note.textContent = 'इस फ़ोन में हिंदी की कोई आवाज़ नहीं मिली। हिंदी आवाज़ के लिए फ़ोन की टेक्स्ट-टू-स्पीच सेटिंग खोलें। वहाँ हिंदी आवाज़ डाउनलोड करें। तब तक हिंदी शब्द ठीक से नहीं बोले जाएँगे।'; return; }
   note.textContent = 'हिंदी की आवाज़ फ़ोन में मिल गई है।';
 }
 /* लिपि से टुकड़े: देवनागरी = हिंदी, गुरमुखी = पंजाबी, रोमन = अंग्रेज़ी; अंक और चिह्न पिछले टुकड़े में जुड़ते हैं */
@@ -3154,7 +3150,7 @@ function srPieces(s) {
 /* ---------- एक ही बोलने का रास्ता ----------
    सुनो, पढ़ें, परीक्षण, स्वागत संदेश और स्पीकर-सफ़ाई की सारी आवाज़ यहीं से जाती है */
 var ttsRun = 0;
-var TTS_FAIL_MSG = 'आवाज़ नहीं चली। फ़ोन की सेटिंग में टेक्स्ट-टू-स्पीच में Google की आवाज़ चुनें और ऐप दोबारा खोलें';
+var TTS_FAIL_MSG = 'आवाज़ नहीं चली। फ़ोन की सेटिंग में टेक्स्ट-टू-स्पीच खोलें। वहाँ Google की आवाज़ चुनें और ऐप दोबारा खोलें।';
 function ttsAlert() {
   var el = document.getElementById('tts-alert');
   if (el) { el.textContent = ''; setTimeout(function () { el.textContent = TTS_FAIL_MSG; }, 60); }
@@ -3839,7 +3835,7 @@ function wxLoadForecast(id, lat, lon, place) {
 
 function wxGeoMsg(err) {
   var c = err && err.code;
-  if (c === 1) return 'जगह की अनुमति नहीं मिली। फ़ोन की सेटिंग में इस ब्राउज़र को जगह की अनुमति दें, या जगह का नाम लिखकर मौसम सुनें।';
+  if (c === 1) return 'जगह की अनुमति नहीं मिली। फ़ोन की सेटिंग में इस ब्राउज़र को जगह की अनुमति दें। या जगह का नाम लिखकर मौसम सुनें।';
   if (c === 3) return 'आपकी जगह पता करने में बहुत देर लगी। दोबारा दबाएँ, या जगह का नाम लिखें।';
   return 'आपकी जगह नहीं मिल सकी। GPS चालू करके दोबारा दबाएँ, या जगह का नाम लिखें।';
 }
@@ -3921,7 +3917,7 @@ function wxAgain() {
     return;
   }
   if (!wxPlace) {
-    wxSay('अभी कोई जगह सेव नहीं है। "मेरी जगह का मौसम" दबाएँ, या जगह का नाम लिखकर "मौसम सुनाओ" दबाएँ।');
+    wxSay('अभी कोई जगह सेव नहीं है। "मेरी जगह का मौसम" दबाएँ। या जगह का नाम लिखकर "मौसम सुनाओ" दबाएँ।');
     return;
   }
   if (wxPlace.kind === 'geo') wxFromGeo();
@@ -3984,7 +3980,7 @@ function bookRestore() {
 }
 var bookPgStart = [0];
 var bookPages = [];
-var BOOK_LOAD_NOTE = 'लोड हो रहा है। यह आपके इंटरनेट और फ़ाइल के आकार पर निर्भर करता है। नेट तेज़ है तो जल्दी पढ़ेगा, धीमा है तो थोड़ा इंतज़ार करना पड़ सकता है।';
+var BOOK_LOAD_NOTE = 'लोड हो रहा है। यह आपके इंटरनेट और फ़ाइल के आकार पर निर्भर करता है। नेट तेज़ है तो जल्दी पढ़ेगा। धीमा है तो थोड़ा इंतज़ार करना पड़ सकता है।';
 /* कौन-सा पेज (0 से) इस अनुच्छेद पर है */
 function bookPageOf(pi) {
   var p = 0;
@@ -4008,7 +4004,7 @@ function bookVoiceOK() {
   if (!speechVoices.length) speechVoices = window.speechSynthesis.getVoices() || [];
   if (!speechVoices.length) { bookStatus('फ़ोन की आवाज़ों की सूची अभी नहीं आई। थोड़ी देर बाद फिर दबाएँ।'); return false; }
   if (!voiceFor($('#book-lang').value)) {
-    bookStatus('इस भाषा की आवाज़ इस फ़ोन में नहीं मिली। फ़ोन की टेक्स्ट-टू-स्पीच सेटिंग में यह भाषा डाउनलोड करें, या दूसरी भाषा चुनें।');
+    bookStatus('इस भाषा की आवाज़ इस फ़ोन में नहीं मिली। फ़ोन की टेक्स्ट-टू-स्पीच सेटिंग में यह भाषा डाउनलोड करें। या दूसरी भाषा चुनें।');
     return false;
   }
   return true;
@@ -4194,7 +4190,7 @@ window.addEventListener('pagehide', function () {
 
 /* ---------- स्क्रीन रिकॉर्डर (सिर्फ़ जहाँ फ़ोन/ब्राउज़र सहारा दे) ---------- */
 var SCREEN_OK = !!(navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia && window.MediaRecorder);
-var SCREEN_NO = 'इस फ़ोन/ब्राउज़र में स्क्रीन रिकॉर्डिंग ऐप के अंदर से नहीं हो सकती। नीचे दिए तरीके से फ़ोन का अपना रिकॉर्डर चलाएँ। स्क्रीन के ऊपर से नीचे खींचकर त्वरित सेटिंग्स में "स्क्रीन रिकॉर्डर" या "स्क्रीन रिकॉर्ड" बटन दबाएँ।';
+var SCREEN_NO = 'इस फ़ोन/ब्राउज़र में स्क्रीन रिकॉर्डिंग ऐप के अंदर से नहीं हो सकती। नीचे दिए तरीके से फ़ोन का अपना रिकॉर्डर चलाएँ। स्क्रीन के ऊपर से नीचे खींचकर त्वरित सेटिंग्स खोलें। वहाँ "स्क्रीन रिकॉर्डर" या "स्क्रीन रिकॉर्ड" बटन दबाएँ।';
 var scrRec = null;
 var scrStream = null;
 var scrMicStream = null;
@@ -4424,10 +4420,10 @@ var COMMANDS = [
   { w: ['होम', 'घर'], run: function () { goTo('h-home', 'होम पेज खुला है।'); } },
   { w: ['रेडियो'], run: function () { goTo('h-radio', 'रेडियो वाला हिस्सा खुला है।'); } },
   { w: ['मेरा यूट्यूब', 'यूट्यूब चैनल'], run: function () { goTo('h-yt', 'मेरा YouTube चैनल वाला हिस्सा खुला है।'); } },
-  { w: ['मौसम'], run: function () { goTo('h-weather', 'मौसम वाला हिस्सा खुला है। अपनी जगह का मौसम के लिए "मेरी जगह का मौसम" दबाएँ, या देश चुनकर जगह का नाम लिखें।'); } },
+  { w: ['मौसम'], run: function () { goTo('h-weather', 'मौसम वाला हिस्सा खुला है। अपनी जगह का मौसम सुनने के लिए "मेरी जगह का मौसम" दबाएँ। या देश चुनकर जगह का नाम लिखें।'); } },
   { w: ['पढ़कर', 'सुनाओ', 'सुनाएँ', 'पढ़ो', 'पढ़ें'], run: function () { goTo('h-speak', 'बोलकर सुनाने वाला हिस्सा खुला है। लिखा पाठ यहाँ चिपकाएँ।'); } },
   { w: ['रुको', 'रोको', 'बंद करो', 'चुप'], run: function () { stopAllCams(); notify('#mic-state', 'सब रोक दिया गया।'); } },
-  { w: ['मदद', 'क्या बोल'], run: function () { notify('#mic-state', 'आदेश: वीडियो जोड़ो, आवाज़ निकालो, मिलाओ, गाना, वोकल रिमूवर, तस्वीर, रंग पहचानें, कैमरा, रेडियो, मौसम, होम, सेटिंग, रुको।'); } },
+  { w: ['मदद', 'क्या बोल'], run: function () { notify('#mic-state', 'आदेश: वीडियो जोड़ो, आवाज़ निकालो, मिलाओ, गाना, वोकल रिमूवर। तस्वीर, रंग पहचानें, कैमरा, रेडियो, मौसम, होम, सेटिंग, रुको।'); } },
   { w: ['वोकल रिमूवर', 'वोकल'], run: function () { goTo('h-vocal', 'वोकल रिमूवर वाला हिस्सा खुला है। गाने की फ़ाइल चुनें।'); } },
   { w: ['आवाज़'], run: function () { goTo('h-sound', 'आवाज़ वाला हिस्सा खुला है।'); } }
 ];
@@ -4502,7 +4498,7 @@ var colCtx = null;
 function hasCam() { return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia); }
 function camError(err) {
   var n = (err && err.name) || '';
-  if (n === 'NotAllowedError' || n === 'SecurityError' || n === 'PermissionDeniedError') return 'कैमरे की इजाज़त नहीं मिली। फ़ोन की सेटिंग में ब्राउज़र को कैमरे की इजाज़त दें, फिर दोबारा दबाएँ।';
+  if (n === 'NotAllowedError' || n === 'SecurityError' || n === 'PermissionDeniedError') return 'कैमरे की इजाज़त नहीं मिली। फ़ोन की सेटिंग में ब्राउज़र को कैमरे की इजाज़त दें। फिर दोबारा दबाएँ।';
   if (n === 'NotFoundError' || n === 'DevicesNotFoundError' || n === 'OverconstrainedError') return 'इस फ़ोन में कैमरा नहीं मिला।';
   if (n === 'NotReadableError' || n === 'AbortError' || n === 'TrackStartError') return 'कैमरा किसी और ऐप में खुला है। वह ऐप बंद करके फिर दबाएँ।';
   return 'कैमरा शुरू नहीं हो सका। फिर से कोशिश करें।';
@@ -5426,7 +5422,7 @@ function tpdfMake() {
     }
     var blob = buildPdf(pages);
     txtOut($('#tpdf-result'), [{ blob: blob, name: 'awaz-saathi-text-' + stamp() + '.pdf' }], 'बनी हुई PDF');
-    txtSay('#tpdf-status', 'PDF तैयार है: ' + pages.length + ' पेज। नीचे डाउनलोड करें। PDF में पाठ तस्वीर की तरह है, उसे चुना या खोजा नहीं जा सकता।');
+    txtSay('#tpdf-status', 'PDF तैयार है: ' + pages.length + ' पेज। नीचे डाउनलोड करें। PDF में पाठ तस्वीर की तरह है। उसे चुना या खोजा नहीं जा सकता।');
   }, 30);
 }
 /* सादा PDF बनाने वाला: हर पेज A4 और उसमें JPEG तस्वीर (DCTDecode) */
