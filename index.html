@@ -208,6 +208,19 @@ html.hc body { background: #fff; color: #000; }
 .sub-title{font-size:1.5rem}
 .bullets{margin:0 0 14px;padding-inline-start:1.3em}
 .bullets li{margin:0 0 6px}
+/* खेल */
+.gm-help{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.gm-row{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.gm-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.gm-btn{min-height:56px;font-size:1.15rem;padding:10px 14px}
+.gm-pad{min-height:90px}
+.gm-field{display:flex;flex-direction:column;gap:6px;margin:10px 0}
+.gm-field label{font-size:1.1rem}
+.gm-select,.gm-input{min-height:48px;font-size:1.1rem;padding:8px}
+.gm-check{display:flex;align-items:center;gap:8px;min-height:48px;font-size:1.1rem}
+.gm-check input{width:26px;height:26px}
+.gm-live,.gm-status,.gm-question{font-size:1.15rem;line-height:1.6}
+.gm-seat{border-top:1px solid currentColor;padding-top:6px}
 </style>
 </head>
 <body>
@@ -255,7 +268,7 @@ html.hc body { background: #fff; color: #000; }
 <p class="hint" id="hx-notice-close">सूचना बंद करें: यह सूचना हट जाएगी और दोबारा नहीं दिखेगी।</p>
 </div>
 <h2 class="panel-title" id="h-home" tabindex="-1">होम</h2>
-<p class="lead">आवाज़ साथी में आपका स्वागत है। नीचे से एक श्रेणी चुनें।</p><h3 class="sec-title" id="h-grid">श्रेणी चुनें</h3><div aria-labelledby="h-grid" class="cat-grid" role="group"><button aria-describedby="hx-tile-voice" class="cat-tile" data-cat="cat-voice" style="--tile:#1d4ed8" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z"></path><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg><span>बोलकर काम करें</span><small id="hx-tile-voice">आवाज़ से आदेश दें</small></button><button aria-describedby="hx-tile-video" class="cat-tile" data-cat="cat-video" style="--tile:#6d28d9" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect height="12" rx="2" width="13" x="3" y="6"></rect><path d="M16 10l5-3v10l-5-3z"></path></svg><span>वीडियो</span><small id="hx-tile-video">जोड़ें, आवाज़ निकालें, मिलाएँ</small></button><button aria-describedby="hx-tile-sound" class="cat-tile" data-cat="cat-sound" style="--tile:#9d174d" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M9 18V5l11-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="17" cy="16" r="3"></circle></svg><span>आवाज़ और गाना</span><small id="hx-tile-sound">गाना, वोकल रिमूवर, तस्वीर से वीडियो</small></button><button aria-describedby="hx-tile-camera" class="cat-tile" data-cat="cat-camera" style="--tile:#115e59" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M3 8h4l2-3h6l2 3h4v11H3z"></path><circle cx="12" cy="13" r="3.5"></circle></svg><span>कैमरे से मदद</span><small id="hx-tile-camera">रंग पहचानें, बोलने वाला कैमरा</small></button><button aria-describedby="hx-tile-radio" class="cat-tile" data-cat="cat-radio" style="--tile:#92400e" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect height="12" rx="2" width="18" x="3" y="8"></rect><path d="M7 8l10-5M8 14h8"></path></svg><span>रेडियो</span><small id="hx-tile-radio">इंटरनेट से स्टेशन सुनें</small></button><button aria-describedby="hx-tile-weather" class="cat-tile" data-cat="cat-weather" style="--tile:#075985" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M7 18a4 4 0 0 1 0-8 6 6 0 0 1 11.5 1.5A3.5 3.5 0 0 1 18 18z"></path></svg><span>मौसम</span><small id="hx-tile-weather">अपनी जगह या कोई भी शहर</small></button><button aria-describedby="hx-tile-yt" class="cat-tile" data-cat="cat-yt" style="--tile:#155e75" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect height="13" rx="2" width="18" x="3" y="4"></rect><path d="M10 8v5l4-2.5z"></path><path d="M8 21h8"></path></svg><span>मेरा YouTube चैनल</span><small id="hx-tile-yt">चैनल YouTube पर खोलें</small></button><button aria-describedby="hx-tile-read" class="cat-tile" data-cat="cat-read" style="--tile:#3f6212" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"></path><path d="M4 19V5"></path></svg><span>पढ़ना और लिखना</span><small id="hx-tile-read">किताब, टेक्स्ट से इमेज और PDF</small></button><button aria-describedby="hx-tile-phone" class="cat-tile" data-cat="cat-phone" style="--tile:#334155" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect height="20" rx="2" width="10" x="7" y="2"></rect><path d="M11 18h2"></path></svg><span>फ़ोन के काम</span><small id="hx-tile-phone">स्क्रीन रिकॉर्डर, स्पीकर क्लीनर</small></button></div><button aria-describedby="hx-cat-settings" class="btn cat-settings" data-cat="cat-settings" type="button">सेटिंग और शेयर</button><p class="hint" id="hx-cat-settings">सेटिंग में गोपनीयता, गाइड, शेयर और संपर्क हैं।</p>
+<p class="lead">आवाज़ साथी में आपका स्वागत है। नीचे से एक श्रेणी चुनें।</p><h3 class="sec-title" id="h-grid">श्रेणी चुनें</h3><div aria-labelledby="h-grid" class="cat-grid" role="group"><button aria-describedby="hx-tile-voice" class="cat-tile" data-cat="cat-voice" style="--tile:#1d4ed8" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z"></path><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg><span>बोलकर काम करें</span><small id="hx-tile-voice">आवाज़ से आदेश दें</small></button><button aria-describedby="hx-tile-video" class="cat-tile" data-cat="cat-video" style="--tile:#6d28d9" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect height="12" rx="2" width="13" x="3" y="6"></rect><path d="M16 10l5-3v10l-5-3z"></path></svg><span>वीडियो</span><small id="hx-tile-video">जोड़ें, आवाज़ निकालें, मिलाएँ</small></button><button aria-describedby="hx-tile-sound" class="cat-tile" data-cat="cat-sound" style="--tile:#9d174d" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M9 18V5l11-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="17" cy="16" r="3"></circle></svg><span>आवाज़ और गाना</span><small id="hx-tile-sound">गाना, वोकल रिमूवर, तस्वीर से वीडियो</small></button><button aria-describedby="hx-tile-camera" class="cat-tile" data-cat="cat-camera" style="--tile:#115e59" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M3 8h4l2-3h6l2 3h4v11H3z"></path><circle cx="12" cy="13" r="3.5"></circle></svg><span>कैमरे से मदद</span><small id="hx-tile-camera">रंग पहचानें, बोलने वाला कैमरा</small></button><button aria-describedby="hx-tile-radio" class="cat-tile" data-cat="cat-radio" style="--tile:#92400e" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect height="12" rx="2" width="18" x="3" y="8"></rect><path d="M7 8l10-5M8 14h8"></path></svg><span>रेडियो</span><small id="hx-tile-radio">इंटरनेट से स्टेशन सुनें</small></button><button aria-describedby="hx-tile-weather" class="cat-tile" data-cat="cat-weather" style="--tile:#075985" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M7 18a4 4 0 0 1 0-8 6 6 0 0 1 11.5 1.5A3.5 3.5 0 0 1 18 18z"></path></svg><span>मौसम</span><small id="hx-tile-weather">अपनी जगह या कोई भी शहर</small></button><button aria-describedby="hx-tile-yt" class="cat-tile" data-cat="cat-yt" style="--tile:#155e75" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect height="13" rx="2" width="18" x="3" y="4"></rect><path d="M10 8v5l4-2.5z"></path><path d="M8 21h8"></path></svg><span>मेरा YouTube चैनल</span><small id="hx-tile-yt">चैनल YouTube पर खोलें</small></button><button aria-describedby="hx-tile-read" class="cat-tile" data-cat="cat-read" style="--tile:#3f6212" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"></path><path d="M4 19V5"></path></svg><span>पढ़ना और लिखना</span><small id="hx-tile-read">किताब, टेक्स्ट से इमेज और PDF</small></button><button aria-describedby="hx-tile-phone" class="cat-tile" data-cat="cat-phone" style="--tile:#334155" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect height="20" rx="2" width="10" x="7" y="2"></rect><path d="M11 18h2"></path></svg><span>फ़ोन के काम</span><small id="hx-tile-phone">स्क्रीन रिकॉर्डर, स्पीकर क्लीनर</small></button><button aria-describedby="hx-tile-games" class="cat-tile" data-cat="cat-games" style="--tile:#b45309" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 12h4M9 10v4M15 11h.01M17 13h.01" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg><span>खेल</span><small id="hx-tile-games">रंग दौड़, शतरंज, सुर याद, अंत्याक्षरी, क्विज़ और अंदाज़ा</small></button></div><button aria-describedby="hx-cat-settings" class="btn cat-settings" data-cat="cat-settings" type="button">सेटिंग और शेयर</button><p class="hint" id="hx-cat-settings">सेटिंग में गोपनीयता, गाइड, शेयर और संपर्क हैं।</p>
 <section aria-labelledby="h-about">
 <h3 class="sec-title" data-reveal="about-body" id="h-about" tabindex="-1">इस ऐप के बारे में</h3>
 <button aria-controls="about-body" aria-describedby="hx-about-toggle" aria-expanded="false" class="btn primary" data-label-close="ऐप की जानकारी छिपाएँ" data-label-open="ऐप की जानकारी दिखाएँ" id="about-toggle" type="button">ऐप की जानकारी दिखाएँ</button>
@@ -1021,7 +1034,7 @@ html.hc body { background: #fff; color: #000; }
 </ul>
 </section>
 </div>
-</div><div class="panel cat-screen" hidden="" id="cat-settings"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button>
+</div><div class="panel cat-screen" hidden="" id="cat-games"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button><h2 class="panel-title" data-reveal="" id="h-games" tabindex="-1">खेल</h2><p class="gm-intro">छह खेल हैं। सब बिना इंटरनेट के चलते हैं। किसी खेल को खोलने के लिए डबल टैप करें।</p><button aria-controls="gm-ludo-body" aria-describedby="hx-gm-ludo" aria-expanded="false" class="btn primary" data-label-close="रंग दौड़ बंद करें" data-label-open="रंग दौड़ खोलें" id="gm-ludo-toggle" type="button">रंग दौड़ खोलें</button><span class="gm-help" id="hx-gm-ludo">इसे खोलने के लिए डबल टैप करें। गेम-बोर्ड वाला दौड़ का खेल। 2 से 4 खिलाड़ी, पासा फेंककर टोकन आगे बढ़ाएँ। बाकी सीटें रोबोट भरेगा।</span><div data-collapsible="" hidden="" id="gm-ludo-body"></div><button aria-controls="gm-chess-body" aria-describedby="hx-gm-chess" aria-expanded="false" class="btn primary" data-label-close="छोटी शतरंज बंद करें" data-label-open="छोटी शतरंज खोलें" id="gm-chess-toggle" type="button">छोटी शतरंज खोलें</button><span class="gm-help" id="hx-gm-chess">इसे खोलने के लिए डबल टैप करें। पाँच गुणा पाँच के बोर्ड पर राजा, हाथी, घोड़ा और प्यादे। पहले मोहरा चुनें, फिर खाना।</span><div data-collapsible="" hidden="" id="gm-chess-body"></div><button aria-controls="gm-memory-body" aria-describedby="hx-gm-memory" aria-expanded="false" class="btn primary" data-label-close="सुर याद करो बंद करें" data-label-open="सुर याद करो खोलें" id="gm-memory-toggle" type="button">सुर याद करो खोलें</button><span class="gm-help" id="hx-gm-memory">इसे खोलने के लिए डबल टैप करें। चार सुर बजते हैं। उसी क्रम में दबाएँ। हर बार एक सुर जुड़ता है।</span><div data-collapsible="" hidden="" id="gm-memory-body"></div><button aria-controls="gm-antak-body" aria-describedby="hx-gm-antak" aria-expanded="false" class="btn primary" data-label-close="शब्द-अंत्याक्षरी बंद करें" data-label-open="शब्द-अंत्याक्षरी खोलें" id="gm-antak-toggle" type="button">शब्द-अंत्याक्षरी खोलें</button><span class="gm-help" id="hx-gm-antak">इसे खोलने के लिए डबल टैप करें। रोबोट के साथ शब्द-अंत्याक्षरी। पिछले शब्द के आखिरी अक्षर से नया शब्द लिखें।</span><div data-collapsible="" hidden="" id="gm-antak-body"></div><button aria-controls="gm-quiz-body" aria-describedby="hx-gm-quiz" aria-expanded="false" class="btn primary" data-label-close="सामान्य ज्ञान क्विज़ बंद करें" data-label-open="सामान्य ज्ञान क्विज़ खोलें" id="gm-quiz-toggle" type="button">सामान्य ज्ञान क्विज़ खोलें</button><span class="gm-help" id="hx-gm-quiz">इसे खोलने के लिए डबल टैप करें। दस सवाल, चार विकल्प। हरियाणा और भारत के सवाल। एक से चार खिलाड़ी।</span><div data-collapsible="" hidden="" id="gm-quiz-body"></div><button aria-controls="gm-numbers-body" aria-describedby="hx-gm-numbers" aria-expanded="false" class="btn primary" data-label-close="संख्या का अंदाज़ा बंद करें" data-label-open="संख्या का अंदाज़ा खोलें" id="gm-numbers-toggle" type="button">संख्या का अंदाज़ा खोलें</button><span class="gm-help" id="hx-gm-numbers">इसे खोलने के लिए डबल टैप करें। आप संख्या का अंदाज़ा लगाएँ, या रोबोट लगाए। ऊपर या नीचे बताकर पकड़ें।</span><div data-collapsible="" hidden="" id="gm-numbers-body"></div></div><div class="panel cat-screen" hidden="" id="cat-settings"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button>
 <h2 class="panel-title" data-reveal="settings-body" id="h-settings" tabindex="-1">सेटिंग</h2>
 <button aria-controls="settings-body" aria-describedby="hx-settings-toggle" aria-expanded="false" class="btn primary" data-label-close="सेटिंग छिपाएँ" data-label-open="सेटिंग दिखाएँ" id="settings-toggle" type="button">सेटिंग दिखाएँ</button>
 <p class="hint" id="hx-settings-toggle">इसे खोलने के लिए डबल टैप करें। दबाने पर सेटिंग के सारे हिस्से नीचे खुलेंगे। दोबारा दबाने पर वे बंद होंगे।</p>
@@ -3233,7 +3246,9 @@ function selfTarget(node) {
   }
   return null;
 }
+var GM_QUIET = false;
 function selfSpeakFor(e) {
+  if (GM_QUIET) return;
   if (!S.selfspeak || !speechOK || speechBusy) return;
   var el = selfTarget(e.target);
   if (!el) return;
@@ -4380,6 +4395,7 @@ var COMMANDS = [
   { w: ['रुको', 'रोको', 'बंद करो', 'चुप'], run: function () { stopAllCams(); notify('#mic-state', 'सब रोक दिया गया।'); } },
   { w: ['मदद', 'क्या बोल'], run: function () { notify('#mic-state', 'आदेश: वीडियो जोड़ो, आवाज़ निकालो, मिलाओ, गाना, वोकल रिमूवर। तस्वीर, रंग पहचानें, कैमरा, रेडियो, मौसम, होम, सेटिंग, रुको।'); } },
   { w: ['वोकल रिमूवर', 'वोकल'], run: function () { goTo('h-vocal', 'वोकल रिमूवर वाला हिस्सा खुला है। गाने की फ़ाइल चुनें।'); } },
+  { w: ['खेल', 'गेम'], run: function () { goTo('h-games', 'खेल वाला हिस्सा खुला है।'); } },
   { w: ['आवाज़'], run: function () { goTo('h-sound', 'आवाज़ वाला हिस्सा खुला है।'); } }
 ];
 
@@ -4712,6 +4728,7 @@ window.addEventListener('pagehide', function () { colStop(true); tcStop(true); }
 function setCollapse(bodyId, open) {
   var body = document.getElementById(bodyId);
   if (!body) return;
+  if (window.awazGmSync) window.awazGmSync(bodyId, open);
   if (open) body.removeAttribute('hidden'); else body.setAttribute('hidden', '');
   var t = document.querySelector('[aria-controls="' + bodyId + '"][data-label-open]');
   if (t) {
@@ -5632,6 +5649,1185 @@ $('#yt-open').addEventListener('click', function (e) {
   if (u) $('#yt-link').value = u.href;
   ytShow(u);
 })();
+/* ---------- खेल: छह खेल, पूरी तरह फ़ोन में और बिना इंटरनेट के ---------- */
+(function () {
+var GAMES = {};
+var uid = 0;
+var soundOn = {};
+var nodes = {};
+var actx = null;
+var lastSaid = {};
+var ENG = window.awazGameEngines = {};
+
+function rnd() { return Math.random(); }
+function ri(n) { return Math.floor(rnd() * n); }
+function pick(a) { return a[ri(a.length)]; }
+function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = ri(i + 1); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+function nextId(p) { uid++; return p + uid; }
+
+/* ---------- आवाज़ (WebAudio, कोई फ़ाइल नहीं) ---------- */
+function audio() {
+  if (!AC) return null;
+  if (!actx) { try { actx = new AC(); } catch (e) { actx = null; } }
+  if (actx && actx.state === 'suspended' && actx.resume) { try { actx.resume(); } catch (e) { /* ignore */ } }
+  return actx;
+}
+function track(key, node) {
+  if (!nodes[key]) nodes[key] = [];
+  nodes[key].push(node);
+  if (nodes[key].length > 80) nodes[key].splice(0, 40);
+}
+function halt(key) {
+  (nodes[key] || []).forEach(function (n) { try { n.stop(); } catch (e) { /* ignore */ } });
+  nodes[key] = [];
+}
+function tone(key, freq, dur, type, vol, delay, endFreq) {
+  if (!soundOn[key]) return;
+  var c = audio(); if (!c) return;
+  try {
+    var t0 = c.currentTime + (delay || 0);
+    var o = c.createOscillator(), g = c.createGain();
+    o.type = type || 'sine';
+    o.frequency.setValueAtTime(freq, t0);
+    if (endFreq) o.frequency.linearRampToValueAtTime(endFreq, t0 + dur);
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(vol || 0.2, t0 + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    o.connect(g); g.connect(c.destination);
+    o.start(t0); o.stop(t0 + dur + 0.05);
+    track(key, o);
+  } catch (e) { /* ignore */ }
+}
+function noise(key, dur, vol, delay) {
+  if (!soundOn[key]) return;
+  var c = audio(); if (!c) return;
+  try {
+    var t0 = c.currentTime + (delay || 0);
+    var len = Math.max(1, Math.floor(c.sampleRate * dur));
+    var buf = c.createBuffer(1, len, c.sampleRate);
+    var d = buf.getChannelData(0);
+    for (var i = 0; i < len; i++) d[i] = (rnd() * 2 - 1) * (1 - i / len);
+    var s = c.createBufferSource(), g = c.createGain();
+    s.buffer = buf;
+    g.gain.setValueAtTime(vol || 0.3, t0);
+    s.connect(g); g.connect(c.destination);
+    s.start(t0); track(key, s);
+  } catch (e) { /* ignore */ }
+}
+function chime(key, notes, delay) {
+  notes.forEach(function (f, i) { tone(key, f, 0.18, 'triangle', 0.22, (delay || 0) + i * 0.14); });
+}
+function buzz(key) { tone(key, 170, 0.45, 'sawtooth', 0.18); }
+
+/* ---------- खेल की आम व्यवस्था ---------- */
+function announce(g, text) {
+  lastSaid[g.key] = text;
+  var live = document.getElementById('gm-live-' + g.key);
+  if (live) live.textContent = text;
+  speakNow(text);
+}
+function later(g, ms, fn) {
+  var gen = g.gen;
+  g.timers.push(setTimeout(function () { if (g.gen === gen) fn(); }, ms));
+}
+function stopGame(g) {
+  g.gen++;
+  g.timers.forEach(function (t) { clearTimeout(t); });
+  g.timers = [];
+  halt(g.key);
+}
+function focusQuiet(node) {
+  if (!node || !node.focus) return;
+  GM_QUIET = true;
+  try { node.focus(); } catch (e) { /* ignore */ }
+  GM_QUIET = false;
+}
+function firstButton(box) { return box ? box.querySelector('button') : null; }
+function helpSpan(parent, text) {
+  var s = el('span', 'gm-help', text);
+  s.id = nextId('gm-h');
+  parent.appendChild(s);
+  return s.id;
+}
+function btn(parent, label, helpText, fn) {
+  var b = el('button', 'btn gm-btn', label);
+  b.type = 'button';
+  parent.appendChild(b);
+  if (helpText) b.setAttribute('aria-describedby', helpSpan(parent, helpText));
+  b.addEventListener('click', fn);
+  return b;
+}
+function field(parent, label, control, helpText) {
+  var wrap = el('div', 'gm-field');
+  control.id = nextId('gm-f');
+  var lb = el('label', '', label);
+  lb.setAttribute('for', control.id);
+  wrap.appendChild(lb);
+  wrap.appendChild(control);
+  if (helpText) control.setAttribute('aria-describedby', helpSpan(wrap, helpText));
+  parent.appendChild(wrap);
+  return wrap;
+}
+function selectBox(parent, label, opts, value, onchange, helpText) {
+  var s = el('select', 'gm-select');
+  opts.forEach(function (o) { var op = el('option', '', o[1]); op.value = o[0]; s.appendChild(op); });
+  s.value = value;
+  s.addEventListener('change', function () { onchange(s.value); });
+  field(parent, label, s, helpText);
+  return s;
+}
+function nameBox(parent, label, value, onchange) {
+  var i = el('input', 'gm-input');
+  i.type = 'text'; i.value = value; i.maxLength = 20;
+  i.addEventListener('change', function () { onchange(i.value.trim()); });
+  field(parent, label, i, 'नाम बदलने के लिए लिखें और बाहर आएँ। खाली छोड़ने पर पुराना नाम रहेगा।');
+  return i;
+}
+function soundBox(parent, key) {
+  soundOn[key] = true;
+  var wrap = el('div', 'gm-field');
+  var lb = el('label', 'gm-check');
+  var cb = el('input');
+  cb.type = 'checkbox'; cb.checked = true;
+  lb.appendChild(cb);
+  lb.appendChild(document.createTextNode(' आवाज़ चालू रखें'));
+  cb.setAttribute('aria-describedby', helpSpan(wrap, 'बंद करने पर इस खेल की बीप और धुनें नहीं बजेंगी। बोलकर बताना चलता रहेगा।'));
+  cb.addEventListener('change', function () { soundOn[key] = cb.checked; });
+  wrap.appendChild(lb);
+  parent.appendChild(wrap);
+}
+function shell(g, root) {
+  root.innerHTML = '';
+  soundBox(root, g.key);
+  var row = el('div', 'gm-row');
+  root.appendChild(row);
+  btn(row, 'आखिरी बात फिर से सुनाएँ', 'पिछली बात फिर से बोलकर सुनाता है।', function () { speakNow(lastSaid[g.key] || 'अभी कोई बात नहीं हुई।'); });
+  btn(row, 'नया खेल शुरू करें', 'मौजूदा खेल छोड़कर नया खेल शुरू करता है।', function () { g.reset(); });
+  g.set = el('div', 'gm-settings');
+  root.appendChild(g.set);
+  var live = el('p', 'gm-live', '');
+  live.id = 'gm-live-' + g.key;
+  live.setAttribute('aria-live', 'polite');
+  root.appendChild(live);
+  g.stat = el('p', 'gm-status', '');
+  root.appendChild(g.stat);
+  g.play = el('div', 'gm-play');
+  root.appendChild(g.play);
+}
+function reg(key, body, setup) {
+  GAMES[key] = { key: key, body: body, gen: 0, timers: [], setup: setup, reset: function () {}, started: false, st: null };
+}
+
+/* =====================================================================
+   1. रंग दौड़ (लूडो जैसा): 2 से 4 खिलाड़ी, हर खिलाड़ी के 2 टोकन
+   ===================================================================== */
+var LUDO_RING = 24, LUDO_HOME = 28;
+var ludo = {
+  RING: LUDO_RING,
+  HOME: LUDO_HOME,
+  newState: function (n) {
+    var tk = [];
+    for (var p = 0; p < n; p++) tk.push([0, 0]);
+    return { n: n, tk: tk, turn: 0, over: false, winner: -1, turns: 0, draw: false };
+  },
+  cell: function (p, k) { return (p * 6 + k - 1 + LUDO_RING) % LUDO_RING; },
+  where: function (k) {
+    if (k === 0) return 'घर में';
+    if (k === LUDO_HOME) return 'घर पहुँच गया';
+    if (k > LUDO_RING) return 'घर की ओर, ' + (LUDO_HOME - k) + ' कदम बाकी';
+    return 'रास्ते के खाने नंबर ' + k;
+  },
+  legal: function (st, p, die) {
+    var out = [];
+    for (var t = 0; t < 2; t++) {
+      var k = st.tk[p][t];
+      if (k === 0) { if (die === 6) out.push(t); }
+      else if (k + die <= LUDO_HOME) out.push(t);
+    }
+    return out;
+  },
+  apply: function (st, p, t, die) {
+    var k = st.tk[p][t];
+    var nk = k === 0 ? 1 : k + die;
+    var ev = { player: p, token: t, from: k, to: nk, capture: -1, capToken: -1, kind: 'move' };
+    if (k === 0) ev.kind = 'enter';
+    if (nk <= LUDO_RING) {
+      var cell = ludo.cell(p, nk);
+      for (var q = 0; q < st.n; q++) {
+        if (q === p) continue;
+        for (var u = 0; u < 2; u++) {
+          var ok = st.tk[q][u];
+          if (ok >= 1 && ok <= LUDO_RING && ludo.cell(q, ok) === cell) {
+            st.tk[q][u] = 0;
+            ev.capture = q; ev.capToken = u;
+          }
+        }
+      }
+    }
+    st.tk[p][t] = nk;
+    if (ev.capture >= 0) ev.kind = 'capture';
+    if (nk === LUDO_HOME) ev.kind = 'finish';
+    return ev;
+  },
+  finished: function (st, p) { return st.tk[p][0] === LUDO_HOME && st.tk[p][1] === LUDO_HOME; },
+  checkEnd: function (st) {
+    for (var p = 0; p < st.n; p++) {
+      if (ludo.finished(st, p)) { st.over = true; st.winner = p; return true; }
+    }
+    return false;
+  },
+  next: function (st) {
+    st.turn = (st.turn + 1) % st.n;
+    st.turns++;
+    if (st.turns >= 3000 && !st.over) { st.over = true; st.draw = true; }
+  },
+  robotPick: function (st, p, die, level) {
+    var legal = ludo.legal(st, p, die);
+    if (!legal.length) return -1;
+    if (level === 'easy' && rnd() < 0.5) return pick(legal);
+    var best = -1e9, bestT = legal[0];
+    legal.forEach(function (t) {
+      var k = st.tk[p][t], nk = k === 0 ? 1 : k + die, s = rnd() * 0.5;
+      if (nk === LUDO_HOME) s += 9;
+      else if (nk > LUDO_RING) s += 4;
+      if (k === 0) s += 5;
+      s += nk / 10;
+      if (nk <= LUDO_RING) {
+        var cell = ludo.cell(p, nk);
+        for (var q = 0; q < st.n; q++) {
+          if (q === p) continue;
+          for (var u = 0; u < 2; u++) {
+            var ok = st.tk[q][u];
+            if (ok < 1 || ok > LUDO_RING) continue;
+            var oc = ludo.cell(q, ok);
+            if (oc === cell) s += 10;
+            else if (level === 'hard') {
+              var d = (cell - oc + LUDO_RING) % LUDO_RING;
+              if (d >= 1 && d <= 6) s -= 3;
+            }
+          }
+        }
+      }
+      if (s > best) { best = s; bestT = t; }
+    });
+    return bestT;
+  },
+  playRobots: function (n, level) {
+    var st = ludo.newState(n);
+    while (!st.over) {
+      var p = st.turn, die = 1 + ri(6);
+      var legal = ludo.legal(st, p, die);
+      if (legal.length) {
+        ludo.apply(st, p, ludo.robotPick(st, p, die, level), die);
+        ludo.checkEnd(st);
+      }
+      if (!st.over) ludo.next(st);
+    }
+    return st;
+  }
+};
+ENG.ludo = ludo;
+
+function setupLudo(g, root) {
+  shell(g, root);
+  g.n = 2; g.level = 'medium'; g.die = 0; g.st = null;
+  g.seat = ['इंसान', 'रोबोट', 'रोबोट', 'रोबोट'];
+  g.names = ['खिलाड़ी 1', 'खिलाड़ी 2', 'खिलाड़ी 3', 'खिलाड़ी 4'];
+  g.seatWraps = [];
+  selectBox(g.set, 'खिलाड़ी कितने हैं?', [['2', '2 खिलाड़ी'], ['3', '3 खिलाड़ी'], ['4', '4 खिलाड़ी']], '2', function (v) { g.n = +v; g.reset(); }, 'दो, तीन या चार खिलाड़ी चुनें। बाकी सीटें रोबोट भर देगा।');
+  var i;
+  for (i = 0; i < 4; i++) {
+    (function (idx) {
+      var wrap = el('div', 'gm-seat');
+      wrap.hidden = idx >= g.n;
+      selectBox(wrap, 'सीट ' + (idx + 1) + ' कौन खेलेगा?', [['इंसान', 'इंसान (आप या दोस्त)'], ['रोबोट', 'रोबोट']], g.seat[idx], function (v) { g.seat[idx] = v; }, 'इंसान चुनने पर आप इस सीट की चाल खुद चुनेंगे। रोबोट चुनने पर रोबोट चलेगा।');
+      nameBox(wrap, 'सीट ' + (idx + 1) + ' का नाम', g.names[idx], function (v) { g.names[idx] = v || ('खिलाड़ी ' + (idx + 1)); });
+      g.set.appendChild(wrap);
+      g.seatWraps.push(wrap);
+    })(i);
+  }
+  selectBox(g.set, 'रोबोट का स्तर', [['easy', 'आसान'], ['medium', 'मध्यम'], ['hard', 'कठिन']], 'medium', function (v) { g.level = v; }, 'रोबोट आसान, मध्यम या कठिन खेलेगा। कठिन रोबोट खतरे वाले खाने से बचता है।');
+  g.rollBtn = btn(g.play, 'पासा फेंको', 'पासा फेंकने के लिए दबाएँ। फिर आपकी चाल के विकल्प आएँगे।', function () { ludoHumanRoll(g); });
+  g.choices = el('div', 'gm-row');
+  g.play.appendChild(g.choices);
+  btn(g.play, 'सब टोकन की जगह सुनाएँ', 'हर खिलाड़ी के दोनों टोकन कहाँ हैं, यह बोलकर सुनाता है।', function () { if (g.st) announce(g, ludoBoard(g)); });
+
+  g.reset = function () {
+    stopGame(g);
+    g.st = ludo.newState(g.n);
+    g.die = 0;
+    g.choices.innerHTML = '';
+    g.seatWraps.forEach(function (w, k) { w.hidden = k >= g.n; });
+    announce(g, 'नया खेल। ' + g.n + ' खिलाड़ी। ' + ludoSeatText(g));
+    later(g, 400, function () { ludoAskRoll(g); });
+  };
+}
+function ludoSeatText(g) {
+  var parts = [];
+  for (var k = 0; k < g.n; k++) parts.push(g.names[k] + ' ' + (g.seat[k] === 'इंसान' ? 'इंसान' : 'रोबोट'));
+  return parts.join(', ') + '।';
+}
+function ludoBoard(g) {
+  var parts = [];
+  g.st.tk.forEach(function (tk, p) {
+    parts.push(g.names[p] + ': टोकन 1 ' + ludo.where(tk[0]) + ', टोकन 2 ' + ludo.where(tk[1]) + '।');
+  });
+  return parts.join(' ');
+}
+function ludoAskRoll(g) {
+  var st = g.st;
+  if (!st || st.over) return;
+  var p = st.turn;
+  g.choices.innerHTML = '';
+  if (g.seat[p] === 'रोबोट') {
+    g.rollBtn.disabled = true;
+    g.stat.textContent = g.names[p] + ' (रोबोट) की बारी।';
+    later(g, 700, function () { ludoRoll(g); });
+  } else {
+    g.rollBtn.disabled = false;
+    g.stat.textContent = g.names[p] + ' की बारी। पासा फेंकें।';
+    focusQuiet(g.rollBtn);
+  }
+}
+function ludoHumanRoll(g) {
+  if (!g.st || g.st.over || g.die || g.seat[g.st.turn] !== 'इंसान') return;
+  ludoRoll(g);
+}
+function ludoRoll(g) {
+  var st = g.st;
+  if (!st || st.over) return;
+  var p = st.turn, die = 1 + ri(6);
+  g.die = die;
+  g.rollBtn.disabled = true;
+  noise('ludo', 0.25, 0.25);
+  tone('ludo', 520, 0.08, 'square', 0.08, 0.25);
+  var legal = ludo.legal(st, p, die);
+  if (!legal.length) {
+    g.die = 0;
+    announce(g, g.names[p] + ' का पासा ' + die + ' आया। कोई चाल नहीं बनी, अगला खिलाड़ी।');
+    ludo.next(st);
+    later(g, 900, function () { ludoAskRoll(g); });
+    return;
+  }
+  if (g.seat[p] === 'रोबोट') {
+    var t = ludo.robotPick(st, p, die, g.level);
+    announce(g, g.names[p] + ' का पासा ' + die + ' आया।');
+    later(g, 900, function () { ludoMove(g, p, t); });
+    return;
+  }
+  announce(g, g.names[p] + ' का पासा ' + die + ' आया। अब चाल चुनें।');
+  legal.forEach(function (t) {
+    var k = st.tk[p][t];
+    var label = k === 0 ? 'टोकन ' + (t + 1) + ' बाहर निकालें' : 'टोकन ' + (t + 1) + ' को ' + die + ' आगे बढ़ाएँ';
+    btn(g.choices, label, 'इस टोकन को चुनने पर चाल चली जाएगी।', function () { ludoMove(g, p, t); });
+  });
+  focusQuiet(firstButton(g.choices));
+}
+function ludoMove(g, p, t) {
+  var st = g.st;
+  if (!st || st.over || !g.die) return;
+  var die = g.die;
+  if (ludo.legal(st, p, die).indexOf(t) < 0) { announce(g, 'यह चाल मान्य नहीं है।'); return; }
+  g.die = 0;
+  g.choices.innerHTML = '';
+  var ev = ludo.apply(st, p, t, die);
+  var who = g.names[p], msg;
+  if (ev.kind === 'enter') {
+    chime('ludo', [660, 990]);
+    msg = who + ' का टोकन ' + (t + 1) + ' बाहर निकला।';
+  } else if (ev.kind === 'finish') {
+    chime('ludo', [523, 659, 784, 1047]);
+    msg = who + ' का टोकन ' + (t + 1) + ' घर पहुँच गया।';
+  } else {
+    tone('ludo', 880, 0.08, 'square', 0.1);
+    msg = who + ' ने टोकन ' + (t + 1) + ' को ' + die + ' आगे बढ़ाया, अब ' + ludo.where(ev.to) + '।';
+  }
+  if (ev.capture >= 0) {
+    tone('ludo', 320, 0.35, 'sawtooth', 0.2, 0, 120);
+    msg += ' और ' + g.names[ev.capture] + ' का टोकन वापस घर भेज दिया।';
+  }
+  ludo.checkEnd(st);
+  if (st.over) {
+    g.rollBtn.disabled = true;
+    g.stat.textContent = 'खेल खत्म।';
+    chime('ludo', [523, 659, 784, 1047, 784, 1047], 0.1);
+    announce(g, g.names[st.winner] + ' जीत गया! सब टोकन घर पहुँच गए। ' + g.names[st.winner] + ' के लिए बधाई।');
+    return;
+  }
+  announce(g, msg);
+  ludo.next(st);
+  later(g, 900, function () { ludoAskRoll(g); });
+}
+
+/* =====================================================================
+   2. छोटी शतरंज (5 गुणा 5): हर तरफ़ राजा, हाथी, घोड़ा और दो प्यादे
+   ===================================================================== */
+var CH_NAME = { K: 'राजा', R: 'हाथी', N: 'घोड़ा', P: 'प्यादा' };
+var CH_VAL = { K: 1000, R: 50, N: 30, P: 10 };
+var CH_SIDE = { w: 'सफ़ेद', b: 'काले' };
+var CH_KN = [[1, 2], [2, 1], [-1, 2], [-2, 1], [1, -2], [2, -1], [-1, -2], [-2, -1]];
+var CH_KG = [[1, 0], [-1, 0], [0, 1], [0, -1], [1, 1], [1, -1], [-1, 1], [-1, -1]];
+var CH_ROOK = [[1, 0], [-1, 0], [0, 1], [0, -1]];
+function chSq(i) { return String.fromCharCode(65 + (i % 5)) + (Math.floor(i / 5) + 1); }
+var chess = {
+  sq: chSq,
+  newState: function () {
+    var b = [], i;
+    for (i = 0; i < 25; i++) b.push(null);
+    function put(f, r, s, t) { b[r * 5 + f] = { s: s, t: t }; }
+    put(0, 0, 'w', 'R'); put(2, 0, 'w', 'K'); put(4, 0, 'w', 'N'); put(1, 1, 'w', 'P'); put(3, 1, 'w', 'P');
+    put(0, 4, 'b', 'R'); put(2, 4, 'b', 'K'); put(4, 4, 'b', 'N'); put(1, 3, 'b', 'P'); put(3, 3, 'b', 'P');
+    return { b: b, turn: 'w', ply: 0, over: false, winner: '', draw: false };
+  },
+  gen: function (b, side) {
+    var out = [], i;
+    function tryTo(from, f, r) {
+      if (f < 0 || f >= 5 || r < 0 || r >= 5) return;
+      var to = r * 5 + f, occ = b[to];
+      if (occ && occ.s === side) return;
+      out.push({ from: from, to: to, cap: occ ? occ.t : '' });
+    }
+    for (i = 0; i < 25; i++) {
+      var p = b[i];
+      if (!p || p.s !== side) continue;
+      var f = i % 5, r = Math.floor(i / 5), k, d;
+      if (p.t === 'K') CH_KG.forEach(function (d2) { tryTo(i, f + d2[0], r + d2[1]); });
+      else if (p.t === 'N') CH_KN.forEach(function (d2) { tryTo(i, f + d2[0], r + d2[1]); });
+      else if (p.t === 'R') {
+        for (d = 0; d < 4; d++) {
+          for (k = 1; ; k++) {
+            var ff = f + CH_ROOK[d][0] * k, rr = r + CH_ROOK[d][1] * k;
+            if (ff < 0 || ff >= 5 || rr < 0 || rr >= 5) break;
+            var tt = rr * 5 + ff, occ = b[tt];
+            if (occ && occ.s === side) break;
+            out.push({ from: i, to: tt, cap: occ ? occ.t : '' });
+            if (occ) break;
+          }
+        }
+      } else if (p.t === 'P') {
+        var dir = side === 'w' ? 1 : -1, nr = r + dir;
+        if (nr >= 0 && nr < 5 && !b[nr * 5 + f]) out.push({ from: i, to: nr * 5 + f, cap: '' });
+        [-1, 1].forEach(function (df) {
+          var cf = f + df;
+          if (cf < 0 || cf > 4 || nr < 0 || nr > 4) return;
+          var eo = b[nr * 5 + cf];
+          if (eo && eo.s !== side) out.push({ from: i, to: nr * 5 + cf, cap: eo.t });
+        });
+      }
+    }
+    return out;
+  },
+  hasKing: function (b, side) {
+    for (var i = 0; i < 25; i++) if (b[i] && b[i].s === side && b[i].t === 'K') return true;
+    return false;
+  },
+  apply: function (st, mv) {
+    var legal = chess.gen(st.b, st.turn), ok = false;
+    for (var i = 0; i < legal.length; i++) if (legal[i].from === mv.from && legal[i].to === mv.to) ok = true;
+    if (!ok) return null;
+    var p = st.b[mv.from], cap = st.b[mv.to];
+    st.b[mv.to] = p; st.b[mv.from] = null;
+    var ev = { side: st.turn, piece: p.t, from: mv.from, to: mv.to, cap: cap ? cap.t : '', capSide: cap ? cap.s : '' };
+    st.ply++;
+    if (cap && cap.t === 'K') { st.over = true; st.winner = st.turn; }
+    else {
+      st.turn = st.turn === 'w' ? 'b' : 'w';
+      if (!chess.gen(st.b, st.turn).length) { st.over = true; st.draw = true; }
+    }
+    if (!st.over && st.ply >= 120) { st.over = true; st.draw = true; }
+    return ev;
+  },
+  eval: function (b, side) {
+    var s = 0;
+    for (var i = 0; i < 25; i++) {
+      var p = b[i];
+      if (!p) continue;
+      s += p.s === side ? CH_VAL[p.t] : -CH_VAL[p.t];
+    }
+    return s;
+  },
+  search: function (b, side, depth, alpha, beta) {
+    var other = side === 'w' ? 'b' : 'w';
+    if (!chess.hasKing(b, side)) return -(90000 + depth);
+    if (!chess.hasKing(b, other)) return 90000 + depth;
+    if (depth === 0) return chess.eval(b, side);
+    var moves = chess.gen(b, side);
+    if (!moves.length) return 0;
+    var best = -Infinity;
+    for (var i = 0; i < moves.length; i++) {
+      var nb = b.slice(), mv = moves[i];
+      nb[mv.to] = nb[mv.from]; nb[mv.from] = null;
+      var sc = -chess.search(nb, other, depth - 1, -beta, -alpha);
+      if (sc > best) best = sc;
+      if (best > alpha) alpha = best;
+      if (alpha >= beta) break;
+    }
+    return best;
+  },
+  robotPick: function (st, level) {
+    var moves = chess.gen(st.b, st.turn);
+    if (!moves.length) return null;
+    if (level === 'easy' && rnd() < 0.35) return pick(moves);
+    var depth = level === 'hard' ? 3 : 2, other = st.turn === 'w' ? 'b' : 'w';
+    var best = -Infinity, cands = [];
+    moves.forEach(function (mv) {
+      var nb = st.b.slice();
+      nb[mv.to] = nb[mv.from]; nb[mv.from] = null;
+      var sc = -chess.search(nb, other, depth - 1, -Infinity, Infinity);
+      if (sc > best) { best = sc; cands = [mv]; }
+      else if (sc === best) cands.push(mv);
+    });
+    return pick(cands);
+  }
+};
+ENG.chess = chess;
+
+function chBoardText(st) {
+  var parts = [];
+  ['w', 'b'].forEach(function (s) {
+    var items = [];
+    for (var i = 0; i < 25; i++) if (st.b[i] && st.b[i].s === s) items.push(chSq(i) + ' पर ' + CH_NAME[st.b[i].t]);
+    parts.push(CH_SIDE[s] + ': ' + (items.length ? items.join(', ') : 'कोई मोहरा नहीं') + '।');
+  });
+  return parts.join(' ');
+}
+function chResultText(st) {
+  if (st.draw) return 'बराबरी। खेल खत्म।';
+  return CH_SIDE[st.winner] + ' ने दूसरी ओर का राजा पकड़ लिया। खेल खत्म।';
+}
+function setupChess(g, root) {
+  shell(g, root);
+  g.mode = 'robot'; g.level = 'medium'; g.st = null;
+  selectBox(g.set, 'खेलने का तरीका', [['robot', 'मेरे साथ रोबोट (मैं सफ़ेद)'], ['pass', 'दो खिलाड़ी, बारी-बारी']], 'robot', function (v) { g.mode = v; g.reset(); }, 'रोबोट के साथ खेलें या एक ही फ़ोन पर दो खिलाड़ी बारी-बारी से खेलें।');
+  selectBox(g.set, 'रोबोट का स्तर', [['easy', 'आसान'], ['medium', 'मध्यम'], ['hard', 'कठिन']], 'medium', function (v) { g.level = v; }, 'रोबोट जितना कठिन होगा, उतना सोचकर चलेगा।');
+  btn(g.set, 'पूरा बोर्ड सुनाएँ', 'सभी मोहरे और उनके खाने एक साथ बोलकर सुनाता है।', function () { if (g.st) announce(g, chBoardText(g.st)); });
+  g.pieces = el('div', 'gm-row');
+  g.dests = el('div', 'gm-row');
+  g.play.appendChild(g.pieces);
+  g.play.appendChild(g.dests);
+
+  g.reset = function () {
+    stopGame(g);
+    g.st = chess.newState();
+    announce(g, 'नई छोटी शतरंज। सफ़ेद पहले चलता है। ' + (g.mode === 'robot' ? 'आप सफ़ेद हैं।' : 'दो खिलाड़ी बारी-बारी से खेलेंगे।'));
+    chRender(g);
+  };
+  function chRender(g2) {
+    var st = g2.st;
+    g2.pieces.innerHTML = '';
+    g2.dests.innerHTML = '';
+    if (st.over) { g2.stat.textContent = chResultText(st); return; }
+    if (g2.mode === 'robot' && st.turn === 'b') {
+      g2.stat.textContent = 'रोबोट (काले मोहरे) सोच रहा है।';
+      later(g2, 1200, function () { chRobot(g2); });
+      return;
+    }
+    g2.stat.textContent = CH_SIDE[st.turn] + ' की बारी। पहले मोहरा चुनें।';
+    var seen = {};
+    for (var i = 0; i < 25; i++) {
+      var p = st.b[i];
+      if (!p || p.s !== st.turn) continue;
+      if (!chess.gen(st.b, st.turn).some(function (m) { return m.from === i; })) continue;
+      (function (idx, piece) {
+        btn(g2.pieces, chSq(idx) + ' पर ' + CH_SIDE[st.turn] + ' ' + CH_NAME[piece.t], 'इस मोहरे की चालें अगली सूची में दिखेंगी।', function () { chSelect(g2, idx); });
+      })(i, p);
+      seen[i] = true;
+    }
+    if (!Object.keys(seen).length) g2.stat.textContent = CH_SIDE[st.turn] + ' के पास चलने को कोई मोहरा नहीं।';
+  }
+  function chSelect(g2, from) {
+    var st = g2.st;
+    var moves = chess.gen(st.b, st.turn).filter(function (m) { return m.from === from; });
+    var names = [];
+    g2.dests.innerHTML = '';
+    btn(g2.dests, 'वापस, दूसरा मोहरा चुनें', 'मोहरों की सूची पर लौटता है।', function () { chRender(g2); });
+    moves.forEach(function (m) {
+      var label = m.cap ? chSq(m.to) + ' पर ' + CH_SIDE[st.turn === 'w' ? 'b' : 'w'] + ' का ' + CH_NAME[m.cap] + ' पकड़ें' : chSq(m.to) + ' खाली खाना';
+      names.push(label);
+      btn(g2.dests, label, 'इस खाने पर चाल चली जाएगी।', function () { chMove(g2, m); });
+    });
+    announce(g2, chSq(from) + ' का ' + CH_NAME[st.b[from].t] + ' चुना। ' + moves.length + ' चालें: ' + names.join('। ') + '।');
+    focusQuiet(g2.dests.querySelector('button:nth-of-type(2)') || firstButton(g2.dests));
+  }
+  function chMove(g2, m) {
+    var st = g2.st;
+    var ev = chess.apply(st, m);
+    if (!ev) { announce(g2, 'यह चाल मान्य नहीं है।'); return; }
+    var msg = CH_SIDE[ev.side] + ' ने ' + chSq(ev.from) + ' से ' + chSq(ev.to) + ' पर ' + CH_NAME[ev.piece] + ' चलाया।';
+    if (ev.cap) { tone('chess', 300, 0.3, 'sawtooth', 0.18, 0, 150); msg += ' ' + CH_SIDE[ev.capSide] + ' का ' + CH_NAME[ev.cap] + ' पकड़ लिया।'; }
+    else tone('chess', 660, 0.07, 'triangle', 0.18);
+    if (st.over) { chime('chess', [523, 659, 784, 1047]); announce(g2, msg + ' ' + chResultText(st)); }
+    else announce(g2, msg + ' अब ' + CH_SIDE[st.turn] + ' की बारी।');
+    chRender(g2);
+  }
+  function chRobot(g2) {
+    var st = g2.st;
+    var mv = chess.robotPick(st, g2.level);
+    if (!mv) { st.over = true; st.draw = true; announce(g2, 'रोबोट के पास चाल नहीं बची। ' + chResultText(st)); chRender(g2); return; }
+    var ev = chess.apply(st, mv);
+    if (!ev) { announce(g2, 'रोबोट की चाल मान्य नहीं रही।'); return; }
+    var msg = 'रोबोट (काले मोहरे) ने ' + chSq(ev.from) + ' से ' + chSq(ev.to) + ' पर ' + CH_NAME[ev.piece] + ' चलाया।';
+    if (ev.cap) { tone('chess', 300, 0.3, 'sawtooth', 0.18, 0, 150); msg += ' आपका ' + CH_NAME[ev.cap] + ' पकड़ लिया।'; }
+    else tone('chess', 440, 0.07, 'triangle', 0.18);
+    if (st.over) announce(g2, msg + ' ' + chResultText(st));
+    else announce(g2, msg + ' अब आपकी बारी।');
+    chRender(g2);
+  }
+  g.chRender = chRender;
+}
+
+/* =====================================================================
+   3. सुर याद करो: चार सुर, हर बार एक सुर और जुड़ता है, आठ सुर तक जीत
+   ===================================================================== */
+var MEM_HZ = [262, 330, 392, 523];
+var MEM_NAME = ['नीचा सुर', 'मध्यम सुर', 'ऊँचा सुर', 'सबसे ऊँचा सुर'];
+var MEM_TARGET = 8;
+var memEng = {
+  start: function (target) { return { seq: [], pos: 0, target: target, phase: 'show', over: false, won: false }; },
+  extend: function (st) { st.seq.push(ri(4)); st.pos = 0; st.phase = 'show'; },
+  press: function (st, pad) {
+    if (st.over || st.phase !== 'input') return 'ignored';
+    if (pad !== st.seq[st.pos]) { st.over = true; st.won = false; return 'lose'; }
+    st.pos++;
+    if (st.pos < st.seq.length) return 'ok';
+    if (st.seq.length >= st.target) { st.over = true; st.won = true; return 'win'; }
+    return 'round';
+  }
+};
+ENG.memory = memEng;
+
+function setupMemory(g, root) {
+  shell(g, root);
+  g.speed = 750;
+  selectBox(g.set, 'सुर कितनी जल्दी बजें?', [['1000', 'धीमा'], ['750', 'मध्यम'], ['480', 'तेज़']], '750', function (v) { g.speed = +v; }, 'सुर बजने की रफ़्तार चुनें। धीमे पर सुर आसानी से याद रहते हैं।');
+  g.pads = [];
+  var grid = el('div', 'gm-grid');
+  MEM_NAME.forEach(function (nm, k) {
+    var b = btn(grid, (k + 1) + '. ' + nm, 'यह सुर दबाने पर बजता है। खेल में क्रम से सुर दबाएँ।', function () { memPress(g, k); });
+    b.classList.add('gm-pad');
+    g.pads.push(b);
+  });
+  g.play.appendChild(grid);
+  btn(g.play, 'सुर का क्रम फिर से सुनाएँ', 'अभी तक का पूरा क्रम एक बार फिर बजाता है।', function () { if (g.st && !g.st.over) memPlay(g); });
+
+  g.reset = function () {
+    stopGame(g);
+    g.st = memEng.start(MEM_TARGET);
+    announce(g, 'नया खेल। आठ सुर तक याद रखना है। पहला सुर अभी बजेगा।');
+    later(g, 700, function () { memNext(g); });
+  };
+  function memNext(g2) {
+    memEng.extend(g2.st);
+    memPlay(g2);
+  }
+  function memPlay(g2) {
+    var st = g2.st, n = st.seq.length;
+    st.phase = 'show';
+    st.pos = 0;
+    g2.stat.textContent = 'सुर बज रहे हैं। ' + n + ' सुर।';
+    st.seq.forEach(function (pad, i) {
+      later(g2, 400 + i * g2.speed, function () {
+        tone('mem', MEM_HZ[pad], 0.38, 'sine', 0.25);
+        announce(g2, (i + 1) + '. ' + MEM_NAME[pad]);
+      });
+    });
+    later(g2, 400 + n * g2.speed + 300, function () {
+      st.phase = 'input';
+      g2.stat.textContent = 'आपकी बारी। ' + n + ' सुर उसी क्रम में दबाएँ।';
+      announce(g2, 'आपकी बारी। ' + n + ' सुर उसी क्रम में दबाएँ।');
+    });
+  }
+  function memPress(g2, pad) {
+    var st = g2.st;
+    if (!st) return;
+    if (st.over) { announce(g2, 'खेल खत्म हो चुका है। नया खेल शुरू करें।'); return; }
+    if (st.phase !== 'input') { announce(g2, 'अभी सुनिए, आपकी बारी आने पर दबाएँ।'); return; }
+    tone('mem', MEM_HZ[pad], 0.3, 'sine', 0.25);
+    var r = memEng.press(st, pad);
+    if (r === 'ok') announce(g2, MEM_NAME[pad] + ' सही। ' + (st.seq.length - st.pos) + ' बाकी।');
+    else if (r === 'round') {
+      chime('mem', [523, 659, 784]);
+      announce(g2, 'सही! ' + st.seq.length + ' सुर पूरे। अब एक और सुर जुड़ेगा।');
+      later(g2, 1600, function () { memNext(g2); });
+    } else if (r === 'win') {
+      chime('mem', [523, 659, 784, 1047, 1047], 0.05);
+      announce(g2, 'जीत गए! आपने ' + MEM_TARGET + ' सुर सही याद रखे।');
+      g2.stat.textContent = 'जीत गए। नया खेल शुरू करें।';
+    } else if (r === 'lose') {
+      buzz('mem');
+      var seqNames = st.seq.map(function (p) { return MEM_NAME[p]; }).join(', ');
+      announce(g2, MEM_NAME[pad] + ' गलत था। सही क्रम था: ' + seqNames + '। आपने ' + (st.seq.length - 1) + ' सुर याद रखे।');
+      g2.stat.textContent = 'खेल खत्म। नया खेल शुरू करें।';
+    }
+  }
+  g.memNext = memNext;
+}
+
+/* =====================================================================
+   4. शब्द-अंत्याक्षरी: रोबोट के साथ, आखिरी अक्षर से अगला शब्द
+   ===================================================================== */
+var WORDS = ('कमल कलम किताब कुत्ता केला कोयल कान काम कपड़ा कटोरी कुर्सी कागज़ कबूतर कद्दू कछुआ कंघी कैंची कोट कहानी कल कमरा कीमत कुआँ कविता कमीज़ काजल किनारा ' +
+  'खरगोश खाना खिड़की खुशबू खजूर खेत खबर खट्टा खुला खिलौना खरबूज़ा ' +
+  'गमला गाय गधा गीत गुड़िया गर्मी गणित गेंद गिलास गाड़ी गाँव गुब्बारा गोभी ग़ज़ल गहना गाजर ' +
+  'घड़ी घर घोड़ा घास घंटा घूमना घी घना ' +
+  'चम्मच चाय चिड़िया चूहा चाँद चावल चित्र चप्पल चश्मा चीनी चोर चक्की चटनी ' +
+  'छाता छत छाया छतरी छाछ छोटा छिपकली छुट्टी छज्जा ' +
+  'जंगल जल जहाज जूता जीवन जानवर जादू जामुन जलेबी जवाब जमीन जवान जनता जगह ' +
+  'झंडा झरना झूला झोला झाड़ू झील ' +
+  'टमाटर टोपी टहनी टेबल टीवी टिकट टीला टूटा टोकरी टापू ' +
+  'ठंडा ठेला ठग ठहरना ठाकुर ' +
+  'डिब्बा डमरू डाकिया डंडा डोरी डाल डॉक्टर डायरी डूबना ' +
+  'ढोल ढक्कन ढाबा ढंग ढाल ' +
+  'तरबूज तालाब तितली तोता तेल तकिया तिजोरी तारा तलवार तस्वीर ' +
+  'थाली थप्पड़ थैला थकान थोड़ा ' +
+  'दरवाज़ा दूध दीपक दोस्त दवा दाना दिन देश दुकान दर्पण दिल दादी दाल दौड़ ' +
+  'धूप धन धागा धरती धुआँ धनुष धोबी ' +
+  'नदी नमक नाव नींद नौकर नक्शा नारियल नशा नया नीला नाला नगर ' +
+  'पानी पेड़ पत्ता पंखा पुल पतंग पुस्तक पलंग परी पहाड़ पैसा पोशाक प्यार पिता ' +
+  'फल फूल फ़ोन फुटबॉल फकीर फावड़ा फसल ' +
+  'बकरी बादल बच्चा बर्फ बिल्ली बंदर बगीचा बाज़ार बर्तन बाल बस बाग़ बोतल बैल बेटा ' +
+  'भालू भात भैंस भाई भोजन भेड़िया भूख भवन भाषा ' +
+  'मछली मेज़ मोर माँ मिठाई मेला मौसम मुर्गा मकान मोज़ा मिट्टी माला ' +
+  'यात्रा यह योग यज्ञ यहाँ यादें ' +
+  'रसोई रोटी रंग राजा रानी रास्ता रुमाल रिक्शा रेल रात रथ रस्सी रेत रोशनी ' +
+  'लड्डू लोटा लालटेन लहर लकड़ी लाल लिफ़ाफ़ा लट्टू लौकी लंबा ' +
+  'वर्षा वन वकील वैद्य वीणा वस्त्र वादा वाहन विमान ' +
+  'शेर शहर शीशा शक्कर शाम शरीर शंख शिक्षक शलजम ' +
+  'सड़क सोना सूरज साबुन सपना सेब सितारा सुबह सागर संगीत सिक्का सिर सुई सिंह सोफ़ा साँप सीढ़ी ' +
+  'हाथी हवा हरा हंस हल्दी होली हथौड़ा हीरा हिरण हाथ हमेशा ' +
+  'अमर अनार अखबार आम आसमान आइना इनाम इमारत ईख उजाला उल्लू ऊन एकता ओस औरत अंगूर अँधेरा अपना आदमी आवाज़ ईमान उत्तर ऊपर एक ऐनक ओढ़नी औज़ार अब').split(' ');
+ENG.words = WORDS;
+
+function nukBase(c) {
+  if (c === 0x958) return 0x915;
+  if (c === 0x959) return 0x916;
+  if (c === 0x95A) return 0x917;
+  if (c === 0x95B) return 0x91C;
+  if (c === 0x95C) return 0x921;
+  if (c === 0x95D) return 0x922;
+  if (c === 0x95E) return 0x92B;
+  if (c === 0x95F) return 0x92F;
+  return c;
+}
+function isCons(c) { return (c >= 0x915 && c <= 0x939) || (c >= 0x958 && c <= 0x95F); }
+function isIndVowel(c) { return c >= 0x904 && c <= 0x914; }
+function vowelKey(c) {
+  if (c === 0x905 || c === 0x906) return 'अ';
+  if (c === 0x907 || c === 0x908) return 'इ';
+  if (c === 0x909 || c === 0x90A) return 'उ';
+  if (c === 0x90F || c === 0x910) return 'ए';
+  if (c === 0x913 || c === 0x914) return 'ओ';
+  return 'अ';
+}
+var ak = {
+  clean: function (s) { return String(s || '').replace(/[​-‍﻿]/g, '').replace(/\s+/g, ' ').trim(); },
+  keyFirst: function (w) {
+    var c = w.charCodeAt(0);
+    if (isCons(c)) return String.fromCharCode(nukBase(c));
+    if (isIndVowel(c)) return 'V' + vowelKey(c);
+    return '';
+  },
+  keyLast: function (w) {
+    for (var i = w.length - 1; i >= 0; i--) {
+      var c = w.charCodeAt(i);
+      if (isCons(c)) return String.fromCharCode(nukBase(c));
+      if (isIndVowel(c)) return 'V' + vowelKey(c);
+    }
+    return '';
+  },
+  skel: function (w) {
+    var out = '';
+    for (var i = 0; i < w.length; i++) {
+      var c = w.charCodeAt(i);
+      if (isCons(c)) out += String.fromCharCode(nukBase(c));
+      else if (isIndVowel(c)) out += String.fromCharCode(c);
+    }
+    return out;
+  },
+  show: function (key) { return key.charAt(0) === 'V' ? key.slice(1) : key; }
+};
+ENG.antakshari = ak;
+var antakshariEng = {
+  robotPick: function (used, key, level) {
+    var cands = WORDS.filter(function (w) { return (key === '' || ak.keyFirst(w) === key) && !used[ak.skel(w)]; });
+    if (!cands.length) return null;
+    if (level !== 'hard') return pick(cands);
+    var best = Infinity, out = [];
+    cands.forEach(function (w) {
+      var lk = ak.keyLast(w);
+      var n = WORDS.filter(function (x) { return ak.keyFirst(x) === lk; }).length;
+      if (n < best) { best = n; out = [w]; }
+      else if (n === best) out.push(w);
+    });
+    return pick(out);
+  }
+};
+ENG.antakshariRobot = antakshariEng;
+
+function setupAntakshari(g, root) {
+  shell(g, root);
+  g.first = 'user'; g.level = 'medium'; g.st = null;
+  selectBox(g.set, 'पहला शब्द कौन बोलेगा?', [['user', 'आप'], ['robot', 'रोबोट']], 'user', function (v) { g.first = v; g.reset(); }, 'पहला शब्द आप बोलें या रोबोट।');
+  selectBox(g.set, 'रोबोट का स्तर', [['easy', 'आसान'], ['medium', 'मध्यम'], ['hard', 'कठिन']], 'medium', function (v) { g.level = v; }, 'कठिन रोबोट ऐसे शब्द चुनता है जिनसे आगे का रास्ता कम हो।');
+  var row = el('div', 'gm-row');
+  var inp = el('input', 'gm-input');
+  inp.type = 'text';
+  inp.setAttribute('lang', 'hi');
+  field(row, 'आपका शब्द (हिंदी में लिखें)', inp, 'शब्द लिखकर भेजें दबाएँ या Enter दबाएँ। मात्रा की छोटी गलती चल जाएगी।');
+  g.input = inp;
+  inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); akUser(g); } });
+  g.play.appendChild(row);
+  var row2 = el('div', 'gm-row');
+  btn(row2, 'शब्द भेजें', 'लिखा हुआ शब्द भेजता है।', function () { akUser(g); });
+  btn(row2, 'हार मानें', 'खेल छोड़कर रोबोट को जीत देता है।', function () { akGiveUp(g); });
+  g.play.appendChild(row2);
+
+  g.reset = function () {
+    stopGame(g);
+    g.st = { used: {}, key: '', last: '', over: false, winner: '' };
+    g.input.value = '';
+    announce(g, 'शब्द-अंत्याक्षरी शुरू। ' + (g.first === 'robot' ? 'रोबोट पहला शब्द बोलेगा।' : 'आप पहला शब्द लिखें, कोई भी हिंदी शब्द।'));
+    if (g.first === 'robot') later(g, 600, function () { akRobot(g); });
+    else akStatus(g);
+  };
+  function akStatus(g2) {
+    var st = g2.st;
+    if (st.over) return;
+    g2.stat.textContent = st.key ? 'अगला शब्द "' + ak.show(st.key) + '" से शुरू होना चाहिए। पिछला शब्द: ' + st.last : 'कोई भी हिंदी शब्द लिखें।';
+  }
+  function akAccept(g2, w, who) {
+    var st = g2.st;
+    st.used[ak.skel(w)] = true;
+    st.last = w;
+    st.key = ak.keyLast(w);
+    akStatus(g2);
+    return who;
+  }
+  function akRobot(g2) {
+    var st = g2.st;
+    if (st.over) return;
+    var w = antakshariEng.robotPick(st.used, st.key, g2.level);
+    if (!w) {
+      st.over = true; st.winner = 'user';
+      announce(g2, 'रोबोट के पास "' + ak.show(st.key) + '" से कोई शब्द नहीं बचा। आप जीते! खेल खत्म।');
+      g2.stat.textContent = 'खेल खत्म।';
+      chime('antak', [523, 659, 784, 1047]);
+      return;
+    }
+    akAccept(g2, w, 'robot');
+    tone('antak', 740, 0.12, 'sine', 0.2);
+    announce(g2, 'रोबोट ने "' + w + '" कहा। अब आपकी बारी, "' + ak.show(st.key) + '" से शब्द लिखें।');
+  }
+  function akUser(g2) {
+    var st = g2.st;
+    if (!st || st.over) return;
+    var w = ak.clean(g2.input.value);
+    if (!w) { announce(g2, 'कोई शब्द लिखें।'); return; }
+    if (!/[ऀ-ॿ]/.test(w)) { announce(g2, 'हिंदी शब्द लिखें।'); return; }
+    if (st.key && ak.keyFirst(w) !== st.key) { announce(g2, 'यह शब्द "' + ak.show(st.key) + '" से शुरू नहीं होता। फिर से लिखें।'); buzz('antak'); return; }
+    if (st.used[ak.skel(w)]) { announce(g2, 'यह शब्द पहले आ चुका है। कोई और शब्द लिखें।'); buzz('antak'); return; }
+    akAccept(g2, w, 'user');
+    g2.input.value = '';
+    chime('antak', [660, 880]);
+    announce(g2, 'आपने "' + w + '" कहा। अब रोबोट, "' + ak.show(st.key) + '" से शब्द।');
+    later(g2, 1000, function () { akRobot(g2); });
+  }
+  function akGiveUp(g2) {
+    var st = g2.st;
+    if (!st || st.over) return;
+    st.over = true; st.winner = 'robot';
+    buzz('antak');
+    announce(g2, 'आपने हार मानी। रोबोट जीत गया। नया खेल शुरू करने के लिए बटन दबाएँ।');
+    g2.stat.textContent = 'खेल खत्म।';
+  }
+  g.akRobot = akRobot;
+  g.akUser = akUser;
+}
+
+/* =====================================================================
+   5. सामान्य ज्ञान क्विज़: 1 से 4 खिलाड़ी बारी-बारी से
+   ===================================================================== */
+var QUIZ = [
+  ['हरियाणा राज्य का गठन किस दिन हुआ था?', ['1 नवंबर 1966', '15 अगस्त 1947', '26 जनवरी 1950', '1 मई 1960'], 0],
+  ['हरियाणा की राजधानी कौन सा शहर है?', ['चंडीगढ़', 'हिसार', 'रोहतक', 'करनाल'], 0],
+  ['कुरुक्षेत्र किस राज्य में है?', ['हरियाणा', 'पंजाब', 'राजस्थान', 'उत्तराखंड'], 0],
+  ['सूरजकुंड मेला किस शहर में लगता है?', ['फ़रीदाबाद', 'अंबाला', 'पानीपत', 'सोनीपत'], 0],
+  ['हरियाणा का राज्य पशु कौन सा है?', ['कृष्णसार हिरण', 'शेर', 'हाथी', 'ऊँट'], 0],
+  ['हरियाणा का राज्य पक्षी कौन सा है?', ['काला तीतर', 'मोर', 'तोता', 'गौरैया'], 0],
+  ['गुरुग्राम पहले किस नाम से जाना जाता था?', ['गुड़गाँव', 'गुलमर्ग', 'गुलाबगढ़', 'गोरखपुर'], 0],
+  ['पानीपत की प्रसिद्ध लड़ाइयाँ किस राज्य में हुई थीं?', ['हरियाणा', 'दिल्ली', 'पंजाब', 'उत्तर प्रदेश'], 0],
+  ['चौधरी चरण सिंह हरियाणा कृषि विश्वविद्यालय किस शहर में है?', ['हिसार', 'रोहतक', 'कैथल', 'भिवानी'], 0],
+  ['महर्षि दयानंद विश्वविद्यालय किस शहर में है?', ['रोहतक', 'करनाल', 'यमुनानगर', 'सिरसा'], 0],
+  ['HSSC का पूरा नाम क्या है?', ['हरियाणा कर्मचारी चयन आयोग', 'हरियाणा राज्य शिक्षा समिति', 'हरियाणा सड़क संस्थान', 'हरियाणा सेना चयन केंद्र'], 0],
+  ['हरियाणा दिवस किस तारीख़ को मनाया जाता है?', ['1 नवंबर', '26 जनवरी', '15 अगस्त', '2 अक्टूबर'], 0],
+  ['हरियाणा में बहने वाली प्रमुख नदी कौन सी है?', ['यमुना', 'गोदावरी', 'कावेरी', 'महानदी'], 0],
+  ['पंचकूला किस राज्य का शहर है?', ['हरियाणा', 'पंजाब', 'हिमाचल प्रदेश', 'दिल्ली'], 0],
+  ['करनाल किस राज्य में है?', ['हरियाणा', 'राजस्थान', 'मध्य प्रदेश', 'गुजरात'], 0],
+  ['कुरुक्षेत्र का ब्रह्म सरोवर किस शहर में है?', ['कुरुक्षेत्र', 'अंबाला', 'पानीपत', 'जींद'], 0],
+  ['गुरुग्राम किस राज्य में है?', ['हरियाणा', 'उत्तर प्रदेश', 'राजस्थान', 'पंजाब'], 0],
+  ['भारत की राजधानी कौन सी है?', ['नई दिल्ली', 'मुंबई', 'कोलकाता', 'चेन्नई'], 0],
+  ['भारत का राष्ट्रीय पक्षी कौन सा है?', ['मोर', 'कोयल', 'गरुड़', 'हंस'], 0],
+  ['भारत का राष्ट्रीय पशु कौन सा है?', ['बाघ', 'शेर', 'हाथी', 'गैंडा'], 0],
+  ['भारत का राष्ट्रीय फूल कौन सा है?', ['कमल', 'गुलाब', 'सूरजमुखी', 'गेंदा'], 0],
+  ['भारत का राष्ट्रीय फल कौन सा है?', ['आम', 'केला', 'सेब', 'अनार'], 0],
+  ['भारत की राष्ट्रीय नदी कौन सी है?', ['गंगा', 'यमुना', 'नर्मदा', 'गोदावरी'], 0],
+  ['राष्ट्रगान "जन गण मन" किसने लिखा था?', ['रवींद्रनाथ टैगोर', 'बंकिम चंद्र चटर्जी', 'मुंशी प्रेमचंद', 'सुब्रमण्यम भारती'], 0],
+  ['राष्ट्रगीत "वंदे मातरम्" किसने लिखा था?', ['बंकिम चंद्र चटर्जी', 'रवींद्रनाथ टैगोर', 'मैथिलीशरण गुप्त', 'सरोजिनी नायडू'], 0],
+  ['भारत का संविधान किस दिन लागू हुआ?', ['26 जनवरी 1950', '15 अगस्त 1947', '2 अक्टूबर 1949', '26 नवंबर 1950'], 0],
+  ['भारत के पहले प्रधानमंत्री कौन थे?', ['जवाहरलाल नेहरू', 'सरदार वल्लभभाई पटेल', 'लाल बहादुर शास्त्री', 'इंदिरा गांधी'], 0],
+  ['भारत के पहले राष्ट्रपति कौन थे?', ['डॉ. राजेंद्र प्रसाद', 'डॉ. एस. राधाकृष्णन', 'डॉ. ज़ाकिर हुसैन', 'वी. वी. गिरि'], 0],
+  ['भारत के संविधान की मसौदा समिति के अध्यक्ष कौन थे?', ['डॉ. भीमराव आंबेडकर', 'डॉ. राजेंद्र प्रसाद', 'जवाहरलाल नेहरू', 'सरदार पटेल'], 0],
+  ['भारत का स्वतंत्रता दिवस किस तारीख़ को मनाया जाता है?', ['15 अगस्त', '26 जनवरी', '2 अक्टूबर', '14 नवंबर'], 0],
+  ['भारत का गणतंत्र दिवस किस तारीख़ को मनाया जाता है?', ['26 जनवरी', '15 अगस्त', '30 जनवरी', '14 अप्रैल'], 0],
+  ['भारत का राष्ट्रीय खेल कौन सा है?', ['हॉकी', 'क्रिकेट', 'कबड्डी', 'फ़ुटबॉल'], 0],
+  ['भारत का सबसे बड़ा राज्य क्षेत्रफल में कौन सा है?', ['राजस्थान', 'मध्य प्रदेश', 'महाराष्ट्र', 'उत्तर प्रदेश'], 0],
+  ['सबसे ज़्यादा आबादी वाला भारतीय राज्य कौन सा है?', ['उत्तर प्रदेश', 'बिहार', 'महाराष्ट्र', 'पश्चिम बंगाल'], 0],
+  ['1857 के विद्रोह को किस नाम से भी जाना जाता है?', ['प्रथम स्वतंत्रता संग्राम', 'नमक सत्याग्रह', 'असहयोग आंदोलन', 'चंपारण सत्याग्रह'], 0],
+  ['भारत छोड़ो आंदोलन किस साल शुरू हुआ था?', ['1942', '1930', '1919', '1947'], 0],
+  ['महात्मा गांधी का जन्म किस साल हुआ था?', ['1869', '1857', '1889', '1900'], 0],
+  ['राष्ट्रीय चिह्न किस स्तंभ से लिया गया है?', ['अशोक स्तंभ (सारनाथ)', 'कुतुब मीनार', 'विजय स्तंभ', 'चंपा स्तंभ'], 0],
+  ['भारत के पहले उपग्रह का नाम क्या था?', ['आर्यभट्ट', 'भास्कर', 'रोहिणी', 'इन्सैट'], 0],
+  ['भारत के पहले अंतरिक्ष यात्री कौन थे?', ['राकेश शर्मा', 'कल्पना चावला', 'सुनीता विलियम्स', 'रवीश मल्होत्रा'], 0],
+  ['ताजमहल किस शहर में है?', ['आगरा', 'दिल्ली', 'जयपुर', 'लखनऊ'], 0],
+  ['लाल किला किस शहर में है?', ['दिल्ली', 'आगरा', 'जयपुर', 'अहमदाबाद'], 0],
+  ['कुतुब मीनार किस शहर में है?', ['दिल्ली', 'आगरा', 'वाराणसी', 'मदुरै'], 0],
+  ['भारत का सबसे बड़ा पठार कौन सा है?', ['दक्कन का पठार', 'मालवा का पठार', 'छोटानागपुर का पठार', 'मेवाड़ का पठार'], 0],
+  ['हिंदी दिवस किस तारीख़ को मनाया जाता है?', ['14 सितंबर', '26 जनवरी', '1 जनवरी', '5 सितंबर'], 0],
+  ['भारत की मुद्रा का नाम क्या है?', ['रुपया', 'डॉलर', 'येन', 'दिरहम'], 0],
+  ['भारतीय संसद का निचला सदन कौन सा है?', ['लोकसभा', 'राज्यसभा', 'विधान परिषद', 'राष्ट्रपति भवन'], 0],
+  ['भारत में वोट डालने की न्यूनतम आयु कितनी है?', ['18 वर्ष', '21 वर्ष', '16 वर्ष', '25 वर्ष'], 0],
+  ['भारतीय रेल की शुरुआत किस साल हुई थी?', ['1853', '1900', '1947', '1920'], 0],
+  ['सौर मंडल का सबसे बड़ा ग्रह कौन सा है?', ['बृहस्पति (जुपिटर)', 'शनि', 'पृथ्वी', 'मंगल'], 0],
+  ['सौर मंडल का सबसे छोटा ग्रह कौन सा है?', ['बुध', 'मंगल', 'शुक्र', 'पृथ्वी'], 0],
+  ['लाल ग्रह किसे कहा जाता है?', ['मंगल', 'शुक्र', 'शनि', 'बुध'], 0],
+  ['पानी का रासायनिक सूत्र क्या है?', ['H2O', 'CO2', 'NaCl', 'O2'], 0],
+  ['मानव शरीर की सबसे लंबी हड्डी कौन सी है?', ['जांघ की हड्डी (फ़ीमर)', 'रीढ़ की हड्डी', 'पसली', 'कलाई की हड्डी'], 0],
+  ['मानव शरीर में खून को कौन सा अंग पंप करता है?', ['हृदय', 'फेफड़े', 'यकृत (लिवर)', 'गुर्दा'], 0],
+  ['विटामिन C की कमी से कौन सा रोग होता है?', ['स्कर्वी', 'रतौंधी', 'घेंघा', 'बेरीबेरी'], 0],
+  ['पृथ्वी सूर्य का एक चक्कर लगभग कितने दिन में लगाती है?', ['365 दिन', '30 दिन', '100 दिन', '12 दिन'], 0],
+  ['प्रकाश की गति लगभग कितनी है?', ['3 लाख किलोमीटर प्रति सेकंड', '300 किलोमीटर प्रति घंटा', '30 हज़ार किलोमीटर प्रति सेकंड', '3 हज़ार किलोमीटर प्रति घंटा'], 0],
+  ['चाँद पर पहले कदम रखने वाले इंसान कौन थे?', ['नील आर्मस्ट्रांग', 'युरी गागारिन', 'जॉन ग्लेन', 'वैलेंटीना तेरेश्कोवा'], 0],
+  ['FIFA विश्व कप 2022 किस देश ने जीता?', ['अर्जेंटीना', 'फ़्रांस', 'ब्राज़ील', 'जर्मनी'], 0],
+  ['भारत ने क्रिकेट विश्व कप किस साल जीता था?', ['2011', '2015', '2019', '2003'], 0],
+  ['मानव शरीर का सबसे बड़ा अंग कौन सा है?', ['त्वचा', 'यकृत', 'फेफड़े', 'मस्तिष्क'], 0],
+  ['पृथ्वी का सबसे बड़ा महासागर कौन सा है?', ['प्रशांत महासागर', 'अटलांटिक महासागर', 'हिंद महासागर', 'आर्कटिक महासागर'], 0]
+];
+ENG.quizCount = QUIZ.length;
+
+function setupQuiz(g, root) {
+  shell(g, root);
+  g.n = 1; g.names = ['खिलाड़ी 1', 'खिलाड़ी 2', 'खिलाड़ी 3', 'खिलाड़ी 4'];
+  g.seatWraps = [];
+  g.qs = []; g.idx = 0; g.score = [0, 0, 0, 0];
+  selectBox(g.set, 'खिलाड़ी कितने हैं?', [['1', '1 खिलाड़ी'], ['2', '2 खिलाड़ी'], ['3', '3 खिलाड़ी'], ['4', '4 खिलाड़ी']], '1', function (v) { g.n = +v; g.reset(); }, 'एक से चार खिलाड़ी। सब एक ही फ़ोन पर बारी-बारी से खेलेंगे।');
+  var i;
+  for (i = 0; i < 4; i++) {
+    (function (idx) {
+      var wrap = el('div', 'gm-seat');
+      wrap.hidden = idx >= g.n;
+      nameBox(wrap, 'खिलाड़ी ' + (idx + 1) + ' का नाम', g.names[idx], function (v) { g.names[idx] = v || ('खिलाड़ी ' + (idx + 1)); });
+      g.set.appendChild(wrap);
+      g.seatWraps.push(wrap);
+    })(i);
+  }
+  g.qText = el('p', 'gm-question', '');
+  g.play.appendChild(g.qText);
+  g.opts = el('div', 'gm-grid');
+  g.play.appendChild(g.opts);
+  btn(g.play, 'सवाल फिर से सुनाएँ', 'मौजूदा सवाल और सारे विकल्प फिर से बोलकर सुनाता है।', function () { if (g.qs.length && g.idx < g.qs.length) speakNow(quizText(g)); });
+
+  function quizText(g2) {
+    var q = g2.qs[g2.idx], p = g2.idx % g2.n;
+    return 'सवाल ' + (g2.idx + 1) + ' में से ' + g2.qs.length + '। ' + g2.names[p] + ' की बारी। ' + q[0] + ' विकल्प: ' + q[1].map(function (o, k) { return (k + 1) + '. ' + o; }).join('। ') + '।';
+  }
+  function quizShow(g2) {
+    var q = g2.qs[g2.idx];
+    g2.qText.textContent = quizText(g2);
+    g2.opts.innerHTML = '';
+    q[1].forEach(function (o, k) {
+      btn(g2.opts, (k + 1) + '. ' + o, 'इस विकल्प को चुनने पर जवाब दर्ज होता है।', function () { quizAnswer(g2, k); });
+    });
+    g2.stat.textContent = g2.names[g2.idx % g2.n] + ' का जवाब। सवाल ' + (g2.idx + 1) + ' अंक ' + g2.score[g2.idx % g2.n] + '।';
+    return quizText(g2);
+  }
+  function quizAnswer(g2, k) {
+    if (g2.idx >= g2.qs.length) return;
+    var q = g2.qs[g2.idx], p = g2.idx % g2.n;
+    var ok = k === q[2];
+    if (ok) { g2.score[p]++; chime('quiz', [523, 784]); }
+    else buzz('quiz');
+    var prefix = ok ? 'सही!' : 'गलत। सही जवाब था: ' + (q[2] + 1) + '. ' + q[1][q[2]] + '।';
+    g2.idx++;
+    if (g2.idx >= g2.qs.length) {
+      g2.qText.textContent = '';
+      g2.opts.innerHTML = '';
+      g2.stat.textContent = 'क्विज़ खत्म।';
+      announce(g2, prefix + ' क्विज़ खत्म। ' + quizScores(g2));
+      chime('quiz', [523, 659, 784, 1047], 0.2);
+      return;
+    }
+    announce(g2, prefix + ' ' + quizShow(g2));
+  }
+  function quizScores(g2) {
+    var best = -1, parts = [], winners = [];
+    for (var p = 0; p < g2.n; p++) {
+      parts.push(g2.names[p] + ' ' + g2.score[p] + ' अंक');
+      if (g2.score[p] > best) { best = g2.score[p]; winners = [g2.names[p]]; }
+      else if (g2.score[p] === best) winners.push(g2.names[p]);
+    }
+    return parts.join(', ') + '। ' + (g2.n === 1 ? 'आपके ' + best + ' अंक हैं।' : winners.join(' और ') + ' सबसे आगे, ' + best + ' अंक।');
+  }
+  g.quizShow = quizShow;
+  g.quizScores = quizScores;
+
+  g.reset = function () {
+    stopGame(g);
+    g.seatWraps.forEach(function (w, k) { w.hidden = k >= g.n; });
+    g.qs = shuffle(QUIZ.slice()).slice(0, 10);
+    g.idx = 0;
+    g.score = [0, 0, 0, 0];
+    announce(g, 'क्विज़ शुरू। दस सवाल। ' + quizShow(g));
+  };
+}
+
+/* =====================================================================
+   6. संख्या का अंदाज़ा: आप अंदाज़ा लगाएँ, या रोबोट लगाए
+   ===================================================================== */
+var numEng = {
+  maxTries: 8,
+  newMe: function (max, secret) { return { max: max, secret: secret, tries: 0, maxTries: numEng.maxTries, over: false, won: false }; },
+  judge: function (st, guess) {
+    if (st.over) return 'over';
+    st.tries++;
+    if (guess === st.secret) { st.over = true; st.won = true; return 'win'; }
+    if (st.tries >= st.maxTries) { st.over = true; return 'lose'; }
+    return guess < st.secret ? 'higher' : 'lower';
+  },
+  newRobot: function (max) { return { max: max, lo: 1, hi: max, guess: 0, tries: 0, maxTries: numEng.maxTries, over: false, won: false, bad: false }; },
+  guess: function (st, level) {
+    st.guess = level === 'easy' ? st.lo + ri(st.hi - st.lo + 1) : Math.floor((st.lo + st.hi) / 2);
+    return st.guess;
+  },
+  hear: function (st, resp) {
+    if (st.over) return 'over';
+    st.tries++;
+    if (resp === 'win') { st.over = true; st.won = true; return 'win'; }
+    if (resp === 'higher') st.lo = st.guess + 1; else st.hi = st.guess - 1;
+    if (st.lo > st.hi) { st.over = true; st.bad = true; return 'bad'; }
+    if (st.tries >= st.maxTries) { st.over = true; return 'lose'; }
+    return 'next';
+  }
+};
+ENG.numbers = numEng;
+
+function setupNumbers(g, root) {
+  shell(g, root);
+  g.mode = 'me'; g.level = 'medium'; g.max = 100; g.st = null;
+  selectBox(g.set, 'खेलने का तरीका', [['me', 'मैं अंदाज़ा लगाऊँगा, रोबोट ने संख्या सोची है'], ['robot', 'मैंने संख्या सोची है, रोबोट अंदाज़ा लगाएगा']], 'me', function (v) { g.mode = v; g.reset(); }, 'आप अंदाज़ा लगाएँ या रोबोट। दोनों में आठ प्रयास मिलते हैं।');
+  selectBox(g.set, 'संख्या की सीमा', [['50', '1 से 50 तक'], ['100', '1 से 100 तक'], ['200', '1 से 200 तक']], '100', function (v) { g.max = +v; g.reset(); }, 'संख्या इस सीमा के बीच होगी।');
+  selectBox(g.set, 'रोबोट का स्तर', [['easy', 'आसान (कभी-कभी बेतरतीब अंदाज़ा)'], ['medium', 'मध्यम'], ['hard', 'कठिन']], 'medium', function (v) { g.level = v; }, 'रोबोट का अंदाज़ा कितना सोचकर होगा।');
+  g.inputWrap = el('div', 'gm-row');
+  var inp = el('input', 'gm-input');
+  inp.type = 'number'; inp.min = '1';
+  field(g.inputWrap, 'आपका अंदाज़ा', inp, 'एक संख्या लिखकर अंदाज़ा भेजें दबाएँ।');
+  g.input = inp;
+  inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); numGuessMe(g); } });
+  g.play.appendChild(g.inputWrap);
+  g.sendBtn = btn(g.play, 'अंदाज़ा भेजें', 'लिखी हुई संख्या भेजता है।', function () { numGuessMe(g); });
+  g.robotWrap = el('div', 'gm-row');
+  g.play.appendChild(g.robotWrap);
+  g.robotQ = el('p', 'gm-question', '');
+  g.play.appendChild(g.robotQ);
+
+  g.reset = function () {
+    stopGame(g);
+    g.robotWrap.innerHTML = '';
+    g.robotQ.textContent = '';
+    g.input.value = '';
+    if (g.mode === 'me') {
+      g.st = numEng.newMe(g.max, 1 + ri(g.max));
+      g.inputWrap.hidden = false; g.sendBtn.hidden = false;
+      announce(g, 'नया खेल। रोबोट ने 1 से ' + g.max + ' के बीच एक संख्या सोची है। आपके पास ' + numEng.maxTries + ' प्रयास हैं।');
+      g.stat.textContent = 'प्रयास बाकी: ' + numEng.maxTries;
+      focusQuiet(g.input);
+    } else {
+      g.st = numEng.newRobot(g.max);
+      g.inputWrap.hidden = true; g.sendBtn.hidden = true;
+      announce(g, 'नया खेल। 1 से ' + g.max + ' के बीच एक संख्या मन में सोच लीजिए। रोबोट अंदाज़ा लगाएगा।');
+      later(g, 1200, function () { numRobotTurn(g); });
+    }
+  };
+  function numGuessMe(g2) {
+    var st = g2.st;
+    if (!st || st.over) return;
+    var raw = String(g2.input.value).trim();
+    var v = parseInt(raw, 10);
+    if (!/^\d+$/.test(raw) || isNaN(v) || v < 1 || v > g2.max) { announce(g2, '1 से ' + g2.max + ' के बीच संख्या लिखें।'); return; }
+    g2.input.value = '';
+    var r = numEng.judge(st, v);
+    var left = st.maxTries - st.tries;
+    if (r === 'win') { chime('num', [523, 659, 784, 1047]); announce(g2, 'सही! संख्या ' + st.secret + ' थी। आपने ' + st.tries + ' प्रयास में पा ली।'); g2.stat.textContent = 'जीत गए।'; }
+    else if (r === 'higher') { tone('num', 600, 0.15, 'triangle', 0.2); announce(g2, 'संख्या ' + v + ' से बड़ी है। बचे प्रयास: ' + left + '।'); g2.stat.textContent = 'ऊपर, बड़ी संख्या। बचे प्रयास: ' + left; }
+    else if (r === 'lower') { tone('num', 300, 0.15, 'triangle', 0.2); announce(g2, 'संख्या ' + v + ' से छोटी है। बचे प्रयास: ' + left + '।'); g2.stat.textContent = 'नीचे, छोटी संख्या। बचे प्रयास: ' + left; }
+    else if (r === 'lose') { buzz('num'); announce(g2, 'प्रयास खत्म। संख्या ' + st.secret + ' थी।'); g2.stat.textContent = 'खेल खत्म।'; }
+  }
+  function numRobotTurn(g2) {
+    var st = g2.st;
+    if (!st || st.over) return;
+    var v = numEng.guess(st, g2.level);
+    g2.robotWrap.innerHTML = '';
+    g2.robotQ.textContent = 'रोबोट का अंदाज़ा: ' + v + '। आपकी संख्या कहाँ है?';
+    g2.stat.textContent = 'प्रयास ' + (st.tries + 1) + ' में से ' + numEng.maxTries + '।';
+    announce(g2, 'रोबोट का अंदाज़ा ' + v + '। ऊपर, नीचे या सही?');
+    btn(g2.robotWrap, 'ऊपर: मेरी संख्या इससे बड़ी है', 'मेरी संख्या रोबोट के अंदाज़े से बड़ी है।', function () { numAnswer(g2, 'higher'); });
+    btn(g2.robotWrap, 'नीचे: मेरी संख्या इससे छोटी है', 'मेरी संख्या रोबोट के अंदाज़े से छोटी है।', function () { numAnswer(g2, 'lower'); });
+    btn(g2.robotWrap, 'सही: रोबोट ने पकड़ लिया', 'रोबोट का अंदाज़ा सही था।', function () { numAnswer(g2, 'win'); });
+    focusQuiet(firstButton(g2.robotWrap));
+  }
+  function numAnswer(g2, resp) {
+    var st = g2.st;
+    if (!st || st.over) return;
+    var guess = st.guess;
+    var r = numEng.hear(st, resp);
+    if (r === 'win') { chime('num', [523, 659, 784, 1047]); announce(g2, 'रोबोट ने पकड़ लिया! संख्या ' + guess + ' थी।'); g2.robotWrap.innerHTML = ''; g2.robotQ.textContent = ''; g2.stat.textContent = 'रोबोट जीता।'; return; }
+    if (r === 'bad') { buzz('num'); announce(g2, 'आपके जवाब आपस में मेल नहीं खाते। खेल खत्म।'); g2.robotWrap.innerHTML = ''; g2.robotQ.textContent = ''; g2.stat.textContent = 'खेल खत्म।'; return; }
+    if (r === 'lose') { buzz('num'); announce(g2, 'रोबोट ' + numEng.maxTries + ' प्रयासों में नहीं पा सका।'); g2.robotWrap.innerHTML = ''; g2.robotQ.textContent = ''; g2.stat.textContent = 'खेल खत्म।'; return; }
+    tone('num', resp === 'higher' ? 600 : 300, 0.12, 'triangle', 0.18);
+    later(g2, 700, function () { numRobotTurn(g2); });
+  }
+  g.numRobotTurn = numRobotTurn;
+  g.numAnswer = numAnswer;
+}
+
+/* ---------- सभी खेल जोड़ना, शुरू करना और खोलने-बंद करने का नियम ---------- */
+reg('ludo', 'gm-ludo-body', setupLudo);
+reg('chess', 'gm-chess-body', setupChess);
+reg('mem', 'gm-memory-body', setupMemory);
+reg('antak', 'gm-antak-body', setupAntakshari);
+reg('quiz', 'gm-quiz-body', setupQuiz);
+reg('num', 'gm-numbers-body', setupNumbers);
+Object.keys(GAMES).forEach(function (k) {
+  var g = GAMES[k];
+  var root = document.getElementById(g.body);
+  if (root) g.setup(g, root);
+});
+window.awazGmSync = function (bodyId, open) {
+  Object.keys(GAMES).forEach(function (k) {
+    var g = GAMES[k];
+    if (g.body !== bodyId) return;
+    if (!open) { stopGame(g); g.started = false; g.st = null; return; }
+    if (!g.started) { g.started = true; g.reset(); }
+    Object.keys(GAMES).forEach(function (j) {
+      if (j === k) return;
+      var ob = document.getElementById(GAMES[j].body);
+      if (ob && !ob.hasAttribute('hidden')) setCollapse(GAMES[j].body, false);
+    });
+  });
+};
+ENG.games = GAMES;
+})();
+
 </script>
 </body>
 </html>
