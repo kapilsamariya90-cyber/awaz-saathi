@@ -310,7 +310,7 @@ html.hc body { background: #fff; color: #000; }
 <!-- ===== स्पीकर क्लीनर (सिर्फ़ बटन दबाने पर खुलता है) ===== -->
 <!-- ===== सेटिंग (हमेशा आख़िरी) ===== -->
 <div class="panel cat-screen" hidden="" id="cat-voice"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button>
-<h2 class="panel-title" id="h-voice" tabindex="-1">बोलकर काम करें</h2>
+<h2 class="panel-title" id="h-voice" tabindex="-1">बोलकर काम करें</h2><button aria-describedby="hx-soon-v" aria-disabled="true" class="btn" type="button">वॉइस कॉल: जल्द आ रहा है</button><p class="note" id="hx-soon-v">वॉइस कॉल की सुविधा अभी जल्द आ रही है। अभी इसे चालू नहीं किया जा सकता।</p>
 <ul class="bullets"><li>नीचे बड़ा बटन दबाएँ, फिर एक आदेश साफ़ आवाज़ में बोलें।</li><li>ऐप वही हिस्सा खोल देगा।</li></ul>
 <section aria-labelledby="h-voice-cmd">
 <h3 class="sec-title" id="h-voice-cmd" tabindex="-1">आदेश बोलें</h3>
@@ -321,7 +321,7 @@ html.hc body { background: #fff; color: #000; }
 <ul class="bullets note"><li>बोली पहचानने का काम फ़ोन की अपनी बोली-पहचान सेवा करती है।</li><li>यह सुविधा फ़ोन पर निर्भर है।</li><li>अगर फ़ोन में नहीं चलती, तो ऐप खुद बोलकर और लिखकर बताएगा।</li></ul>
 </section>
 </div><div class="panel cat-screen" hidden="" id="cat-video"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button>
-<h2 class="panel-title" id="h-video" tabindex="-1">वीडियो</h2>
+<h2 class="panel-title" id="h-video" tabindex="-1">वीडियो</h2><button aria-describedby="hx-soon-vd" aria-disabled="true" class="btn" type="button">वीडियो कॉल: जल्द आ रहा है</button><p class="note" id="hx-soon-vd">वीडियो कॉल की सुविधा अभी जल्द आ रही है। अभी इसे चालू नहीं किया जा सकता।</p>
 <ul class="bullets"><li>यहाँ कई वीडियो एक साथ जोड़ सकते हैं।</li><li>वीडियो से आवाज़ निकाल सकते हैं।</li><li>और वीडियो में नई आवाज़ मिला सकते हैं।</li></ul>
 <!-- 1. वीडियो जोड़ना -->
 <section aria-labelledby="h-join" id="join">
@@ -1034,7 +1034,7 @@ html.hc body { background: #fff; color: #000; }
 </ul>
 </section>
 </div>
-</div><div class="panel cat-screen" hidden="" id="cat-games"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button><h2 class="panel-title" data-reveal="" id="h-games" tabindex="-1">खेल</h2><p class="gm-intro">छह खेल हैं। सब बिना इंटरनेट के चलते हैं। किसी खेल को खोलने के लिए डबल टैप करें।</p><button aria-controls="gm-ludo-body" aria-describedby="hx-gm-ludo" aria-expanded="false" class="btn primary" data-label-close="रंग दौड़ बंद करें" data-label-open="रंग दौड़ खोलें" id="gm-ludo-toggle" type="button">रंग दौड़ खोलें</button><span class="gm-help" id="hx-gm-ludo">इसे खोलने के लिए डबल टैप करें। गेम-बोर्ड वाला दौड़ का खेल। 2 से 4 खिलाड़ी, पासा फेंककर टोकन आगे बढ़ाएँ। बाकी सीटें रोबोट भरेगा।</span><div data-collapsible="" hidden="" id="gm-ludo-body"></div><button aria-controls="gm-chess-body" aria-describedby="hx-gm-chess" aria-expanded="false" class="btn primary" data-label-close="छोटी शतरंज बंद करें" data-label-open="छोटी शतरंज खोलें" id="gm-chess-toggle" type="button">छोटी शतरंज खोलें</button><span class="gm-help" id="hx-gm-chess">इसे खोलने के लिए डबल टैप करें। पाँच गुणा पाँच के बोर्ड पर राजा, हाथी, घोड़ा और प्यादे। पहले मोहरा चुनें, फिर खाना।</span><div data-collapsible="" hidden="" id="gm-chess-body"></div><button aria-controls="gm-memory-body" aria-describedby="hx-gm-memory" aria-expanded="false" class="btn primary" data-label-close="सुर याद करो बंद करें" data-label-open="सुर याद करो खोलें" id="gm-memory-toggle" type="button">सुर याद करो खोलें</button><span class="gm-help" id="hx-gm-memory">इसे खोलने के लिए डबल टैप करें। चार सुर बजते हैं। उसी क्रम में दबाएँ। हर बार एक सुर जुड़ता है।</span><div data-collapsible="" hidden="" id="gm-memory-body"></div><button aria-controls="gm-antak-body" aria-describedby="hx-gm-antak" aria-expanded="false" class="btn primary" data-label-close="शब्द-अंत्याक्षरी बंद करें" data-label-open="शब्द-अंत्याक्षरी खोलें" id="gm-antak-toggle" type="button">शब्द-अंत्याक्षरी खोलें</button><span class="gm-help" id="hx-gm-antak">इसे खोलने के लिए डबल टैप करें। रोबोट के साथ शब्द-अंत्याक्षरी। पिछले शब्द के आखिरी अक्षर से नया शब्द लिखें।</span><div data-collapsible="" hidden="" id="gm-antak-body"></div><button aria-controls="gm-quiz-body" aria-describedby="hx-gm-quiz" aria-expanded="false" class="btn primary" data-label-close="सामान्य ज्ञान क्विज़ बंद करें" data-label-open="सामान्य ज्ञान क्विज़ खोलें" id="gm-quiz-toggle" type="button">सामान्य ज्ञान क्विज़ खोलें</button><span class="gm-help" id="hx-gm-quiz">इसे खोलने के लिए डबल टैप करें। दस सवाल, चार विकल्प। हरियाणा और भारत के सवाल। एक से चार खिलाड़ी।</span><div data-collapsible="" hidden="" id="gm-quiz-body"></div><button aria-controls="gm-numbers-body" aria-describedby="hx-gm-numbers" aria-expanded="false" class="btn primary" data-label-close="संख्या का अंदाज़ा बंद करें" data-label-open="संख्या का अंदाज़ा खोलें" id="gm-numbers-toggle" type="button">संख्या का अंदाज़ा खोलें</button><span class="gm-help" id="hx-gm-numbers">इसे खोलने के लिए डबल टैप करें। आप संख्या का अंदाज़ा लगाएँ, या रोबोट लगाए। ऊपर या नीचे बताकर पकड़ें।</span><div data-collapsible="" hidden="" id="gm-numbers-body"></div></div><div class="panel cat-screen" hidden="" id="cat-settings"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button>
+</div><div class="panel cat-screen" hidden="" id="cat-games"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button><h2 class="panel-title" data-reveal="" id="h-games" tabindex="-1">खेल</h2><button aria-describedby="hx-soon-g" aria-disabled="true" class="btn" type="button">ऑनलाइन खेल: जल्द आ रहा है</button><p class="note" id="hx-soon-g">यह सुविधा अभी जल्द आ रही है। अभी इसे खोला नहीं जा सकता।</p><p class="gm-intro">आठ खेल हैं। सब बिना इंटरनेट के चलते हैं। किसी खेल को खोलने के लिए डबल टैप करें।</p><button aria-controls="gm-ludo-body" aria-describedby="hx-gm-ludo" aria-expanded="false" class="btn primary" data-label-close="रंग दौड़ बंद करें" data-label-open="रंग दौड़ खोलें" id="gm-ludo-toggle" type="button">रंग दौड़ खोलें</button><span class="gm-help" id="hx-gm-ludo">इसे खोलने के लिए डबल टैप करें। गेम-बोर्ड वाला दौड़ का खेल। 2 से 4 खिलाड़ी, पासा फेंककर टोकन आगे बढ़ाएँ। बाकी सीटें रोबोट भरेगा।</span><div data-collapsible="" hidden="" id="gm-ludo-body"></div><button aria-controls="gm-chess-body" aria-describedby="hx-gm-chess" aria-expanded="false" class="btn primary" data-label-close="छोटी शतरंज बंद करें" data-label-open="छोटी शतरंज खोलें" id="gm-chess-toggle" type="button">छोटी शतरंज खोलें</button><span class="gm-help" id="hx-gm-chess">इसे खोलने के लिए डबल टैप करें। पाँच गुणा पाँच के बोर्ड पर राजा, हाथी, घोड़ा और प्यादे। पहले मोहरा चुनें, फिर खाना।</span><div data-collapsible="" hidden="" id="gm-chess-body"></div><button aria-controls="gm-memory-body" aria-describedby="hx-gm-memory" aria-expanded="false" class="btn primary" data-label-close="सुर याद करो बंद करें" data-label-open="सुर याद करो खोलें" id="gm-memory-toggle" type="button">सुर याद करो खोलें</button><span class="gm-help" id="hx-gm-memory">इसे खोलने के लिए डबल टैप करें। चार बटन हैं, हर बटन का अलग सुर। पहले एक सुर बजेगा, उसी क्रम में दबाएँ। हर बार एक सुर जुड़ता है।</span><div data-collapsible="" hidden="" id="gm-memory-body"></div><button aria-controls="gm-antak-body" aria-describedby="hx-gm-antak" aria-expanded="false" class="btn primary" data-label-close="शब्द-अंत्याक्षरी बंद करें" data-label-open="शब्द-अंत्याक्षरी खोलें" id="gm-antak-toggle" type="button">शब्द-अंत्याक्षरी खोलें</button><span class="gm-help" id="hx-gm-antak">इसे खोलने के लिए डबल टैप करें। रोबोट के साथ शब्द-अंत्याक्षरी। पिछले शब्द के आखिरी अक्षर से नया शब्द लिखें।</span><div data-collapsible="" hidden="" id="gm-antak-body"></div><button aria-controls="gm-quiz-body" aria-describedby="hx-gm-quiz" aria-expanded="false" class="btn primary" data-label-close="सामान्य ज्ञान क्विज़ बंद करें" data-label-open="सामान्य ज्ञान क्विज़ खोलें" id="gm-quiz-toggle" type="button">सामान्य ज्ञान क्विज़ खोलें</button><span class="gm-help" id="hx-gm-quiz">इसे खोलने के लिए डबल टैप करें। दस सवाल, चार विकल्प। हरियाणा और भारत के सवाल। एक से चार खिलाड़ी।</span><div data-collapsible="" hidden="" id="gm-quiz-body"></div><button aria-controls="gm-numbers-body" aria-describedby="hx-gm-numbers" aria-expanded="false" class="btn primary" data-label-close="संख्या का अंदाज़ा बंद करें" data-label-open="संख्या का अंदाज़ा खोलें" id="gm-numbers-toggle" type="button">संख्या का अंदाज़ा खोलें</button><span class="gm-help" id="hx-gm-numbers">इसे खोलने के लिए डबल टैप करें। आप संख्या का अंदाज़ा लगाएँ, या रोबोट लगाए। ऊपर या नीचे बताकर पकड़ें।</span><div data-collapsible="" hidden="" id="gm-numbers-body"></div><button aria-controls="gm-car-body" aria-describedby="hx-gm-car" aria-expanded="false" class="btn primary" data-label-close="गाड़ी चलाओ बंद करें" data-label-open="गाड़ी चलाओ खोलें" id="gm-car-toggle" type="button">गाड़ी चलाओ खोलें</button><span class="gm-help" id="hx-gm-car">इसे खोलने के लिए डबल टैप करें। तीन लेन की सड़क। हर कदम पर बंद लेन बताई जाएगी, खुली लेन चुनें। बिना इंटरनेट।</span><div data-collapsible="" hidden="" id="gm-car-body"></div><button aria-controls="gm-train-body" aria-describedby="hx-gm-train" aria-expanded="false" class="btn primary" data-label-close="रेलगाड़ी बंद करें" data-label-open="रेलगाड़ी खोलें" id="gm-train-toggle" type="button">रेलगाड़ी खोलें</button><span class="gm-help" id="hx-gm-train">इसे खोलने के लिए डबल टैप करें। हर रेलगाड़ी की मंज़िल सुनें और सही स्टेशन वाली पटरी चुनें। बिना इंटरनेट।</span><div data-collapsible="" hidden="" id="gm-train-body"></div></div><div class="panel cat-screen" hidden="" id="cat-settings"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button>
 <h2 class="panel-title" data-reveal="settings-body" id="h-settings" tabindex="-1">सेटिंग</h2>
 <button aria-controls="settings-body" aria-describedby="hx-settings-toggle" aria-expanded="false" class="btn primary" data-label-close="सेटिंग छिपाएँ" data-label-open="सेटिंग दिखाएँ" id="settings-toggle" type="button">सेटिंग दिखाएँ</button>
 <p class="hint" id="hx-settings-toggle">इसे खोलने के लिए डबल टैप करें। दबाने पर सेटिंग के सारे हिस्से नीचे खुलेंगे। दोबारा दबाने पर वे बंद होंगे।</p>
@@ -5649,7 +5649,7 @@ $('#yt-open').addEventListener('click', function (e) {
   if (u) $('#yt-link').value = u.href;
   ytShow(u);
 })();
-/* ---------- खेल: छह खेल, पूरी तरह फ़ोन में और बिना इंटरनेट के ---------- */
+/* ---------- खेल: आठ खेल, पूरी तरह फ़ोन में और बिना इंटरनेट के ---------- */
 (function () {
 var GAMES = {};
 var uid = 0;
@@ -5719,6 +5719,211 @@ function chime(key, notes, delay) {
   notes.forEach(function (f, i) { tone(key, f, 0.18, 'triangle', 0.22, (delay || 0) + i * 0.14); });
 }
 function buzz(key) { tone(key, 170, 0.45, 'sawtooth', 0.18); }
+/* लगातार चलने वाली आवाज़ें (इंजन, भीड़ की गुनगुनाहट): अलग सूची में रहती हैं, ताकि बंद करते ही पक्की तरह रुकें */
+var loops = {};
+var engineOsc = {};
+var noiseCache = null;
+function loopAdd(key, node) { if (!loops[key]) loops[key] = []; loops[key].push(node); return node; }
+function stopLoops(key) {
+  (loops[key] || []).forEach(function (n) { try { n.stop(); } catch (e) { /* ignore */ } });
+  loops[key] = [];
+  engineOsc[key] = null;
+}
+function noiseBuf(c) {
+  if (!noiseCache || noiseCache.sampleRate !== c.sampleRate) {
+    var len = Math.floor(c.sampleRate * 1.5);
+    noiseCache = c.createBuffer(1, len, c.sampleRate);
+    var d = noiseCache.getChannelData(0);
+    for (var i = 0; i < len; i++) d[i] = rnd() * 2 - 1;
+  }
+  return noiseCache;
+}
+/* छानी हुई हवा या भाप की फूँक (बैंडपास): छुक-छुक और हवा की आवाज़ के लिए */
+function puff(key, freq, q, dur, vol, delay) {
+  if (!soundOn[key]) return;
+  var c = audio(); if (!c) return;
+  try {
+    var t0 = c.currentTime + (delay || 0);
+    var s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+    s.buffer = noiseBuf(c);
+    f.type = 'bandpass'; f.frequency.value = freq; f.Q.value = q || 1;
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(vol || 0.3, t0 + dur * 0.2);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    s.connect(f); f.connect(g); g.connect(c.destination);
+    s.start(t0, rnd() * 0.4); s.stop(t0 + dur + 0.1); track(key, s);
+  } catch (e) { /* ignore */ }
+}
+/* कार का हॉर्न: दो तेज़ सुर एक साथ */
+function horn(key, delay, len) {
+  tone(key, 392, len || 0.3, 'sawtooth', 0.09, delay);
+  tone(key, 494, len || 0.3, 'sawtooth', 0.09, delay);
+}
+/* इंजन: गुर्राहट जो चालू रहती है; हर कदम पर सुर ऊँचा होता है */
+function engineStart(key) {
+  if (!soundOn[key]) return;
+  var c = audio(); if (!c) return;
+  try {
+    var o = c.createOscillator(), f = c.createBiquadFilter(), g = c.createGain();
+    o.type = 'sawtooth'; o.frequency.value = 90;
+    f.type = 'lowpass'; f.frequency.value = 700; f.Q.value = 2;
+    g.gain.setValueAtTime(0.0001, c.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.06, c.currentTime + 0.8);
+    o.connect(f); f.connect(g); g.connect(c.destination);
+    o.start(); loopAdd(key, o); engineOsc[key] = o;
+  } catch (e) { /* ignore */ }
+}
+function engineRev(key, frac) {
+  var o = engineOsc[key], c = audio();
+  if (!o || !c) return;
+  try { o.frequency.setTargetAtTime(90 + 90 * frac, c.currentTime, 0.25); } catch (e) { /* ignore */ }
+}
+/* टक्कर: धमाका, नीचे गिरता सुर और हॉर्न */
+function crash(key) {
+  noise(key, 0.7, 0.5);
+  tone(key, 200, 0.7, 'sawtooth', 0.22, 0, 50);
+  horn(key, 0.1, 0.9);
+}
+/* ब्रेक की चरचराहट: आवाज़ धीरे-धीरे नीचे उतरती है */
+function brake(key, delay) {
+  if (!soundOn[key]) return;
+  var c = audio(); if (!c) return;
+  try {
+    var t0 = c.currentTime + (delay || 0);
+    var s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+    s.buffer = noiseBuf(c);
+    f.type = 'bandpass'; f.Q.value = 4;
+    f.frequency.setValueAtTime(2600, t0);
+    f.frequency.exponentialRampToValueAtTime(500, t0 + 1.3);
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(0.2, t0 + 0.08);
+    g.gain.setValueAtTime(0.2, t0 + 1.0);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + 1.4);
+    s.connect(f); f.connect(g); g.connect(c.destination);
+    s.start(t0, 0.2); s.stop(t0 + 1.5); track(key, s);
+  } catch (e) { /* ignore */ }
+}
+/* स्टेशन की घंटी: दो बार "टिन-टिन" */
+function bell(key, delay) {
+  [0, 0.42].forEach(function (d) {
+    tone(key, 1568, 0.9, 'sine', 0.22, delay + d);
+    tone(key, 2349, 0.7, 'sine', 0.1, delay + d);
+  });
+}
+/* सीटी: सुर ऊपर उठता है */
+function trainWhistle(key, delay) {
+  tone(key, 660, 0.7, 'sine', 0.2, delay || 0, 880);
+  tone(key, 1320, 0.7, 'sine', 0.05, delay || 0, 1760);
+}
+/* बातचीत जैसी धीमी आवाज़: नीचे-ऊपर होता सुर, छना हुआ, बहुत हल्का */
+function voice(key, at) {
+  var c = audio(); if (!c) return;
+  try {
+    var o = c.createOscillator(), f = c.createBiquadFilter(), g = c.createGain();
+    var base = 150 + rnd() * 90, dur = 0.25 + rnd() * 0.45;
+    o.type = 'sawtooth';
+    o.frequency.setValueAtTime(base, at);
+    o.frequency.linearRampToValueAtTime(base * (0.85 + rnd() * 0.3), at + dur);
+    f.type = 'bandpass'; f.frequency.value = 700 + rnd() * 500; f.Q.value = 2;
+    g.gain.setValueAtTime(0.0001, at);
+    g.gain.exponentialRampToValueAtTime(0.02, at + dur * 0.3);
+    g.gain.exponentialRampToValueAtTime(0.0001, at + dur);
+    o.connect(f); f.connect(g); g.connect(c.destination);
+    o.start(at); o.stop(at + dur + 0.05); loopAdd(key, o);
+  } catch (e) { /* ignore */ }
+}
+/* स्टेशन की भीड़ की धीमी गुनगुनाहट, बीच-बीच में हल्की बातचीत (बहुत कम आवाज़) */
+function murmur(key, seconds) {
+  if (!soundOn[key]) return;
+  var c = audio(); if (!c) return;
+  try {
+    var t0 = c.currentTime + 0.05, t = 0, k;
+    var s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+    s.buffer = noiseBuf(c); s.loop = true;
+    f.type = 'bandpass'; f.frequency.value = 650; f.Q.value = 0.6;
+    g.gain.setValueAtTime(0.02, t0);
+    s.connect(f); f.connect(g); g.connect(c.destination);
+    while (t < seconds) {
+      t += 0.2 + rnd() * 0.5;
+      g.gain.linearRampToValueAtTime(0.008 + rnd() * 0.02, t0 + t);
+    }
+    g.gain.linearRampToValueAtTime(0.0001, t0 + seconds);
+    s.start(t0); s.stop(t0 + seconds + 0.1);
+    loopAdd(key, s);
+    for (k = 0; k < seconds / 2.5; k++) voice(key, t0 + rnd() * seconds);
+  } catch (e) { /* ignore */ }
+}
+/* कीबोर्ड जैसी "खट-खट" चाल की आवाज़ और तालियों वाली जीत की आवाज़: दोनों बफ़र में बनती हैं, हर बार एक ही बनती है */
+var bufCache = {};
+var sfxSeed = 20261127;
+function sfxRand() { sfxSeed = (sfxSeed * 16807) % 2147483647; return sfxSeed / 2147483647; }
+function clickBuffer(c) {
+  var sr = c.sampleRate, total = Math.floor(sr * 0.6);
+  var buf = c.createBuffer(1, total, sr), d = buf.getChannelData(0);
+  var times = [0, 0.1, 0.2, 0.29], k, i;
+  for (k = 0; k < times.length; k++) {
+    var start = Math.floor((times[k] + (sfxRand() * 0.012 - 0.004)) * sr);
+    var len = Math.floor(sr * (0.012 + sfxRand() * 0.006));
+    var amp = 0.85 + sfxRand() * 0.15, prev = 0;
+    for (i = 0; i < len && start + i < total; i++) {
+      var env = Math.exp(-(i / len) * 7) * (i < 24 ? i / 24 : 1);
+      var x = sfxRand() * 2 - 1, hp = x - prev;
+      prev = x;
+      d[start + i] += hp * env * amp * 0.6;
+    }
+  }
+  for (i = 0; i < total; i++) d[i] = Math.max(-1, Math.min(1, d[i]));
+  return buf;
+}
+function applauseBuffer(c) {
+  var sr = c.sampleRate, total = Math.floor(sr * 3.6);
+  var buf = c.createBuffer(1, total, sr), d = buf.getChannelData(0);
+  var n = 220, k, i;
+  for (k = 0; k < n; k++) {
+    var start = Math.floor((Math.pow(k / n, 0.8) * 3.1 + sfxRand() * 0.03) * sr);
+    var len = Math.floor(sr * (0.02 + sfxRand() * 0.03));
+    var amp = 0.25 + sfxRand() * 0.35, prev = 0;
+    for (i = 0; i < len && start + i < total; i++) {
+      var env = Math.exp(-(i / len) * 9);
+      var x = sfxRand() * 2 - 1, hp = x - prev;
+      prev = x;
+      d[start + i] += hp * env * amp * 0.5;
+    }
+  }
+  var fadeIn = Math.floor(sr * 0.15), fadeOut = Math.floor(sr * 1.0);
+  for (i = 0; i < total; i++) {
+    var g = 1;
+    if (i < fadeIn) g = i / fadeIn;
+    if (i > total - fadeOut) g *= (total - i) / fadeOut;
+    d[i] = Math.max(-1, Math.min(1, d[i] * g));
+  }
+  return buf;
+}
+function playBuf(key, name, make) {
+  if (!soundOn[key]) return;
+  var c = audio(); if (!c) return;
+  try {
+    if (!bufCache[name]) bufCache[name] = make(c);
+    var s = c.createBufferSource(), g = c.createGain();
+    s.buffer = bufCache[name];
+    g.gain.value = 1;
+    s.connect(g); g.connect(c.destination);
+    s.start(0); track(key, s);
+  } catch (e) { /* ignore */ }
+}
+/* चाल: तेज़ "खट-खट-खट-खट" */
+function moveSfx(key) { playBuf(key, 'click', clickBuffer); }
+/* जीत: तालियाँ और फ़ैनफ़ेयर */
+function winSfx(key) {
+  playBuf(key, 'applause', applauseBuffer);
+  chime(key, [523, 659, 784, 1047, 1047], 0.05);
+}
+/* पहली बार स्क्रीन पर छूने पर आवाज़ का संदर्भ जागे (user gesture) */
+try {
+  document.addEventListener('click', function () {
+    if (actx && actx.state === 'suspended' && actx.resume) { try { actx.resume(); } catch (e) { /* ignore */ } }
+  }, true);
+} catch (e) { /* ignore */ }
 
 /* ---------- खेल की आम व्यवस्था ---------- */
 function announce(g, text) {
@@ -5745,6 +5950,7 @@ function stopGame(g) {
   g.timers.forEach(function (t) { clearTimeout(t); });
   g.timers = [];
   halt(g.key);
+  stopLoops(g.key);
 }
 function focusQuiet(node) {
   if (!node || !node.focus) return;
@@ -5797,7 +6003,8 @@ function nameBox(parent, label, value, onchange) {
   field(parent, label, i, 'नाम बदलने के लिए लिखें और बाहर आएँ। खाली छोड़ने पर पुराना नाम रहेगा।');
   return i;
 }
-function soundBox(parent, key) {
+function soundBox(parent, g) {
+  var key = g.key;
   soundOn[key] = true;
   var wrap = el('div', 'gm-field');
   var lb = el('label', 'gm-check');
@@ -5806,38 +6013,76 @@ function soundBox(parent, key) {
   lb.appendChild(cb);
   lb.appendChild(document.createTextNode(' आवाज़ चालू रखें'));
   cb.setAttribute('aria-describedby', helpSpan(wrap, 'बंद करने पर इस खेल की बीप और धुनें नहीं बजेंगी। बोलकर बताना चलता रहेगा।'));
-  cb.addEventListener('change', function () { soundOn[key] = cb.checked; });
+  cb.addEventListener('change', function () {
+    soundOn[key] = cb.checked;
+    if (!cb.checked) { halt(key); stopLoops(key); return; }
+    if (g.st && !g.st.over && g.resumeSound) g.resumeSound();
+  });
   wrap.appendChild(lb);
   parent.appendChild(wrap);
 }
-function shell(g, root) {
+/* शुरू करने से पहले सेटिंग वाला गेट दिखता है; "खेल शुरू करें" दबाने पर शीर्षक, आवाज़, बोर्ड और नियंत्रण आते हैं */
+function shell(g, root, title) {
   root.innerHTML = '';
   root.setAttribute('data-game', g.key);
   g.root = root;
-  soundBox(root, g.key);
+  var gate = el('div', 'gm-gate');
+  root.appendChild(gate);
+  g.gate = gate;
+  var gh = el('h3', 'gm-sethead', title + ': खेल से पहले सेटिंग');
+  gh.tabIndex = -1;
+  gate.appendChild(gh);
+  g.gateHead = gh;
+  g.set = el('div', 'gm-settings');
+  g.set.setAttribute('role', 'group');
+  g.set.setAttribute('aria-label', title + ' की सेटिंग');
+  gate.appendChild(g.set);
+  var grow = el('div', 'gm-row');
+  gate.appendChild(grow);
+  btn(grow, 'खेल शुरू करें', 'सेटिंग तय करके यहाँ दबाकर खेलें। खेल शुरू होते ही बोर्ड और नियंत्रण आएँगे।', function () { gameStart(g); });
+  var run = el('div', 'gm-run');
+  run.hidden = true;
+  root.appendChild(run);
+  g.run = run;
+  var head = el('h3', 'gm-title', title);
+  head.tabIndex = -1;
+  run.appendChild(head);
+  g.head = head;
+  soundBox(run, g);
   var row = el('div', 'gm-row');
-  root.appendChild(row);
+  run.appendChild(row);
   btn(row, 'आखिरी बात फिर से सुनाएँ', 'पिछली बात फिर से बोलकर सुनाता है।', function () { speakNow(lastSaid[g.key] || 'अभी कोई बात नहीं हुई।'); });
   btn(row, 'नया खेल शुरू करें', 'मौजूदा खेल छोड़कर नया खेल शुरू करता है।', function () { g.reset(); });
+  btn(row, 'सेटिंग बदलें', 'खेल रोककर सेटिंग वाली स्क्रीन पर जाता है।', function () { gameShowGate(g); });
   var live = el('p', 'gm-live', '');
   live.id = 'gm-live-' + g.key;
   live.setAttribute('aria-live', 'polite');
-  root.appendChild(live);
+  run.appendChild(live);
   g.stat = el('p', 'gm-status', '');
   g.stat.tabIndex = -1;
-  root.appendChild(g.stat);
+  run.appendChild(g.stat);
   g.play = el('div', 'gm-play');
-  root.appendChild(g.play);
-  /* सेटिंग खेल के नीचे रहती है: खेल शुरू होने पर पहले खेल की स्थिति और बोर्ड आते हैं */
-  var head = el('h3', 'gm-sethead', 'खेल की सेटिंग');
-  root.appendChild(head);
-  g.set = el('div', 'gm-settings');
-  g.set.setAttribute('role', 'group');
-  g.set.setAttribute('aria-label', 'खेल की सेटिंग');
-  root.appendChild(g.set);
+  run.appendChild(g.play);
+}
+function gameStart(g) {
+  g.started = true;
+  g.gate.hidden = true;
+  g.run.hidden = false;
+  g.reset();
+  focusQuiet(g.head);
+}
+function gameShowGate(g) {
+  stopGame(g);
+  g.started = false;
+  g.st = null;
+  g.run.hidden = true;
+  g.gate.hidden = false;
+  focusQuiet(g.gateHead);
 }
 function reg(key, body, setup) {
   GAMES[key] = { key: key, body: body, gen: 0, timers: [], setup: setup, reset: function () {}, started: false, st: null };
+  /* सेटिंग बदलने पर: खेल चल रहा हो तो नए नियमों से नया खेल, वरना बस सेटिंग याद रहती है */
+  GAMES[key].touch = function () { if (GAMES[key].started) GAMES[key].reset(); };
 }
 
 /* =====================================================================
@@ -5951,12 +6196,12 @@ var ludo = {
 ENG.ludo = ludo;
 
 function setupLudo(g, root) {
-  shell(g, root);
+  shell(g, root, 'रंग दौड़');
   g.n = 2; g.level = 'medium'; g.die = 0; g.st = null;
   g.seat = ['इंसान', 'रोबोट', 'रोबोट', 'रोबोट'];
   g.names = ['खिलाड़ी 1', 'खिलाड़ी 2', 'खिलाड़ी 3', 'खिलाड़ी 4'];
   g.seatWraps = [];
-  selectBox(g.set, 'खिलाड़ी कितने हैं?', [['2', '2 खिलाड़ी'], ['3', '3 खिलाड़ी'], ['4', '4 खिलाड़ी']], '2', function (v) { g.n = +v; g.reset(); }, 'दो, तीन या चार खिलाड़ी चुनें। बाकी सीटें रोबोट भर देगा।');
+  selectBox(g.set, 'खिलाड़ी कितने हैं?', [['2', '2 खिलाड़ी'], ['3', '3 खिलाड़ी'], ['4', '4 खिलाड़ी']], '2', function (v) { g.n = +v; g.touch(); }, 'दो, तीन या चार खिलाड़ी चुनें। बाकी सीटें रोबोट भर देगा।');
   var i;
   for (i = 0; i < 4; i++) {
     (function (idx) {
@@ -5969,7 +6214,9 @@ function setupLudo(g, root) {
     })(i);
   }
   selectBox(g.set, 'रोबोट का स्तर', [['easy', 'आसान'], ['medium', 'मध्यम'], ['hard', 'कठिन']], 'medium', function (v) { g.level = v; }, 'रोबोट आसान, मध्यम या कठिन खेलेगा। कठिन रोबोट खतरे वाले खाने से बचता है।');
-  g.rollBtn = btn(g.play, 'पासा फेंको', 'पासा फेंकने के लिए दबाएँ। फिर आपकी चाल के विकल्प आएँगे।', function () { ludoHumanRoll(g); });
+  g.first = 0;
+  selectBox(g.set, 'पहली बारी किसकी होगी?', [['0', 'सीट 1'], ['1', 'सीट 2'], ['2', 'सीट 3'], ['3', 'सीट 4']], '0', function (v) { g.first = +v; g.touch(); }, 'जिस सीट की पहली बारी होगी, वह पहला पासा फेंकेगा। सीट संख्या से अधिक हो तो सीट 1 से शुरू होगा।');
+  g.rollBtn = btn(g.play, 'पासा फेंको', 'यहाँ दबाकर खेलें: पासा फेंकने के लिए दबाएँ। फिर आपकी चाल के विकल्प आएँगे।', function () { ludoHumanRoll(g); });
   g.choices = el('div', 'gm-row');
   g.play.appendChild(g.choices);
   btn(g.play, 'सब टोकन की जगह सुनाएँ', 'हर खिलाड़ी के दोनों टोकन कहाँ हैं, यह बोलकर सुनाता है।', function () { if (g.st) announce(g, ludoBoard(g)); });
@@ -5977,11 +6224,12 @@ function setupLudo(g, root) {
   g.reset = function () {
     stopGame(g);
     g.st = ludo.newState(g.n);
+    if (g.first < g.n) g.st.turn = g.first;
     g.die = 0;
     g.choices.innerHTML = '';
     g.seatWraps.forEach(function (w, k) { w.hidden = k >= g.n; });
     announce(g, 'नया खेल। ' + g.n + ' खिलाड़ी। ' + ludoSeatText(g));
-    later(g, 400, function () { ludoAskRoll(g); });
+    ludoLater(g, 400, function () { ludoAskRoll(g); });
   };
 }
 function ludoSeatText(g) {
@@ -6000,11 +6248,12 @@ function ludoAskRoll(g) {
   var st = g.st;
   if (!st || st.over) return;
   var p = st.turn;
+  g.die = 0;
   g.choices.innerHTML = '';
   if (g.seat[p] === 'रोबोट') {
     g.rollBtn.disabled = true;
     g.stat.textContent = g.names[p] + ' (रोबोट) की बारी।';
-    later(g, 700, function () { ludoRoll(g); });
+    ludoLater(g, 700, function () { ludoRoll(g); });
   } else {
     g.rollBtn.disabled = false;
     g.stat.textContent = g.names[p] + ' की बारी। पासा फेंकें।';
@@ -6012,12 +6261,37 @@ function ludoAskRoll(g) {
   }
 }
 function ludoHumanRoll(g) {
-  if (!g.st || g.st.over || g.die || g.seat[g.st.turn] !== 'इंसान') return;
+  if (!g.st || g.st.over || g.seat[g.st.turn] !== 'इंसान') return;
+  if (g.die) {
+    /* पासा आ चुका है: चाल के बटन न हों तो दोबारा बनाएँ, ताकि खेल अटके नहीं */
+    if (!g.choices.querySelector('button')) ludoOffer(g, g.st.turn, g.die);
+    return;
+  }
   ludoRoll(g);
+}
+/* हर अगला कदम एक ही समय पर चलता है: पुराना टाइमर अपने आप रद्द हो जाता है */
+function ludoLater(g, ms, fn) {
+  var tok = g.ludoTok = (g.ludoTok || 0) + 1;
+  later(g, ms, function () { if (g.ludoTok === tok) fn(); });
+}
+function ludoCancel(g) {
+  g.ludoTok = (g.ludoTok || 0) + 1;
+}
+function ludoOffer(g, p, die) {
+  var st = g.st;
+  g.rollBtn.disabled = true;
+  g.choices.innerHTML = '';
+  ludo.legal(st, p, die).forEach(function (t) {
+    var k = st.tk[p][t];
+    var label = k === 0 ? 'टोकन ' + (t + 1) + ' बाहर निकालें' : 'टोकन ' + (t + 1) + ' को ' + die + ' आगे बढ़ाएँ';
+    btn(g.choices, label, 'यहाँ दबाकर खेलें: इस टोकन को चुनने पर चाल चली जाएगी।', function () { ludoMove(g, p, t); });
+  });
+  focusQuiet(firstButton(g.choices));
 }
 function ludoRoll(g) {
   var st = g.st;
   if (!st || st.over) return;
+  ludoCancel(g);
   var p = st.turn, die = 1 + ri(6);
   g.die = die;
   g.rollBtn.disabled = true;
@@ -6028,40 +6302,36 @@ function ludoRoll(g) {
     g.die = 0;
     announce(g, g.names[p] + ' का पासा ' + die + ' आया। कोई चाल नहीं बनी, अगला खिलाड़ी।');
     ludo.next(st);
-    later(g, 900, function () { ludoAskRoll(g); });
+    ludoLater(g, 900, function () { ludoAskRoll(g); });
     return;
   }
   if (g.seat[p] === 'रोबोट') {
     var t = ludo.robotPick(st, p, die, g.level);
     announce(g, g.names[p] + ' का पासा ' + die + ' आया।');
-    later(g, 900, function () { ludoMove(g, p, t); });
+    ludoLater(g, 900, function () { ludoMove(g, p, t); });
     return;
   }
   announce(g, g.names[p] + ' का पासा ' + die + ' आया। अब चाल चुनें।');
-  legal.forEach(function (t) {
-    var k = st.tk[p][t];
-    var label = k === 0 ? 'टोकन ' + (t + 1) + ' बाहर निकालें' : 'टोकन ' + (t + 1) + ' को ' + die + ' आगे बढ़ाएँ';
-    btn(g.choices, label, 'इस टोकन को चुनने पर चाल चली जाएगी।', function () { ludoMove(g, p, t); });
-  });
-  focusQuiet(firstButton(g.choices));
+  ludoOffer(g, p, die);
 }
 function ludoMove(g, p, t) {
   var st = g.st;
   if (!st || st.over || !g.die) return;
   var die = g.die;
   if (ludo.legal(st, p, die).indexOf(t) < 0) { announce(g, 'यह चाल मान्य नहीं है।'); return; }
+  ludoCancel(g);
   g.die = 0;
   g.choices.innerHTML = '';
   var ev = ludo.apply(st, p, t, die);
   var who = g.names[p], msg;
   if (ev.kind === 'enter') {
-    chime('ludo', [660, 990]);
+    moveSfx('ludo');
     msg = who + ' का टोकन ' + (t + 1) + ' बाहर निकला।';
   } else if (ev.kind === 'finish') {
-    chime('ludo', [523, 659, 784, 1047]);
+    moveSfx('ludo');
     msg = who + ' का टोकन ' + (t + 1) + ' घर पहुँच गया।';
   } else {
-    tone('ludo', 880, 0.08, 'square', 0.1);
+    moveSfx('ludo');
     msg = who + ' ने टोकन ' + (t + 1) + ' को ' + die + ' आगे बढ़ाया, अब ' + ludo.where(ev.to) + '।';
   }
   if (ev.capture >= 0) {
@@ -6072,13 +6342,13 @@ function ludoMove(g, p, t) {
   if (st.over) {
     g.rollBtn.disabled = true;
     g.stat.textContent = 'खेल खत्म।';
-    chime('ludo', [523, 659, 784, 1047, 784, 1047], 0.1);
+    winSfx('ludo');
     announce(g, g.names[st.winner] + ' जीत गया! सब टोकन घर पहुँच गए। ' + g.names[st.winner] + ' के लिए बधाई।');
     return;
   }
   announce(g, msg);
   ludo.next(st);
-  later(g, 900, function () { ludoAskRoll(g); });
+  ludoLater(g, 900, function () { ludoAskRoll(g); });
 }
 
 /* =====================================================================
@@ -6218,9 +6488,10 @@ function chResultText(st) {
   return CH_SIDE[st.winner] + ' ने दूसरी ओर का राजा पकड़ लिया। खेल खत्म।';
 }
 function setupChess(g, root) {
-  shell(g, root);
-  g.mode = 'robot'; g.level = 'medium'; g.st = null;
-  selectBox(g.set, 'खेलने का तरीका', [['robot', 'मेरे साथ रोबोट (मैं सफ़ेद)'], ['pass', 'दो खिलाड़ी, बारी-बारी']], 'robot', function (v) { g.mode = v; g.reset(); }, 'रोबोट के साथ खेलें या एक ही फ़ोन पर दो खिलाड़ी बारी-बारी से खेलें।');
+  shell(g, root, 'छोटी शतरंज');
+  g.mode = 'robot'; g.side = 'w'; g.level = 'medium'; g.st = null;
+  selectBox(g.set, 'खेलने का तरीका', [['robot', 'मेरे साथ रोबोट'], ['pass', 'दो खिलाड़ी, बारी-बारी']], 'robot', function (v) { g.mode = v; g.touch(); }, 'रोबोट के साथ खेलें या एक ही फ़ोन पर दो खिलाड़ी बारी-बारी से खेलें।');
+  selectBox(g.set, 'मेरे मोहरे किस रंग के होंगे?', [['w', 'सफ़ेद (मैं पहले चलूँगा)'], ['b', 'काले (रोबोट सफ़ेद से पहले चलेगा)']], 'w', function (v) { g.side = v; g.touch(); }, 'सफ़ेद मोहरे हमेशा पहले चलते हैं। रोबोट के साथ खेलने पर इसी से तय होता है कि आप या रोबोट पहले चलेंगे।');
   selectBox(g.set, 'रोबोट का स्तर', [['easy', 'आसान'], ['medium', 'मध्यम'], ['hard', 'कठिन']], 'medium', function (v) { g.level = v; }, 'रोबोट जितना कठिन होगा, उतना सोचकर चलेगा।');
   btn(g.set, 'पूरा बोर्ड सुनाएँ', 'सभी मोहरे और उनके खाने एक साथ बोलकर सुनाता है।', function () { if (g.st) announce(g, chBoardText(g.st)); });
   g.pieces = el('div', 'gm-row');
@@ -6231,7 +6502,7 @@ function setupChess(g, root) {
   g.reset = function () {
     stopGame(g);
     g.st = chess.newState();
-    announce(g, 'नई छोटी शतरंज। सफ़ेद पहले चलता है। ' + (g.mode === 'robot' ? 'आप सफ़ेद हैं।' : 'दो खिलाड़ी बारी-बारी से खेलेंगे।'));
+    announce(g, 'नई छोटी शतरंज। सफ़ेद पहले चलता है। ' + (g.mode === 'robot' ? 'आप ' + CH_SIDE[g.side] + ' मोहरों से खेलेंगे, रोबोट ' + CH_SIDE[g.side === 'w' ? 'b' : 'w'] + ' से।' : 'दो खिलाड़ी बारी-बारी से खेलेंगे।'));
     chRender(g);
   };
   function chRender(g2) {
@@ -6239,8 +6510,9 @@ function setupChess(g, root) {
     g2.pieces.innerHTML = '';
     g2.dests.innerHTML = '';
     if (st.over) { g2.stat.textContent = chResultText(st); return; }
-    if (g2.mode === 'robot' && st.turn === 'b') {
-      g2.stat.textContent = 'रोबोट (काले मोहरे) सोच रहा है।';
+    var robotSide = g2.side === 'w' ? 'b' : 'w';
+    if (g2.mode === 'robot' && st.turn === robotSide) {
+      g2.stat.textContent = 'रोबोट (' + CH_SIDE[robotSide] + ' मोहरे) सोच रहा है।';
       later(g2, 1200, function () { chRobot(g2); });
       return;
     }
@@ -6251,7 +6523,7 @@ function setupChess(g, root) {
       if (!p || p.s !== st.turn) continue;
       if (!chess.gen(st.b, st.turn).some(function (m) { return m.from === i; })) continue;
       (function (idx, piece) {
-        btn(g2.pieces, chSq(idx) + ' पर ' + CH_SIDE[st.turn] + ' ' + CH_NAME[piece.t], 'इस मोहरे की चालें अगली सूची में दिखेंगी।', function () { chSelect(g2, idx); });
+        btn(g2.pieces, chSq(idx) + ' पर ' + CH_SIDE[st.turn] + ' ' + CH_NAME[piece.t], 'यहाँ दबाकर खेलें: इस मोहरे की चालें अगली सूची में दिखेंगी।', function () { chSelect(g2, idx); });
       })(i, p);
       seen[i] = true;
     }
@@ -6266,7 +6538,7 @@ function setupChess(g, root) {
     moves.forEach(function (m) {
       var label = m.cap ? chSq(m.to) + ' पर ' + CH_SIDE[st.turn === 'w' ? 'b' : 'w'] + ' का ' + CH_NAME[m.cap] + ' पकड़ें' : chSq(m.to) + ' खाली खाना';
       names.push(label);
-      btn(g2.dests, label, 'इस खाने पर चाल चली जाएगी।', function () { chMove(g2, m); });
+      btn(g2.dests, label, 'यहाँ दबाकर खेलें: इस खाने पर चाल चली जाएगी।', function () { chMove(g2, m); });
     });
     announce(g2, chSq(from) + ' का ' + CH_NAME[st.b[from].t] + ' चुना। ' + moves.length + ' चालें: ' + names.join('। ') + '।');
     focusQuiet(g2.dests.querySelector('button:nth-of-type(2)') || firstButton(g2.dests));
@@ -6277,8 +6549,8 @@ function setupChess(g, root) {
     if (!ev) { announce(g2, 'यह चाल मान्य नहीं है।'); return; }
     var msg = CH_SIDE[ev.side] + ' ने ' + chSq(ev.from) + ' से ' + chSq(ev.to) + ' पर ' + CH_NAME[ev.piece] + ' चलाया।';
     if (ev.cap) { tone('chess', 300, 0.3, 'sawtooth', 0.18, 0, 150); msg += ' ' + CH_SIDE[ev.capSide] + ' का ' + CH_NAME[ev.cap] + ' पकड़ लिया।'; }
-    else tone('chess', 660, 0.07, 'triangle', 0.18);
-    if (st.over) { chime('chess', [523, 659, 784, 1047]); announce(g2, msg + ' ' + chResultText(st)); }
+    moveSfx('chess');
+    if (st.over) { if (st.draw) chime('chess', [523, 659, 784, 1047]); else winSfx('chess'); announce(g2, msg + ' ' + chResultText(st)); }
     else announce(g2, msg + ' अब ' + CH_SIDE[st.turn] + ' की बारी।');
     chRender(g2);
   }
@@ -6288,10 +6560,10 @@ function setupChess(g, root) {
     if (!mv) { st.over = true; st.draw = true; announce(g2, 'रोबोट के पास चाल नहीं बची। ' + chResultText(st)); chRender(g2); return; }
     var ev = chess.apply(st, mv);
     if (!ev) { announce(g2, 'रोबोट की चाल मान्य नहीं रही।'); return; }
-    var msg = 'रोबोट (काले मोहरे) ने ' + chSq(ev.from) + ' से ' + chSq(ev.to) + ' पर ' + CH_NAME[ev.piece] + ' चलाया।';
+    var msg = 'रोबोट (' + CH_SIDE[g2.side === 'w' ? 'b' : 'w'] + ' मोहरे) ने ' + chSq(ev.from) + ' से ' + chSq(ev.to) + ' पर ' + CH_NAME[ev.piece] + ' चलाया।';
     if (ev.cap) { tone('chess', 300, 0.3, 'sawtooth', 0.18, 0, 150); msg += ' आपका ' + CH_NAME[ev.cap] + ' पकड़ लिया।'; }
-    else tone('chess', 440, 0.07, 'triangle', 0.18);
-    if (st.over) announce(g2, msg + ' ' + chResultText(st));
+    moveSfx('chess');
+    if (st.over) { if (!st.draw) winSfx('chess'); announce(g2, msg + ' ' + chResultText(st)); }
     else announce(g2, msg + ' अब आपकी बारी।');
     chRender(g2);
   }
@@ -6319,13 +6591,13 @@ var memEng = {
 ENG.memory = memEng;
 
 function setupMemory(g, root) {
-  shell(g, root);
+  shell(g, root, 'सुर याद करो');
   g.speed = 750;
   selectBox(g.set, 'सुर कितनी जल्दी बजें?', [['1000', 'धीमा'], ['750', 'मध्यम'], ['480', 'तेज़']], '750', function (v) { g.speed = +v; }, 'सुर बजने की रफ़्तार चुनें। धीमे पर सुर आसानी से याद रहते हैं।');
   g.pads = [];
   var grid = el('div', 'gm-grid');
   MEM_NAME.forEach(function (nm, k) {
-    var b = btn(grid, (k + 1) + '. ' + nm, 'यह सुर दबाने पर बजता है। खेल में क्रम से सुर दबाएँ।', function () { memPress(g, k); });
+    var b = btn(grid, (k + 1) + '. ' + nm, 'यहाँ दबाकर खेलें: यह सुर दबाने पर बजता है। खेल में क्रम से सुर दबाएँ।', function () { memPress(g, k); });
     b.classList.add('gm-pad');
     g.pads.push(b);
   });
@@ -6372,7 +6644,7 @@ function setupMemory(g, root) {
       announce(g2, 'सही! ' + st.seq.length + ' सुर पूरे। अब एक और सुर जुड़ेगा।');
       later(g2, 1600, function () { memNext(g2); });
     } else if (r === 'win') {
-      chime('mem', [523, 659, 784, 1047, 1047], 0.05);
+      winSfx('mem');
       announce(g2, 'जीत गए! आपने ' + MEM_TARGET + ' सुर सही याद रखे।');
       g2.stat.textContent = 'जीत गए। नया खेल शुरू करें।';
     } else if (r === 'lose') {
@@ -6487,9 +6759,9 @@ var antakshariEng = {
 ENG.antakshariRobot = antakshariEng;
 
 function setupAntakshari(g, root) {
-  shell(g, root);
+  shell(g, root, 'शब्द-अंत्याक्षरी');
   g.first = 'user'; g.level = 'medium'; g.st = null;
-  selectBox(g.set, 'पहला शब्द कौन बोलेगा?', [['user', 'आप'], ['robot', 'रोबोट']], 'user', function (v) { g.first = v; g.reset(); }, 'पहला शब्द आप बोलें या रोबोट।');
+  selectBox(g.set, 'पहला शब्द कौन बोलेगा?', [['user', 'आप'], ['robot', 'रोबोट']], 'user', function (v) { g.first = v; g.touch(); }, 'पहला शब्द आप बोलें या रोबोट।');
   selectBox(g.set, 'रोबोट का स्तर', [['easy', 'आसान'], ['medium', 'मध्यम'], ['hard', 'कठिन']], 'medium', function (v) { g.level = v; }, 'कठिन रोबोट ऐसे शब्द चुनता है जिनसे आगे का रास्ता कम हो।');
   var row = el('div', 'gm-row');
   var inp = el('input', 'gm-input');
@@ -6500,7 +6772,7 @@ function setupAntakshari(g, root) {
   inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); akUser(g); } });
   g.play.appendChild(row);
   var row2 = el('div', 'gm-row');
-  btn(row2, 'शब्द भेजें', 'लिखा हुआ शब्द भेजता है।', function () { akUser(g); });
+  btn(row2, 'शब्द भेजें', 'यहाँ दबाकर खेलें: लिखा हुआ शब्द भेजता है।', function () { akUser(g); });
   btn(row2, 'हार मानें', 'खेल छोड़कर रोबोट को जीत देता है।', function () { akGiveUp(g); });
   g.play.appendChild(row2);
 
@@ -6533,7 +6805,7 @@ function setupAntakshari(g, root) {
       st.over = true; st.winner = 'user';
       announce(g2, 'रोबोट के पास "' + ak.show(st.key) + '" से कोई शब्द नहीं बचा। आप जीते! खेल खत्म।');
       g2.stat.textContent = 'खेल खत्म।';
-      chime('antak', [523, 659, 784, 1047]);
+      winSfx('antak');
       return;
     }
     akAccept(g2, w, 'robot');
@@ -6558,7 +6830,7 @@ function setupAntakshari(g, root) {
     var st = g2.st;
     if (!st || st.over) return;
     st.over = true; st.winner = 'robot';
-    buzz('antak');
+    winSfx('antak');
     announce(g2, 'आपने हार मानी। रोबोट जीत गया। नया खेल शुरू करने के लिए बटन दबाएँ।');
     g2.stat.textContent = 'खेल खत्म।';
   }
@@ -6637,11 +6909,11 @@ var QUIZ = [
 ENG.quizCount = QUIZ.length;
 
 function setupQuiz(g, root) {
-  shell(g, root);
+  shell(g, root, 'सामान्य ज्ञान क्विज़');
   g.n = 1; g.names = ['खिलाड़ी 1', 'खिलाड़ी 2', 'खिलाड़ी 3', 'खिलाड़ी 4'];
   g.seatWraps = [];
   g.qs = []; g.idx = 0; g.score = [0, 0, 0, 0];
-  selectBox(g.set, 'खिलाड़ी कितने हैं?', [['1', '1 खिलाड़ी'], ['2', '2 खिलाड़ी'], ['3', '3 खिलाड़ी'], ['4', '4 खिलाड़ी']], '1', function (v) { g.n = +v; g.reset(); }, 'एक से चार खिलाड़ी। सब एक ही फ़ोन पर बारी-बारी से खेलेंगे।');
+  selectBox(g.set, 'खिलाड़ी कितने हैं?', [['1', '1 खिलाड़ी'], ['2', '2 खिलाड़ी'], ['3', '3 खिलाड़ी'], ['4', '4 खिलाड़ी']], '1', function (v) { g.n = +v; g.touch(); }, 'एक से चार खिलाड़ी। सब एक ही फ़ोन पर बारी-बारी से खेलेंगे।');
   var i;
   for (i = 0; i < 4; i++) {
     (function (idx) {
@@ -6667,7 +6939,7 @@ function setupQuiz(g, root) {
     g2.qText.textContent = quizText(g2);
     g2.opts.innerHTML = '';
     q[1].forEach(function (o, k) {
-      btn(g2.opts, (k + 1) + '. ' + o, 'इस विकल्प को चुनने पर जवाब दर्ज होता है।', function () { quizAnswer(g2, k); });
+      btn(g2.opts, (k + 1) + '. ' + o, 'यहाँ दबाकर खेलें: इस विकल्प को चुनने पर जवाब दर्ज होता है।', function () { quizAnswer(g2, k); });
     });
     g2.stat.textContent = g2.names[g2.idx % g2.n] + ' का जवाब। सवाल ' + (g2.idx + 1) + ' अंक ' + g2.score[g2.idx % g2.n] + '।';
     /* नया सवाल आने पर फ़ोकस पहले विकल्प पर जाता है, ताकि पेज के ऊपर न जाए */
@@ -6688,7 +6960,7 @@ function setupQuiz(g, root) {
       g2.opts.innerHTML = '';
       g2.stat.textContent = 'क्विज़ खत्म।';
       announce(g2, prefix + ' क्विज़ खत्म। ' + quizScores(g2));
-      chime('quiz', [523, 659, 784, 1047], 0.2);
+      winSfx('quiz');
       return;
     }
     announce(g2, prefix + ' ' + quizShow(g2));
@@ -6746,10 +7018,10 @@ var numEng = {
 ENG.numbers = numEng;
 
 function setupNumbers(g, root) {
-  shell(g, root);
+  shell(g, root, 'संख्या का अंदाज़ा');
   g.mode = 'me'; g.level = 'medium'; g.max = 100; g.st = null;
-  selectBox(g.set, 'खेलने का तरीका', [['me', 'मैं अंदाज़ा लगाऊँगा, रोबोट ने संख्या सोची है'], ['robot', 'मैंने संख्या सोची है, रोबोट अंदाज़ा लगाएगा']], 'me', function (v) { g.mode = v; g.reset(); }, 'आप अंदाज़ा लगाएँ या रोबोट। दोनों में आठ प्रयास मिलते हैं।');
-  selectBox(g.set, 'संख्या की सीमा', [['50', '1 से 50 तक'], ['100', '1 से 100 तक'], ['200', '1 से 200 तक']], '100', function (v) { g.max = +v; g.reset(); }, 'संख्या इस सीमा के बीच होगी।');
+  selectBox(g.set, 'खेलने का तरीका', [['me', 'मैं अंदाज़ा लगाऊँगा, रोबोट ने संख्या सोची है'], ['robot', 'मैंने संख्या सोची है, रोबोट अंदाज़ा लगाएगा']], 'me', function (v) { g.mode = v; g.touch(); }, 'आप अंदाज़ा लगाएँ या रोबोट। दोनों में आठ प्रयास मिलते हैं।');
+  selectBox(g.set, 'संख्या की सीमा', [['50', '1 से 50 तक'], ['100', '1 से 100 तक'], ['200', '1 से 200 तक']], '100', function (v) { g.max = +v; g.touch(); }, 'संख्या इस सीमा के बीच होगी।');
   selectBox(g.set, 'रोबोट का स्तर', [['easy', 'आसान (कभी-कभी बेतरतीब अंदाज़ा)'], ['medium', 'मध्यम'], ['hard', 'कठिन']], 'medium', function (v) { g.level = v; }, 'रोबोट का अंदाज़ा कितना सोचकर होगा।');
   g.inputWrap = el('div', 'gm-row');
   var inp = el('input', 'gm-input');
@@ -6758,7 +7030,7 @@ function setupNumbers(g, root) {
   g.input = inp;
   inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); numGuessMe(g); } });
   g.play.appendChild(g.inputWrap);
-  g.sendBtn = btn(g.play, 'अंदाज़ा भेजें', 'लिखी हुई संख्या भेजता है।', function () { numGuessMe(g); });
+  g.sendBtn = btn(g.play, 'अंदाज़ा भेजें', 'यहाँ दबाकर खेलें: लिखी हुई संख्या भेजता है।', function () { numGuessMe(g); });
   g.robotWrap = el('div', 'gm-row');
   g.play.appendChild(g.robotWrap);
   g.robotQ = el('p', 'gm-question', '');
@@ -6791,7 +7063,7 @@ function setupNumbers(g, root) {
     g2.input.value = '';
     var r = numEng.judge(st, v);
     var left = st.maxTries - st.tries;
-    if (r === 'win') { chime('num', [523, 659, 784, 1047]); announce(g2, 'सही! संख्या ' + st.secret + ' थी। आपने ' + st.tries + ' प्रयास में पा ली।'); g2.stat.textContent = 'जीत गए।'; }
+    if (r === 'win') { winSfx('num'); announce(g2, 'सही! संख्या ' + st.secret + ' थी। आपने ' + st.tries + ' प्रयास में पा ली।'); g2.stat.textContent = 'जीत गए।'; }
     else if (r === 'higher') { tone('num', 600, 0.15, 'triangle', 0.2); announce(g2, 'संख्या ' + v + ' से बड़ी है। बचे प्रयास: ' + left + '।'); g2.stat.textContent = 'ऊपर, बड़ी संख्या। बचे प्रयास: ' + left; }
     else if (r === 'lower') { tone('num', 300, 0.15, 'triangle', 0.2); announce(g2, 'संख्या ' + v + ' से छोटी है। बचे प्रयास: ' + left + '।'); g2.stat.textContent = 'नीचे, छोटी संख्या। बचे प्रयास: ' + left; }
     else if (r === 'lose') { buzz('num'); announce(g2, 'प्रयास खत्म। संख्या ' + st.secret + ' थी।'); g2.stat.textContent = 'खेल खत्म।'; }
@@ -6804,9 +7076,9 @@ function setupNumbers(g, root) {
     g2.robotQ.textContent = 'रोबोट का अंदाज़ा: ' + v + '। आपकी संख्या कहाँ है?';
     g2.stat.textContent = 'प्रयास ' + (st.tries + 1) + ' में से ' + numEng.maxTries + '।';
     announce(g2, 'रोबोट का अंदाज़ा ' + v + '। ऊपर, नीचे या सही?');
-    btn(g2.robotWrap, 'ऊपर: मेरी संख्या इससे बड़ी है', 'मेरी संख्या रोबोट के अंदाज़े से बड़ी है।', function () { numAnswer(g2, 'higher'); });
-    btn(g2.robotWrap, 'नीचे: मेरी संख्या इससे छोटी है', 'मेरी संख्या रोबोट के अंदाज़े से छोटी है।', function () { numAnswer(g2, 'lower'); });
-    btn(g2.robotWrap, 'सही: रोबोट ने पकड़ लिया', 'रोबोट का अंदाज़ा सही था।', function () { numAnswer(g2, 'win'); });
+    btn(g2.robotWrap, 'ऊपर: मेरी संख्या इससे बड़ी है', 'यहाँ दबाकर खेलें: मेरी संख्या रोबोट के अंदाज़े से बड़ी है।', function () { numAnswer(g2, 'higher'); });
+    btn(g2.robotWrap, 'नीचे: मेरी संख्या इससे छोटी है', 'यहाँ दबाकर खेलें: मेरी संख्या रोबोट के अंदाज़े से छोटी है।', function () { numAnswer(g2, 'lower'); });
+    btn(g2.robotWrap, 'सही: रोबोट ने पकड़ लिया', 'यहाँ दबाकर खेलें: रोबोट का अंदाज़ा सही था।', function () { numAnswer(g2, 'win'); });
     focusQuiet(firstButton(g2.robotWrap));
   }
   function numAnswer(g2, resp) {
@@ -6814,7 +7086,7 @@ function setupNumbers(g, root) {
     if (!st || st.over) return;
     var guess = st.guess;
     var r = numEng.hear(st, resp);
-    if (r === 'win') { chime('num', [523, 659, 784, 1047]); announce(g2, 'रोबोट ने पकड़ लिया! संख्या ' + guess + ' थी।'); g2.robotWrap.innerHTML = ''; g2.robotQ.textContent = ''; g2.stat.textContent = 'रोबोट जीता।'; return; }
+    if (r === 'win') { winSfx('num'); announce(g2, 'रोबोट ने पकड़ लिया! संख्या ' + guess + ' थी।'); g2.robotWrap.innerHTML = ''; g2.robotQ.textContent = ''; g2.stat.textContent = 'रोबोट जीता।'; return; }
     if (r === 'bad') { buzz('num'); announce(g2, 'आपके जवाब आपस में मेल नहीं खाते। खेल खत्म।'); g2.robotWrap.innerHTML = ''; g2.robotQ.textContent = ''; g2.stat.textContent = 'खेल खत्म।'; return; }
     if (r === 'lose') { buzz('num'); announce(g2, 'रोबोट ' + numEng.maxTries + ' प्रयासों में नहीं पा सका।'); g2.robotWrap.innerHTML = ''; g2.robotQ.textContent = ''; g2.stat.textContent = 'खेल खत्म।'; return; }
     tone('num', resp === 'higher' ? 600 : 300, 0.12, 'triangle', 0.18);
@@ -6826,6 +7098,151 @@ function setupNumbers(g, root) {
 
 /* ---------- सभी खेल जोड़ना, शुरू करना और खोलने-बंद करने का नियम ---------- */
 reg('ludo', 'gm-ludo-body', setupLudo);
+/* =====================================================================
+   7. गाड़ी चलाओ: तीन लेन की सड़क। हर कदम पर बंद लेन बताई जाती है, खुली लेन चुनें।
+   ===================================================================== */
+var CAR_LANES = ['बाईं लेन', 'बीच की लेन', 'दाईं लेन'];
+function carSay(g, text) { g.stat.textContent = text; announce(g, text); }
+function setupCar(g, root) {
+  shell(g, root, 'गाड़ी चलाओ');
+  g.steps = 8; g.level = 'easy';
+  selectBox(g.set, 'कितने कदम चलाने हैं?', [['5', '5 कदम'], ['8', '8 कदम'], ['10', '10 कदम']], '8', function (v) { g.steps = +v; g.touch(); }, 'हर कदम पर गाड़ी आगे बढ़ेगी। हर बार खुली लेन चुननी है।');
+  selectBox(g.set, 'मुश्किल स्तर', [['easy', 'आसान: हर कदम पर एक लेन बंद'], ['hard', 'कठिन: हर कदम पर दो लेन बंद']], 'easy', function (v) { g.level = v; g.touch(); }, 'कठिन स्तर में दो लेन बंद होती हैं, एक लेन खुली रहती है।');
+  g.reset = function () {
+    stopGame(g);
+    g.play.innerHTML = '';
+    g.st = { step: 0, over: false, blocked: [] };
+    engineStart('car');
+    horn('car', 0.1, 0.35);
+    carSay(g, 'गाड़ी चलाओ शुरू। ' + g.steps + ' कदम चलाने हैं। हर कदम पर बंद लेन बताई जाएगी, खुली लेन चुनें।');
+    later(g, 2000, function () { carNext(g); });
+  };
+  g.resumeSound = function () {
+    if (!g.st || g.st.over) return;
+    engineStart('car');
+    engineRev('car', g.st.step / g.steps);
+  };
+}
+function carNext(g) {
+  var st = g.st;
+  if (!st || st.over) return;
+  g.play.innerHTML = '';
+  if (st.step >= g.steps) {
+    st.over = true;
+    stopLoops('car');
+    winSfx('car');
+    carSay(g, 'सफ़र पूरा! ' + g.steps + ' कदम सही चलाए। बहुत बढ़िया। फिर खेलने के लिए "नया खेल शुरू करें" दबाएँ।');
+    return;
+  }
+  var count = g.level === 'hard' ? 2 : 1;
+  var blocked = [];
+  while (blocked.length < count) {
+    var r = Math.floor(Math.random() * 3);
+    if (blocked.indexOf(r) < 0) blocked.push(r);
+  }
+  st.blocked = blocked;
+  var names = blocked.map(function (b) { return CAR_LANES[b]; }).join(' और ');
+  carSay(g, 'कदम ' + (st.step + 1) + ': ' + names + ' में रुकावट है। कौन-सी खुली लेन चुनें?');
+  CAR_LANES.forEach(function (name, i) {
+    btn(g.play, name, 'यहाँ दबाकर खेलें: गाड़ी इस लेन में ले जाएँ।', function () { carMove(g, i); });
+  });
+}
+function carMove(g, i) {
+  var st = g.st;
+  if (!st || st.over) return;
+  g.play.innerHTML = '';
+  if (st.blocked.indexOf(i) >= 0) {
+    st.over = true;
+    stopLoops('car');
+    crash('car');
+    carSay(g, CAR_LANES[i] + ' में रुकावट थी और टक्कर हो गई। आपने ' + st.step + ' कदम सही चलाए। फिर से खेलने के लिए "नया खेल शुरू करें" दबाएँ।');
+    return;
+  }
+  st.step++;
+  puff('car', 1200, 0.7, 0.6, 0.14, 0);
+  engineRev('car', st.step / g.steps);
+  carSay(g, CAR_LANES[i] + ' से गाड़ी आगे निकली। ' + st.step + ' कदम पूरे।');
+  later(g, 1000, function () { carNext(g); });
+}
+
+/* =====================================================================
+   8. रेलगाड़ी: मंज़िल सुनें, सही स्टेशन वाली पटरी चुनें
+   ===================================================================== */
+var TRAIN_CITIES = ['दिल्ली', 'जयपुर', 'लखनऊ', 'पटना', 'भोपाल', 'शिमला', 'आगरा', 'देहरादून'];
+function trainSay(g, text) { g.stat.textContent = text; announce(g, text); }
+function setupTrain(g, root) {
+  shell(g, root, 'रेलगाड़ी');
+  g.rounds = 5; g.tracks = 2;
+  selectBox(g.set, 'कितनी रेलगाड़ियाँ आएँगी?', [['5', '5 रेलगाड़ियाँ'], ['8', '8 रेलगाड़ियाँ']], '5', function (v) { g.rounds = +v; g.touch(); }, 'हर रेलगाड़ी की मंज़िल बोली जाएगी। सही पटरी चुननी है।');
+  selectBox(g.set, 'कितनी पटरियाँ होंगी?', [['2', '2 पटरियाँ'], ['3', '3 पटरियाँ']], '2', function (v) { g.tracks = +v; g.touch(); }, 'हर पटरी के साथ एक स्टेशन का नाम होगा।');
+  g.reset = function () {
+    stopGame(g);
+    g.play.innerHTML = '';
+    g.st = { round: 0, right: 0, over: false, correct: -1, stations: [], dest: '' };
+    g.murmurAt = 0;
+    trainMurmur(g);
+    trainSay(g, 'रेलगाड़ी का खेल शुरू। ' + g.rounds + ' रेलगाड़ियाँ आएँगी। मंज़िल सुनकर सही पटरी चुनें।');
+    later(g, 2000, function () { trainNext(g); });
+  };
+  g.resumeSound = function () {
+    if (!g.st || g.st.over) return;
+    g.murmurAt = 0;
+    trainMurmur(g);
+  };
+}
+/* भीड़ की गुनगुनाहट खेल चलने तक बनी रहे: हर मिनट के बाद फिर से शुरू */
+function trainMurmur(g) {
+  if (!g.murmurAt || Date.now() - g.murmurAt >= 60000) { g.murmurAt = Date.now(); murmur('train', 60); }
+}
+function trainNext(g) {
+  var st = g.st;
+  if (!st || st.over) return;
+  g.play.innerHTML = '';
+  if (st.round >= g.rounds) {
+    st.over = true;
+    stopLoops('train');
+    winSfx('train');
+    trainSay(g, 'खेल खत्म। ' + g.rounds + ' में से ' + st.right + ' रेलगाड़ियाँ सही स्टेशन पर पहुँचीं।');
+    return;
+  }
+  var pool = TRAIN_CITIES.slice(), stations = [];
+  while (stations.length < g.tracks) {
+    var k = Math.floor(Math.random() * pool.length);
+    stations.push(pool.splice(k, 1)[0]);
+  }
+  st.stations = stations;
+  st.correct = Math.floor(Math.random() * g.tracks);
+  st.dest = stations[st.correct];
+  st.round++;
+  trainMurmur(g);
+  /* रेलगाड़ी आती है: सीटी, छुक-छुक की ताल और फिर स्टेशन की घंटी */
+  trainWhistle('train', 0);
+  for (var pf = 0; pf < 8; pf++) puff('train', 1100, 1.2, 0.16, pf % 2 === 0 ? 0.4 : 0.26, 0.7 + pf * 0.42);
+  bell('train', 4.1);
+  var list = stations.map(function (s, i) { return 'पटरी ' + (i + 1) + ' पर ' + s; }).join(', ');
+  trainSay(g, 'रेलगाड़ी ' + st.round + ' की मंज़िल ' + st.dest + ' है। ' + list + '। कौन-सी पटरी चुनें?');
+  stations.forEach(function (s, i) {
+    btn(g.play, 'पटरी ' + (i + 1) + ': ' + s, 'यहाँ दबाकर खेलें: रेलगाड़ी इस पटरी पर भेजें।', function () { trainPick(g, i); });
+  });
+}
+function trainPick(g, i) {
+  var st = g.st;
+  if (!st || st.over) return;
+  g.play.innerHTML = '';
+  brake('train', 0);
+  if (i === st.correct) {
+    st.right++;
+    chime('train', [660, 880], 0.08);
+    bell('train', 1.1);
+    trainSay(g, 'सही पटरी! रेलगाड़ी ' + st.dest + ' पहुँच गई।');
+  } else {
+    tone('train', 170, 0.45, 'sawtooth', 0.18, 1.0);
+    trainSay(g, 'गलत पटरी। यह रेलगाड़ी ' + st.stations[i] + ' पहुँची, मंज़िल ' + st.dest + ' थी।');
+  }
+  later(g, 1400, function () { trainNext(g); });
+}
+reg('car', 'gm-car-body', setupCar);
+reg('train', 'gm-train-body', setupTrain);
 reg('chess', 'gm-chess-body', setupChess);
 reg('mem', 'gm-memory-body', setupMemory);
 reg('antak', 'gm-antak-body', setupAntakshari);
@@ -6840,8 +7257,7 @@ window.awazGmSync = function (bodyId, open) {
   Object.keys(GAMES).forEach(function (k) {
     var g = GAMES[k];
     if (g.body !== bodyId) return;
-    if (!open) { stopGame(g); g.started = false; g.st = null; return; }
-    if (!g.started) { g.started = true; g.reset(); }
+    if (!open) { stopGame(g); g.started = false; g.st = null; if (g.gate) { g.gate.hidden = false; g.run.hidden = true; } return; }
     Object.keys(GAMES).forEach(function (j) {
       if (j === k) return;
       var ob = document.getElementById(GAMES[j].body);
