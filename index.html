@@ -5729,7 +5729,16 @@ function announce(g, text) {
 }
 function later(g, ms, fn) {
   var gen = g.gen;
-  g.timers.push(setTimeout(function () { if (g.gen === gen) fn(); }, ms));
+  g.timers.push(setTimeout(function () { if (g.gen === gen) { fn(); keepFocus(g.root); } }, ms));
+}
+/* फ़ोकस खेल के अंदर रहे: बटन हटने या बंद होने पर फ़ोकस खेल की स्थिति वाली लाइन पर जाता है, पेज के ऊपर नहीं */
+function keepFocus(root) {
+  if (!root || !root.offsetParent) return;
+  var a = document.activeElement;
+  /* a control that was just disabled still counts as focused until the next render, so treat it as lost */
+  if (a && a !== document.body && !a.disabled) return;
+  var st = root.querySelector('.gm-status');
+  if (st) focusQuiet(st);
 }
 function stopGame(g) {
   g.gen++;
@@ -5755,7 +5764,11 @@ function btn(parent, label, helpText, fn) {
   b.type = 'button';
   parent.appendChild(b);
   if (helpText) b.setAttribute('aria-describedby', helpSpan(parent, helpText));
-  b.addEventListener('click', fn);
+  b.addEventListener('click', function (e) {
+    fn(e);
+    var root = parent.closest ? parent.closest('[data-game]') : null;
+    keepFocus(root);
+  });
   return b;
 }
 function field(parent, label, control, helpText) {
@@ -5799,21 +5812,29 @@ function soundBox(parent, key) {
 }
 function shell(g, root) {
   root.innerHTML = '';
+  root.setAttribute('data-game', g.key);
+  g.root = root;
   soundBox(root, g.key);
   var row = el('div', 'gm-row');
   root.appendChild(row);
   btn(row, 'आखिरी बात फिर से सुनाएँ', 'पिछली बात फिर से बोलकर सुनाता है।', function () { speakNow(lastSaid[g.key] || 'अभी कोई बात नहीं हुई।'); });
   btn(row, 'नया खेल शुरू करें', 'मौजूदा खेल छोड़कर नया खेल शुरू करता है।', function () { g.reset(); });
-  g.set = el('div', 'gm-settings');
-  root.appendChild(g.set);
   var live = el('p', 'gm-live', '');
   live.id = 'gm-live-' + g.key;
   live.setAttribute('aria-live', 'polite');
   root.appendChild(live);
   g.stat = el('p', 'gm-status', '');
+  g.stat.tabIndex = -1;
   root.appendChild(g.stat);
   g.play = el('div', 'gm-play');
   root.appendChild(g.play);
+  /* सेटिंग खेल के नीचे रहती है: खेल शुरू होने पर पहले खेल की स्थिति और बोर्ड आते हैं */
+  var head = el('h3', 'gm-sethead', 'खेल की सेटिंग');
+  root.appendChild(head);
+  g.set = el('div', 'gm-settings');
+  g.set.setAttribute('role', 'group');
+  g.set.setAttribute('aria-label', 'खेल की सेटिंग');
+  root.appendChild(g.set);
 }
 function reg(key, body, setup) {
   GAMES[key] = { key: key, body: body, gen: 0, timers: [], setup: setup, reset: function () {}, started: false, st: null };
@@ -6649,6 +6670,9 @@ function setupQuiz(g, root) {
       btn(g2.opts, (k + 1) + '. ' + o, 'इस विकल्प को चुनने पर जवाब दर्ज होता है।', function () { quizAnswer(g2, k); });
     });
     g2.stat.textContent = g2.names[g2.idx % g2.n] + ' का जवाब। सवाल ' + (g2.idx + 1) + ' अंक ' + g2.score[g2.idx % g2.n] + '।';
+    /* नया सवाल आने पर फ़ोकस पहले विकल्प पर जाता है, ताकि पेज के ऊपर न जाए */
+    var first = firstButton(g2.opts);
+    if (first) focusQuiet(first);
     return quizText(g2);
   }
   function quizAnswer(g2, k) {
