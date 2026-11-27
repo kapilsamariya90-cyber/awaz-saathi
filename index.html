@@ -301,6 +301,7 @@ html.hc body { background: #fff; color: #000; }
       <li><strong>कैमरे से मदद:</strong> रंग पहचानना और बोलने वाला कैमरा।</li>
       <li><strong>रेडियो:</strong> कुछ रेडियो स्टेशन इंटरनेट से सुनना। स्टेशन न चले तो 8 सेकंड में अगला स्टेशन अपने-आप आज़माया जाएगा। इंटरनेट न हो तो ऐप बताएगा।</li>
       <li><strong>मौसम:</strong> आपकी अपनी जगह का मौसम, या देश और शहर चुनकर किसी भी जगह का मौसम, बोलकर सुनना और लिखा हुआ देखना। इसके लिए इंटरनेट चाहिए। "मेरी जगह" के लिए फ़ोन की जगह की अनुमति माँगी जाएगी।</li>
+      <li><strong>मेरा YouTube चैनल:</strong> अपने YouTube चैनल को नए टैब में खोलना। इसके लिए चैनल का लिंक पहले एक बार डालना होगा।</li>
       <li><strong>बुक रीडर:</strong> .txt या PDF फ़ाइल, किताब के पन्ने की फ़ोटो या चिपकाया पाठ फ़ोन की आवाज़ में अनुच्छेद-दर-अनुच्छेद पढ़ना। पढ़ने की गति, हिंदी या अंग्रेज़ी, और जहाँ रुके थे वहीं से आगे।</li>
       <li><strong>टेक्स्ट से इमेज और PDF:</strong> लिखा पाठ फ़ोन में ही PNG तस्वीर या PDF फ़ाइल बनना। PDF का पाठ तस्वीर होता है, इसलिए उसे चुना या खोजा नहीं जा सकता।</li>
       <li><strong>स्क्रीन रिकॉर्डर:</strong> जिस फ़ोन में अनुमति हो, उसकी स्क्रीन रिकॉर्ड करना, आवाज़ के साथ, और फ़ाइल सेव या शेयर करना। जहाँ यह सुविधा न हो, वहाँ फ़ोन का अपना रिकॉर्डर चलाने के कदम बताए जाएँगे।</li>
@@ -707,6 +708,31 @@ html.hc body { background: #fff; color: #000; }
   </section>
 </div>
 
+<!-- ===== मेरा YouTube चैनल ===== -->
+<div id="panel-yt" class="panel">
+  <h2 id="h-yt" class="panel-title" tabindex="-1">मेरा YouTube चैनल</h2>
+  <p class="lead">यहाँ अपने YouTube चैनल को नए टैब में खोल सकते हैं। चैनल का नाम "Career &amp; Info" है। इसमें हिंदी में करियर, जानकारी और डरावनी कहानियाँ हैं, जैसे वीडियो "रात की आख़िरी बस"।</p>
+  <p class="note"><strong>ज़रूरी बात:</strong> इस चैनल का सही लिंक अभी पक्का नहीं हो पाया है। इसलिए ऐप में कोई लिंक पहले से नहीं डाला गया है। चैनल का लिंक नीचे डालकर सहेजें।</p>
+
+  <h3 id="h-yt-link" class="sec-title" tabindex="-1">चैनल का लिंक</h3>
+  <label for="yt-link">चैनल का लिंक डालें</label>
+  <input id="yt-link" type="url" inputmode="url" autocomplete="off" aria-describedby="hx-yt-link" placeholder="https://www.youtube.com/...">
+  <p id="hx-yt-link" class="hint">चैनल खोलकर उसका पूरा पता कॉपी करें और यहाँ चिपकाएँ। लिंक youtube.com या youtu.be से शुरू होना चाहिए। लिंक फ़ोन में ही सहेजा जाएगा।</p>
+  <button id="yt-save" type="button" class="btn primary" aria-describedby="hx-yt-save">लिंक सहेजो</button>
+  <p id="hx-yt-save" class="hint">इसे दबाने पर लिखा लिंक जाँचा जाएगा और सहेजा जाएगा। इसके लिए डबल टैप करें।</p>
+  <p id="yt-msg" class="hint" role="status" aria-live="polite"></p>
+
+  <h3 id="h-yt-open" class="sec-title" tabindex="-1">चैनल खोलो</h3>
+  <a id="yt-open" class="btn primary" target="_blank" rel="noopener" aria-describedby="hx-yt-open">मेरा चैनल खोलो</a>
+  <p id="hx-yt-open" class="hint">इसे खोलने के लिए डबल टैप करें। चैनल नए टैब में खुलेगा। पहले ऊपर लिंक सहेजना ज़रूरी है।</p>
+  <p class="note">चैनल खोलने और वीडियो देखने के लिए इंटरनेट चाहिए।</p>
+
+  <div id="yt-embed-wrap" hidden>
+    <h3 id="h-yt-videos" class="sec-title" tabindex="-1">चैनल के नए वीडियो</h3>
+    <iframe id="yt-frame" title="मेरे YouTube चैनल के नए वीडियो" width="100%" height="315" loading="lazy" allowfullscreen></iframe>
+    <p class="note">नए वीडियो देखने के लिए इंटरनेट चाहिए। वीडियो YouTube से आते हैं।</p>
+  </div>
+</div>
 <!-- ===== मौसम ===== -->
 <div id="panel-weather" class="panel">
   <h2 id="h-weather" class="panel-title" tabindex="-1">मौसम</h2>
@@ -1292,6 +1318,7 @@ html.hc body { background: #fff; color: #000; }
     <p id="sr-welcome" class="note" lang="hi">गुनू स्क्रीन रीडर में आपका स्वागत है। आगे बढ़ने के लिए दाईं ओर स्वाइप करें।</p>
     <p id="hx-sr-welcome" class="hint">गुनू चालू करने पर, और ऐप खुलने पर जब गुनू चालू हो, यही स्वागत संदेश फ़ोन की आवाज़ में एक बार बोला जाता है। गुनू बंद करने पर यह बीच में रुक जाता है।</p>
     <div class="sr-info">
+      <p id="tts-alert" class="hint" aria-live="assertive"></p>
       <button id="sr-info-what-btn" type="button" class="btn" aria-expanded="false" aria-controls="sr-info-what" aria-describedby="hx-sr-info-what" data-label-open="गुनू क्या है दिखाएँ" data-label-close="गुनू क्या है छिपाएँ">गुनू क्या है</button>
       <p id="hx-sr-info-what" class="hint">इसे खोलने के लिए डबल टैप करें। दबाने पर बताया जाएगा कि गुनू क्या है।</p>
       <div id="sr-info-what" data-collapsible hidden>
@@ -1301,6 +1328,8 @@ html.hc body { background: #fff; color: #000; }
         </div>
         <button id="sr-info-what-listen" type="button" class="btn" aria-describedby="hx-sr-info-what-listen" data-listen="sr-info-what-text">सुनो</button>
         <p id="hx-sr-info-what-listen" class="hint">इसे सुनने के लिए डबल टैप करें। दबाने पर यह हिस्सा चुनी आवाज़ में बोलकर सुनाया जाएगा।</p>
+        <button id="sr-info-what-stop" type="button" class="btn" aria-describedby="hx-sr-info-what-stop" data-stop>रोको</button>
+        <p id="hx-sr-info-what-stop" class="hint">बोलना तुरंत रोकने के लिए डबल टैप करें।</p>
       </div>
     </div>
     <div class="sr-info">
@@ -1318,6 +1347,8 @@ html.hc body { background: #fff; color: #000; }
         </div>
         <button id="sr-info-do-listen" type="button" class="btn" aria-describedby="hx-sr-info-do-listen" data-listen="sr-info-do-text">सुनो</button>
         <p id="hx-sr-info-do-listen" class="hint">इसे सुनने के लिए डबल टैप करें। दबाने पर यह हिस्सा चुनी आवाज़ में बोलकर सुनाया जाएगा।</p>
+        <button id="sr-info-do-stop" type="button" class="btn" aria-describedby="hx-sr-info-do-stop" data-stop>रोको</button>
+        <p id="hx-sr-info-do-stop" class="hint">बोलना तुरंत रोकने के लिए डबल टैप करें।</p>
       </div>
     </div>
     <div class="sr-info">
@@ -1335,6 +1366,8 @@ html.hc body { background: #fff; color: #000; }
         </div>
         <button id="sr-info-how-listen" type="button" class="btn" aria-describedby="hx-sr-info-how-listen" data-listen="sr-info-how-text">सुनो</button>
         <p id="hx-sr-info-how-listen" class="hint">इसे सुनने के लिए डबल टैप करें। दबाने पर यह हिस्सा चुनी आवाज़ में बोलकर सुनाया जाएगा।</p>
+        <button id="sr-info-how-stop" type="button" class="btn" aria-describedby="hx-sr-info-how-stop" data-stop>रोको</button>
+        <p id="hx-sr-info-how-stop" class="hint">बोलना तुरंत रोकने के लिए डबल टैप करें।</p>
       </div>
     </div>
     <div class="sr-info">
@@ -1353,6 +1386,8 @@ html.hc body { background: #fff; color: #000; }
         </div>
         <button id="sr-info-settings-listen" type="button" class="btn" aria-describedby="hx-sr-info-settings-listen" data-listen="sr-info-settings-text">सुनो</button>
         <p id="hx-sr-info-settings-listen" class="hint">इसे सुनने के लिए डबल टैप करें। दबाने पर यह हिस्सा चुनी आवाज़ में बोलकर सुनाया जाएगा।</p>
+        <button id="sr-info-settings-stop" type="button" class="btn" aria-describedby="hx-sr-info-settings-stop" data-stop>रोको</button>
+        <p id="hx-sr-info-settings-stop" class="hint">बोलना तुरंत रोकने के लिए डबल टैप करें।</p>
       </div>
     </div>
     <label class="switch-row"><input id="set-sr-on" aria-describedby="hx-sr-on" type="checkbox" role="switch" checked> <span>गुनू चालू करें</span></label>
@@ -2641,29 +2676,19 @@ function loadVoices() {
 }
 
 function speakChunk(run, i) {
-  if (run !== speechRun) return;
-  if (i >= speechChunks.length) {
+  var lang = $('#speak-lang').value;
+  var rate = +$('#speak-rate').value;
+  var items = [];
+  for (var j = i; j < speechChunks.length; j++) {
+    items.push({ text: speechChunks[j], v: speechVoice, kind: '', idx: j, lang: lang, rate: rate, vol: speechVol });
+  }
+  speakQueue(items, function (ok) {
+    if (run !== speechRun) return;
     speechBusy = false;
     speechResume = 0;
     speechKey = '';
-    spStatus('पूरा पाठ सुना दिया गया।');
-    return;
-  }
-  speechIdx = i;
-  var u = new SpeechSynthesisUtterance(speechChunks[i]);
-  u.lang = $('#speak-lang').value;
-  if (speechVoice) u.voice = speechVoice;
-  u.rate = +$('#speak-rate').value;
-  u.volume = speechVol;
-  u.onend = function () { if (run === speechRun) speakChunk(run, i + 1); };
-  u.onerror = function (e) {
-    if (run !== speechRun) return;
-    var code = e && e.error;
-    if (code === 'interrupted' || code === 'canceled') return;
-    speechBusy = false;
-    spStatus('आवाज़ में दिक्कत आई। बोलकर सुनाएँ दबाकर फिर से कोशिश करें।');
-  };
-  window.speechSynthesis.speak(u);
+    spStatus(ok ? 'पूरा पाठ सुना दिया गया।' : 'आवाज़ में दिक्कत आई। बोलकर सुनाएँ दबाकर फिर से कोशिश करें।');
+  }, function (idx) { if (run === speechRun) speechIdx = idx; });
 }
 
 function startSpeech(fromStart) {
@@ -3035,6 +3060,13 @@ $$('button[data-listen]').forEach(function (b) {
     say('यह हिस्सा सुनाया जा रहा है।');
   });
 });
+/* "रोको" बटन: सारी बोली तुरंत रुकती है */
+$$('button[data-stop]').forEach(function (b) {
+  b.addEventListener('click', function () {
+    speechCancelAll();
+    say('बोलना रोक दिया गया है।');
+  });
+});
 $('#set-announce').addEventListener('change', function () {
   S.announce = this.checked;
   applySettings();
@@ -3128,7 +3160,7 @@ function srVoiceObj() {
     speechVoices.forEach(function (v) { if (!found && srKey(v) === pref) found = v; });
   }
   if (found) return found;
-  return voiceFor('hi-IN') || voiceFor('en-IN') || null;
+  return hiGoogleVoice() || voiceFor('hi-IN') || voiceFor('en-IN') || null;
 }
 function srOption(val, text) {
   var o = document.createElement('option');
@@ -3229,9 +3261,6 @@ function srUtt(text, v, kind) {
   u.volume = (typeof S.srVol === 'number') ? S.srVol : 1;
   return u;
 }
-function speakOne(text, v, kind) {
-  window.speechSynthesis.speak(srUtt(text, v, kind));
-}
 /* गुनू का पाठ टुकड़ों में: चुनी आवाज़ से, या "मिक्स" में लिपि के हिसाब से */
 function srPieces(s) {
   var out = [];
@@ -3244,14 +3273,116 @@ function srPieces(s) {
   });
   return out;
 }
+/* ---------- एक ही बोलने का रास्ता ----------
+   सुनो, पढ़ें, परीक्षण, स्वागत संदेश और स्पीकर-सफ़ाई की सारी आवाज़ यहीं से जाती है */
+var ttsRun = 0;
+var TTS_FAIL_MSG = 'आवाज़ नहीं चली। फ़ोन की सेटिंग में टेक्स्ट-टू-स्पीच में Google की आवाज़ चुनें और ऐप दोबारा खोलें';
+function ttsAlert() {
+  var el = document.getElementById('tts-alert');
+  if (el) { el.textContent = ''; setTimeout(function () { el.textContent = TTS_FAIL_MSG; }, 60); }
+  say(TTS_FAIL_MSG);
+}
+/* हिंदी की आवाज़ में पहले Google वाली, फिर कोई भी हिंदी */
+function hiGoogleVoice() {
+  var out = null;
+  speechVoices.forEach(function (v) {
+    if (!out && /^hi/i.test(v.lang || '') && /google/i.test(v.name || '')) out = v;
+  });
+  return out;
+}
+/* फ़ोन की आवाज़ों की सूची आने तक, ज़्यादा से ज़्यादा एक सेकंड रुकते हैं */
+function ttsWaitVoices(cb) {
+  var have = [];
+  try { have = window.speechSynthesis.getVoices() || []; } catch (e) { have = []; }
+  if (have.length) { speechVoices = have; cb(); return; }
+  var fired = false;
+  var timer = 0;
+  function go() {
+    if (fired) return;
+    fired = true;
+    clearTimeout(timer);
+    try { window.speechSynthesis.removeEventListener('voiceschanged', go); } catch (e) { /* ignore */ }
+    try { speechVoices = window.speechSynthesis.getVoices() || speechVoices; } catch (e) { /* ignore */ }
+    cb();
+  }
+  timer = setTimeout(go, 1000);
+  try { window.speechSynthesis.addEventListener('voiceschanged', go); } catch (e) { /* ignore */ }
+}
+function ttsUtt(it) {
+  var u = srUtt(it.text, it.v, it.kind);
+  if (it.lang) u.lang = it.lang;
+  if (typeof it.rate === 'number') u.rate = it.rate;
+  if (typeof it.vol === 'number') u.volume = it.vol;
+  return u;
+}
+/* टुकड़ों को एक-एक करके बोलता है: पहले रोकना, 80 ms बाद resume करके बोलना.
+   हर टुकड़े पर एक बार फिर कोशिश, फिर भी न चले तो चेतावनी. */
+function speakQueue(items, done, onItem) {
+  ttsRun++;
+  var run = ttsRun;
+  var queue = [];
+  try { window.speechSynthesis.cancel(); } catch (e) { /* ignore */ }
+  function finish(ok) {
+    if (run !== ttsRun) return;
+    if (!ok) ttsAlert();
+    if (done) done(ok);
+  }
+  function next() {
+    if (run !== ttsRun) return;
+    var it = queue.shift();
+    if (!it) { finish(true); return; }
+    if (onItem) onItem(it.idx);
+    var u = ttsUtt(it);
+    var settled = false;
+    var watch = 0;
+    function settle() { settled = true; clearTimeout(watch); }
+    u.onend = function () {
+      if (run !== ttsRun || settled) return;
+      settle();
+      next();
+    };
+    u.onerror = function (e) {
+      if (run !== ttsRun || settled) return;
+      var code = e && e.error;
+      if (code === 'interrupted' || code === 'canceled') return;
+      settle();
+      if (!it.retried) { it.retried = true; it.v = null; queue.unshift(it); next(); return; }
+      finish(false);
+    };
+    /* फ़ोन कभी खबर न दे तो अटकें नहीं: समय पूरा होने पर अगले टुकड़े पर जाएँ */
+    watch = setTimeout(function () {
+      if (run !== ttsRun || settled) return;
+      settle();
+      try { window.speechSynthesis.cancel(); } catch (e) { /* ignore */ }
+      next();
+    }, 20000 + it.text.length * 200);
+    try { window.speechSynthesis.speak(u); } catch (e) { settle(); finish(false); }
+  }
+  setTimeout(function () {
+    if (run !== ttsRun) return;
+    ttsWaitVoices(function () {
+      if (run !== ttsRun) return;
+      queue = (typeof items === 'function') ? items() : items.slice();
+      try { window.speechSynthesis.resume(); } catch (e) { /* ignore */ }
+      next();
+    });
+  }, 80);
+}
+function speakText(text, done) {
+  var s = String(text || '').trim();
+  if (!speechOK) { if (done) done(false); return; }
+  if (!s) { if (done) done(true); return; }
+  speakQueue(function () {
+    var out = [];
+    chunkText(s).forEach(function (c) { srPieces(c).forEach(function (p) { out.push(p); }); });
+    return out;
+  }, done);
+}
 function speakNow(text) {
   if (!speechOK || !text) return;
   /* स्वागत संदेश चल रहा हो तो बीच में नहीं रोकते: बाद में बोलने के लिए रखते हैं */
   if (welcomeActive) { welcomePending = String(text); return; }
-  try {
-    window.speechSynthesis.cancel();
-    srPieces(String(text)).forEach(function (p) { speakOne(p.text, p.v, p.kind); });
-  } catch (e) { /* फ़ोन बोल न सके तो चुप रहें */ }
+  speakText(text);
 }
 
 /* ---------- गुनू का स्वागत संदेश ---------- */
@@ -3263,6 +3394,7 @@ var welcomePending = '';
 /* हर रोक या बंद करने पर सारी बोली रुकती है, स्वागत संदेश भी */
 function speechCancelAll() {
   welcomeRun++;
+  ttsRun++;
   welcomeActive = false;
   welcomePending = '';
   clearTimeout(welcomeTimer);
@@ -3282,17 +3414,9 @@ function speakWelcome() {
   speechCancelAll();
   var run = welcomeRun;
   welcomeActive = true;
-  try {
-    var parts = srPieces(WELCOME_TEXT);
-    parts.forEach(function (p, i) {
-      var u = srUtt(p.text, p.v, p.kind);
-      u.onend = function () { if (i === parts.length - 1) welcomeDone(run); };
-      u.onerror = function () { welcomeDone(run); };
-      window.speechSynthesis.speak(u);
-    });
-    /* सुरक्षा के लिए: अगर फ़ोन कोई खबर न दे तो भी रुकावट न रहे */
-    welcomeTimer = setTimeout(function () { welcomeDone(run); }, 90000);
-  } catch (e) { welcomeDone(run); }
+  /* सुरक्षा के लिए: अगर फ़ोन कोई खबर न दे तो भी रुकावट न रहे */
+  welcomeTimer = setTimeout(function () { welcomeDone(run); }, 90000);
+  speakText(WELCOME_TEXT, function () { welcomeDone(run); });
 }
 function oneLine(t) { return (t || '').replace(/\s+/g, ' ').trim(); }
 function nameOf(el) {
@@ -4027,25 +4151,13 @@ function bookSpeakSent(run) {
     bookSpeakSent(run);
     return;
   }
-  var u = new SpeechSynthesisUtterance(sents[bookSi]);
-  u.lang = $('#book-lang').value;
-  var v = voiceFor(u.lang);
-  if (v) u.voice = v;
-  u.rate = +$('#book-rate').value;
-  u.volume = (typeof speechVol === 'number') ? speechVol : 1;
-  u.onend = function () {
+  var bv = $('#book-lang').value;
+  speakQueue([{ text: sents[bookSi], v: voiceFor(bv), kind: '', lang: bv, rate: +$('#book-rate').value, vol: (typeof speechVol === 'number') ? speechVol : 1 }], function (ok) {
     if (run !== bookRun) return;
+    if (!ok) { bookPlaying = false; bookStatus('आवाज़ में दिक्कत आई। "चलाओ / प्ले" दबाकर फिर कोशिश करें।'); return; }
     bookSi++;
     bookSpeakSent(run);
-  };
-  u.onerror = function (e) {
-    if (run !== bookRun) return;
-    var code = e && e.error;
-    if (code === 'interrupted' || code === 'canceled') return;
-    bookPlaying = false;
-    bookStatus('आवाज़ में दिक्कत आई। "चलाओ / प्ले" दबाकर फिर कोशिश करें।');
-  };
-  window.speechSynthesis.speak(u);
+  });
 }
 function bookStart() {
   if (!bookVoiceOK()) return;
@@ -4373,6 +4485,7 @@ var COMMANDS = [
   { w: ['सेटिंग'], run: function () { goTo('h-settings', 'सेटिंग खुली है।'); } },
   { w: ['होम', 'घर'], run: function () { goTo('h-home', 'होम पेज खुला है।'); } },
   { w: ['रेडियो'], run: function () { goTo('h-radio', 'रेडियो वाला हिस्सा खुला है।'); } },
+  { w: ['मेरा यूट्यूब', 'यूट्यूब चैनल'], run: function () { goTo('h-yt', 'मेरा YouTube चैनल वाला हिस्सा खुला है।'); } },
   { w: ['मौसम'], run: function () { goTo('h-weather', 'मौसम वाला हिस्सा खुला है। अपनी जगह का मौसम के लिए "मेरी जगह का मौसम" दबाएँ, या देश चुनकर जगह का नाम लिखें।'); } },
   { w: ['पढ़कर', 'सुनाओ', 'सुनाएँ', 'पढ़ो', 'पढ़ें'], run: function () { goTo('h-speak', 'बोलकर सुनाने वाला हिस्सा खुला है। लिखा पाठ यहाँ चिपकाएँ।'); } },
   { w: ['रुको', 'रोको', 'बंद करो', 'चुप'], run: function () { stopAllCams(); notify('#mic-state', 'सब रोक दिया गया।'); } },
@@ -5643,6 +5756,67 @@ fillNameFields();
 showNameNow();
 showNamePanelIfFirst();
 startGreetSpeech();
+
+/* ---------- मेरा YouTube चैनल ---------- */
+var YT_KEY = 'awaz-yt-link';
+/* लिंक जाँचना: केवल youtube.com या youtu.be के https/http लिंक */
+function ytCheck(raw) {
+  var s = String(raw || '').trim();
+  if (!s) return null;
+  var u = null;
+  try { u = new URL(s); } catch (e) { return null; }
+  if (u.protocol !== 'https:' && u.protocol !== 'http:') return null;
+  var h = u.hostname.toLowerCase();
+  if (h === 'youtu.be' || h === 'youtube.com' || h === 'www.youtube.com' || h === 'm.youtube.com') return u;
+  return null;
+}
+function ytShow(u) {
+  var open = $('#yt-open');
+  var fr = $('#yt-frame');
+  var wrap = $('#yt-embed-wrap');
+  if (u) open.setAttribute('href', u.href); else open.removeAttribute('href');
+  /* नए वीडियो की झलक केवल उसी लिंक पर, जिसमें सही /channel/UC… पता हो */
+  var m = u ? /^\/channel\/(UC[A-Za-z0-9_-]{22})(\/|$)/.exec(u.pathname) : null;
+  if (m) {
+    fr.setAttribute('src', 'https://www.youtube-nocookie.com/embed/videoseries?list=UU' + m[1].slice(2));
+    wrap.hidden = false;
+  } else {
+    fr.removeAttribute('src');
+    wrap.hidden = true;
+  }
+}
+function ytSave() {
+  var raw = $('#yt-link').value;
+  var msg = $('#yt-msg');
+  if (!String(raw).trim()) {
+    try { localStorage.removeItem(YT_KEY); } catch (e) { /* ignore */ }
+    ytShow(null);
+    msg.textContent = 'चैनल का लिंक हटा दिया गया है।';
+    return;
+  }
+  var u = ytCheck(raw);
+  if (!u) {
+    msg.textContent = 'यह YouTube का लिंक नहीं लगता। लिंक youtube.com या youtu.be से शुरू होना चाहिए।';
+    $('#yt-link').focus();
+    return;
+  }
+  try { localStorage.setItem(YT_KEY, u.href); } catch (e) { /* फ़ोन में सहेज न सकें तो भी इस बार चलेगा */ }
+  $('#yt-link').value = u.href;
+  ytShow(u);
+  msg.textContent = 'चैनल का लिंक सहेज लिया गया है। अब "मेरा चैनल खोलो" दबा सकते हैं।';
+}
+$('#yt-save').addEventListener('click', ytSave);
+$('#yt-open').addEventListener('click', function (e) {
+  if (!this.getAttribute('href')) { e.preventDefault(); say('पहले ऊपर चैनल का लिंक डालकर सहेजें।'); return; }
+  say('चैनल नए टैब में खुल रहा है।');
+});
+(function ytInit() {
+  var saved = '';
+  try { saved = localStorage.getItem(YT_KEY) || ''; } catch (e) { saved = ''; }
+  var u = ytCheck(saved);
+  if (u) $('#yt-link').value = u.href;
+  ytShow(u);
+})();
 </script>
 </body>
 </html>
