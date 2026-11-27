@@ -2855,9 +2855,16 @@ function hideNotice() {
 function openPrivacy() {
   $('#privacy-open').setAttribute('hidden', '');
   $('#privacy-body').removeAttribute('hidden');
+  toolPush({
+    id: 'privacy',
+    isOpen: function () { return !$('#privacy-body').hasAttribute('hidden'); },
+    hide: function () { $('#privacy-body').setAttribute('hidden', ''); $('#privacy-open').removeAttribute('hidden'); },
+    close: closePrivacy
+  });
   $('#privacy-title').focus();
 }
 function closePrivacy() {
+  toolDrop('privacy');
   $('#privacy-body').setAttribute('hidden', '');
   $('#privacy-open').removeAttribute('hidden');
   $('#privacy-open').focus();
@@ -2867,13 +2874,25 @@ $('#privacy-close').addEventListener('click', closePrivacy);
 
 /* ---------- अंग्रेज़ी प्राइवेसी पॉलिसी (अलग बटन से खुलती है) ---------- */
 function openPrivacyEn() {
+  toolDrop('privacy');
   $('#privacy-body').setAttribute('hidden', '');
   $('#privacy-open').setAttribute('hidden', '');
   $('#privacy-en-open').setAttribute('hidden', '');
   $('#privacy-en-body').removeAttribute('hidden');
+  toolPush({
+    id: 'privacy-en',
+    isOpen: function () { return !$('#privacy-en-body').hasAttribute('hidden'); },
+    hide: function () {
+      $('#privacy-en-body').setAttribute('hidden', '');
+      $('#privacy-open').removeAttribute('hidden');
+      $('#privacy-en-open').removeAttribute('hidden');
+    },
+    close: closePrivacyEn
+  });
   $('#privacy-en-title').focus();
 }
 function closePrivacyEn() {
+  toolDrop('privacy-en');
   $('#privacy-en-body').setAttribute('hidden', '');
   $('#privacy-open').removeAttribute('hidden');
   $('#privacy-en-open').removeAttribute('hidden');
@@ -4215,15 +4234,45 @@ function setMicBtn(on) {
   b.setAttribute('aria-pressed', on ? 'true' : 'false');
 }
 var curScreen = null;
+var pendingTile = null;   /* श्रेणी से Home लौटने पर फ़ोकस उसी श्रेणी के बटन पर जाए */
+var backBusy = false;     /* Back दोबारा जल्दी दबे तो ऐप से बाहर न जाए */
+var toolStack = [];       /* खुले हिस्से और प्राइवेसी: आख़िरी खुला पहले बंद होगा */
 function homeEl() { return document.getElementById('panel-home'); }
+function toolIndex(id) {
+  for (var i = 0; i < toolStack.length; i++) if (toolStack[i].id === id) return i;
+  return -1;
+}
+function toolPush(entry) { if (toolIndex(entry.id) < 0) toolStack.push(entry); }
+function toolDrop(id) { var i = toolIndex(id); if (i >= 0) toolStack.splice(i, 1); }
+/* श्रेणी बदलने पर खुले हिस्से चुपचाप बंद हो जाते हैं */
+function hideAllTools() {
+  while (toolStack.length) {
+    var e = toolStack.pop();
+    if (e.isOpen()) e.hide();
+  }
+}
+/* Back: सबसे ऊपर का खुला हिस्सा बंद करे; उसका बटन फ़ोकस में आए */
+function closeTopTool() {
+  while (toolStack.length) {
+    var e = toolStack.pop();
+    if (e.isOpen()) { e.close(); return true; }
+  }
+  return false;
+}
 function focusScreenHeading(el) {
+  if (el === homeEl() && pendingTile) {
+    var tile = document.querySelector('[data-cat="' + pendingTile + '"]');
+    pendingTile = null;
+    if (tile) { tile.focus(); return; }
+  }
   var h = el === homeEl() ? document.getElementById('h-home') : el.querySelector('h2');
   if (h) { h.setAttribute('tabindex', '-1'); h.focus(); }
 }
 function showScreen(el, focusIt) {
   if (!el) el = homeEl();
   if (el === curScreen) { if (focusIt) focusScreenHeading(el); return; }
-  if (curScreen) stopAllCams();
+  if (curScreen) stopAllCams(true);
+  hideAllTools();
   var all = document.querySelectorAll('.cat-screen, #panel-home');
   for (var i = 0; i < all.length; i++) all[i].hidden = (all[i] !== el);
   curScreen = el;
@@ -4241,16 +4290,36 @@ function openScreen(el, how) {
   showScreen(el, true);
 }
 function routeFromHash(focusIt) {
+  backBusy = false;
   var h = location.hash || '';
   var el = null;
   if (h.indexOf('#cat-') === 0) el = document.getElementById(h.slice(1));
   if (!el || !el.classList.contains('cat-screen')) el = homeEl();
+  if (el === curScreen) return;
   showScreen(el, focusIt);
 }
-function goBack() {
-  if (history.state && history.state.awaz && location.hash.indexOf('#cat-') === 0) { history.back(); return; }
-  openScreen(homeEl(), 'replace');
+/* श्रेणी से Home: फ़ोकस उसी श्रेणी के बटन पर जाता है; रेडियो चलता रहता है */
+function leaveCategory() {
+  if (!curScreen || curScreen === homeEl()) return false;
+  pendingTile = curScreen.id;
+  if (history.state && history.state.awaz && location.hash.indexOf('#cat-') === 0) {
+    backBusy = true;
+    history.back();
+    setTimeout(function () { backBusy = false; }, 800);
+  } else {
+    openScreen(homeEl(), 'replace');
+  }
+  return true;
 }
+function goBack() {
+  if (!leaveCategory()) openScreen(homeEl(), 'replace');
+}
+/* फ़ोन का Back बटन (MainActivity): true लौटाए तो ऐप ने Back संभाल लिया */
+window.awazHandleBack = function () {
+  if (backBusy) return true;
+  if (closeTopTool()) return true;
+  return leaveCategory();
+};
 function initRouter() {
   var tiles = document.querySelectorAll('[data-cat]');
   for (var i = 0; i < tiles.length; i++) {
@@ -4277,10 +4346,10 @@ function goTo(id, msg) {
   h.focus();
   if (msg) notify('#mic-state', msg);
 }
-function stopAllCams() {
+function stopAllCams(keepRadio) {
   colStop(false);
   tcStop(false);
-  radioStop(true);
+  if (!keepRadio) radioStop(true);
   wxStop(true);
   spkStop(true);
   if (scrRec) scrStop();
@@ -4649,6 +4718,16 @@ function setCollapse(bodyId, open) {
     t.setAttribute('aria-expanded', open ? 'true' : 'false');
     t.textContent = open ? t.getAttribute('data-label-close') : t.getAttribute('data-label-open');
   }
+  if (!open) { toolDrop(bodyId); return; }
+  toolPush({
+    id: bodyId,
+    isOpen: function () { return !body.hasAttribute('hidden'); },
+    hide: function () { setCollapse(bodyId, false); },
+    close: function () {
+      setCollapse(bodyId, false);
+      if (t) t.focus(); else if (curScreen) focusScreenHeading(curScreen);
+    }
+  });
 }
 function revealFor(el) {
   var p = el;
