@@ -226,7 +226,7 @@ html.hc body { background: #fff; color: #000; }
 <body>
 <span class="sr-only" id="hx-back">पिछली स्क्रीन पर लौटने के लिए दबाएँ।</span>
 <noscript><p>यह ऐप अभी पूरी तरह शुरू नहीं हो पाया। ऐप बंद करके दोबारा खोलें।</p></noscript>
-<a class="skip" href="#main">सीधे मुख्य सामग्री पर जाएँ</a>
+<a aria-describedby="hx-skip" class="skip" href="#main">सीधे मुख्य सामग्री पर जाएँ</a><span class="sr-only" id="hx-skip">स्क्रीन के बाकी हिस्से छोड़कर सीधे मुख्य सामग्री पर जाने के लिए दबाएँ।</span>
 <header>
 <h1>आवाज़ साथी</h1>
 <p class="dev" data-dev-line="">डेवलपर: कपिल</p>
@@ -268,7 +268,8 @@ html.hc body { background: #fff; color: #000; }
 <p class="hint" id="hx-notice-close">सूचना बंद करें: यह सूचना हट जाएगी और दोबारा नहीं दिखेगी।</p>
 </div>
 <h2 class="panel-title" id="h-home" tabindex="-1">होम</h2>
-<p class="lead">आवाज़ साथी में आपका स्वागत है। नीचे से एक श्रेणी चुनें।</p><h3 class="sec-title" id="h-grid">श्रेणी चुनें</h3><div aria-labelledby="h-grid" class="cat-grid" role="group"><button aria-describedby="hx-tile-voice" class="cat-tile" data-cat="cat-voice" style="--tile:#1d4ed8" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z"></path><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg><span>बोलकर काम करें</span><small id="hx-tile-voice">आवाज़ से आदेश दें</small></button><button aria-describedby="hx-tile-video" class="cat-tile" data-cat="cat-video" style="--tile:#6d28d9" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect height="12" rx="2" width="13" x="3" y="6"></rect><path d="M16 10l5-3v10l-5-3z"></path></svg><span>वीडियो</span><small id="hx-tile-video">जोड़ें, आवाज़ निकालें, मिलाएँ</small></button><button aria-describedby="hx-tile-sound" class="cat-tile" data-cat="cat-sound" style="--tile:#9d174d" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M9 18V5l11-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="17" cy="16" r="3"></circle></svg><span>आवाज़ और गाना</span><small id="hx-tile-sound">गाना, वोकल रिमूवर, तस्वीर से वीडियो</small></button><button aria-describedby="hx-tile-camera" class="cat-tile" data-cat="cat-camera" style="--tile:#115e59" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M3 8h4l2-3h6l2 3h4v11H3z"></path><circle cx="12" cy="13" r="3.5"></circle></svg><span>कैमरे से मदद</span><small id="hx-tile-camera">रंग पहचानें, बोलने वाला कैमरा</small></button><button aria-describedby="hx-tile-radio" class="cat-tile" data-cat="cat-radio" style="--tile:#92400e" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect height="12" rx="2" width="18" x="3" y="8"></rect><path d="M7 8l10-5M8 14h8"></path></svg><span>रेडियो</span><small id="hx-tile-radio">इंटरनेट से स्टेशन सुनें</small></button><button aria-describedby="hx-tile-weather" class="cat-tile" data-cat="cat-weather" style="--tile:#075985" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M7 18a4 4 0 0 1 0-8 6 6 0 0 1 11.5 1.5A3.5 3.5 0 0 1 18 18z"></path></svg><span>मौसम</span><small id="hx-tile-weather">अपनी जगह या कोई भी शहर</small></button><button aria-describedby="hx-tile-yt" class="cat-tile" data-cat="cat-yt" style="--tile:#155e75" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect height="13" rx="2" width="18" x="3" y="4"></rect><path d="M10 8v5l4-2.5z"></path><path d="M8 21h8"></path></svg><span>मेरा YouTube चैनल</span><small id="hx-tile-yt">चैनल YouTube पर खोलें</small></button><button aria-describedby="hx-tile-read" class="cat-tile" data-cat="cat-read" style="--tile:#3f6212" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"></path><path d="M4 19V5"></path></svg><span>पढ़ना और लिखना</span><small id="hx-tile-read">किताब, टेक्स्ट से इमेज और PDF</small></button><button aria-describedby="hx-tile-phone" class="cat-tile" data-cat="cat-phone" style="--tile:#334155" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect height="20" rx="2" width="10" x="7" y="2"></rect><path d="M11 18h2"></path></svg><span>फ़ोन के काम</span><small id="hx-tile-phone">स्क्रीन रिकॉर्डर, स्पीकर क्लीनर</small></button><button aria-describedby="hx-tile-games" class="cat-tile" data-cat="cat-games" style="--tile:#b45309" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 12h4M9 10v4M15 11h.01M17 13h.01" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg><span>खेल</span><small id="hx-tile-games">रंग दौड़, शतरंज, सुर याद, अंत्याक्षरी, क्विज़ और अंदाज़ा</small></button></div><button aria-describedby="hx-cat-settings" class="btn cat-settings" data-cat="cat-settings" type="button">सेटिंग और शेयर</button><p class="hint" id="hx-cat-settings">सेटिंग में गोपनीयता, गाइड, शेयर और संपर्क हैं।</p>
+<p class="lead">आवाज़ साथी में आपका स्वागत है। नीचे से एक श्रेणी चुनें।</p><h3 class="sec-title" id="h-grid">श्रेणी चुनें</h3><div aria-labelledby="h-grid" class="cat-grid" role="group"><button aria-describedby="hx-tile-voice" class="cat-tile" data-cat="cat-voice" style="--tile:#1d4ed8" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z"></path><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg><span>बोलकर काम करें</span><small id="hx-tile-voice">आवाज़ से आदेश दें</small></button><button aria-describedby="hx-tile-video" class="cat-tile" data-cat="cat-video" style="--tile:#6d28d9" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect height="12" rx="2" width="13" x="3" y="6"></rect><path d="M16 10l5-3v10l-5-3z"></path></svg><span>वीडियो</span><small id="hx-tile-video">जोड़ें, आवाज़ निकालें, मिलाएँ</small></button><button aria-describedby="hx-tile-sound" class="cat-tile" data-cat="cat-sound" style="--tile:#9d174d" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M9 18V5l11-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="17" cy="16" r="3"></circle></svg><span>आवाज़ और गाना</span><small id="hx-tile-sound">गाना, वोकल रिमूवर, तस्वीर से वीडियो</small></button><button aria-describedby="hx-tile-camera" class="cat-tile" data-cat="cat-camera" style="--tile:#115e59" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M3 8h4l2-3h6l2 3h4v11H3z"></path><circle cx="12" cy="13" r="3.5"></circle></svg><span>कैमरे से मदद</span><small id="hx-tile-camera">रंग पहचानें, बोलने वाला कैमरा</small></button><button aria-describedby="hx-tile-radio" class="cat-tile" data-cat="cat-radio" style="--tile:#92400e" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect height="12" rx="2" width="18" x="3" y="8"></rect><path d="M7 8l10-5M8 14h8"></path></svg><span>रेडियो</span><small id="hx-tile-radio">इंटरनेट से स्टेशन सुनें</small></button><button aria-describedby="hx-tile-weather" class="cat-tile" data-cat="cat-weather" style="--tile:#075985" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M7 18a4 4 0 0 1 0-8 6 6 0 0 1 11.5 1.5A3.5 3.5 0 0 1 18 18z"></path></svg><span>मौसम</span><small id="hx-tile-weather">अपनी जगह या कोई भी शहर</small></button><button aria-describedby="hx-tile-read" class="cat-tile" data-cat="cat-read" style="--tile:#3f6212" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"></path><path d="M4 19V5"></path></svg><span>पढ़ना और लिखना</span><small id="hx-tile-read">किताब, टेक्स्ट से इमेज और PDF</small></button><button aria-describedby="hx-tile-phone" class="cat-tile" data-cat="cat-phone" style="--tile:#334155" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect height="20" rx="2" width="10" x="7" y="2"></rect><path d="M11 18h2"></path></svg><span>फ़ोन के काम</span><small id="hx-tile-phone">स्क्रीन रिकॉर्डर, स्पीकर क्लीनर</small></button><button aria-describedby="hx-tile-games" class="cat-tile" data-cat="cat-games" style="--tile:#b45309" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 12h4M9 10v4M15 11h.01M17 13h.01" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg><span>खेल</span><small id="hx-tile-games">रंग दौड़, शतरंज, सुर याद, अंत्याक्षरी, क्विज़ और अंदाज़ा</small></button><button aria-describedby="hx-tile-book" class="cat-tile" data-goto="h-book" style="--tile:#0e7490" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M4 4h6a3 3 0 0 1 2 1 3 3 0 0 1 2-1h6v15h-6a2 2 0 0 0-2 1 2 2 0 0 0-2-1H4z"></path><path d="M12 5v15"></path></svg><span>किताब पढ़ो</span><small id="hx-tile-book">PDF, फ़ोटो या .txt फ़ाइल का पाठ ज़ोर से सुनें। इसमें चलाओ, रोकें, पेज और गति हैं। इसे खोलने के लिए डबल टैप करें।</small></button><button aria-describedby="hx-tile-photopdf" class="cat-tile" data-cat="cat-photopdf" style="--tile:#be123c" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M6 2h9l4 4v16H6z"></path><path d="M9 17l3-4 2 2 2-3 2 5"></path><circle cx="10" cy="8" r="1.3"></circle></svg><span>फ़ोटो से PDF</span><small id="hx-tile-photopdf">कई फ़ोटो चुनें, उनका क्रम बदलें और एक PDF बनाकर फ़ोन में सेव करें। इसे खोलने के लिए डबल टैप करें।</small></button><button aria-describedby="hx-tile-timg" class="cat-tile" data-goto="h-timg" style="--tile:#a16207" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="4"></rect><path d="M7 9h10M12 9v8"></path><path d="M3 17l5-4 4 3 3-2 6 4"></path></svg><span>लिखे से फ़ोटो</span><small id="hx-tile-timg">लिखे हुए शब्दों की फ़ोटो बनाएँ। आकार, पृष्ठभूमि और रंग चुनकर सेव करें। इसे खोलने के लिए डबल टैप करें।</small></button><button aria-describedby="hx-tile-ringtone" class="cat-tile" data-cat="cat-ringtone" style="--tile:#4338ca" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z"></path><path d="M10 21a2 2 0 0 0 4 0"></path></svg><span>रिंगटोन बनाओ</span><small id="hx-tile-ringtone">गाने या आवाज़ फ़ाइल का 40 सेकंड तक का हिस्सा चुनें, सुनें और रिंगटोन बनाकर सेव करें। इसे खोलने के लिए डबल टैप करें।</small></button>
+</div><button aria-describedby="hx-cat-settings" class="btn cat-settings" data-cat="cat-settings" type="button">सेटिंग और शेयर</button><p class="hint" id="hx-cat-settings">सेटिंग में गोपनीयता, गाइड, शेयर और संपर्क हैं।</p>
 <section aria-labelledby="h-about">
 <h3 class="sec-title" data-reveal="about-body" id="h-about" tabindex="-1">इस ऐप के बारे में</h3>
 <button aria-controls="about-body" aria-describedby="hx-about-toggle" aria-expanded="false" class="btn primary" data-label-close="ऐप की जानकारी छिपाएँ" data-label-open="ऐप की जानकारी दिखाएँ" id="about-toggle" type="button">ऐप की जानकारी दिखाएँ</button>
@@ -290,7 +291,6 @@ html.hc body { background: #fff; color: #000; }
 <li><strong>कैमरे से मदद:</strong> रंग पहचानें और बोलने वाला कैमरा।</li>
 <li><strong>रेडियो:</strong> इंटरनेट से कुछ रेडियो स्टेशन सुनें।</li>
 <li><strong>मौसम:</strong> अपनी जगह या कोई भी शहर का मौसम।</li>
-<li><strong>मेरा YouTube चैनल:</strong> चैनल YouTube पर खोलें।</li>
 <li><strong>पढ़ना और लिखना:</strong> किताब पढ़ें, टेक्स्ट से इमेज या PDF बनाएँ।</li>
 <li><strong>फ़ोन के काम:</strong> स्क्रीन रिकॉर्ड करें, स्पीकर साफ़ करें।</li>
 <li><strong>सेटिंग:</strong> अक्षर, रंग, आवाज़, संपर्क और शेयर।</li>
@@ -301,7 +301,6 @@ html.hc body { background: #fff; color: #000; }
 <!-- ===== आवाज़ ===== -->
 <!-- ===== कैमरे से मदद ===== -->
 <!-- ===== रेडियो ===== -->
-<!-- ===== मेरा YouTube चैनल ===== -->
 <!-- ===== मौसम ===== -->
 <!-- ===== बुक रीडर ===== -->
 <!-- ===== टेक्स्ट से इमेज ===== -->
@@ -309,7 +308,7 @@ html.hc body { background: #fff; color: #000; }
 <!-- ===== स्क्रीन रिकॉर्डर ===== -->
 <!-- ===== स्पीकर क्लीनर (सिर्फ़ बटन दबाने पर खुलता है) ===== -->
 <!-- ===== सेटिंग (हमेशा आख़िरी) ===== -->
-<div class="panel cat-screen" hidden="" id="cat-voice"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button>
+<div class="panel cat-screen" hidden="" id="cat-voice"><span class="sr-only" id="hx-back-cat-voice">आवाज़ और बोलना से बाहर निकलकर मुख्य सूची पर लौटने के लिए दबाएँ।</span><button aria-describedby="hx-back-cat-voice" class="btn back" data-back="" type="button">वापस</button>
 <h2 class="panel-title" id="h-voice" tabindex="-1">बोलकर काम करें</h2><button aria-describedby="hx-soon-v" aria-disabled="true" class="btn" type="button">वॉइस कॉल: जल्द आ रहा है</button><p class="note" id="hx-soon-v">वॉइस कॉल की सुविधा अभी जल्द आ रही है। अभी इसे चालू नहीं किया जा सकता।</p>
 <ul class="bullets"><li>नीचे बड़ा बटन दबाएँ, फिर एक आदेश साफ़ आवाज़ में बोलें।</li><li>ऐप वही हिस्सा खोल देगा।</li></ul>
 <section aria-labelledby="h-voice-cmd">
@@ -320,7 +319,7 @@ html.hc body { background: #fff; color: #000; }
 <ul class="bullets note"><li>बोलने के नमूने: "वीडियो जोड़ो", "आवाज़ निकालो", "मिलाओ", "गाना", "वोकल रिमूवर", "तस्वीर"।</li><li>"रंग पहचानें", "कैमरा", "सेटिंग", "होम", "मेन्यू", "पढ़कर सुनाओ", "किताब", "स्क्रीन रिकॉर्डर"।</li><li>"स्पीकर साफ़ करो", "नाम बदलो", "रुको", "मदद"।</li></ul>
 <ul class="bullets note"><li>बोली पहचानने का काम फ़ोन की अपनी बोली-पहचान सेवा करती है।</li><li>यह सुविधा फ़ोन पर निर्भर है।</li><li>अगर फ़ोन में नहीं चलती, तो ऐप खुद बोलकर और लिखकर बताएगा।</li></ul>
 </section>
-</div><div class="panel cat-screen" hidden="" id="cat-video"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button>
+</div><div class="panel cat-screen" hidden="" id="cat-video"><span class="sr-only" id="hx-back-cat-video">वीडियो से बाहर निकलकर मुख्य सूची पर लौटने के लिए दबाएँ।</span><button aria-describedby="hx-back-cat-video" class="btn back" data-back="" type="button">वापस</button>
 <h2 class="panel-title" id="h-video" tabindex="-1">वीडियो</h2><button aria-describedby="hx-soon-vd" aria-disabled="true" class="btn" type="button">वीडियो कॉल: जल्द आ रहा है</button><p class="note" id="hx-soon-vd">वीडियो कॉल की सुविधा अभी जल्द आ रही है। अभी इसे चालू नहीं किया जा सकता।</p>
 <ul class="bullets"><li>यहाँ कई वीडियो एक साथ जोड़ सकते हैं।</li><li>वीडियो से आवाज़ निकाल सकते हैं।</li><li>और वीडियो में नई आवाज़ मिला सकते हैं।</li></ul>
 <!-- 1. वीडियो जोड़ना -->
@@ -336,10 +335,11 @@ html.hc body { background: #fff; color: #000; }
 <ol aria-label="चुने हुए वीडियो, क्रम से" class="list" id="join-list"></ol>
 <p class="hint" id="hx-join-list">हर वीडियो के "ऊपर" या "नीचे" बटन से क्रम बदलें। "हटाएँ" से वीडियो सूची से निकल जाएगा।</p>
 <div class="actions">
-<button aria-describedby="hx-join-btns" aria-label="चुने हुए वीडियो एक के बाद एक जोड़कर नया वीडियो बनाएँ" class="btn primary" data-rec="" id="join-go" type="button">वीडियो जोड़ें</button>
-<button aria-describedby="hx-join-btns" aria-label="वीडियो जोड़ना जल्दी रोकें, जो बन चुका है वह मिलेगा" class="btn" disabled="" id="join-stop" type="button">जल्दी रोकें (जो बना है वह मिलेगा)</button>
+<button aria-describedby="hx-join-go" aria-label="चुने हुए वीडियो एक के बाद एक जोड़कर नया वीडियो बनाएँ" class="btn primary" data-rec="" id="join-go" type="button">वीडियो जोड़ें</button>
+<button aria-describedby="hx-join-stop" aria-label="वीडियो जोड़ना जल्दी रोकें, जो बन चुका है वह मिलेगा" class="btn" disabled="" id="join-stop" type="button">जल्दी रोकें (जो बना है वह मिलेगा)</button>
 </div>
-<p class="hint" id="hx-join-btns">वीडियो जोड़ें: सूची के सारे वीडियो एक के बाद एक जुड़ेंगे। जल्दी रोकें: अभी तक जो बना है, वही मिलेगा।</p>
+<p class="hint" id="hx-join-go">वीडियो जोड़ें: सूची के सारे वीडियो एक के बाद एक जुड़ेंगे।</p>
+<p class="hint" id="hx-join-stop">जल्दी रोकें: वीडियो जोड़ना बंद होगा। अभी तक जो बना है, वही मिलेगा।</p>
 <p aria-hidden="true" class="progress" id="join-progress"></p>
 <div class="result" id="join-result"></div>
 </section>
@@ -369,10 +369,11 @@ html.hc body { background: #fff; color: #000; }
 <input accept="audio/*" aria-describedby="hx-merge-audio" id="merge-audio" type="file"/>
 <p class="hint" id="hx-merge-audio">गाना या रिकॉर्डिंग वाली आवाज़ फ़ाइल चुनने के लिए दबाएँ।</p>
 <div class="actions">
-<button aria-describedby="hx-merge-btns" aria-label="चुने हुए वीडियो में नई आवाज़ मिलाकर नया वीडियो बनाएँ" class="btn primary" data-rec="" id="merge-go" type="button">मिलाएँ और वीडियो बनाएँ</button>
-<button aria-describedby="hx-merge-btns" aria-label="आवाज़ मिलाना जल्दी रोकें, जो बन चुका है वह मिलेगा" class="btn" disabled="" id="merge-stop" type="button">जल्दी रोकें (जो बना है वह मिलेगा)</button>
+<button aria-describedby="hx-merge-go" aria-label="चुने हुए वीडियो में नई आवाज़ मिलाकर नया वीडियो बनाएँ" class="btn primary" data-rec="" id="merge-go" type="button">मिलाएँ और वीडियो बनाएँ</button>
+<button aria-describedby="hx-merge-stop" aria-label="आवाज़ मिलाना जल्दी रोकें, जो बन चुका है वह मिलेगा" class="btn" disabled="" id="merge-stop" type="button">जल्दी रोकें (जो बना है वह मिलेगा)</button>
 </div>
-<p class="hint" id="hx-merge-btns">मिलाएँ और वीडियो बनाएँ: नई आवाज़ मिलाकर नया वीडियो बनेगा। जल्दी रोकें: अभी तक जो बना है, वही मिलेगा।</p>
+<p class="hint" id="hx-merge-go">मिलाएँ और वीडियो बनाएँ: नई आवाज़ मिलाकर नया वीडियो बनेगा।</p>
+<p class="hint" id="hx-merge-stop">जल्दी रोकें: आवाज़ मिलाना बंद होगा। अभी तक जो बना है, वही मिलेगा।</p>
 <p aria-hidden="true" class="progress" id="merge-progress"></p>
 <div class="result" id="merge-result"></div>
 </section>
@@ -401,9 +402,9 @@ html.hc body { background: #fff; color: #000; }
 <legend>क्लिप कितनी लंबी हो</legend>
 <p class="hint" id="hx-sc-len">15, 30 या 60 सेकंड। डिफ़ॉल्ट 30 सेकंड है।</p>
 <div class="actions">
-<label><input aria-describedby="hx-sc-len" name="sc-len" type="radio" value="15"/> 15 सेकंड</label>
-<label><input aria-describedby="hx-sc-len" checked="" name="sc-len" type="radio" value="30"/> 30 सेकंड</label>
-<label><input aria-describedby="hx-sc-len" name="sc-len" type="radio" value="60"/> 60 सेकंड</label>
+<span class="sr-only" id="hx-sc-len-15">15 सेकंड की छोटी क्लिप बनेगी।</span><label><input aria-describedby="hx-sc-len-15" name="sc-len" type="radio" value="15"/> 15 सेकंड</label>
+<span class="sr-only" id="hx-sc-len-30">30 सेकंड की क्लिप बनेगी। यही डिफ़ॉल्ट है।</span><label><input aria-describedby="hx-sc-len-30" checked="" name="sc-len" type="radio" value="30"/> 30 सेकंड</label>
+<span class="sr-only" id="hx-sc-len-60">60 सेकंड की लंबी क्लिप बनेगी।</span><label><input aria-describedby="hx-sc-len-60" name="sc-len" type="radio" value="60"/> 60 सेकंड</label>
 </div>
 </fieldset>
 <label><input aria-describedby="hx-sc-all" id="sc-all" type="checkbox"/> सारे हिस्से बनाओ</label>
@@ -417,7 +418,7 @@ html.hc body { background: #fff; color: #000; }
 <p aria-hidden="true" class="note" id="sc-clock"></p>
 <div id="sc-results"></div>
 </section>
-</div><div class="panel cat-screen" hidden="" id="cat-sound"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button>
+</div><div class="panel cat-screen" hidden="" id="cat-sound"><span class="sr-only" id="hx-back-cat-sound">संगीत और आवाज़ से बाहर निकलकर मुख्य सूची पर लौटने के लिए दबाएँ।</span><button aria-describedby="hx-back-cat-sound" class="btn back" data-back="" type="button">वापस</button>
 <h2 class="panel-title" id="h-sound" tabindex="-1">आवाज़</h2>
 <ul class="bullets"><li>यहाँ गाने के साथ अपनी आवाज़ रिकॉर्ड कर सकते हैं।</li><li>तस्वीर और आवाज़ से वीडियो बना सकते हैं।</li><li>और लिखा पाठ बोलकर सुन सकते हैं।</li></ul>
 <!-- 4. गाने के साथ रिकॉर्डिंग -->
@@ -497,9 +498,9 @@ html.hc body { background: #fff; color: #000; }
 <legend>कितनी आवाज़ कम करें</legend>
 <p class="hint" id="hx-vr-str">हल्का: कम बदलाव। मध्यम: ठीक-ठाक। पूरा: सबसे ज़्यादा कटौती। इससे संगीत भी कुछ कम हो सकता है।</p>
 <div class="actions">
-<label><input aria-describedby="hx-vr-str" name="vr-strength" type="radio" value="0.5"/> हल्का</label>
-<label><input aria-describedby="hx-vr-str" checked="" name="vr-strength" type="radio" value="0.8"/> मध्यम</label>
-<label><input aria-describedby="hx-vr-str" name="vr-strength" type="radio" value="1"/> पूरा</label>
+<span class="sr-only" id="hx-vr-str-05">हल्का: कम बदलाव, आवाज़ थोड़ी ही कम होगी।</span><label><input aria-describedby="hx-vr-str-05" name="vr-strength" type="radio" value="0.5"/> हल्का</label>
+<span class="sr-only" id="hx-vr-str-08">मध्यम: ठीक-ठाक कटौती।</span><label><input aria-describedby="hx-vr-str-08" checked="" name="vr-strength" type="radio" value="0.8"/> मध्यम</label>
+<span class="sr-only" id="hx-vr-str-1">पूरा: सबसे ज़्यादा कटौती, संगीत भी कुछ कम हो सकता है।</span><label><input aria-describedby="hx-vr-str-1" name="vr-strength" type="radio" value="1"/> पूरा</label>
 </div>
 </fieldset>
 <div class="actions">
@@ -589,7 +590,7 @@ html.hc body { background: #fff; color: #000; }
 <ul class="bullets note"><li>बोलकर सुनाने की आवाज़ फ़ाइल में सेव नहीं होती।<br>MP3 या WAV में सेव करने का बटन नहीं है।</li><li>फ़ोन की आवाज़ को फ़ाइल में बदलना।<br>फ़ोन में यह तरीका भरोसेमंद नहीं है।</li><li>इसके लिए इंटरनेट की आवाज़-सेवा या सर्वर चाहिए।</li><li>यह आगे का एक संभावित कदम हो सकता है, अभी नहीं।</li></ul>
 <p aria-live="polite" class="status" id="speak-status"></p>
 </section>
-</div><div class="panel cat-screen" hidden="" id="cat-camera"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button>
+</div><div class="panel cat-screen" hidden="" id="cat-camera"><span class="sr-only" id="hx-back-cat-camera">कैमरा से बाहर निकलकर मुख्य सूची पर लौटने के लिए दबाएँ।</span><button aria-describedby="hx-back-cat-camera" class="btn back" data-back="" type="button">वापस</button>
 <h2 class="panel-title" id="h-camera" tabindex="-1">कैमरे से मदद</h2>
 <ul class="bullets"><li>ये हिस्से कैमरा तभी चालू करते हैं।<br>जब आप उनका बटन दबाते हैं।</li><li>तस्वीरें फ़ोन में ही देखी जाती हैं।</li></ul>
 <section aria-labelledby="h-color">
@@ -621,7 +622,7 @@ html.hc body { background: #fff; color: #000; }
 <p aria-live="off" class="note" id="tc-face"></p>
 <div class="result" id="tc-result"></div>
 </section>
-</div><div class="panel cat-screen" hidden="" id="cat-radio"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button>
+</div><div class="panel cat-screen" hidden="" id="cat-radio"><span class="sr-only" id="hx-back-cat-radio">रेडियो से बाहर निकलकर मुख्य सूची पर लौटने के लिए दबाएँ।</span><button aria-describedby="hx-back-cat-radio" class="btn back" data-back="" type="button">वापस</button>
 <h2 class="panel-title" id="h-radio" tabindex="-1">रेडियो</h2>
 <ul class="bullets"><li>यहाँ आकाशवाणी और कुछ दूसरे रेडियो स्टेशन इंटरनेट से सुन सकते हैं।</li><li>इसके लिए फ़ोन में इंटरनेट चालू होना चाहिए।</li></ul>
 <section aria-labelledby="h-radio-find">
@@ -672,7 +673,7 @@ html.hc body { background: #fff; color: #000; }
 <ul class="bullets note"><li>रेडियो इंटरनेट से चलता है, इसलिए इंटरनेट का डेटा खर्च होगा।</li><li>स्टेशन चलाने वाली संस्था को आपके फ़ोन का इंटरनेट पता दिखता है।</li><li>जैसे किसी भी स्ट्रीमिंग में होता है।</li><li>आवाज़ साथी खुद कोई निजी डेटा इकट्ठा नहीं करता।</li></ul>
 <p class="note">ऐप छोड़ने पर या "रुको" बोलने पर रेडियो बंद हो जाता है।</p>
 </section>
-</div><div class="panel cat-screen" hidden="" id="cat-weather"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button>
+</div><div class="panel cat-screen" hidden="" id="cat-weather"><span class="sr-only" id="hx-back-cat-weather">मौसम से बाहर निकलकर मुख्य सूची पर लौटने के लिए दबाएँ।</span><button aria-describedby="hx-back-cat-weather" class="btn back" data-back="" type="button">वापस</button>
 <h2 class="panel-title" id="h-weather" tabindex="-1">मौसम</h2>
 <ul class="bullets"><li>यहाँ अपनी जगह या किसी शहर का अभी का मौसम सुनें।</li><li>और लिखा हुआ भी देख सकते हैं।</li><li>इसके लिए फ़ोन में इंटरनेट चालू होना चाहिए।</li></ul>
 <section aria-labelledby="h-wx-my">
@@ -750,27 +751,7 @@ html.hc body { background: #fff; color: #000; }
 <ul class="bullets note"><li>आखिरी चुनी हुई जगह का नाम सेव रहता है।<br>उसकी जगह भी आपके फ़ोन में सेव रहती है।</li><li>ताकि अगली बार वही जगह दिखे।</li><li>"मेरी जगह" की अनुमति से मिली जगह सेव नहीं होती।</li></ul>
 <ul class="bullets note"><li>इंटरनेट न हो तो ऐप बताएगा: "Internet से Connect करो"।</li><li>मौसम का अनुमान सही भी हो सकता है और थोड़ा अलग भी।</li></ul>
 </section>
-</div><div class="panel cat-screen" hidden="" id="cat-yt"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button>
-<h2 class="panel-title" id="h-yt" tabindex="-1">मेरा YouTube चैनल</h2>
-<ul class="bullets"><li>यहाँ से अपना YouTube चैनल खोल सकते हैं।</li><li>चैनल का नाम "Career &amp; Info" है।</li><li>इसमें हिंदी में करियर, जानकारी और डरावनी कहानियाँ हैं।</li><li>जैसे वीडियो "रात की आख़िरी बस"।</li></ul>
-<ul class="bullets note"><li><strong>ज़रूरी बात:</strong> इस चैनल का सही लिंक अभी पक्का नहीं हो पाया है।</li><li>इसलिए ऐप में कोई लिंक पहले से नहीं डाला गया है।</li><li>चैनल का लिंक नीचे डालकर सहेजें।</li></ul>
-<h3 class="sec-title" id="h-yt-link" tabindex="-1">चैनल का लिंक</h3>
-<label for="yt-link">चैनल का लिंक डालें</label>
-<input aria-describedby="hx-yt-link" autocomplete="off" id="yt-link" inputmode="url" placeholder="https://www.youtube.com/..." type="url"/>
-<p class="hint" id="hx-yt-link">चैनल खोलकर उसका पूरा पता कॉपी करें और यहाँ चिपकाएँ। लिंक youtube.com या youtu.be से शुरू होना चाहिए। लिंक फ़ोन में ही सहेजा जाएगा।</p>
-<button aria-describedby="hx-yt-save" class="btn primary" id="yt-save" type="button">लिंक सहेजो</button>
-<p class="hint" id="hx-yt-save">इसे दबाने पर लिखा लिंक जाँचा जाएगा और सहेजा जाएगा। इसके लिए डबल टैप करें।</p>
-<p aria-live="polite" class="hint" id="yt-msg" role="status"></p>
-<h3 class="sec-title" id="h-yt-open" tabindex="-1">चैनल खोलो</h3>
-<a aria-describedby="hx-yt-open" class="btn primary" id="yt-open" rel="noopener" target="_blank">मेरा चैनल खोलो</a>
-<p class="hint" id="hx-yt-open">इसे खोलने के लिए डबल टैप करें। चैनल YouTube पर खुलेगा। पहले ऊपर लिंक सहेजना ज़रूरी है।</p>
-<p class="note">चैनल खोलने और वीडियो देखने के लिए इंटरनेट चाहिए।</p>
-<div hidden="" id="yt-embed-wrap">
-<h3 class="sec-title" id="h-yt-videos" tabindex="-1">चैनल के नए वीडियो</h3>
-<iframe allowfullscreen="" height="315" id="yt-frame" loading="lazy" title="मेरे YouTube चैनल के नए वीडियो" width="100%"></iframe>
-<p class="note">नए वीडियो देखने के लिए इंटरनेट चाहिए। वीडियो YouTube से आते हैं।</p>
-</div>
-</div><div class="panel cat-screen" hidden="" id="cat-read"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button><h2 class="panel-title" id="h-cat-read" tabindex="-1">पढ़ना और लिखना</h2>
+</div><div class="panel cat-screen" hidden="" id="cat-read"><span class="sr-only" id="hx-back-cat-read">पढ़ना और लिखना से बाहर निकलकर मुख्य सूची पर लौटने के लिए दबाएँ।</span><button aria-describedby="hx-back-cat-read" class="btn back" data-back="" type="button">वापस</button><h2 class="panel-title" id="h-cat-read" tabindex="-1">पढ़ना और लिखना</h2>
 <h3 class="panel-title sub-title" id="h-book" tabindex="-1">बुक रीडर</h3>
 <ul class="bullets"><li>यहाँ अपनी किताब की .txt या PDF फ़ाइल चुनें।</li><li>किताब के पन्ने की फ़ोटो लें, या पाठ सीधे चिपकाएँ।</li><li>ऐप उसे अनुच्छेद-दर-अनुच्छेद फ़ोन की आवाज़ में पढ़कर सुनाएगा।</li><li>फ़ाइल फ़ोन से बाहर कहीं नहीं जाती।</li></ul>
 <section aria-labelledby="h-book-load">
@@ -918,7 +899,7 @@ html.hc body { background: #fff; color: #000; }
 <p aria-live="polite" class="status" id="tpdf-status"></p>
 <div id="tpdf-result"></div>
 </section>
-</div><div class="panel cat-screen" hidden="" id="cat-phone"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button><h2 class="panel-title" id="h-cat-phone" tabindex="-1">फ़ोन के काम</h2>
+</div><div class="panel cat-screen" hidden="" id="cat-phone"><span class="sr-only" id="hx-back-cat-phone">फ़ोन के काम से बाहर निकलकर मुख्य सूची पर लौटने के लिए दबाएँ।</span><button aria-describedby="hx-back-cat-phone" class="btn back" data-back="" type="button">वापस</button><h2 class="panel-title" id="h-cat-phone" tabindex="-1">फ़ोन के काम</h2>
 <h3 class="panel-title sub-title" id="h-screen" tabindex="-1">स्क्रीन रिकॉर्डर</h3>
 <ul class="bullets"><li>यहाँ फ़ोन की स्क्रीन रिकॉर्ड की जा सकती है।</li><li>अगर फ़ोन इसकी इजाज़त दें।</li><li>रिकॉर्डिंग फ़ोन में ही रहती है, कहीं अपलोड नहीं होती।</li></ul>
 <div hidden="" id="screen-unsupported">
@@ -1034,7 +1015,8 @@ html.hc body { background: #fff; color: #000; }
 </ul>
 </section>
 </div>
-</div><div class="panel cat-screen" hidden="" id="cat-games"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button><h2 class="panel-title" data-reveal="" id="h-games" tabindex="-1">खेल</h2><button aria-describedby="hx-soon-g" aria-disabled="true" class="btn" type="button">ऑनलाइन खेल: जल्द आ रहा है</button><p class="note" id="hx-soon-g">यह सुविधा अभी जल्द आ रही है। अभी इसे खोला नहीं जा सकता।</p><p class="gm-intro">आठ खेल हैं। सब बिना इंटरनेट के चलते हैं। किसी खेल को खोलने के लिए डबल टैप करें।</p><button aria-controls="gm-ludo-body" aria-describedby="hx-gm-ludo" aria-expanded="false" class="btn primary" data-label-close="रंग दौड़ बंद करें" data-label-open="रंग दौड़ खोलें" id="gm-ludo-toggle" type="button">रंग दौड़ खोलें</button><span class="gm-help" id="hx-gm-ludo">इसे खोलने के लिए डबल टैप करें। गेम-बोर्ड वाला दौड़ का खेल। 2 से 4 खिलाड़ी, पासा फेंककर टोकन आगे बढ़ाएँ। बाकी सीटें रोबोट भरेगा।</span><div data-collapsible="" hidden="" id="gm-ludo-body"></div><button aria-controls="gm-chess-body" aria-describedby="hx-gm-chess" aria-expanded="false" class="btn primary" data-label-close="छोटी शतरंज बंद करें" data-label-open="छोटी शतरंज खोलें" id="gm-chess-toggle" type="button">छोटी शतरंज खोलें</button><span class="gm-help" id="hx-gm-chess">इसे खोलने के लिए डबल टैप करें। पाँच गुणा पाँच के बोर्ड पर राजा, हाथी, घोड़ा और प्यादे। पहले मोहरा चुनें, फिर खाना।</span><div data-collapsible="" hidden="" id="gm-chess-body"></div><button aria-controls="gm-memory-body" aria-describedby="hx-gm-memory" aria-expanded="false" class="btn primary" data-label-close="सुर याद करो बंद करें" data-label-open="सुर याद करो खोलें" id="gm-memory-toggle" type="button">सुर याद करो खोलें</button><span class="gm-help" id="hx-gm-memory">इसे खोलने के लिए डबल टैप करें। चार बटन हैं, हर बटन का अलग सुर। पहले एक सुर बजेगा, उसी क्रम में दबाएँ। हर बार एक सुर जुड़ता है।</span><div data-collapsible="" hidden="" id="gm-memory-body"></div><button aria-controls="gm-antak-body" aria-describedby="hx-gm-antak" aria-expanded="false" class="btn primary" data-label-close="शब्द-अंत्याक्षरी बंद करें" data-label-open="शब्द-अंत्याक्षरी खोलें" id="gm-antak-toggle" type="button">शब्द-अंत्याक्षरी खोलें</button><span class="gm-help" id="hx-gm-antak">इसे खोलने के लिए डबल टैप करें। रोबोट के साथ शब्द-अंत्याक्षरी। पिछले शब्द के आखिरी अक्षर से नया शब्द लिखें।</span><div data-collapsible="" hidden="" id="gm-antak-body"></div><button aria-controls="gm-quiz-body" aria-describedby="hx-gm-quiz" aria-expanded="false" class="btn primary" data-label-close="सामान्य ज्ञान क्विज़ बंद करें" data-label-open="सामान्य ज्ञान क्विज़ खोलें" id="gm-quiz-toggle" type="button">सामान्य ज्ञान क्विज़ खोलें</button><span class="gm-help" id="hx-gm-quiz">इसे खोलने के लिए डबल टैप करें। दस सवाल, चार विकल्प। हरियाणा और भारत के सवाल। एक से चार खिलाड़ी।</span><div data-collapsible="" hidden="" id="gm-quiz-body"></div><button aria-controls="gm-numbers-body" aria-describedby="hx-gm-numbers" aria-expanded="false" class="btn primary" data-label-close="संख्या का अंदाज़ा बंद करें" data-label-open="संख्या का अंदाज़ा खोलें" id="gm-numbers-toggle" type="button">संख्या का अंदाज़ा खोलें</button><span class="gm-help" id="hx-gm-numbers">इसे खोलने के लिए डबल टैप करें। आप संख्या का अंदाज़ा लगाएँ, या रोबोट लगाए। ऊपर या नीचे बताकर पकड़ें।</span><div data-collapsible="" hidden="" id="gm-numbers-body"></div><button aria-controls="gm-car-body" aria-describedby="hx-gm-car" aria-expanded="false" class="btn primary" data-label-close="गाड़ी चलाओ बंद करें" data-label-open="गाड़ी चलाओ खोलें" id="gm-car-toggle" type="button">गाड़ी चलाओ खोलें</button><span class="gm-help" id="hx-gm-car">इसे खोलने के लिए डबल टैप करें। तीन लेन की सड़क। हर कदम पर बंद लेन बताई जाएगी, खुली लेन चुनें। बिना इंटरनेट।</span><div data-collapsible="" hidden="" id="gm-car-body"></div><button aria-controls="gm-train-body" aria-describedby="hx-gm-train" aria-expanded="false" class="btn primary" data-label-close="रेलगाड़ी बंद करें" data-label-open="रेलगाड़ी खोलें" id="gm-train-toggle" type="button">रेलगाड़ी खोलें</button><span class="gm-help" id="hx-gm-train">इसे खोलने के लिए डबल टैप करें। हर रेलगाड़ी की मंज़िल सुनें और सही स्टेशन वाली पटरी चुनें। बिना इंटरनेट।</span><div data-collapsible="" hidden="" id="gm-train-body"></div></div><div class="panel cat-screen" hidden="" id="cat-settings"><button aria-describedby="hx-back" class="btn back" data-back="" type="button">वापस</button>
+</div><div class="panel cat-screen" hidden="" id="cat-photopdf"><span class="sr-only" id="hx-back-cat-photopdf">फ़ोटो से PDF से बाहर निकलकर मुख्य सूची पर लौटने के लिए दबाएँ।</span><button aria-describedby="hx-back-cat-photopdf" class="btn back" data-back="" type="button">वापस</button><h2 class="panel-title" data-reveal="" id="h-pp" tabindex="-1">फ़ोटो से PDF</h2><p class="hint" id="hx-pp-intro">अपने फ़ोन की फ़ोटो चुनें, उनका क्रम बदलें, और एक PDF फ़ाइल बनाकर फ़ोन में सेव करें।</p><button aria-describedby="hx-pp-pick" class="btn primary big-btn" id="pp-pick-btn" type="button">फ़ोटो चुनें</button><p class="hint" id="hx-pp-pick">गैलरी से एक या कई फ़ोटो चुनें। चुनी हुई फ़ोटो PDF में इसी क्रम में जाएँगी।</p><input accept="image/*" aria-describedby="hx-pp-pick" hidden="" id="pp-file" multiple="" type="file"><label for="pp-sel">फ़ोटो का क्रम</label><select aria-describedby="hx-pp-sel" id="pp-sel" size="5"></select><p class="hint" id="hx-pp-sel">सूची में एक फ़ोटो चुनें, फिर नीचे के बटन से उसे ऊपर या नीचे ले जाएँ।</p><button aria-describedby="hx-pp-up" class="btn" id="pp-up" type="button">ऊपर ले जाओ</button><p class="hint" id="hx-pp-up">चुनी हुई फ़ोटो सूची में एक जगह ऊपर जाती है।</p><button aria-describedby="hx-pp-down" class="btn" id="pp-down" type="button">नीचे ले जाओ</button><p class="hint" id="hx-pp-down">चुनी हुई फ़ोटो सूची में एक जगह नीचे जाती है।</p><button aria-describedby="hx-pp-del" class="btn" id="pp-del" type="button">इस फ़ोटो को हटाओ</button><p class="hint" id="hx-pp-del">चुनी हुई फ़ोटो PDF से हट जाएगी। आपकी गैलरी की फ़ोटो नहीं हटेंगी।</p><label for="pp-name">PDF का नाम</label><input aria-describedby="hx-pp-name" id="pp-name" type="text" value="photos"><p class="hint" id="hx-pp-name">फ़ाइल का नाम। .pdf अपने-आप जुड़ जाएगा।</p><button aria-describedby="hx-pp-make" class="btn primary big-btn" id="pp-make" type="button">PDF बनाओ और सेव करो</button><p class="hint" id="hx-pp-make">सभी फ़ोटो को एक PDF में जोड़कर फ़ोन के Downloads फ़ोल्डर में सेव करता है। इसमें कुछ समय लग सकता है।</p><button aria-describedby="hx-pp-clear" class="btn" id="pp-clear" type="button">सूची साफ़ करो</button><p class="hint" id="hx-pp-clear">सारी फ़ोटो सूची से हट जाएँगी। गैलरी की फ़ोटो नहीं हटेंगी।</p><p aria-live="polite" class="hint" id="pp-status" role="status"></p></div><div class="panel cat-screen" hidden="" id="cat-ringtone"><span class="sr-only" id="hx-back-cat-ringtone">रिंगटोन बनाओ से बाहर निकलकर मुख्य सूची पर लौटने के लिए दबाएँ।</span><button aria-describedby="hx-back-cat-ringtone" class="btn back" data-back="" type="button">वापस</button><h2 class="panel-title" data-reveal="" id="h-rt" tabindex="-1">रिंगटोन बनाओ</h2><p class="hint" id="hx-rt-intro">किसी गाने या आवाज़ की फ़ाइल से 40 सेकंड तक का हिस्सा चुनकर फ़ोन की रिंगटोन बनाएँ।</p><button aria-describedby="hx-rt-pick" class="btn primary big-btn" id="rt-pick-btn" type="button">ऑडियो फ़ाइल चुनें</button><p class="hint" id="hx-rt-pick">फ़ोन में सेव किसी गाने या MP3, M4A, WAV या OGG फ़ाइल को चुनें।</p><input accept="audio/*" aria-describedby="hx-rt-pick" hidden="" id="rt-file" type="file"><label for="rt-start">कितने सेकंड बाद से शुरू करें</label><input aria-describedby="hx-rt-start" id="rt-start" inputmode="numeric" min="0" step="1" type="number" value="0"><p class="hint" id="hx-rt-start">गाने में कितने सेकंड बाद से हिस्सा शुरू हो। जैसे 30 लिखें तो 30वें सेकंड से।</p><label for="rt-len">रिंगटोन कितने सेकंड की हो (अधिकतम 40)</label><input aria-describedby="hx-rt-len" id="rt-len" inputmode="numeric" max="40" min="1" step="1" type="number" value="30"><p class="hint" id="hx-rt-len">रिंगटोन की लंबाई सेकंड में। 40 सेकंड से ज़्यादा नहीं हो सकती।</p><button aria-describedby="hx-rt-play" class="btn" id="rt-play" type="button">चुना हिस्सा सुनो</button><p class="hint" id="hx-rt-play">बनाने से पहले चुना हुआ हिस्सा सुन लें।</p><button aria-describedby="hx-rt-stop" class="btn" id="rt-stop" type="button">सुनना बंद करो</button><p class="hint" id="hx-rt-stop">चल रही आवाज़ रोकता है।</p><button aria-describedby="hx-rt-save" class="btn primary big-btn" id="rt-save" type="button">रिंगटोन बनाओ और सेव करो</button><p class="hint" id="hx-rt-save">चुने हिस्से को रिंगटोन की फ़ाइल में बदलकर फ़ोन के रिंगटोन फ़ोल्डर में सेव करता है।</p><button aria-describedby="hx-rt-sound" class="btn" id="rt-sound" hidden="" type="button">साउंड सेटिंग खोलो</button><p class="hint" id="hx-rt-sound" hidden="">फ़ोन की साउंड सेटिंग खुलेगी। वहाँ जाकर रिंगटोन के रूप में नई रिंगटोन चुनें।</p><p aria-live="polite" class="hint" id="rt-status" role="status"></p></div>
+<div class="panel cat-screen" hidden="" id="cat-games"><span class="sr-only" id="hx-back-cat-games">खेल से बाहर निकलकर मुख्य सूची पर लौटने के लिए दबाएँ।</span><button aria-describedby="hx-back-cat-games" class="btn back" data-back="" type="button">वापस</button><h2 class="panel-title" data-reveal="" id="h-games" tabindex="-1">खेल</h2><button aria-describedby="hx-soon-g" aria-disabled="true" class="btn" type="button">ऑनलाइन खेल: जल्द आ रहा है</button><p class="note" id="hx-soon-g">यह सुविधा अभी जल्द आ रही है। अभी इसे खोला नहीं जा सकता।</p><p class="gm-intro">आठ खेल हैं। सब बिना इंटरनेट के चलते हैं। किसी खेल को खोलने के लिए डबल टैप करें।</p><button aria-controls="gm-ludo-body" aria-describedby="hx-gm-ludo" aria-expanded="false" class="btn primary" data-label-close="रंग दौड़ बंद करें" data-label-open="रंग दौड़ खोलें" id="gm-ludo-toggle" type="button">रंग दौड़ खोलें</button><span class="gm-help" id="hx-gm-ludo">इसे खोलने के लिए डबल टैप करें। गेम-बोर्ड वाला दौड़ का खेल। 2 से 4 खिलाड़ी, पासा फेंककर टोकन आगे बढ़ाएँ। बाकी सीटें रोबोट भरेगा।</span><div data-collapsible="" hidden="" id="gm-ludo-body"></div><button aria-controls="gm-chess-body" aria-describedby="hx-gm-chess" aria-expanded="false" class="btn primary" data-label-close="छोटी शतरंज बंद करें" data-label-open="छोटी शतरंज खोलें" id="gm-chess-toggle" type="button">छोटी शतरंज खोलें</button><span class="gm-help" id="hx-gm-chess">इसे खोलने के लिए डबल टैप करें। पाँच गुणा पाँच के बोर्ड पर राजा, हाथी, घोड़ा और प्यादे। पहले मोहरा चुनें, फिर खाना।</span><div data-collapsible="" hidden="" id="gm-chess-body"></div><button aria-controls="gm-memory-body" aria-describedby="hx-gm-memory" aria-expanded="false" class="btn primary" data-label-close="सुर याद करो बंद करें" data-label-open="सुर याद करो खोलें" id="gm-memory-toggle" type="button">सुर याद करो खोलें</button><span class="gm-help" id="hx-gm-memory">इसे खोलने के लिए डबल टैप करें। चार बटन हैं, हर बटन का अलग सुर। पहले एक सुर बजेगा, उसी क्रम में दबाएँ। हर बार एक सुर जुड़ता है।</span><div data-collapsible="" hidden="" id="gm-memory-body"></div><button aria-controls="gm-antak-body" aria-describedby="hx-gm-antak" aria-expanded="false" class="btn primary" data-label-close="शब्द-अंत्याक्षरी बंद करें" data-label-open="शब्द-अंत्याक्षरी खोलें" id="gm-antak-toggle" type="button">शब्द-अंत्याक्षरी खोलें</button><span class="gm-help" id="hx-gm-antak">इसे खोलने के लिए डबल टैप करें। रोबोट के साथ शब्द-अंत्याक्षरी। पिछले शब्द के आखिरी अक्षर से नया शब्द लिखें।</span><div data-collapsible="" hidden="" id="gm-antak-body"></div><button aria-controls="gm-quiz-body" aria-describedby="hx-gm-quiz" aria-expanded="false" class="btn primary" data-label-close="सामान्य ज्ञान क्विज़ बंद करें" data-label-open="सामान्य ज्ञान क्विज़ खोलें" id="gm-quiz-toggle" type="button">सामान्य ज्ञान क्विज़ खोलें</button><span class="gm-help" id="hx-gm-quiz">इसे खोलने के लिए डबल टैप करें। दस सवाल, चार विकल्प। हरियाणा और भारत के सवाल। एक से चार खिलाड़ी।</span><div data-collapsible="" hidden="" id="gm-quiz-body"></div><button aria-controls="gm-numbers-body" aria-describedby="hx-gm-numbers" aria-expanded="false" class="btn primary" data-label-close="संख्या का अंदाज़ा बंद करें" data-label-open="संख्या का अंदाज़ा खोलें" id="gm-numbers-toggle" type="button">संख्या का अंदाज़ा खोलें</button><span class="gm-help" id="hx-gm-numbers">इसे खोलने के लिए डबल टैप करें। आप संख्या का अंदाज़ा लगाएँ, या रोबोट लगाए। ऊपर या नीचे बताकर पकड़ें।</span><div data-collapsible="" hidden="" id="gm-numbers-body"></div><button aria-controls="gm-car-body" aria-describedby="hx-gm-car" aria-expanded="false" class="btn primary" data-label-close="गाड़ी चलाओ बंद करें" data-label-open="गाड़ी चलाओ खोलें" id="gm-car-toggle" type="button">गाड़ी चलाओ खोलें</button><span class="gm-help" id="hx-gm-car">इसे खोलने के लिए डबल टैप करें। तीन लेन की सड़क। हर कदम पर बंद लेन बताई जाएगी, खुली लेन चुनें। बिना इंटरनेट।</span><div data-collapsible="" hidden="" id="gm-car-body"></div><button aria-controls="gm-train-body" aria-describedby="hx-gm-train" aria-expanded="false" class="btn primary" data-label-close="रेलगाड़ी बंद करें" data-label-open="रेलगाड़ी खोलें" id="gm-train-toggle" type="button">रेलगाड़ी खोलें</button><span class="gm-help" id="hx-gm-train">इसे खोलने के लिए डबल टैप करें। हर रेलगाड़ी की मंज़िल सुनें और सही स्टेशन वाली पटरी चुनें। बिना इंटरनेट।</span><div data-collapsible="" hidden="" id="gm-train-body"></div></div><div class="panel cat-screen" hidden="" id="cat-settings"><span class="sr-only" id="hx-back-cat-settings">इस पन्ने से बाहर निकलकर मुख्य सूची पर लौटने के लिए दबाएँ।</span><button aria-describedby="hx-back-cat-settings" class="btn back" data-back="" type="button">वापस</button>
 <h2 class="panel-title" data-reveal="settings-body" id="h-settings" tabindex="-1">सेटिंग</h2>
 <button aria-controls="settings-body" aria-describedby="hx-settings-toggle" aria-expanded="false" class="btn primary" data-label-close="सेटिंग छिपाएँ" data-label-open="सेटिंग दिखाएँ" id="settings-toggle" type="button">सेटिंग दिखाएँ</button>
 <p class="hint" id="hx-settings-toggle">इसे खोलने के लिए डबल टैप करें। दबाने पर सेटिंग के सारे हिस्से नीचे खुलेंगे। दोबारा दबाने पर वे बंद होंगे।</p>
@@ -1044,34 +1026,34 @@ html.hc body { background: #fff; color: #000; }
 <h3 class="sec-title" id="h-look">दिखावट</h3>
 <fieldset class="set-row">
 <legend>अक्षरों का आकार</legend>
-<label class="choice"><input aria-describedby="hx-fsize" name="fsize" type="radio" value="0"/> <span>छोटा</span></label>
-<label class="choice"><input aria-describedby="hx-fsize" name="fsize" type="radio" value="1"/> <span>सामान्य</span></label>
-<label class="choice"><input aria-describedby="hx-fsize" name="fsize" type="radio" value="2"/> <span>बड़ा</span></label>
-<label class="choice"><input aria-describedby="hx-fsize" name="fsize" type="radio" value="3"/> <span>बहुत बड़ा</span></label>
+<span class="sr-only" id="hx-fsize-0">छोटे अक्षर दिखेंगे।</span><label class="choice"><input aria-describedby="hx-fsize-0" name="fsize" type="radio" value="0"/> <span>छोटा</span></label>
+<span class="sr-only" id="hx-fsize-1">अक्षर सामान्य आकार में होंगे।</span><label class="choice"><input aria-describedby="hx-fsize-1" name="fsize" type="radio" value="1"/> <span>सामान्य</span></label>
+<span class="sr-only" id="hx-fsize-2">बड़े अक्षर दिखेंगे।</span><label class="choice"><input aria-describedby="hx-fsize-2" name="fsize" type="radio" value="2"/> <span>बड़ा</span></label>
+<span class="sr-only" id="hx-fsize-3">सबसे बड़े अक्षर दिखेंगे।</span><label class="choice"><input aria-describedby="hx-fsize-3" name="fsize" type="radio" value="3"/> <span>बहुत बड़ा</span></label>
 <p class="hint" id="hx-fsize">अक्षरों का आकार चुनें: चार में से एक। बदलाव तुरंत दिखेगा।</p>
 </fieldset>
 <label class="switch-row"><input aria-describedby="hx-contrast" id="set-contrast" role="switch" type="checkbox"/> <span>उच्च कंट्रास्ट (गहरे रंग, साफ़ किनारे)</span></label>
 <p class="hint" id="hx-contrast">दबाकर चालू या बंद करें। चालू होने पर रंग गहरे और किनारे साफ़ दिखेंगे।</p>
 <fieldset class="set-row">
 <legend>ऐप का रंग</legend>
-<label class="choice"><input aria-describedby="hx-accent" name="accent" type="radio" value="default"/> <span aria-hidden="true" class="swatch sw-default"></span> <span>डिफ़ॉल्ट (काला)</span></label>
-<label class="choice"><input aria-describedby="hx-accent" name="accent" type="radio" value="blue"/> <span aria-hidden="true" class="swatch sw-blue"></span> <span>नीला</span></label>
-<label class="choice"><input aria-describedby="hx-accent" name="accent" type="radio" value="green"/> <span aria-hidden="true" class="swatch sw-green"></span> <span>हरा</span></label>
-<label class="choice"><input aria-describedby="hx-accent" name="accent" type="radio" value="orange"/> <span aria-hidden="true" class="swatch sw-orange"></span> <span>नारंगी</span></label>
-<label class="choice"><input aria-describedby="hx-accent" name="accent" type="radio" value="purple"/> <span aria-hidden="true" class="swatch sw-purple"></span> <span>बैंगनी</span></label>
-<label class="choice"><input aria-describedby="hx-accent" name="accent" type="radio" value="red"/> <span aria-hidden="true" class="swatch sw-red"></span> <span>लाल</span></label>
-<label class="choice"><input aria-describedby="hx-accent" name="accent" type="radio" value="pink"/> <span aria-hidden="true" class="swatch sw-pink"></span> <span>गुलाबी</span></label>
-<label class="choice"><input aria-describedby="hx-accent" name="accent" type="radio" value="gold"/> <span aria-hidden="true" class="swatch sw-gold"></span> <span>सुनहरा</span></label>
+<span class="sr-only" id="hx-accent-default">बटनों का मूल काला रंग लौटेगा।</span><label class="choice"><input aria-describedby="hx-accent-default" name="accent" type="radio" value="default"/> <span aria-hidden="true" class="swatch sw-default"></span> <span>डिफ़ॉल्ट (काला)</span></label>
+<span class="sr-only" id="hx-accent-blue">बटनों का रंग नीला होगा।</span><label class="choice"><input aria-describedby="hx-accent-blue" name="accent" type="radio" value="blue"/> <span aria-hidden="true" class="swatch sw-blue"></span> <span>नीला</span></label>
+<span class="sr-only" id="hx-accent-green">बटनों का रंग हरा होगा।</span><label class="choice"><input aria-describedby="hx-accent-green" name="accent" type="radio" value="green"/> <span aria-hidden="true" class="swatch sw-green"></span> <span>हरा</span></label>
+<span class="sr-only" id="hx-accent-orange">बटनों का रंग नारंगी होगा।</span><label class="choice"><input aria-describedby="hx-accent-orange" name="accent" type="radio" value="orange"/> <span aria-hidden="true" class="swatch sw-orange"></span> <span>नारंगी</span></label>
+<span class="sr-only" id="hx-accent-purple">बटनों का रंग बैंगनी होगा।</span><label class="choice"><input aria-describedby="hx-accent-purple" name="accent" type="radio" value="purple"/> <span aria-hidden="true" class="swatch sw-purple"></span> <span>बैंगनी</span></label>
+<span class="sr-only" id="hx-accent-red">बटनों का रंग लाल होगा।</span><label class="choice"><input aria-describedby="hx-accent-red" name="accent" type="radio" value="red"/> <span aria-hidden="true" class="swatch sw-red"></span> <span>लाल</span></label>
+<span class="sr-only" id="hx-accent-pink">बटनों का रंग गुलाबी होगा।</span><label class="choice"><input aria-describedby="hx-accent-pink" name="accent" type="radio" value="pink"/> <span aria-hidden="true" class="swatch sw-pink"></span> <span>गुलाबी</span></label>
+<span class="sr-only" id="hx-accent-gold">बटनों का रंग सुनहरा होगा।</span><label class="choice"><input aria-describedby="hx-accent-gold" name="accent" type="radio" value="gold"/> <span aria-hidden="true" class="swatch sw-gold"></span> <span>सुनहरा</span></label>
 <p class="hint" id="hx-accent">बटनों का रंग चुनें: आठ में से एक। बदलाव तुरंत दिखेगा। डिफ़ॉल्ट पर लौटने के लिए पहला खाना चुनें।</p>
 </fieldset>
 <fieldset class="set-row">
 <legend>थीम (पूरे ऐप का रूप)</legend>
-<label class="choice"><input aria-describedby="hx-theme" name="theme" type="radio" value="classic"/> <span>क्लासिक (मौजूदा)</span></label>
-<label class="choice"><input aria-describedby="hx-theme" name="theme" type="radio" value="apple"/> <span>एप्पल जैसी (साफ़, गोल कोने, नीला)</span></label>
-<label class="choice"><input aria-describedby="hx-theme" name="theme" type="radio" value="dark"/> <span>डार्क (पूरा काला)</span></label>
-<label class="choice"><input aria-describedby="hx-theme" name="theme" type="radio" value="yellow"/> <span>पीला-काला (बहुत साफ़ दिखे)</span></label>
-<label class="choice"><input aria-describedby="hx-theme" name="theme" type="radio" value="whiteblue"/> <span>सफ़ेद-नीला</span></label>
-<label class="choice"><input aria-describedby="hx-theme" name="theme" type="radio" value="talkback"/> <span>TalkBack जैसी (गहरा, हरा फ़ोकस)</span></label>
+<span class="sr-only" id="hx-theme-classic">पुराना, मौजूदा रूप।</span><label class="choice"><input aria-describedby="hx-theme-classic" name="theme" type="radio" value="classic"/> <span>क्लासिक (मौजूदा)</span></label>
+<span class="sr-only" id="hx-theme-apple">एप्पल जैसा साफ़ रूप, गोल कोने और नीला रंग।</span><label class="choice"><input aria-describedby="hx-theme-apple" name="theme" type="radio" value="apple"/> <span>एप्पल जैसी (साफ़, गोल कोने, नीला)</span></label>
+<span class="sr-only" id="hx-theme-dark">पूरा काला रूप।</span><label class="choice"><input aria-describedby="hx-theme-dark" name="theme" type="radio" value="dark"/> <span>डार्क (पूरा काला)</span></label>
+<span class="sr-only" id="hx-theme-yellow">पीला-काला रूप, बहुत साफ़ दिखे।</span><label class="choice"><input aria-describedby="hx-theme-yellow" name="theme" type="radio" value="yellow"/> <span>पीला-काला (बहुत साफ़ दिखे)</span></label>
+<span class="sr-only" id="hx-theme-whiteblue">सफ़ेद पृष्ठभूमि और नीले रंग।</span><label class="choice"><input aria-describedby="hx-theme-whiteblue" name="theme" type="radio" value="whiteblue"/> <span>सफ़ेद-नीला</span></label>
+<span class="sr-only" id="hx-theme-talkback">गहरा रंग और हरा फ़ोकस, TalkBack जैसा।</span><label class="choice"><input aria-describedby="hx-theme-talkback" name="theme" type="radio" value="talkback"/> <span>TalkBack जैसी (गहरा, हरा फ़ोकस)</span></label>
 <p class="hint" id="hx-theme">पूरे ऐप का रूप चुनें: छह में से एक। डार्क, पीला-काला, सफ़ेद-नीला और TalkBack जैसी थीम हैं। इनमें बटनों का रंग थीम का ही रहता है। ऊपर का रंग सिर्फ़ क्लासिक और एप्पल जैसी थीम में बदलता है।</p>
 </fieldset>
 </section>
@@ -1223,9 +1205,9 @@ html.hc body { background: #fff; color: #000; }
 <ul class="bullets"><li>गुनू सिर्फ़ इसी ऐप के अंदर बोलती है।</li><li>यह फ़ोन के TalkBack की जगह नहीं लेती।</li><li>और TalkBack को बदलती भी नहीं।</li></ul>
 </div>
 <button aria-describedby="hx-sr-info-what-listen" class="btn" data-listen="sr-info-what-text" id="sr-info-what-listen" type="button">सुनो</button>
-<p class="hint" id="hx-sr-info-what-listen">इसे सुनने के लिए डबल टैप करें। दबाने पर यह हिस्सा चुनी आवाज़ में सुनाया जाएगा।</p>
+<p class="hint" id="hx-sr-info-what-listen">"गुनू क्या है" वाला यह हिस्सा सुनने के लिए डबल टैप करें। दबाने पर यह चुनी आवाज़ में सुनाया जाएगा।</p>
 <button aria-describedby="hx-sr-info-what-stop" class="btn" data-stop="" id="sr-info-what-stop" type="button">रोको</button>
-<p class="hint" id="hx-sr-info-what-stop">बोलना तुरंत रोकने के लिए डबल टैप करें।</p>
+<p class="hint" id="hx-sr-info-what-stop">"गुनू क्या है" वाला बोलना तुरंत रोकने के लिए डबल टैप करें।</p>
 </div>
 </div>
 <div class="sr-info">
@@ -1242,9 +1224,9 @@ html.hc body { background: #fff; color: #000; }
 </ul>
 </div>
 <button aria-describedby="hx-sr-info-do-listen" class="btn" data-listen="sr-info-do-text" id="sr-info-do-listen" type="button">सुनो</button>
-<p class="hint" id="hx-sr-info-do-listen">इसे सुनने के लिए डबल टैप करें। दबाने पर यह हिस्सा चुनी आवाज़ में सुनाया जाएगा।</p>
+<p class="hint" id="hx-sr-info-do-listen">"गुनू क्या-क्या करता है" वाला यह हिस्सा सुनने के लिए डबल टैप करें। दबाने पर यह चुनी आवाज़ में सुनाया जाएगा।</p>
 <button aria-describedby="hx-sr-info-do-stop" class="btn" data-stop="" id="sr-info-do-stop" type="button">रोको</button>
-<p class="hint" id="hx-sr-info-do-stop">बोलना तुरंत रोकने के लिए डबल टैप करें।</p>
+<p class="hint" id="hx-sr-info-do-stop">"गुनू क्या-क्या करता है" वाला बोलना तुरंत रोकने के लिए डबल टैप करें।</p>
 </div>
 </div>
 <div class="sr-info">
@@ -1261,9 +1243,9 @@ html.hc body { background: #fff; color: #000; }
 </ol>
 </div>
 <button aria-describedby="hx-sr-info-how-listen" class="btn" data-listen="sr-info-how-text" id="sr-info-how-listen" type="button">सुनो</button>
-<p class="hint" id="hx-sr-info-how-listen">इसे सुनने के लिए डबल टैप करें। दबाने पर यह हिस्सा चुनी आवाज़ में सुनाया जाएगा।</p>
+<p class="hint" id="hx-sr-info-how-listen">"कैसे इस्तेमाल करें" वाला यह हिस्सा सुनने के लिए डबल टैप करें। दबाने पर यह चुनी आवाज़ में सुनाया जाएगा।</p>
 <button aria-describedby="hx-sr-info-how-stop" class="btn" data-stop="" id="sr-info-how-stop" type="button">रोको</button>
-<p class="hint" id="hx-sr-info-how-stop">बोलना तुरंत रोकने के लिए डबल टैप करें।</p>
+<p class="hint" id="hx-sr-info-how-stop">"कैसे इस्तेमाल करें" वाला बोलना तुरंत रोकने के लिए डबल टैप करें।</p>
 </div>
 </div>
 <div class="sr-info">
@@ -1281,15 +1263,15 @@ html.hc body { background: #fff; color: #000; }
 </ul>
 </div>
 <button aria-describedby="hx-sr-info-settings-listen" class="btn" data-listen="sr-info-settings-text" id="sr-info-settings-listen" type="button">सुनो</button>
-<p class="hint" id="hx-sr-info-settings-listen">इसे सुनने के लिए डबल टैप करें। दबाने पर यह हिस्सा चुनी आवाज़ में सुनाया जाएगा।</p>
+<p class="hint" id="hx-sr-info-settings-listen">"सेटिंग कैसे काम करती है" वाला यह हिस्सा सुनने के लिए डबल टैप करें। दबाने पर यह चुनी आवाज़ में सुनाया जाएगा।</p>
 <button aria-describedby="hx-sr-info-settings-stop" class="btn" data-stop="" id="sr-info-settings-stop" type="button">रोको</button>
-<p class="hint" id="hx-sr-info-settings-stop">बोलना तुरंत रोकने के लिए डबल टैप करें।</p>
+<p class="hint" id="hx-sr-info-settings-stop">"सेटिंग कैसे काम करती है" वाला बोलना तुरंत रोकने के लिए डबल टैप करें।</p>
 </div>
 </div>
 <label class="switch-row"><input aria-describedby="hx-sr-on" checked="" id="set-sr-on" role="switch" type="checkbox"/> <span>गुनू चालू करें</span></label>
 <p class="hint" id="hx-sr-on">चालू हो तो गुनू बटन, खाना या लिंक का नाम बोलती है। फ़ोकस जाने या छूने पर मदद भी बोली जाती है। बंद करने पर गुनू चुप रहती है।</p>
 <label for="sr-voice">आवाज़</label>
-<select aria-describedby="hx-sr-voice sr-count sr-note" class="big" id="sr-voice">
+<select aria-describedby="hx-sr-voice" class="big" id="sr-voice">
 <option value="auto">अपने-आप चुनें (हिंदी पहले)</option>
 <option value="mix">मिक्स: एक हिंदी और एक अंग्रेज़ी आवाज़</option>
 </select>
@@ -1338,7 +1320,7 @@ html.hc body { background: #fff; color: #000; }
 <p><button aria-describedby="hx-wa-own-send" class="btn primary" id="wa-own-send" type="button">व्हाट्सऐप पर अपना संदेश भेजो</button></p>
 <p class="hint" id="hx-wa-own-send">इसे खोलने के लिए डबल टैप करें। दबाने पर व्हाट्सऐप खुलेगा। उसमें आपका लिखा संदेश होगा। संदेश खाली हो तो कुछ नहीं खुलेगा।</p>
 <p aria-live="polite" class="note" id="wa-own-msg"></p>
-<p><a aria-describedby="hx-wa-m hx-help-m" class="btn primary" href="https://wa.me/919896471058?text=%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A5%87%20%E0%A4%95%E0%A4%AA%E0%A4%BF%E0%A4%B2%20%E0%A4%9C%E0%A5%80%2C%20%E0%A4%86%E0%A4%B5%E0%A4%BE%E0%A4%9C%E0%A4%BC%20%E0%A4%B8%E0%A4%BE%E0%A4%A5%E0%A5%80%20%E0%A4%90%E0%A4%AA%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AE%E0%A5%81%E0%A4%9D%E0%A5%87%20%E0%A4%AF%E0%A4%B9%20%E0%A4%95%E0%A4%AE%E0%A5%80%20%E0%A4%AE%E0%A4%BF%E0%A4%B2%E0%A5%80%20%E0%A4%B9%E0%A5%88%3A%20" rel="noopener" target="_blank">कमी बताने के लिए यहाँ दबाओ</a></p>
+<p><a aria-describedby="hx-wa-link" class="btn primary" href="https://wa.me/919896471058?text=%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A5%87%20%E0%A4%95%E0%A4%AA%E0%A4%BF%E0%A4%B2%20%E0%A4%9C%E0%A5%80%2C%20%E0%A4%86%E0%A4%B5%E0%A4%BE%E0%A4%9C%E0%A4%BC%20%E0%A4%B8%E0%A4%BE%E0%A4%A5%E0%A5%80%20%E0%A4%90%E0%A4%AA%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AE%E0%A5%81%E0%A4%9D%E0%A5%87%20%E0%A4%AF%E0%A4%B9%20%E0%A4%95%E0%A4%AE%E0%A5%80%20%E0%A4%AE%E0%A4%BF%E0%A4%B2%E0%A5%80%20%E0%A4%B9%E0%A5%88%3A%20" rel="noopener" target="_blank">कमी बताने के लिए यहाँ दबाओ</a></p><span class="sr-only" id="hx-wa-link">व्हाट्सऐप खोलने के लिए दबाएँ। व्हाट्सऐप न हो तो कॉल बटन दबाएँ।</span>
 <p class="hint" id="hx-wa-m">इसे खोलने के लिए डबल टैप करें। दबाने पर व्हाट्सऐप खुलेगा। उसमें कपिल के लिए कमी बताने का संदेश पहले से होगा।</p>
 <p class="note" id="hx-help-m">अगर व्हाट्सऐप नहीं है तो कॉल बटन दबाएँ।</p>
 </div>
@@ -3177,6 +3159,97 @@ function speakNow(text) {
   speakText(text);
 }
 
+/* ---------- खेल की आवाज़: ऐप की आवाज़ (Google) या फ़ोन की अपनी आवाज़ ----------
+   खेल की सारी बोली gameSay से जाती है; यही चुनाव तय करता है कि किस रास्ते से बोलें */
+var GAME_VOICE_KEY = 'awazGameVoice';
+var gameVoicePref = 'app';
+try {
+  if (window.localStorage && window.localStorage.getItem(GAME_VOICE_KEY) === 'phone') gameVoicePref = 'phone';
+} catch (e) { /* ignore */ }
+var nativeCur = null;
+var nativeSeq = 0;
+function nativeReady() {
+  return !!(window.AwazNative && typeof window.AwazNative.ttsSpeak === 'function');
+}
+function gameUsesApp() { return gameVoicePref === 'app' && nativeReady(); }
+function gameSpeechOK() { return gameUsesApp() || speechOK; }
+function setGameVoice(v) {
+  gameVoicePref = (v === 'phone') ? 'phone' : 'app';
+  try { window.localStorage.setItem(GAME_VOICE_KEY, gameVoicePref); } catch (e) { /* ignore */ }
+  var sels = document.querySelectorAll('.gm-voice-select');
+  for (var i = 0; i < sels.length; i++) { if (sels[i].value !== gameVoicePref) sels[i].value = gameVoicePref; }
+}
+/* ऐप की आवाज़ के टुकड़े पूरे होने की खबर (फ़ोन से आती है) */
+window.__awTtsEvent = function (id, type) {
+  var cur = nativeCur;
+  if (!cur || id !== cur.id) return;
+  if (type === 'end') cur.finish(true);
+  else if (type === 'error') cur.finish(false);
+};
+/* ऐप की आवाज़ से चल रही बात बंद करना */
+function nativeHalt() {
+  nativeSeq++;
+  nativeCur = null;
+  if (nativeReady()) { try { window.AwazNative.ttsStop(); } catch (e) { /* ignore */ } }
+}
+/* खेल की हर बोली रोकना (दोनों रास्ते) */
+function gameSpeechStop() {
+  nativeHalt();
+  ttsRun++;
+  try { if (speechOK) window.speechSynthesis.cancel(); } catch (e) { /* ignore */ }
+}
+/* ऐप की आवाज़: टुकड़े एक-एक करके; कोई टुकड़ा न चले तो बाकी बात फ़ोन की आवाज़ से */
+function nativeSay(pieces, done, style) {
+  var me = ++nativeSeq;
+  var rate = (style === 'announcer') ? 0.85 : S.srRate;
+  var pitch = (style === 'announcer') ? 0.85 : S.srPitch;
+  var i = 0;
+  function playNext() {
+    if (me !== nativeSeq) return;
+    if (i >= pieces.length) { if (done) done(true); return; }
+    var cur = { id: 'g' + me + '_' + i, timer: 0, finish: null };
+    cur.finish = function (ok) {
+      if (nativeCur !== cur) return;
+      clearTimeout(cur.timer);
+      nativeCur = null;
+      if (ok) { i++; playNext(); return; }
+      phoneSay(pieces.slice(i).join(' '), done, style);
+    };
+    nativeCur = cur;
+    cur.timer = setTimeout(function () { cur.finish(false); }, 20000 + pieces[i].length * 200);
+    try { window.AwazNative.ttsSpeak(cur.id, pieces[i], 'hi-IN', '', rate, pitch); }
+    catch (e) { cur.finish(false); }
+  }
+  playNext();
+}
+/* फ़ोन की अपनी आवाज़ (speechSynthesis); घोषणा वाली आवाज़ धीमी और भारी रहती है */
+function phoneSay(text, done, style) {
+  var s = String(text || '').trim();
+  if (!speechOK) { if (done) done(false); return; }
+  if (!s) { if (done) done(true); return; }
+  if (style !== 'announcer') { speakText(s, done); return; }
+  speakQueue(function () {
+    var out = [];
+    chunkText(s).forEach(function (c) { out.push({ text: c, lang: 'hi-IN', rate: 0.85, vol: 1, v: null }); });
+    return out;
+  }, done);
+}
+/* खेल की हर आवाज़ यहीं से; style 'announcer' हो तो घोषणा का लहजा */
+function gameSay(text, done, style) {
+  var s = String(text || '').trim();
+  if (!s) { if (done) done(true); return; }
+  /* स्वागत संदेश चल रहा हो तो बीच में नहीं रोकते: बाद में बोलने के लिए रखते हैं */
+  if (welcomeActive) { welcomePending = s; return; }
+  nativeHalt();
+  if (gameUsesApp()) {
+    ttsRun++;
+    try { if (speechOK) window.speechSynthesis.cancel(); } catch (e) { /* ignore */ }
+    var pieces = chunkText(s);
+    nativeSay(pieces, done, style);
+    return;
+  }
+  phoneSay(s, done, style);
+}
 /* ---------- गुनू का स्वागत संदेश ---------- */
 var WELCOME_TEXT = 'गुनू स्क्रीन रीडर में आपका स्वागत है। आगे बढ़ने के लिए दाईं ओर स्वाइप करें।';
 var welcomeActive = false;
@@ -3329,7 +3402,13 @@ function radioRender() {
     var b = document.createElement('button');
     b.type = 'button';
     b.className = 'btn';
-    b.setAttribute('aria-describedby', 'hx-radio-pick');
+    var rid = 'hx-rp-' + items.indexOf(st);
+    var rh = document.createElement('span');
+    rh.className = 'sr-only';
+    rh.id = rid;
+    rh.textContent = st.name + ' चालू करें। इंटरनेट चाहिए।';
+    box.appendChild(rh);
+    b.setAttribute('aria-describedby', rid);
     b.textContent = st.name;
     b.addEventListener('click', function () { radioPlay(st); });
     box.appendChild(b);
@@ -4371,8 +4450,18 @@ function stopAllCams(keepRadio) {
   bookRun++;
   bookPlaying = false;
   speechCancelAll();
+  if (window.awazStopNewTools) window.awazStopNewTools();
+}
+/* YouTube ऐप खोलना: फ़ोन में बने Java पुल (window.AwazNative.openYouTube) से */
+function openYouTubeNow() {
+  var nat = window.AwazNative;
+  if (nat && typeof nat.openYouTube === 'function') {
+    try { nat.openYouTube(); notify('#mic-state', 'YouTube खोला जा रहा है।'); return; } catch (e) { /* नीचे संदेश */ }
+  }
+  notify('#mic-state', 'इस फ़ोन में YouTube खोलने की सुविधा अभी उपलब्ध नहीं है।');
 }
 var COMMANDS = [
+  { w: ['यूट्यूब खोलो', 'YouTube खोलो', 'यूट्यूब चलाओ', 'open youtube'], run: openYouTubeNow },
   { w: ['नाम बदल', 'नाम लिख', 'मेरा नाम'], run: function () { goTo('h-myname', 'नाम बदलने वाला हिस्सा खुला है। पहला नाम लिखें और नाम सहेजें दबाएँ।'); } },
   { w: ['स्क्रीन रिकॉर्ड', 'स्क्रीन'], run: function () { goTo('h-screen', 'स्क्रीन रिकॉर्डर वाला हिस्सा खुला है।'); } },
   { w: ['स्पीकर साफ़', 'स्पीकर क्लीनर'], run: function () { goTo('h-speaker', 'स्पीकर क्लीनर वाला हिस्सा खुला है। सफ़ाई शुरू करने के लिए "सफ़ाई शुरू करो" बटन दबाएँ।'); } },
@@ -4389,22 +4478,21 @@ var COMMANDS = [
   { w: ['सेटिंग'], run: function () { goTo('h-settings', 'सेटिंग खुली है।'); } },
   { w: ['होम', 'घर'], run: function () { goTo('h-home', 'होम स्क्रीन खुली है।'); } },
   { w: ['रेडियो'], run: function () { goTo('h-radio', 'रेडियो वाला हिस्सा खुला है।'); } },
-  { w: ['मेरा यूट्यूब', 'यूट्यूब चैनल'], run: function () { goTo('h-yt', 'मेरा YouTube चैनल वाला हिस्सा खुला है।'); } },
   { w: ['मौसम'], run: function () { goTo('h-weather', 'मौसम वाला हिस्सा खुला है। अपनी जगह का मौसम सुनने के लिए "मेरी जगह का मौसम" दबाएँ। या देश चुनकर जगह का नाम लिखें।'); } },
   { w: ['पढ़कर', 'सुनाओ', 'सुनाएँ', 'पढ़ो', 'पढ़ें'], run: function () { goTo('h-speak', 'बोलकर सुनाने वाला हिस्सा खुला है। लिखा पाठ यहाँ चिपकाएँ।'); } },
   { w: ['रुको', 'रोको', 'बंद करो', 'चुप'], run: function () { stopAllCams(); notify('#mic-state', 'सब रोक दिया गया।'); } },
-  { w: ['मदद', 'क्या बोल'], run: function () { notify('#mic-state', 'आदेश: वीडियो जोड़ो, आवाज़ निकालो, मिलाओ, गाना, वोकल रिमूवर। तस्वीर, रंग पहचानें, कैमरा, रेडियो, मौसम, होम, सेटिंग, रुको।'); } },
+  { w: ['मदद', 'क्या बोल'], run: function () { notify('#mic-state', 'आदेश: वीडियो जोड़ो, आवाज़ निकालो, मिलाओ, गाना, वोकल रिमूवर। तस्वीर, रंग पहचानें, कैमरा, रेडियो, मौसम, यूट्यूब खोलो, होम, सेटिंग, रुको।'); } },
   { w: ['वोकल रिमूवर', 'वोकल'], run: function () { goTo('h-vocal', 'वोकल रिमूवर वाला हिस्सा खुला है। गाने की फ़ाइल चुनें।'); } },
   { w: ['खेल', 'गेम'], run: function () { goTo('h-games', 'खेल वाला हिस्सा खुला है।'); } },
   { w: ['आवाज़'], run: function () { goTo('h-sound', 'आवाज़ वाला हिस्सा खुला है।'); } }
 ];
 
 function micDo(raw) {
-  var t = norm(raw);
+  var t = norm(raw).toLowerCase();
   for (var i = 0; i < COMMANDS.length; i++) {
     var c = COMMANDS[i];
     for (var k = 0; k < c.w.length; k++) {
-      if (t.indexOf(norm(c.w[k])) !== -1) { c.run(); return; }
+      if (t.indexOf(norm(c.w[k]).toLowerCase()) !== -1) { c.run(); return; }
     }
   }
   notify('#mic-state', 'यह आदेश समझ नहीं आया: "' + oneLine(raw) + '"। सारे आदेश सुनने के लिए "मदद" बोलें।');
@@ -4741,8 +4829,8 @@ function setCollapse(bodyId, open) {
     isOpen: function () { return !body.hasAttribute('hidden'); },
     hide: function () { setCollapse(bodyId, false); },
     close: function () {
-      setCollapse(bodyId, false);
       if (t) t.focus(); else if (curScreen) focusScreenHeading(curScreen);
+      setCollapse(bodyId, false);
     }
   });
 }
@@ -4759,6 +4847,7 @@ $$('button[data-label-open]').forEach(function (b) {
     var open = b.getAttribute('aria-expanded') !== 'true';
     setCollapse(b.getAttribute('aria-controls'), open);
     say(open ? 'हिस्सा खुल गया है।' : 'हिस्सा बंद हो गया है।');
+    if (open && window.awazGmOpened) window.awazGmOpened(b.getAttribute('aria-controls'));
   });
 });
 
@@ -5589,66 +5678,6 @@ showNameNow();
 showNamePanelIfFirst();
 startGreetSpeech();
 
-/* ---------- मेरा YouTube चैनल ---------- */
-var YT_KEY = 'awaz-yt-link';
-/* लिंक जाँचना: केवल youtube.com या youtu.be के https/http लिंक */
-function ytCheck(raw) {
-  var s = String(raw || '').trim();
-  if (!s) return null;
-  var u = null;
-  try { u = new URL(s); } catch (e) { return null; }
-  if (u.protocol !== 'https:' && u.protocol !== 'http:') return null;
-  var h = u.hostname.toLowerCase();
-  if (h === 'youtu.be' || h === 'youtube.com' || h === 'www.youtube.com' || h === 'm.youtube.com') return u;
-  return null;
-}
-function ytShow(u) {
-  var open = $('#yt-open');
-  var fr = $('#yt-frame');
-  var wrap = $('#yt-embed-wrap');
-  if (u) open.setAttribute('href', u.href); else open.removeAttribute('href');
-  /* नए वीडियो की झलक केवल उसी लिंक पर, जिसमें सही /channel/UC… पता हो */
-  var m = u ? /^\/channel\/(UC[A-Za-z0-9_-]{22})(\/|$)/.exec(u.pathname) : null;
-  if (m) {
-    fr.setAttribute('src', 'https://www.youtube-nocookie.com/embed/videoseries?list=UU' + m[1].slice(2));
-    wrap.hidden = false;
-  } else {
-    fr.removeAttribute('src');
-    wrap.hidden = true;
-  }
-}
-function ytSave() {
-  var raw = $('#yt-link').value;
-  var msg = $('#yt-msg');
-  if (!String(raw).trim()) {
-    try { localStorage.removeItem(YT_KEY); } catch (e) { /* ignore */ }
-    ytShow(null);
-    msg.textContent = 'चैनल का लिंक हटा दिया गया है।';
-    return;
-  }
-  var u = ytCheck(raw);
-  if (!u) {
-    msg.textContent = 'यह YouTube का लिंक नहीं लगता। लिंक youtube.com या youtu.be से शुरू होना चाहिए।';
-    $('#yt-link').focus();
-    return;
-  }
-  try { localStorage.setItem(YT_KEY, u.href); } catch (e) { /* फ़ोन में सहेज न सकें तो भी इस बार चलेगा */ }
-  $('#yt-link').value = u.href;
-  ytShow(u);
-  msg.textContent = 'चैनल का लिंक सहेज लिया गया है। अब "मेरा चैनल खोलो" दबा सकते हैं।';
-}
-$('#yt-save').addEventListener('click', ytSave);
-$('#yt-open').addEventListener('click', function (e) {
-  if (!this.getAttribute('href')) { e.preventDefault(); say('पहले ऊपर चैनल का लिंक डालकर सहेजें।'); return; }
-  say('चैनल YouTube पर खुल रहा है।');
-});
-(function ytInit() {
-  var saved = '';
-  try { saved = localStorage.getItem(YT_KEY) || ''; } catch (e) { saved = ''; }
-  var u = ytCheck(saved);
-  if (u) $('#yt-link').value = u.href;
-  ytShow(u);
-})();
 /* ---------- खेल: आठ खेल, पूरी तरह फ़ोन में और बिना इंटरनेट के ---------- */
 (function () {
 var GAMES = {};
@@ -5673,6 +5702,33 @@ function audio() {
   if (actx && actx.state === 'suspended' && actx.resume) { try { actx.resume(); } catch (e) { /* ignore */ } }
   return actx;
 }
+/* मास्टर: सारी खेल-आवाज़ें एक गेन और नरम क्लिप (पास के ज़ोर पर) से होकर जाती हैं: 0.8 तक सीधी आवाज़, ऊपर की चोटी धीरे से दबती है, फटती नहीं */
+var busNode = null, busCtx = null;
+function softClipCurve() {
+  var n = 2048, curve = new Float32Array(n), i, x, a;
+  for (i = 0; i < n; i++) {
+    x = i * 2 / (n - 1) - 1;
+    a = Math.abs(x);
+    curve[i] = a <= 0.9 ? x : (x < 0 ? -1 : 1) * (0.9 + 0.1 * Math.tanh((a - 0.9) / 0.1));
+  }
+  return curve;
+}
+function outBus(c) {
+  if (busNode && busCtx === c) return busNode;
+  busCtx = c;
+  try {
+    /* मास्टर गेन: आवाज़ें ज़ोर से सुनाई दें; सीमित करने वाला (लिमिटर) ज़ोरदार पल को -3 dB पर रोकता है, क्लिप नहीं होता */
+    var master = c.createGain(); master.gain.value = 1.5;
+    var comp = c.createDynamicsCompressor();
+    comp.threshold.value = -3; comp.knee.value = 2; comp.ratio.value = 20;
+    comp.attack.value = 0.002; comp.release.value = 0.12;
+    var shaper = c.createWaveShaper();
+    shaper.curve = softClipCurve();
+    master.connect(comp); comp.connect(shaper); shaper.connect(c.destination);
+    busNode = master;
+  } catch (e) { busNode = c.destination; }
+  return busNode;
+}
 function track(key, node) {
   if (!nodes[key]) nodes[key] = [];
   nodes[key].push(node);
@@ -5694,7 +5750,7 @@ function tone(key, freq, dur, type, vol, delay, endFreq) {
     g.gain.setValueAtTime(0.0001, t0);
     g.gain.exponentialRampToValueAtTime(vol || 0.2, t0 + 0.01);
     g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
-    o.connect(g); g.connect(c.destination);
+    o.connect(g); g.connect(outBus(c));
     o.start(t0); o.stop(t0 + dur + 0.05);
     track(key, o);
   } catch (e) { /* ignore */ }
@@ -5711,12 +5767,12 @@ function noise(key, dur, vol, delay) {
     var s = c.createBufferSource(), g = c.createGain();
     s.buffer = buf;
     g.gain.setValueAtTime(vol || 0.3, t0);
-    s.connect(g); g.connect(c.destination);
+    s.connect(g); g.connect(outBus(c));
     s.start(t0); track(key, s);
   } catch (e) { /* ignore */ }
 }
 function chime(key, notes, delay) {
-  notes.forEach(function (f, i) { tone(key, f, 0.18, 'triangle', 0.22, (delay || 0) + i * 0.14); });
+  notes.forEach(function (f, i) { tone(key, f, 0.18, 'triangle', 0.45, (delay || 0) + i * 0.14); });
 }
 function buzz(key) { tone(key, 170, 0.45, 'sawtooth', 0.18); }
 /* लगातार चलने वाली आवाज़ें (इंजन, भीड़ की गुनगुनाहट): अलग सूची में रहती हैं, ताकि बंद करते ही पक्की तरह रुकें */
@@ -5750,14 +5806,14 @@ function puff(key, freq, q, dur, vol, delay) {
     g.gain.setValueAtTime(0.0001, t0);
     g.gain.exponentialRampToValueAtTime(vol || 0.3, t0 + dur * 0.2);
     g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
-    s.connect(f); f.connect(g); g.connect(c.destination);
+    s.connect(f); f.connect(g); g.connect(outBus(c));
     s.start(t0, rnd() * 0.4); s.stop(t0 + dur + 0.1); track(key, s);
   } catch (e) { /* ignore */ }
 }
 /* कार का हॉर्न: दो तेज़ सुर एक साथ */
 function horn(key, delay, len) {
-  tone(key, 392, len || 0.3, 'sawtooth', 0.09, delay);
-  tone(key, 494, len || 0.3, 'sawtooth', 0.09, delay);
+  tone(key, 392, len || 0.3, 'sawtooth', 0.42, delay);
+  tone(key, 494, len || 0.3, 'sawtooth', 0.42, delay);
 }
 /* इंजन: गुर्राहट जो चालू रहती है; हर कदम पर सुर ऊँचा होता है */
 function engineStart(key) {
@@ -5768,8 +5824,8 @@ function engineStart(key) {
     o.type = 'sawtooth'; o.frequency.value = 90;
     f.type = 'lowpass'; f.frequency.value = 700; f.Q.value = 2;
     g.gain.setValueAtTime(0.0001, c.currentTime);
-    g.gain.exponentialRampToValueAtTime(0.06, c.currentTime + 0.8);
-    o.connect(f); f.connect(g); g.connect(c.destination);
+    g.gain.exponentialRampToValueAtTime(0.32, c.currentTime + 0.8);
+    o.connect(f); f.connect(g); g.connect(outBus(c));
     o.start(); loopAdd(key, o); engineOsc[key] = o;
   } catch (e) { /* ignore */ }
 }
@@ -5780,14 +5836,17 @@ function engineRev(key, frac) {
 }
 /* टक्कर: धमाका, नीचे गिरता सुर और हॉर्न */
 function crash(key) {
-  noise(key, 0.7, 0.5);
-  tone(key, 200, 0.7, 'sawtooth', 0.22, 0, 50);
+  noise(key, 0.7, 1.0);
+  tone(key, 200, 0.7, 'sawtooth', 0.6, 0, 50);
   horn(key, 0.1, 0.9);
 }
 /* ब्रेक की चरचराहट: आवाज़ धीरे-धीरे नीचे उतरती है */
 function brake(key, delay) {
   if (!soundOn[key]) return;
   var c = audio(); if (!c) return;
+  /* पहियों की चीख़: ऊँचा सुर धीरे नीचे आता हुआ, शोर वाली चरचराहट के ऊपर */
+  tone(key, 2300, 1.3, 'triangle', 0.1, delay || 0, 1500);
+  tone(key, 2310, 1.3, 'sine', 0.05, delay || 0, 1520);
   try {
     var t0 = c.currentTime + (delay || 0);
     var s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
@@ -5796,61 +5855,191 @@ function brake(key, delay) {
     f.frequency.setValueAtTime(2600, t0);
     f.frequency.exponentialRampToValueAtTime(500, t0 + 1.3);
     g.gain.setValueAtTime(0.0001, t0);
-    g.gain.exponentialRampToValueAtTime(0.2, t0 + 0.08);
-    g.gain.setValueAtTime(0.2, t0 + 1.0);
+    g.gain.exponentialRampToValueAtTime(2.0, t0 + 0.08);
+    g.gain.setValueAtTime(2.0, t0 + 1.0);
     g.gain.exponentialRampToValueAtTime(0.0001, t0 + 1.4);
-    s.connect(f); f.connect(g); g.connect(c.destination);
+    s.connect(f); f.connect(g); g.connect(outBus(c));
     s.start(t0, 0.2); s.stop(t0 + 1.5); track(key, s);
   } catch (e) { /* ignore */ }
 }
 /* स्टेशन की घंटी: दो बार "टिन-टिन" */
 function bell(key, delay) {
   [0, 0.42].forEach(function (d) {
-    tone(key, 1568, 0.9, 'sine', 0.22, delay + d);
-    tone(key, 2349, 0.7, 'sine', 0.1, delay + d);
+    tone(key, 1568, 0.9, 'sine', 0.5, delay + d);
+    tone(key, 2349, 0.7, 'sine', 0.25, delay + d);
   });
 }
 /* सीटी: सुर ऊपर उठता है */
 function trainWhistle(key, delay) {
-  tone(key, 660, 0.7, 'sine', 0.2, delay || 0, 880);
-  tone(key, 1320, 0.7, 'sine', 0.05, delay || 0, 1760);
+  tone(key, 660, 0.7, 'sine', 0.6, delay || 0, 880);
+  tone(key, 1320, 0.7, 'sine', 0.2, delay || 0, 1760);
 }
-/* बातचीत जैसी धीमी आवाज़: नीचे-ऊपर होता सुर, छना हुआ, बहुत हल्का */
-function voice(key, at) {
-  var c = audio(); if (!c) return;
-  try {
-    var o = c.createOscillator(), f = c.createBiquadFilter(), g = c.createGain();
-    var base = 150 + rnd() * 90, dur = 0.25 + rnd() * 0.45;
-    o.type = 'sawtooth';
-    o.frequency.setValueAtTime(base, at);
-    o.frequency.linearRampToValueAtTime(base * (0.85 + rnd() * 0.3), at + dur);
-    f.type = 'bandpass'; f.frequency.value = 700 + rnd() * 500; f.Q.value = 2;
-    g.gain.setValueAtTime(0.0001, at);
-    g.gain.exponentialRampToValueAtTime(0.02, at + dur * 0.3);
-    g.gain.exponentialRampToValueAtTime(0.0001, at + dur);
-    o.connect(f); f.connect(g); g.connect(c.destination);
-    o.start(at); o.stop(at + dur + 0.05); loopAdd(key, o);
-  } catch (e) { /* ignore */ }
-}
-/* स्टेशन की भीड़ की धीमी गुनगुनाहट, बीच-बीच में हल्की बातचीत (बहुत कम आवाज़) */
-function murmur(key, seconds) {
+/* पटरी के जोड़ की "खट-खट": छोटा शोर का धमाका जिसके साथ हल्की थप; दो ताल (भारी और हल्की) */
+function clack(key, at, vol) {
   if (!soundOn[key]) return;
   var c = audio(); if (!c) return;
   try {
-    var t0 = c.currentTime + 0.05, t = 0, k;
     var s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+    s.buffer = noiseBuf(c);
+    f.type = 'bandpass'; f.frequency.value = 1500 + rnd() * 900; f.Q.value = 1.6;
+    g.gain.setValueAtTime(vol, at);
+    g.gain.exponentialRampToValueAtTime(0.0001, at + 0.07);
+    s.connect(f); f.connect(g); g.connect(outBus(c));
+    s.start(at, rnd() * 1.0); s.stop(at + 0.09); track(key, s);
+  } catch (e) { /* ignore */ }
+}
+/* रफ़्तार 0 से 1 तक: धीरे चढ़ना, बीच में बनी रहना, आख़िर में धीरे उतरना (स्टेशन पर रुकने के लिए) */
+function trainSpeed(t, dur) {
+  var up = Math.min(1, t / 2.2), down = Math.min(1, Math.max(0, dur - t) / 1.8);
+  var v = Math.min(up, down);
+  return v * v * (3 - 2 * v);
+}
+/* जोड़ों की ताल: रफ़्तार बढ़ने पर जोड़ पास-पास आते हैं; हर जोड़ पर दो थाप */
+function trainJoints(key, at, dur) {
+  var t = 0.5, n = 0;
+  while (t < dur) {
+    var gap = 0.74 - 0.42 * trainSpeed(t, dur);
+    clack(key, at + t, 0.8 - 0.22 * (n % 2));
+    clack(key, at + t + gap * 0.42, 0.42);
+    t += gap; n++;
+  }
+}
+/* डीज़ल इंजन की गड़गड़ाहट: नीचे का गहरा सुर और छनता शोर; धीरे उठती-गिरती */
+function dieselRumble(key, at, dur, vol) {
+  if (!soundOn[key]) return;
+  var c = audio(); if (!c) return;
+  try {
+    var o = c.createOscillator(), lp = c.createBiquadFilter(), g = c.createGain();
+    var s = c.createBufferSource(), nl = c.createBiquadFilter(), ng = c.createGain();
+    o.type = 'sawtooth';
+    o.frequency.setValueAtTime(36, at);
+    o.frequency.linearRampToValueAtTime(50, at + dur * 0.6);
+    o.frequency.linearRampToValueAtTime(40, at + dur);
+    lp.type = 'lowpass'; lp.frequency.value = 170; lp.Q.value = 2;
     s.buffer = noiseBuf(c); s.loop = true;
-    f.type = 'bandpass'; f.frequency.value = 650; f.Q.value = 0.6;
-    g.gain.setValueAtTime(0.02, t0);
-    s.connect(f); f.connect(g); g.connect(c.destination);
-    while (t < seconds) {
-      t += 0.2 + rnd() * 0.5;
-      g.gain.linearRampToValueAtTime(0.008 + rnd() * 0.02, t0 + t);
-    }
-    g.gain.linearRampToValueAtTime(0.0001, t0 + seconds);
-    s.start(t0); s.stop(t0 + seconds + 0.1);
-    loopAdd(key, s);
-    for (k = 0; k < seconds / 2.5; k++) voice(key, t0 + rnd() * seconds);
+    nl.type = 'lowpass'; nl.frequency.value = 260;
+    ng.gain.value = 0.6;
+    g.gain.setValueAtTime(0.0001, at);
+    g.gain.exponentialRampToValueAtTime(vol, at + dur * 0.3);
+    g.gain.setValueAtTime(vol, at + dur * 0.7);
+    g.gain.exponentialRampToValueAtTime(0.0001, at + dur);
+    o.connect(lp); lp.connect(g);
+    s.connect(nl); nl.connect(ng); ng.connect(g);
+    g.connect(outBus(c));
+    o.start(at); o.stop(at + dur + 0.05); track(key, o);
+    s.start(at, rnd() * 1.0); s.stop(at + dur + 0.05); track(key, s);
+  } catch (e) { /* ignore */ }
+}
+/* रेलगाड़ी का दो-सुर वाला हॉर्न (भारी और ऊँचा एक साथ) */
+function trainHorn(key, at, len) {
+  if (!soundOn[key]) return;
+  var c = audio(); if (!c) return;
+  try {
+    /* गहरे दो सुर (लगभग A3 और C#4): भारी गूँज वाली सीटी */
+    [220, 277].forEach(function (hz) {
+      var o = c.createOscillator(), o2 = c.createOscillator(), lp = c.createBiquadFilter(), g = c.createGain();
+      o.type = 'sawtooth'; o.frequency.value = hz;
+      o2.type = 'triangle'; o2.frequency.value = hz * 2;
+      lp.type = 'lowpass'; lp.frequency.value = 1200; lp.Q.value = 1;
+      g.gain.setValueAtTime(0.0001, at);
+      g.gain.exponentialRampToValueAtTime(0.26, at + 0.08);
+      g.gain.setValueAtTime(0.26, at + len - 0.15);
+      g.gain.exponentialRampToValueAtTime(0.0001, at + len);
+      o.connect(lp); o2.connect(lp); lp.connect(g); g.connect(outBus(c));
+      o.start(at); o2.start(at); o.stop(at + len + 0.05); o2.stop(at + len + 0.05); track(key, o); track(key, o2);
+    });
+  } catch (e) { /* ignore */ }
+}
+/* हवा का फुफकार (ब्रेक छोड़ने पर): ऊँचे सुर का छोटा शोर */
+function airHiss(key, at, dur, vol) {
+  if (!soundOn[key]) return;
+  var c = audio(); if (!c) return;
+  try {
+    var s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+    s.buffer = noiseBuf(c);
+    f.type = 'highpass'; f.frequency.value = 3200;
+    g.gain.setValueAtTime(0.0001, at);
+    g.gain.exponentialRampToValueAtTime(vol, at + 0.05);
+    g.gain.exponentialRampToValueAtTime(0.0001, at + dur);
+    s.connect(f); f.connect(g); g.connect(outBus(c));
+    s.start(at, rnd() * 1.0); s.stop(at + dur + 0.05); track(key, s);
+  } catch (e) { /* ignore */ }
+}
+/* रेलगाड़ी के आने का पूरा दृश्य (लगभग 7.5 सेकंड): हॉर्न, गड़गड़ाहट, जोड़ों की ताल,
+   ब्रेक की चरचराहट, हवा का फुफकार और अंत में स्टेशन की घंटी */
+function trainArrival(key) {
+  if (!soundOn[key]) return;
+  var c = audio(); if (!c) return;
+  var at = c.currentTime + 0.05;
+  trainHorn(key, at, 1.2);
+  dieselRumble(key, at, 7.0, 0.3);
+  trainJoints(key, at, 6.0);
+  brake(key, 6.05);
+  airHiss(key, at + 6.4, 0.9, 0.22);
+  bell(key, 7.2);
+}
+/* भीड़ की एक आवाज़: गले जैसा सुर (सॉटूथ) जो दो फ़ॉर्मेंट फ़िल्टर से छनता है; फ़ॉर्मेंट धीरे-धीरे खिसकते हैं */
+function voice(key, at) {
+  if (!soundOn[key]) return;
+  var c = audio(); if (!c) return;
+  try {
+    var bus = outBus(c);
+    var base = 120 + rnd() * 110, dur = 0.3 + rnd() * 0.5;
+    var f1 = 500 + rnd() * 300, f2 = 1000 + rnd() * 1200;
+    var o = c.createOscillator(), env = c.createGain();
+    var b1 = c.createBiquadFilter(), b2 = c.createBiquadFilter();
+    var g1 = c.createGain(), g2 = c.createGain();
+    o.type = 'sawtooth';
+    o.frequency.setValueAtTime(base, at);
+    o.frequency.linearRampToValueAtTime(base * (0.8 + rnd() * 0.4), at + dur);
+    b1.type = 'bandpass'; b1.Q.value = 5;
+    b1.frequency.setValueAtTime(f1, at);
+    b1.frequency.linearRampToValueAtTime(f1 * (0.85 + rnd() * 0.3), at + dur);
+    b2.type = 'bandpass'; b2.Q.value = 7;
+    b2.frequency.setValueAtTime(f2, at);
+    b2.frequency.linearRampToValueAtTime(f2 * (0.9 + rnd() * 0.2), at + dur);
+    g1.gain.value = 1; g2.gain.value = 0.5;
+    env.gain.setValueAtTime(0.0001, at);
+    env.gain.exponentialRampToValueAtTime(0.3, at + dur * 0.3);
+    env.gain.exponentialRampToValueAtTime(0.0001, at + dur);
+    o.connect(b1); o.connect(b2);
+    b1.connect(g1); b2.connect(g2);
+    g1.connect(env); g2.connect(env);
+    env.connect(bus);
+    o.start(at); o.stop(at + dur + 0.05); loopAdd(key, o);
+  } catch (e) { /* ignore */ }
+}
+/* स्टेशन की भीड़: तीन अलग-अलग छनी हुई गुनगुनाहट की परतें, हर परत धीरे-धीरे उठती-गिरती है; बीच-बीच में आवाज़ें */
+function murmurBed(key) {
+  if (!soundOn[key]) return;
+  var c = audio(); if (!c) return;
+  try {
+    var t0 = c.currentTime + 0.05;
+    var bus = outBus(c);
+    var bands = [
+      { f: 380, q: 0.9, v: 0.92, r: 0.97 },
+      { f: 780, q: 1.1, v: 0.88, r: 1.03 },
+      { f: 1450, q: 1.4, v: 0.48, r: 1.0 }
+    ];
+    /* एक ही लगातार गुनगुनाहट: खेल चलने तक बजती है, खत्म होने या आवाज़ बंद होने पर रुकती है (stopLoops) */
+    bands.forEach(function (b) {
+      var s = c.createBufferSource(), f = c.createBiquadFilter();
+      var swell = c.createGain(), fade = c.createGain();
+      var lfo = c.createOscillator(), lg = c.createGain();
+      s.buffer = noiseBuf(c); s.loop = true; s.playbackRate.value = b.r;
+      f.type = 'bandpass'; f.frequency.value = b.f; f.Q.value = b.q;
+      /* धीमा उतार-चढ़ाव: 0.1 से 0.3 हर्ट्ज़ */
+      lfo.frequency.value = 0.1 + rnd() * 0.2;
+      swell.gain.value = 0.6;
+      lg.gain.value = 0.4;
+      lfo.connect(lg); lg.connect(swell.gain);
+      fade.gain.setValueAtTime(0.0001, t0);
+      fade.gain.linearRampToValueAtTime(b.v, t0 + 1.5);
+      s.connect(f); f.connect(swell); swell.connect(fade); fade.connect(bus);
+      s.start(t0);
+      lfo.start(t0);
+      loopAdd(key, s); loopAdd(key, lfo);
+    });
   } catch (e) { /* ignore */ }
 }
 /* कीबोर्ड जैसी "खट-खट" चाल की आवाज़ और तालियों वाली जीत की आवाज़: दोनों बफ़र में बनती हैं, हर बार एक ही बनती है */
@@ -5907,7 +6096,7 @@ function playBuf(key, name, make) {
     var s = c.createBufferSource(), g = c.createGain();
     s.buffer = bufCache[name];
     g.gain.value = 1;
-    s.connect(g); g.connect(c.destination);
+    s.connect(g); g.connect(outBus(c));
     s.start(0); track(key, s);
   } catch (e) { /* ignore */ }
 }
@@ -5930,23 +6119,30 @@ function announce(g, text) {
   lastSaid[g.key] = text;
   var live = document.getElementById('gm-live-' + g.key);
   if (live) live.textContent = text;
-  speakNow(text);
+  gameSay(text);
 }
 function later(g, ms, fn) {
   var gen = g.gen;
-  g.timers.push(setTimeout(function () { if (g.gen === gen) { fn(); keepFocus(g.root); } }, ms));
+  g.timers.push(setTimeout(function () {
+    if (g.gen !== gen) return;
+    /* फ़ोकस पहले सुरक्षित लाइन पर, फिर बोर्ड बदले: बटन हटने पर फ़ोकस एक पल के लिए भी पेज पर नहीं जाता */
+    if (g.root && g.stat && document.activeElement && g.root.contains(document.activeElement)) focusQuiet(g.stat);
+    fn();
+    keepFocus(g.root);
+  }, ms));
 }
 /* फ़ोकस खेल के अंदर रहे: बटन हटने या बंद होने पर फ़ोकस खेल की स्थिति वाली लाइन पर जाता है, पेज के ऊपर नहीं */
 function keepFocus(root) {
   if (!root || !root.offsetParent) return;
   var a = document.activeElement;
-  /* a control that was just disabled still counts as focused until the next render, so treat it as lost */
-  if (a && a !== document.body && !a.disabled) return;
+  /* a removed or disabled control does not count as focused; the status line takes over */
+  if (a && a !== document.body && a.isConnected && !a.disabled && root.contains(a)) return;
   var st = root.querySelector('.gm-status');
   if (st) focusQuiet(st);
 }
 function stopGame(g) {
   g.gen++;
+  gameSpeechStop();
   g.timers.forEach(function (t) { clearTimeout(t); });
   g.timers = [];
   halt(g.key);
@@ -5971,9 +6167,18 @@ function btn(parent, label, helpText, fn) {
   parent.appendChild(b);
   if (helpText) b.setAttribute('aria-describedby', helpSpan(parent, helpText));
   b.addEventListener('click', function (e) {
-    fn(e);
     var root = parent.closest ? parent.closest('[data-game]') : null;
-    keepFocus(root);
+    var stat = root ? root.querySelector('.gm-status') : null;
+    var label = b.textContent;
+    if (stat) focusQuiet(stat);
+    fn(e);
+    if (!root) return;
+    if (b.isConnected && !b.disabled && b.offsetParent) { focusQuiet(b); return; }
+    var same = null, all = root.querySelectorAll('button');
+    for (var i = 0; i < all.length && !same; i++) {
+      if (all[i].textContent === label && !all[i].disabled && all[i].offsetParent) same = all[i];
+    }
+    if (same) focusQuiet(same); else keepFocus(root);
   });
   return b;
 }
@@ -5996,6 +6201,22 @@ function selectBox(parent, label, opts, value, onchange, helpText) {
   field(parent, label, s, helpText);
   return s;
 }
+/* खेल की आवाज़ की पसंद का चुनाव: हर खेल की सेटिंग और खेल-सूची में एक ही चुनाव */
+function gameVoiceBox(parent) {
+  var help = 'ऐप की आवाज़ Google की आवाज़ से बोलती है। फ़ोन की अपनी आवाज़ फ़ोन की सेटिंग वाली आवाज़ से बोलती है।';
+  var s = selectBox(parent, 'खेल की आवाज़', [['app', 'ऐप की आवाज़ (Google)'], ['phone', 'फोन की अपनी आवाज़']], gameVoicePref, setGameVoice, help);
+  s.classList.add('gm-voice-select');
+  return s;
+}
+/* खेल-सूची में भी यही चुनाव, खेल की सूची के परिचय के ठीक बाद */
+(function () {
+  var intro = document.querySelector('#cat-games .gm-intro');
+  if (!intro) return;
+  var box = el('div', 'gm-settings');
+  intro.parentNode.insertBefore(box, intro.nextSibling);
+  gameVoiceBox(box);
+})();
+
 function nameBox(parent, label, value, onchange) {
   var i = el('input', 'gm-input');
   i.type = 'text'; i.value = value; i.maxLength = 20;
@@ -6015,7 +6236,7 @@ function soundBox(parent, g) {
   cb.setAttribute('aria-describedby', helpSpan(wrap, 'बंद करने पर इस खेल की बीप और धुनें नहीं बजेंगी। बोलकर बताना चलता रहेगा।'));
   cb.addEventListener('change', function () {
     soundOn[key] = cb.checked;
-    if (!cb.checked) { halt(key); stopLoops(key); return; }
+    if (!cb.checked) { halt(key); stopLoops(key); if (g.onSoundOff) g.onSoundOff(); return; }
     if (g.st && !g.st.over && g.resumeSound) g.resumeSound();
   });
   wrap.appendChild(lb);
@@ -6037,6 +6258,7 @@ function shell(g, root, title) {
   g.set.setAttribute('role', 'group');
   g.set.setAttribute('aria-label', title + ' की सेटिंग');
   gate.appendChild(g.set);
+  gameVoiceBox(g.set);
   var grow = el('div', 'gm-row');
   gate.appendChild(grow);
   btn(grow, 'खेल शुरू करें', 'सेटिंग तय करके यहाँ दबाकर खेलें। खेल शुरू होते ही बोर्ड और नियंत्रण आएँगे।', function () { gameStart(g); });
@@ -6051,7 +6273,7 @@ function shell(g, root, title) {
   soundBox(run, g);
   var row = el('div', 'gm-row');
   run.appendChild(row);
-  btn(row, 'आखिरी बात फिर से सुनाएँ', 'पिछली बात फिर से बोलकर सुनाता है।', function () { speakNow(lastSaid[g.key] || 'अभी कोई बात नहीं हुई।'); });
+  btn(row, 'आखिरी बात फिर से सुनाएँ', 'पिछली बात फिर से बोलकर सुनाता है।', function () { gameSay(lastSaid[g.key] || 'अभी कोई बात नहीं हुई।'); });
   btn(row, 'नया खेल शुरू करें', 'मौजूदा खेल छोड़कर नया खेल शुरू करता है।', function () { g.reset(); });
   btn(row, 'सेटिंग बदलें', 'खेल रोककर सेटिंग वाली स्क्रीन पर जाता है।', function () { gameShowGate(g); });
   var live = el('p', 'gm-live', '');
@@ -6066,18 +6288,20 @@ function shell(g, root, title) {
 }
 function gameStart(g) {
   g.started = true;
-  g.gate.hidden = true;
   g.run.hidden = false;
+  /* पिछले खेल का "खेल खत्म" संदेश नए खेल में न रहे */
+  if (g.stat) g.stat.textContent = '';
   g.reset();
   focusQuiet(g.head);
+  g.gate.hidden = true;
 }
 function gameShowGate(g) {
   stopGame(g);
   g.started = false;
   g.st = null;
-  g.run.hidden = true;
   g.gate.hidden = false;
   focusQuiet(g.gateHead);
+  g.run.hidden = true;
 }
 function reg(key, body, setup) {
   GAMES[key] = { key: key, body: body, gen: 0, timers: [], setup: setup, reset: function () {}, started: false, st: null };
@@ -6830,7 +7054,7 @@ function setupAntakshari(g, root) {
     var st = g2.st;
     if (!st || st.over) return;
     st.over = true; st.winner = 'robot';
-    winSfx('antak');
+    buzz('antak');
     announce(g2, 'आपने हार मानी। रोबोट जीत गया। नया खेल शुरू करने के लिए बटन दबाएँ।');
     g2.stat.textContent = 'खेल खत्म।';
   }
@@ -7159,7 +7383,7 @@ function carMove(g, i) {
     return;
   }
   st.step++;
-  puff('car', 1200, 0.7, 0.6, 0.14, 0);
+  puff('car', 1200, 0.7, 0.6, 0.4, 0);
   engineRev('car', st.step / g.steps);
   carSay(g, CAR_LANES[i] + ' से गाड़ी आगे निकली। ' + st.step + ' कदम पूरे।');
   later(g, 1000, function () { carNext(g); });
@@ -7179,20 +7403,50 @@ function setupTrain(g, root) {
     stopGame(g);
     g.play.innerHTML = '';
     g.st = { round: 0, right: 0, over: false, correct: -1, stations: [], dest: '' };
-    g.murmurAt = 0;
+    trainMurmurStop(g);
     trainMurmur(g);
     trainSay(g, 'रेलगाड़ी का खेल शुरू। ' + g.rounds + ' रेलगाड़ियाँ आएँगी। मंज़िल सुनकर सही पटरी चुनें।');
     later(g, 2000, function () { trainNext(g); });
   };
   g.resumeSound = function () {
     if (!g.st || g.st.over) return;
-    g.murmurAt = 0;
+    trainMurmurStop(g);
     trainMurmur(g);
   };
+  g.onSoundOff = function () { trainMurmurStop(g); };
 }
-/* भीड़ की गुनगुनाहट खेल चलने तक बनी रहे: हर मिनट के बाद फिर से शुरू */
+/* भीड़ की गुनगुनाहट खेल चलने तक लगातार बजती है; बीच-बीच में लोगों की बातचीत (आवाज़ें) होती है */
 function trainMurmur(g) {
-  if (!g.murmurAt || Date.now() - g.murmurAt >= 60000) { g.murmurAt = Date.now(); murmur('train', 60); }
+  if (g.bedTok && g.bedGen === g.gen) return;
+  var tok = (g.bedTok || 0) + 1, gen = g.gen;
+  g.bedTok = tok; g.bedGen = gen;
+  function live() { return g.gen === gen && g.bedTok === tok && g.st && !g.st.over && soundOn.train; }
+  if (!live()) return;
+  murmurBed('train');
+  function chatter() {
+    if (!live()) return;
+    var c = audio();
+    if (c) {
+      var n = 1 + Math.floor(rnd() * 2);
+      for (var k = 0; k < n; k++) voice('train', c.currentTime + 0.05 + k * 0.4 + rnd() * 0.25);
+    }
+    g.timers.push(setTimeout(chatter, 1400 + rnd() * 1800));
+  }
+  g.timers.push(setTimeout(chatter, 500));
+}
+function trainMurmurStop(g) {
+  g.bedTok = 0;
+  stopLoops('train');
+  if (g.annoOn) { g.annoOn = false; gameSpeechStop(); }
+}
+/* स्टेशन की घोषणा: हिंदी आवाज़ में; पूरी होने पर done चलता है (ताकि खेल का निर्देश उसके बाद बोले) */
+function stationVoice(g, text, done) {
+  var fired = false;
+  function finish() { if (fired) return; fired = true; g.annoOn = false; if (done) done(); }
+  if (!gameSpeechOK() || !soundOn.train) { finish(); return; }
+  g.annoOn = true;
+  gameSay(text, finish, 'announcer');
+  g.timers.push(setTimeout(finish, 30000 + String(text).length * 200));
 }
 function trainNext(g) {
   var st = g.st;
@@ -7214,20 +7468,32 @@ function trainNext(g) {
   st.correct = Math.floor(Math.random() * g.tracks);
   st.dest = stations[st.correct];
   st.round++;
+  st.picked = false;
   trainMurmur(g);
   /* रेलगाड़ी आती है: सीटी, छुक-छुक की ताल और फिर स्टेशन की घंटी */
-  trainWhistle('train', 0);
-  for (var pf = 0; pf < 8; pf++) puff('train', 1100, 1.2, 0.16, pf % 2 === 0 ? 0.4 : 0.26, 0.7 + pf * 0.42);
-  bell('train', 4.1);
+  trainArrival('train');
   var list = stations.map(function (s, i) { return 'पटरी ' + (i + 1) + ' पर ' + s; }).join(', ');
-  trainSay(g, 'रेलगाड़ी ' + st.round + ' की मंज़िल ' + st.dest + ' है। ' + list + '। कौन-सी पटरी चुनें?');
+  var instr = 'रेलगाड़ी ' + st.round + ' की मंज़िल ' + st.dest + ' है। ' + list + '। कौन-सी पटरी चुनें?';
+  var num = 1000 + Math.floor(Math.random() * 9000), plat = 1 + Math.floor(Math.random() * 6);
+  var ann = 'गाड़ी नंबर ' + num + ', प्लेटफ़ॉर्म नंबर ' + plat + ' पर आएगी।';
+  var gen = g.gen, roundNow = st.round;
   stations.forEach(function (s, i) {
     btn(g.play, 'पटरी ' + (i + 1) + ': ' + s, 'यहाँ दबाकर खेलें: रेलगाड़ी इस पटरी पर भेजें।', function () { trainPick(g, i); });
+  });
+  if (!gameSpeechOK() || !soundOn.train) { trainSay(g, instr); return; }
+  /* घोषणा घंटी के बाद बोली जाती है; उसके पूरा होने पर ही खेल का निर्देश बोला जाता है */
+  g.stat.textContent = ann;
+  later(g, 8800, function () {
+    stationVoice(g, ann, function () {
+      if (g.gen !== gen || !g.st || g.st.picked || g.st.round !== roundNow || g.st.over) return;
+      trainSay(g, instr);
+    });
   });
 }
 function trainPick(g, i) {
   var st = g.st;
-  if (!st || st.over) return;
+  if (!st || st.over || st.picked) return;
+  st.picked = true;
   g.play.innerHTML = '';
   brake('train', 0);
   if (i === st.correct) {
@@ -7265,7 +7531,589 @@ window.awazGmSync = function (bodyId, open) {
     });
   });
 };
+/* खेल खुलते ही फ़ोकस खेल के अंदर: शुरू हो चुका हो तो स्थिति वाली लाइन, वरना सेटिंग की सुर्खी */
+window.awazGmOpened = function (bodyId) {
+  Object.keys(GAMES).forEach(function (k) {
+    var g = GAMES[k];
+    if (g.body !== bodyId || !g.gate) return;
+    if (g.run && !g.run.hidden && g.stat) focusQuiet(g.stat);
+    else focusQuiet(g.gateHead);
+  });
+};
+/* सुरक्षा जाल: खेल के अंदर का बटन हटने या छिपने पर फ़ोकस बाहर (पेज की शुरुआत) न जाए, खेल की स्थिति वाली लाइन पर लौटे */
+var gmLost = {};
+setInterval(function () {
+  var a = document.activeElement;
+  Object.keys(GAMES).forEach(function (k) {
+    var g = GAMES[k];
+    var body = document.getElementById(g.body);
+    if (!body || !g.gate || body.offsetParent === null) { gmLost[k] = false; return; }
+    if (a && a !== document.body && body.contains(a)) { gmLost[k] = true; return; }
+    if (!a || a === document.body) {
+      if (gmLost[k]) focusQuiet(g.run && !g.run.hidden && g.stat ? g.stat : g.gateHead);
+      return;
+    }
+    gmLost[k] = false;
+  });
+}, 120);
 ENG.games = GAMES;
+})();
+
+/* ===== v38: फ़ोटो से PDF, रिंगटोन बनाओ, और होम के दो शॉर्टकट ===== */
+(function () {
+  function b64Of(bytes) {
+    var s = '', CH = 0x8000, i;
+    for (i = 0; i < bytes.length; i += CH) s += String.fromCharCode.apply(null, bytes.subarray(i, i + CH));
+    return btoa(s);
+  }
+  function safeFileName(raw, ext) {
+    var s = String(raw || '').replace(/[\\\/:*?"<>|\u0000-\u001f]/g, '').replace(/^\s+|\s+$/g, '');
+    if (!s) s = 'file';
+    if (s.slice(-ext.length).toLowerCase() !== ext) s += ext;
+    return s;
+  }
+  /* फ़ोन में सेव: पहले Android पुल, नहीं तो <a download> */
+  function saveBytes(bytes, name, mime, kind) {
+    var b64 = b64Of(bytes), ok = false;
+    try {
+      if (kind === 'ring' && window.AwazNative && typeof window.AwazNative.saveRingtone === 'function') {
+        window.AwazNative.saveRingtone(b64, name, mime); ok = true;
+      } else if (window.AwazNative && typeof window.AwazNative.saveFile === 'function') {
+        window.AwazNative.saveFile(b64, name, mime); ok = true;
+      }
+    } catch (e) { ok = false; }
+    if (!ok) {
+      try {
+        var a = document.createElement('a');
+        a.href = 'data:' + mime + ';base64,' + b64;
+        a.download = name;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        ok = true;
+      } catch (e2) { ok = false; }
+    }
+    return ok;
+  }
+
+  /* ---------- PDF लिखने वाला छोटा हिस्सा (JPEG पेज, A4) ---------- */
+  function ascii(s) {
+    var b = new Uint8Array(s.length), i;
+    for (i = 0; i < s.length; i++) b[i] = s.charCodeAt(i) & 255;
+    return b;
+  }
+  function makePdf(imgs) {
+    var n = imgs.length, chunks = [], len = 0, offs = [], total = 2 + 3 * n, kids = [], i, j, q, c, p, out;
+    function put(x) { var b = typeof x === 'string' ? ascii(x) : x; chunks.push(b); len += b.length; }
+    function obj(num, parts) {
+      var k;
+      offs[num] = len;
+      put(num + ' 0 obj\n');
+      for (k = 0; k < parts.length; k++) put(parts[k]);
+      put('\nendobj\n');
+    }
+    put('%PDF-1.4\n');
+    for (i = 0; i < n; i++) kids.push((3 + 3 * i) + ' 0 R');
+    obj(1, ['<< /Type /Catalog /Pages 2 0 R >>']);
+    obj(2, ['<< /Type /Pages /Count ' + n + ' /Kids [' + kids.join(' ') + '] >>']);
+    for (j = 0; j < n; j++) {
+      var im = imgs[j], pg = 3 + 3 * j, ct = pg + 1, ix = pg + 2;
+      var sc = Math.min(555 / im.w, 802 / im.h);
+      var dw = im.w * sc, dh = im.h * sc, x = (595 - dw) / 2, y = (842 - dh) / 2;
+      var cont = 'q ' + dw.toFixed(2) + ' 0 0 ' + dh.toFixed(2) + ' ' + x.toFixed(2) + ' ' + y.toFixed(2) + ' cm /Im' + j + ' Do Q';
+      obj(pg, ['<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /XObject << /Im' + j + ' ' + ix + ' 0 R >> >> /Contents ' + ct + ' 0 R >>']);
+      obj(ct, ['<< /Length ' + cont.length + ' >>\nstream\n' + cont + '\nendstream']);
+      obj(ix, ['<< /Type /XObject /Subtype /Image /Width ' + im.w + ' /Height ' + im.h + ' /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ' + im.jpg.length + ' >>\nstream\n', im.jpg, '\nendstream']);
+    }
+    var xrefAt = len;
+    var X = 'xref\n0 ' + (total + 1) + '\n0000000000 65535 f \n';
+    for (q = 1; q <= total; q++) X += ('0000000000' + offs[q]).slice(-10) + ' 00000 n \n';
+    X += 'trailer\n<< /Size ' + (total + 1) + ' /Root 1 0 R >>\nstartxref\n' + xrefAt + '\n%%EOF\n';
+    put(X);
+    out = new Uint8Array(len);
+    p = 0;
+    for (c = 0; c < chunks.length; c++) { out.set(chunks[c], p); p += chunks[c].length; }
+    return out;
+  }
+  /* फ़ोटो को JPEG बनाकर लौटाता है (लंबी भुजा अधिकतम 1800 पिक्सल) */
+  function photoToJpg(file) {
+    return new Promise(function (ok, bad) {
+      var url = URL.createObjectURL(file);
+      var img = new Image();
+      img.onload = function () {
+        try {
+          var w = img.naturalWidth || img.width, h = img.naturalHeight || img.height;
+          var k = Math.max(w, h) > 1800 ? 1800 / Math.max(w, h) : 1;
+          var cw = Math.max(1, Math.round(w * k)), ch = Math.max(1, Math.round(h * k));
+          var cv = document.createElement('canvas');
+          cv.width = cw; cv.height = ch;
+          var cx = cv.getContext('2d');
+          cx.fillStyle = '#ffffff';
+          cx.fillRect(0, 0, cw, ch);
+          cx.drawImage(img, 0, 0, cw, ch);
+          var du = cv.toDataURL('image/jpeg', 0.85);
+          var bin = atob(du.slice(du.indexOf(',') + 1));
+          var bytes = new Uint8Array(bin.length), i;
+          for (i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+          URL.revokeObjectURL(url);
+          ok({ jpg: bytes, w: cw, h: ch });
+        } catch (e) { URL.revokeObjectURL(url); bad(e); }
+      };
+      img.onerror = function () { URL.revokeObjectURL(url); bad(new Error('image')); };
+      img.src = url;
+    });
+  }
+
+  /* ---------- फ़ोटो से PDF ---------- */
+  var ppList = [], ppBusy = false;
+  function ppStatus(msg) { $('#pp-status').textContent = msg; say(msg); }
+  function ppRender(sel) {
+    var s = $('#pp-sel'), i, o;
+    s.innerHTML = '';
+    for (i = 0; i < ppList.length; i++) {
+      o = document.createElement('option');
+      o.value = String(i);
+      o.textContent = (i + 1) + '. ' + ppList[i].name;
+      s.appendChild(o);
+    }
+    if (ppList.length) s.selectedIndex = Math.max(0, Math.min(sel == null ? 0 : sel, ppList.length - 1));
+  }
+  function ppMove(d) {
+    var i = $('#pp-sel').selectedIndex, j, t;
+    if (i < 0 || !ppList.length) { ppStatus('पहले सूची से कोई फ़ोटो चुनें।'); return; }
+    j = i + d;
+    if (j < 0 || j >= ppList.length) { ppStatus(d < 0 ? 'यह फ़ोटो पहले से सबसे ऊपर है।' : 'यह फ़ोटो पहले से सबसे नीचे है।'); return; }
+    t = ppList[i]; ppList[i] = ppList[j]; ppList[j] = t;
+    ppRender(j);
+    ppStatus('फ़ोटो अब ' + (j + 1) + ' नंबर पर है।');
+  }
+  $('#pp-pick-btn').addEventListener('click', function () { $('#pp-file').click(); });
+  $('#pp-file').addEventListener('change', function (e) {
+    var files = e.target.files || [], prev = ppList.length, n = files.length, i;
+    for (i = 0; i < n; i++) ppList.push({ file: files[i], name: files[i].name || ('फ़ोटो ' + (ppList.length + 1)) });
+    e.target.value = '';
+    if (!n) return;
+    ppRender(prev);
+    ppStatus('सूची में अब ' + ppList.length + ' फ़ोटो हैं।');
+  });
+  $('#pp-up').addEventListener('click', function () { ppMove(-1); });
+  $('#pp-down').addEventListener('click', function () { ppMove(1); });
+  $('#pp-del').addEventListener('click', function () {
+    var i = $('#pp-sel').selectedIndex;
+    if (i < 0 || !ppList.length) { ppStatus('पहले सूची से कोई फ़ोटो चुनें।'); return; }
+    ppList.splice(i, 1);
+    ppRender(i);
+    ppStatus('फ़ोटो हटा दी गई। अब ' + ppList.length + ' फ़ोटो हैं।');
+  });
+  $('#pp-clear').addEventListener('click', function () {
+    ppList = [];
+    ppRender(0);
+    ppStatus('सूची खाली है।');
+  });
+  $('#pp-make').addEventListener('click', function () {
+    if (ppBusy) return;
+    if (!ppList.length) { ppStatus('पहले फ़ोटो चुनें।'); return; }
+    ppBusy = true;
+    var out = [], idx = 0;
+    ppStatus('PDF बन रही है। ' + ppList.length + ' फ़ोटो जोड़ी जा रही हैं।');
+    function fail(msg) { ppBusy = false; ppStatus(msg); }
+    function finish() {
+      var ok = false, pdf;
+      try { pdf = makePdf(out); ok = saveBytes(pdf, safeFileName($('#pp-name').value || 'photos', '.pdf'), 'application/pdf', 'file'); } catch (e) { ok = false; }
+      ppBusy = false;
+      ppStatus(ok ? 'PDF बन गई और सेव हो गई। ' + out.length + ' पेज हैं। फ़ोन के Downloads फ़ोल्डर में देखें।' : 'PDF सेव नहीं हो सकी। फिर कोशिश करें।');
+    }
+    function next() {
+      if (idx >= ppList.length) { finish(); return; }
+      $('#pp-status').textContent = 'फ़ोटो ' + (idx + 1) + ' में से ' + ppList.length + ' तैयार हो रही है।';
+      photoToJpg(ppList[idx].file).then(function (im) {
+        out.push(im);
+        idx++;
+        next();
+      }, function () {
+        fail('फ़ोटो ' + (idx + 1) + ' नहीं खुल सकी। उसे सूची से हटाकर फिर कोशिश करें।');
+      });
+    }
+    next();
+  });
+
+  /* ---------- रिंगटोन बनाओ ---------- */
+  var rtBuf = null, rtCtx = null, rtSrc = null, rtFileName = '';
+  function rtStatus(msg) { $('#rt-status').textContent = msg; say(msg); }
+  function rtStop() {
+    if (rtSrc) {
+      try { rtSrc.onended = null; rtSrc.stop(); } catch (e) { /* already stopped */ }
+      rtSrc = null;
+    }
+  }
+  window.awazStopNewTools = function () { rtStop(); };
+  function rtRange() {
+    var st = Math.floor(parseFloat($('#rt-start').value)), ln = Math.floor(parseFloat($('#rt-len').value)), dur = rtBuf.duration;
+    if (isNaN(st) || st < 0) st = 0;
+    if (isNaN(ln) || ln < 1) ln = 1;
+    if (ln > 40) ln = 40;
+    if (st >= dur) st = Math.max(0, Math.floor(dur) - 1);
+    if (st + ln > dur) ln = Math.max(1, Math.floor(dur - st));
+    $('#rt-start').value = String(st);
+    $('#rt-len').value = String(ln);
+    return { start: st, len: ln };
+  }
+  function rtDecode(file) {
+    readBuf(file).then(function (ab) {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) throw new Error('no audio');
+      rtCtx = rtCtx || new AC();
+      rtCtx.decodeAudioData(ab, function (buf) {
+        rtBuf = buf;
+        rtStatus('फ़ाइल खुल गई। लंबाई लगभग ' + Math.round(buf.duration) + ' सेकंड है। शुरू का समय और लंबाई चुनें, फिर सुनें।');
+      }, function () {
+        rtBuf = null;
+        rtStatus('यह फ़ाइल नहीं खुल सकी। कोई दूसरी ऑडियो फ़ाइल चुनें।');
+      });
+    }).catch(function () {
+      rtBuf = null;
+      rtStatus('फ़ाइल नहीं पढ़ी जा सकी। कोई दूसरी फ़ाइल चुनें।');
+    });
+  }
+  function rtWav(buf, start, len) {
+    var sr = buf.sampleRate, off = Math.floor(start * sr), n = Math.max(0, Math.min(Math.floor(len * sr), buf.length - off));
+    var chs = buf.numberOfChannels, mix = new Float32Array(n), c, i, d, fade, g, s;
+    for (c = 0; c < chs; c++) {
+      d = buf.getChannelData(c);
+      for (i = 0; i < n; i++) mix[i] += d[off + i] / chs;
+    }
+    fade = Math.min(Math.floor(sr * 0.05), Math.floor(n / 2));
+    for (i = 0; i < fade; i++) { g = i / fade; mix[i] *= g; mix[n - 1 - i] *= g; }
+    var dataLen = n * 2, ab = new ArrayBuffer(44 + dataLen), v = new DataView(ab);
+    function ws(o, t) { var k; for (k = 0; k < t.length; k++) v.setUint8(o + k, t.charCodeAt(k)); }
+    ws(0, 'RIFF'); v.setUint32(4, 36 + dataLen, true); ws(8, 'WAVE'); ws(12, 'fmt ');
+    v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+    v.setUint32(24, sr, true); v.setUint32(28, sr * 2, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true);
+    ws(36, 'data'); v.setUint32(40, dataLen, true);
+    for (i = 0; i < n; i++) {
+      s = Math.max(-1, Math.min(1, mix[i]));
+      v.setInt16(44 + i * 2, s < 0 ? s * 32768 : s * 32767, true);
+    }
+    return new Uint8Array(ab);
+  }
+  $('#rt-pick-btn').addEventListener('click', function () { $('#rt-file').click(); });
+  $('#rt-file').addEventListener('change', function (e) {
+    var f = e.target.files && e.target.files[0];
+    e.target.value = '';
+    if (!f) return;
+    rtFileName = f.name || 'ringtone';
+    rtBuf = null;
+    $('#rt-sound').hidden = true;
+    $('#hx-rt-sound').hidden = true;
+    rtStatus('फ़ाइल खुल रही है।');
+    rtDecode(f);
+  });
+  $('#rt-play').addEventListener('click', function () {
+    if (!rtBuf || !rtCtx) { rtStatus('पहले ऑडियो फ़ाइल चुनें।'); return; }
+    rtStop();
+    var r = rtRange(), src;
+    if (rtCtx.state === 'suspended' && rtCtx.resume) rtCtx.resume();
+    src = rtCtx.createBufferSource();
+    src.buffer = rtBuf;
+    src.connect(rtCtx.destination);
+    src.onended = function () {
+      if (rtSrc === src) { rtSrc = null; rtStatus('सुनना पूरा हुआ।'); }
+    };
+    src.start(0, r.start, r.len);
+    rtSrc = src;
+    rtStatus('चुना हिस्सा चल रहा है। ' + r.len + ' सेकंड।');
+  });
+  $('#rt-stop').addEventListener('click', function () {
+    rtStop();
+    rtStatus('सुनना बंद कर दिया।');
+  });
+  $('#rt-save').addEventListener('click', function () {
+    if (!rtBuf) { rtStatus('पहले ऑडियो फ़ाइल चुनें।'); return; }
+    var r = rtRange(), wav = null, ok = false, base;
+    rtStatus('रिंगटोन बन रही है।');
+    try { wav = rtWav(rtBuf, r.start, r.len); } catch (e) { wav = null; }
+    if (!wav) { rtStatus('रिंगटोन नहीं बन सकी। कोई दूसरी फ़ाइल चुनें।'); return; }
+    base = rtFileName.replace(/\.[^.]*$/, '') || 'ringtone';
+    ok = saveBytes(wav, safeFileName(base, '.wav'), 'audio/wav', 'ring');
+    if (ok) {
+      $('#rt-sound').hidden = false;
+      $('#hx-rt-sound').hidden = false;
+      rtStatus('रिंगटोन सेव हो गई। अब "साउंड सेटिंग खोलो" दबाएँ और वहाँ से इसे रिंगटोन के रूप में चुनें।');
+    } else {
+      rtStatus('रिंगटोन सेव नहीं हो सकी। फिर कोशिश करें।');
+    }
+  });
+  /* ----- तैयार रिंगटोन: सब धुनें ऐप में ही बनती हैं (मूल, बिना किसी गाने या ब्रांड की धुन के) ----- */
+  var RT_SR = 44100, RT_LEN = 20;
+  var rtPresetCache = [];
+  function rtSeed(n) { var s = n; return function () { s = (s * 16807) % 2147483647; return s / 2147483647; }; }
+  function rtNoiseBuf(c) {
+    if (!c.__rtNoise) {
+      var b = c.createBuffer(1, RT_SR * 2, RT_SR), d = b.getChannelData(0), r = rtSeed(99), i;
+      for (i = 0; i < d.length; i++) d[i] = r() * 2 - 1;
+      c.__rtNoise = b;
+    }
+    return c.__rtNoise;
+  }
+  /* एक सुर: शुरू में तेज़, फिर धीरे-धीरे खत्म होता हुआ */
+  function rtTone(c, t, f, dur, vol, type, att, glide) {
+    var o = c.createOscillator(), g = c.createGain();
+    o.type = type || 'sine';
+    o.frequency.setValueAtTime(f, t);
+    if (glide) o.frequency.linearRampToValueAtTime(glide, t + dur);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(vol, t + (att || 0.005));
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g); g.connect(c.destination);
+    o.start(t); o.stop(t + dur + 0.02);
+  }
+  function rtBell(c, t, f, vol) {
+    var parts = [[1, 0.5], [2.76, 0.22], [5.4, 0.1]], k;
+    for (k = 0; k < parts.length; k++) rtTone(c, t, f * parts[k][0], 2.4 / (1 + k), vol * parts[k][1], 'sine', 0.004);
+  }
+  function rtFlute(c, t, f, dur, vol) {
+    var o = c.createOscillator(), lfo = c.createOscillator(), lg = c.createGain(), g = c.createGain();
+    o.type = 'sine'; o.frequency.value = f;
+    lfo.type = 'sine'; lfo.frequency.value = 5.2; lg.gain.value = f * 0.012;
+    lfo.connect(lg); lg.connect(o.frequency);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(vol, t + 0.12);
+    g.gain.setValueAtTime(vol, t + dur - 0.25);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g); g.connect(c.destination);
+    o.start(t); lfo.start(t); o.stop(t + dur + 0.02); lfo.stop(t + dur + 0.02);
+  }
+  function rtPad(c, t, freqs, dur, vol) {
+    var k;
+    for (k = 0; k < freqs.length; k++) {
+      var o = c.createOscillator(), o2 = c.createOscillator(), g = c.createGain();
+      o.type = 'sine'; o.frequency.value = freqs[k];
+      o2.type = 'sine'; o2.frequency.value = freqs[k] * 1.004;
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(vol, t + 0.6);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      o.connect(g); o2.connect(g); g.connect(c.destination);
+      o.start(t); o2.start(t); o.stop(t + dur + 0.02); o2.stop(t + dur + 0.02);
+    }
+  }
+  /* छानी हुई शोर की थाप: ताली, थाप या हवा */
+  function rtHit(c, t, dur, vol, freq, q) {
+    var s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+    s.buffer = rtNoiseBuf(c);
+    f.type = 'bandpass'; f.frequency.value = freq; f.Q.value = q || 1;
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(vol, t + 0.004);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    s.connect(f); f.connect(g); g.connect(c.destination);
+    s.start(t, 0.1); s.stop(t + dur + 0.02);
+  }
+  function rtKick(c, t, vol) { rtTone(c, t, 150, 0.24, vol, 'sine', 0.002, 55); }
+  function rtSemi(base, n) { return base * Math.pow(2, n / 12); }
+  var RT_PRESETS = [
+    { name: 'मंदिर की घंटी', file: 'awaz-bell', make: function (c) {
+      var r = rtSeed(7), t, f, pen = [523.25, 587.33, 659.25, 783.99, 880];
+      for (t = 0.2; t < 17.5; t += 1.25) { f = pen[Math.floor(r() * 5)]; rtBell(c, t, f, 0.5); }
+    } },
+    { name: 'सितार की तान', file: 'awaz-sitar', make: function (c) {
+      var steps = [0, 2, 4, 7, 9, 7, 4, 2], p, k, t, f;
+      for (p = 0; p < 9; p++) {
+        for (k = 0; k < steps.length; k++) {
+          t = 0.2 + p * 2 + k * 0.2;
+          f = rtSemi(293.66, steps[k] + (p % 3 === 2 ? -12 : 0));
+          rtTone(c, t, f, 1.2, 0.33, 'triangle', 0.002);
+        }
+      }
+    } },
+    { name: 'बाँसुरी की धुन', file: 'awaz-flute', make: function (c) {
+      var mel = [392, 440, 523.25, 587.33, 523.25, 440, 392, 329.63], k, t;
+      for (k = 0; k < 16; k++) rtFlute(c, 0.3 + k * 1.2, mel[k % 8], 1.2, 0.3);
+    } },
+    { name: 'बूँदों की ताल', file: 'awaz-drops', make: function (c) {
+      var r = rtSeed(21), t, f, pen = [523.25, 587.33, 659.25, 783.99, 880, 1046.5];
+      for (t = 0.1; t < 18.9; t += 0.25) {
+        if (r() < 0.6) { f = pen[Math.floor(r() * 6)]; rtTone(c, t, f, 0.45, 0.25, 'sine', 0.002); rtTone(c, t, f * 4, 0.1, 0.05, 'sine', 0.002); }
+      }
+    } },
+    { name: 'चिड़ियों की चहचहाहट', file: 'awaz-birds', make: function (c) {
+      var r = rtSeed(33), t = 0.2, n, k, f0;
+      while (t < 17.5) {
+        n = 1 + Math.floor(r() * 3);
+        for (k = 0; k < n; k++) { f0 = 2000 + r() * 1200; rtTone(c, t + k * 0.14, f0, 0.12, 0.22, 'sine', 0.01, f0 * (1.3 + r() * 0.5)); }
+        t += 0.6 + r() * 1.4;
+      }
+    } },
+    { name: 'ढोलक की थाप', file: 'awaz-dholak', make: function (c) {
+      var pat = ['D', 'T', '', 'T', 'K', 'T', 'T', ''], rep, k, t, h;
+      for (rep = 0; rep < 8; rep++) {
+        for (k = 0; k < pat.length; k++) {
+          t = 0.1 + (rep * pat.length + k) * 0.3;
+          h = pat[k];
+          if (h === 'K') rtKick(c, t, 0.7);
+          if (h === 'D') { rtKick(c, t, 0.5); rtHit(c, t, 0.12, 0.4, 2200, 1.2); }
+          if (h === 'T') rtHit(c, t, 0.09, 0.35, 2500, 1.4);
+        }
+      }
+    } },
+    { name: 'हल्का झूला', file: 'awaz-swing', make: function (c) {
+      var ch = [[261.63, 329.63, 392], [293.66, 369.99, 440], [220, 277.18, 329.63], [246.94, 311.13, 369.99], [261.63, 329.63, 392], [196, 246.94, 293.66], [246.94, 311.13, 392]], k;
+      for (k = 0; k < ch.length; k++) rtPad(c, 0.1 + k * 2.5, ch[k], 2.5, 0.09);
+    } },
+    { name: 'उत्सव की ताल', file: 'awaz-celebrate', make: function (c) {
+      var t, k = 0;
+      for (t = 0.1; t < 18.5; t += 0.5) { rtHit(c, t, 0.12, k % 4 === 0 ? 0.6 : 0.4, 1800, 1.0); k++; }
+      for (t = 0.5; t < 16; t += 2) rtBell(c, t, 659.25, 0.35);
+    } },
+    { name: 'घुंघरू', file: 'awaz-ghungroo', make: function (c) {
+      var r = rtSeed(55), t = 0.1, k, n;
+      while (t < 18) {
+        n = 2 + Math.floor(r() * 3);
+        for (k = 0; k < n; k++) rtTone(c, t + k * 0.07, 2600 + r() * 1600, 0.06, 0.18, 'sine', 0.002);
+        t += 0.3 + r() * 0.5;
+      }
+    } },
+    { name: 'शांत लहरें', file: 'awaz-waves', make: function (c) {
+      var nb = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain(), lfo = c.createOscillator(), lg = c.createGain();
+      nb.buffer = rtNoiseBuf(c); nb.loop = true;
+      f.type = 'lowpass'; f.frequency.value = 700; f.Q.value = 0.5;
+      g.gain.value = 0.3;
+      lfo.type = 'sine'; lfo.frequency.value = 0.1; lg.gain.value = 0.25;
+      lfo.connect(lg); lg.connect(g.gain);
+      nb.connect(f); f.connect(g); g.connect(c.destination);
+      nb.start(0); lfo.start(0); nb.stop(RT_LEN); lfo.stop(RT_LEN);
+      rtPad(c, 0, [130.81], RT_LEN, 0.08);
+    } }
+  ];
+  /* बनी धुन का स्तर सामान्य करता है: सबसे ऊँची चोटी 0.85 तक, ताकि आवाज़ कभी न कटे */
+  function rtNormalize(buf) {
+    var d = buf.getChannelData(0), i, pk = 0, sq = 0, rms, drive, x;
+    for (i = 0; i < d.length; i++) { if (Math.abs(d[i]) > pk) pk = Math.abs(d[i]); sq += d[i] * d[i]; }
+    if (pk < 0.0001) return null;
+    for (i = 0; i < d.length; i++) d[i] /= pk;
+    /* कम भराव वाली धुनें (कम RMS) थोड़ी नरम कर्व से भरी जाती हैं: चोटी 1 से ऊपर नहीं जाती */
+    rms = Math.sqrt(sq / d.length) / pk;
+    drive = rms < 0.12 ? 2.5 : (rms < 0.2 ? 1.5 : 1);
+    if (drive > 1) {
+      for (i = 0; i < d.length; i++) { x = d[i]; d[i] = Math.tanh(drive * x) / Math.tanh(drive); }
+    }
+    for (i = 0; i < d.length; i++) d[i] *= 0.88;
+    return buf;
+  }
+  function rtPresetGet(i, cb) {
+    if (rtPresetCache[i]) { cb(rtPresetCache[i]); return; }
+    var OAC = window.OfflineAudioContext || window.webkitOfflineAudioContext, oc = null;
+    if (!OAC) { cb(null); return; }
+    try {
+      oc = new OAC(1, RT_SR * RT_LEN, RT_SR);
+      RT_PRESETS[i].make(oc);
+      oc.oncomplete = function (ev) {
+        var b = rtNormalize(ev.renderedBuffer);
+        if (b) rtPresetCache[i] = b;
+        cb(b);
+      };
+      oc.startRendering();
+    } catch (e) { cb(null); }
+  }
+  function rtPresetPlay(i) {
+    var name = RT_PRESETS[i].name;
+    rtStatus('धुन तैयार हो रही है: ' + name + '।');
+    rtPresetGet(i, function (buf) {
+      if (!buf) { rtStatus('धुन अभी नहीं बन सकी: ' + name + '। फिर कोशिश करें।'); return; }
+      if (!rtCtx) {
+        var AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) { rtStatus('इस फ़ोन में आवाज़ नहीं चल सकती।'); return; }
+        rtCtx = new AC();
+      }
+      rtStop();
+      if (rtCtx.state === 'suspended' && rtCtx.resume) rtCtx.resume();
+      var src = rtCtx.createBufferSource();
+      src.buffer = buf;
+      src.connect(rtCtx.destination);
+      src.onended = function () {
+        if (rtSrc === src) { rtSrc = null; rtStatus('सुनना पूरा हुआ।'); }
+      };
+      src.start(0);
+      rtSrc = src;
+      rtStatus('अभी सुनी जा रही है: ' + name + '। लगभग 20 सेकंड की है।');
+    });
+  }
+  function rtPresetSave(i) {
+    var name = RT_PRESETS[i].name;
+    rtStatus('रिंगटोन बन रही है: ' + name + '।');
+    rtPresetGet(i, function (buf) {
+      var wav = null, ok = false;
+      if (buf) { try { wav = rtWav(buf, 0, buf.duration); } catch (e) { wav = null; } }
+      if (!wav) { rtStatus('रिंगटोन नहीं बन सकी: ' + name + '। फिर कोशिश करें।'); return; }
+      ok = saveBytes(wav, safeFileName(RT_PRESETS[i].file, '.wav'), 'audio/wav', 'ring');
+      if (ok) {
+        $('#rt-sound').hidden = false;
+        $('#hx-rt-sound').hidden = false;
+        rtStatus('रिंगटोन सेव हो गई: ' + name + '। अब "साउंड सेटिंग खोलो" दबाएँ और वहाँ से इसे रिंगटोन के रूप में चुनें।');
+      } else {
+        rtStatus('रिंगटोन सेव नहीं हो सकी: ' + name + '। फिर कोशिश करें।');
+      }
+    });
+  }
+  /* सूची: हर धुन का नाम, सुनो, सुनना बंद करो और सेव करो; हर बटन की अपनी मदद की पंक्ति */
+  (function rtPresetList() {
+    var anchor = document.getElementById('hx-rt-intro');
+    if (!anchor) return;
+    var box = document.createElement('div');
+    box.className = 'rtp-box';
+    box.setAttribute('role', 'group');
+    box.setAttribute('aria-label', 'तैयार रिंगटोन');
+    var intro = document.createElement('p');
+    intro.className = 'hint';
+    intro.id = 'hx-rtp-intro';
+    intro.textContent = 'नीचे दस तैयार रिंगटोन हैं। हर एक लगभग 20 सेकंड की है। पहले सुनें, फिर पसंद की रिंगटोन सेव करें।';
+    box.appendChild(intro);
+    function mk(tag, cls, id, text) {
+      var e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (id) e.id = id;
+      e.textContent = text;
+      return e;
+    }
+    function btnFor(parent, id, label, help, onclick) {
+      var b = mk('button', 'btn', id, label);
+      b.type = 'button';
+      b.setAttribute('aria-describedby', 'hx-' + id);
+      b.addEventListener('click', onclick);
+      parent.appendChild(b);
+      parent.appendChild(mk('p', 'hint', 'hx-' + id, help));
+      parent.lastChild.id = 'hx-' + id;
+    }
+    RT_PRESETS.forEach(function (pr, i) {
+      var grp = document.createElement('div');
+      grp.className = 'rtp-item';
+      grp.setAttribute('role', 'group');
+      grp.setAttribute('aria-label', pr.name);
+      grp.appendChild(mk('h4', 'rtp-name', null, pr.name));
+      btnFor(grp, 'rtp-play-' + i, 'सुनो', pr.name + ' की धुन चलाकर सुनें। लगभग 20 सेकंड की है।', function () { rtPresetPlay(i); });
+      btnFor(grp, 'rtp-stop-' + i, 'सुनना बंद करो', 'चल रही धुन रोकता है।', function () { rtStop(); rtStatus('सुनना बंद कर दिया।'); });
+      btnFor(grp, 'rtp-save-' + i, 'फ़ोन की रिंगटोन के लिए सेव करें', pr.name + ' को फ़ोन में रिंगटोन के रूप में सेव करता है। सेव होने के बाद साउंड सेटिंग खोलने का बटन आएगा।', function () { rtPresetSave(i); });
+      box.appendChild(grp);
+    });
+    anchor.insertAdjacentElement('afterend', box);
+  })();
+  $('#rt-sound').addEventListener('click', function () {
+    var opened = false;
+    try {
+      if (window.AwazNative && typeof window.AwazNative.openSoundSettings === 'function') {
+        window.AwazNative.openSoundSettings();
+        opened = true;
+      }
+    } catch (e) { opened = false; }
+    rtStatus(opened ? 'साउंड सेटिंग खुल रही है। वहाँ नई रिंगटोन चुनें।' : 'फ़ोन की सेटिंग में जाकर साउंड और रिंगटोन खोलें और वहाँ नई रिंगटोन चुनें।');
+  });
+
+  /* ---------- होम के शॉर्टकट: किताब पढ़ो और लिखे से फ़ोटो (मौजूदा हिस्से खुलते हैं) ---------- */
+  var gotoBtns = document.querySelectorAll('[data-goto]'), g;
+  for (g = 0; g < gotoBtns.length; g++) {
+    gotoBtns[g].addEventListener('click', function (e) {
+      goTo(e.currentTarget.getAttribute('data-goto'));
+    });
+  }
+  ppRender(0);
 })();
 
 </script>
