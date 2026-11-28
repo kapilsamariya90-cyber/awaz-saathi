@@ -3198,6 +3198,17 @@ try {
 } catch (e) { /* ignore */ }
 var nativeCur = null;
 var nativeSeq = 0;
+/* फ़ोन से आई हिंदी/अंग्रेज़ी आवाज़ों की सूची (Java पुल भेजता है) */
+var nativeVoices = [];
+window.__awTtsVoices = function (arr) { nativeVoices = Array.isArray(arr) ? arr : []; };
+/* घोषणा के लिए महिला हिंदी आवाज़: सूची में नाम से पहचानी जाती है; न मिले तो चुनी हुई आवाज़ ही रहती है */
+function announcerVoice(list) {
+  var out = null;
+  (list || []).forEach(function (v) {
+    if (!out && /^hi([-_]|$)/i.test(v.lang || '') && /female|woman|महिला/i.test((v.name || '') + ' ' + (v.voiceURI || ''))) out = v;
+  });
+  return out;
+}
 function nativeReady() {
   return !!(window.AwazNative && typeof window.AwazNative.ttsSpeak === 'function');
 }
@@ -3231,8 +3242,10 @@ function gameSpeechStop() {
 /* ऐप की आवाज़: टुकड़े एक-एक करके; कोई टुकड़ा न चले तो बाकी बात फ़ोन की आवाज़ से */
 function nativeSay(pieces, done, style) {
   var me = ++nativeSeq;
-  var rate = (style === 'announcer') ? 0.85 : S.srRate;
-  var pitch = (style === 'announcer') ? 0.85 : S.srPitch;
+  var rate = (style === 'announcer') ? 0.9 : S.srRate;
+  var pitch = (style === 'announcer') ? 1.0 : S.srPitch;
+  var av = (style === 'announcer') ? announcerVoice(nativeVoices) : null;
+  var uri = av ? (av.voiceURI || av.name || '') : '';
   var i = 0;
   function playNext() {
     if (me !== nativeSeq) return;
@@ -3247,7 +3260,7 @@ function nativeSay(pieces, done, style) {
     };
     nativeCur = cur;
     cur.timer = setTimeout(function () { cur.finish(false); }, 20000 + pieces[i].length * 200);
-    try { window.AwazNative.ttsSpeak(cur.id, pieces[i], 'hi-IN', '', rate, pitch); }
+    try { window.AwazNative.ttsSpeak(cur.id, pieces[i], 'hi-IN', uri, rate, pitch); }
     catch (e) { cur.finish(false); }
   }
   playNext();
@@ -3260,7 +3273,7 @@ function phoneSay(text, done, style) {
   if (style !== 'announcer') { speakText(s, done); return; }
   speakQueue(function () {
     var out = [];
-    chunkText(s).forEach(function (c) { out.push({ text: c, lang: 'hi-IN', rate: 0.85, vol: 1, v: null }); });
+    chunkText(s).forEach(function (c) { out.push({ text: c, lang: 'hi-IN', rate: 0.9, vol: 1, v: announcerVoice(speechVoices) }); });
     return out;
   }, done);
 }
@@ -5899,6 +5912,14 @@ function bell(key, delay) {
     tone(key, 2349, 0.7, 'sine', 0.25, delay + d);
   });
 }
+/* स्टेशन की "डिंग-डोंग" घंटी: ऊँचा "डिंग", फिर नीचा "डोंग" (delay सेकंड में, अभी से गिनकर) */
+function trainChime(key, delay) {
+  var d = delay || 0;
+  tone(key, 659, 1.0, 'sine', 0.5, d);
+  tone(key, 1318, 0.6, 'sine', 0.12, d);
+  tone(key, 523, 1.4, 'sine', 0.5, d + 0.6);
+  tone(key, 1046, 0.8, 'sine', 0.12, d + 0.6);
+}
 /* सीटी: सुर ऊपर उठता है */
 function trainWhistle(key, delay) {
   tone(key, 660, 0.7, 'sine', 0.6, delay || 0, 880);
@@ -5996,7 +6017,7 @@ function airHiss(key, at, dur, vol) {
   } catch (e) { /* ignore */ }
 }
 /* रेलगाड़ी के आने का पूरा दृश्य (लगभग 7.5 सेकंड): हॉर्न, गड़गड़ाहट, जोड़ों की ताल,
-   ब्रेक की चरचराहट, हवा का फुफकार और अंत में स्टेशन की घंटी */
+   ब्रेक की चरचराहट, हवा का फुफकार और अंत में डिंग-डोंग घंटी */
 function trainArrival(key) {
   if (!soundOn[key]) return;
   var c = audio(); if (!c) return;
@@ -6005,9 +6026,9 @@ function trainArrival(key) {
   dieselRumble(key, at, 7.0, 0.3);
   trainJoints(key, at + 1.0, 5.2);
   trainHorn(key, at + 4.9, 1.1);
-  brake(key, at + 6.1);
+  brake(key, 6.1);
   airHiss(key, at + 6.5, 0.9, 0.22);
-  bell(key, at + 7.3);
+  trainChime(key, 7.3);
 }
 /* भीड़ की एक आवाज़: गले जैसा सुर (सॉटूथ) जो दो फ़ॉर्मेंट फ़िल्टर से छनता है; फ़ॉर्मेंट धीरे-धीरे खिसकते हैं */
 function voice(key, at) {
@@ -7479,22 +7500,24 @@ function carMove(g, i) {
 }
 
 /* =====================================================================
-   8. रेलगाड़ी: मंज़िल सुनें, सही स्टेशन वाली पटरी चुनें
+   8. रेलगाड़ी: घोषणा सुनें, गाड़ी के प्लेटफ़ॉर्म की पटरी चुनें
    ===================================================================== */
-var TRAIN_CITIES = ['दिल्ली', 'जयपुर', 'लखनऊ', 'पटना', 'भोपाल', 'शिमला', 'आगरा', 'देहरादून'];
+var TRAIN_CITIES = ['दिल्ली', 'जयपुर', 'लखनऊ', 'पटना', 'भोपाल', 'शिमला', 'आगरा', 'देहरादून', 'मुंबई', 'कोलकाता', 'चेन्नई', 'अहमदाबाद'];
+/* घोषणा के अंत के तीन रूप (प्लेटफ़ॉर्म संख्या के बाद) */
+var TRAIN_TAILS = ['पर आएगी।', 'पर अपने निर्धारित समय पर आ रही है।', 'पर कुछ ही क्षणों में आएगी।'];
 function trainSay(g, text) { g.stat.textContent = text; announce(g, text); }
 function setupTrain(g, root) {
   shell(g, root, 'रेलगाड़ी');
   g.rounds = 5; g.tracks = 2;
-  selectBox(g.set, 'कितनी रेलगाड़ियाँ आएँगी?', [['5', '5 रेलगाड़ियाँ'], ['8', '8 रेलगाड़ियाँ']], '5', function (v) { g.rounds = +v; g.touch(); }, 'हर रेलगाड़ी की मंज़िल बोली जाएगी। सही पटरी चुननी है।');
-  selectBox(g.set, 'कितनी पटरियाँ होंगी?', [['2', '2 पटरियाँ'], ['3', '3 पटरियाँ']], '2', function (v) { g.tracks = +v; g.touch(); }, 'हर पटरी के साथ एक स्टेशन का नाम होगा।');
+  selectBox(g.set, 'कितनी रेलगाड़ियाँ आएँगी?', [['5', '5 रेलगाड़ियाँ'], ['8', '8 रेलगाड़ियाँ']], '5', function (v) { g.rounds = +v; g.touch(); }, 'हर रेलगाड़ी की घोषणा होगी। जिस प्लेटफ़ॉर्म पर गाड़ी आएगी, उसकी पटरी चुननी है।');
+  selectBox(g.set, 'कितने प्लेटफ़ॉर्म होंगे?', [['2', '2 प्लेटफ़ॉर्म'], ['3', '3 प्लेटफ़ॉर्म']], '2', function (v) { g.tracks = +v; g.touch(); }, 'हर प्लेटफ़ॉर्म की एक पटरी होगी।');
   g.reset = function () {
     stopGame(g);
     g.play.innerHTML = '';
-    g.st = { round: 0, right: 0, over: false, correct: -1, stations: [], dest: '' };
+    g.st = { round: 0, right: 0, over: false, correct: -1, plats: [], plat: 0, picked: false };
     trainMurmurStop(g);
     trainMurmur(g);
-    trainSay(g, 'रेलगाड़ी का खेल शुरू। ' + g.rounds + ' रेलगाड़ियाँ आएँगी। मंज़िल सुनकर सही पटरी चुनें।');
+    trainSay(g, 'रेलगाड़ी का खेल शुरू। ' + g.rounds + ' रेलगाड़ियाँ आएँगी। घोषणा सुनकर सही प्लेटफ़ॉर्म की पटरी चुनें।');
     later(g, 2000, function () { trainNext(g); });
   };
   g.resumeSound = function () {
@@ -7544,37 +7567,42 @@ function trainNext(g) {
     st.over = true;
     stopLoops('train');
     winSfx('train');
-    trainSay(g, 'खेल खत्म। ' + g.rounds + ' में से ' + st.right + ' रेलगाड़ियाँ सही स्टेशन पर पहुँचीं।');
+    trainSay(g, 'खेल खत्म। ' + g.rounds + ' में से ' + st.right + ' रेलगाड़ियाँ सही प्लेटफ़ॉर्म की पटरी पर पहुँचीं।');
     return;
   }
-  var pool = TRAIN_CITIES.slice(), stations = [];
-  while (stations.length < g.tracks) {
-    var k = Math.floor(Math.random() * pool.length);
-    stations.push(pool.splice(k, 1)[0]);
-  }
-  st.stations = stations;
+  /* हर बार नए प्लेटफ़ॉर्म नंबर (1 से 6 में से), नई गाड़ी संख्या और नए शहर */
+  var pp = [1, 2, 3, 4, 5, 6], plats = [];
+  while (plats.length < g.tracks) { plats.push(pp.splice(Math.floor(Math.random() * pp.length), 1)[0]); }
+  var cp = TRAIN_CITIES.slice();
+  var from = cp.splice(Math.floor(Math.random() * cp.length), 1)[0];
+  var to = cp.splice(Math.floor(Math.random() * cp.length), 1)[0];
+  st.plats = plats;
   st.correct = Math.floor(Math.random() * g.tracks);
-  st.dest = stations[st.correct];
+  st.plat = plats[st.correct];
+  st.num = 12000 + Math.floor(Math.random() * 8000);
+  st.from = from;
+  st.to = to;
   st.round++;
   st.picked = false;
   trainMurmur(g);
-  /* रेलगाड़ी आती है: सीटी, छुक-छुक की ताल और फिर स्टेशन की घंटी */
+  /* रेलगाड़ी आती है (इंजन, छुक-छुक, सीटी, ब्रेक), फिर डिंग-डोंग घंटी, फिर घोषणा */
   trainArrival('train');
-  var list = stations.map(function (s, i) { return 'पटरी ' + (i + 1) + ' पर ' + s; }).join(', ');
-  var instr = 'रेलगाड़ी ' + st.round + ' की मंज़िल ' + st.dest + ' है। ' + list + '। कौन-सी पटरी चुनें?';
-  var num = 1000 + Math.floor(Math.random() * 9000), plat = 1 + Math.floor(Math.random() * 6);
-  var ann = 'गाड़ी नंबर ' + num + ', प्लेटफ़ॉर्म नंबर ' + plat + ' पर आएगी।';
+  var tail = TRAIN_TAILS[Math.floor(Math.random() * TRAIN_TAILS.length)];
+  var ann = 'यात्रीगण कृपया ध्यान दें। गाड़ी संख्या ' + st.num + ', ' + from + ' से चलकर ' + to + ' जाने वाली गाड़ी प्लेटफ़ॉर्म संख्या ' + st.plat + ' ' + tail;
+  var list = plats.map(function (p) { return 'प्लेटफ़ॉर्म ' + p; }).join(', ');
+  /* खेल का निर्देश: वही "गाड़ी संख्या X, प्लेटफ़ॉर्म संख्या Y पर आएगी" जो दबाने की जगह बताता है */
+  var instr = 'गाड़ी संख्या ' + st.num + ', प्लेटफ़ॉर्म संख्या ' + st.plat + ' पर आएगी। कौन-सी पटरी दबाएँ? ' + list + '।';
   var gen = g.gen, roundNow = st.round;
+  g.stat.textContent = ann;
   g.play.innerHTML = '';
-  g.play.appendChild(railBoard(g, stations, st.dest));
+  g.play.appendChild(railBoard(g, plats, ann));
   g.trainBtns = el('div', 'gm-trainbtns', '');
   g.play.appendChild(g.trainBtns);
-  stations.forEach(function (s, i) {
-    btn(g.trainBtns, 'पटरी ' + (i + 1) + ': ' + s, 'यहाँ दबाकर खेलें: रेलगाड़ी इस पटरी पर भेजें।', function () { trainPick(g, i); });
+  plats.forEach(function (p, i) {
+    btn(g.trainBtns, 'प्लेटफ़ॉर्म ' + p, 'यहाँ दबाकर खेलें: गाड़ी इस प्लेटफ़ॉर्म की पटरी पर जाएगी।', function () { trainPick(g, i); });
   });
   if (!gameSpeechOK() || !soundOn.train) { trainSay(g, instr); return; }
   /* घोषणा घंटी के बाद बोली जाती है; उसके पूरा होने पर ही खेल का निर्देश बोला जाता है */
-  g.stat.textContent = ann;
   later(g, 8800, function () {
     stationVoice(g, ann, function () {
       if (g.gen !== gen || !g.st || g.st.picked || g.st.round !== roundNow || g.st.over) return;
@@ -7582,18 +7610,19 @@ function trainNext(g) {
     });
   });
 }
-/* दृश्य रेल-बोर्ड: हर पटरी एक पट्टी; हर पट्टी पर रेलगाड़ी का डिब्बा बाएँ से दाएँ चलता है।
-   यह केवल देखने के लिए है (aria-hidden); बोलने का काम trainSay करता है */
-function railBoard(g, stations, dest) {
+/* दृश्य रेल-बोर्ड: घोषणा का पूरा लिखा रूप सबसे ऊपर (देखने वालों के लिए); हर प्लेटफ़ॉर्म एक पटरी-पट्टी;
+   गाड़ी उसमें बाएँ से दाएँ चलती है। यह केवल देखने के लिए है (aria-hidden); बोलने का काम trainSay करता है */
+function railBoard(g, plats, ann) {
   var box = el('div', 'rail');
   box.setAttribute('aria-hidden', 'true');
-  g.railHead = el('div', 'rail-head', 'मंज़िल: ' + dest + '। सही पटरी चुनें।');
+  box.appendChild(el('div', 'rail-head', ann));
+  g.railHead = el('div', 'rail-head', 'गाड़ी जिस प्लेटफ़ॉर्म पर आएगी, उसकी पटरी दबाएँ।');
   box.appendChild(g.railHead);
   g.railLanes = [];
-  stations.forEach(function (s, i) {
+  plats.forEach(function (p) {
     var lane = el('div', 'rail-lane');
     var name = el('div', 'rail-name');
-    name.appendChild(el('span', '', 'पटरी ' + (i + 1) + ': ' + s));
+    name.appendChild(el('span', '', 'प्लेटफ़ॉर्म ' + p));
     var tag = el('span', 'rail-tag', '');
     name.appendChild(tag);
     lane.appendChild(name);
@@ -7622,7 +7651,7 @@ function railShow(g, i, ok) {
     C.lane.classList.add('want');
     railTag(C.tag, 'want', 'सही पटरी');
   }
-  g.railHead.textContent = ok ? 'सही पटरी! रेलगाड़ी ' + st.dest + ' पहुँच गई।' : 'गलत पटरी। मंज़िल ' + st.dest + ' थी।';
+  g.railHead.textContent = ok ? 'सही पटरी! गाड़ी प्लेटफ़ॉर्म ' + st.plat + ' पर पहुँच गई।' : 'गलत पटरी। गाड़ी प्लेटफ़ॉर्म ' + st.plat + ' पर आनी थी।';
   void P.train.offsetWidth;
   P.train.style.left = 'calc(100% - 84px)';
 }
@@ -7637,10 +7666,10 @@ function trainPick(g, i) {
     st.right++;
     chime('train', [660, 880], 0.08);
     bell('train', 1.1);
-    trainSay(g, 'सही पटरी! रेलगाड़ी ' + st.dest + ' पहुँच गई।');
+    trainSay(g, 'सही पटरी! गाड़ी प्लेटफ़ॉर्म ' + st.plat + ' पर पहुँच गई।');
   } else {
     tone('train', 170, 0.45, 'sawtooth', 0.18, 1.0);
-    trainSay(g, 'गलत पटरी। यह रेलगाड़ी ' + st.stations[i] + ' पहुँची, मंज़िल ' + st.dest + ' थी।');
+    trainSay(g, 'गलत पटरी। यह गाड़ी प्लेटफ़ॉर्म ' + st.plats[i] + ' पर पहुँची। सही प्लेटफ़ॉर्म ' + st.plat + ' था।');
   }
   railShow(g, i, ok);
   later(g, 1400, function () { trainNext(g); });
