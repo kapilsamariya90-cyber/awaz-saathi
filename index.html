@@ -4521,16 +4521,63 @@ function stopAllCams(keepRadio) {
   speechCancelAll();
   if (window.awazStopNewTools) window.awazStopNewTools();
 }
-/* YouTube ऐप खोलना: फ़ोन में बने Java पुल (window.AwazNative.openYouTube) से */
-function openYouTubeNow() {
-  var nat = window.AwazNative;
-  if (nat && typeof nat.openYouTube === 'function') {
-    try { nat.openYouTube(); notify('#mic-state', 'YouTube खोला जा रहा है।'); return; } catch (e) { /* नीचे संदेश */ }
+/* ऐप खोलने के आदेश: YouTube, व्हाट्सऐप, जीमेल आदि.
+   बोली-पहचान कभी शब्दों के बीच खाली जगह देती है, कभी अलग वर्तनी (यू ट्यूब / यूट्यूब / you tube).
+   इसलिए तुलना बिना खाली जगह और छोटे अक्षरों में होती है.
+   आदेश तब माना जाता है जब ऐप का नाम और खोलने का शब्द (खोलो, खोलें, खोल दो, ओपन, चलाओ...) दोनों हों,
+   या सिर्फ़ ऐप का नाम हो (जैसे "मेरा यूट्यूब"). */
+var OPEN_WORDS = ['खोल', 'ओपन', 'चला', 'चालू', 'शुरू', 'open', 'کھول', 'اوپن', 'چلاو', 'چلاؤ'];
+var FILLER_WORDS = ['मेरा', 'मेरी', 'मेरे', 'को', 'कृपया', 'जरा', 'please', 'प्लीज'];
+var APP_OPENERS = [
+  { key: 'youtube', name: 'YouTube', w: ['यूट्यूब', 'यू ट्यूब', 'यू टयूब', 'यूटयूब', 'युटयूब', 'यूटूब', 'यू टूब', 'you tube', 'youtube', 'yutube', 'یوٹیوب', 'یو ٹیوب'] },
+  { key: 'whatsapp', name: 'व्हाट्सऐप', w: ['व्हाट्सऐप', 'व्हाट्सएप', 'वॉट्सऐप', 'वाट्सऐप', 'वॉट्सएप', 'वाट्सएप', 'व्हाट्स ऐप', 'वाट्स ऐप', 'व्हाट्सअप', 'whatsapp', 'whats app', 'watsapp', 'واٹس ایپ', 'واٹسایپ'] },
+  { key: 'gmail', name: 'जीमेल', w: ['जीमेल', 'जी मेल', 'जीमैल', 'gmail', 'g mail'] },
+  { key: 'maps', name: 'गूगल मैप्स', w: ['गूगल मैप्स', 'गूगल मैप', 'मैप्स', 'मैप', 'नक्शा', 'google maps', 'maps'] },
+  { key: 'facebook', name: 'फ़ेसबुक', w: ['फ़ेसबुक', 'फेसबुक', 'facebook'] },
+  { key: 'instagram', name: 'इंस्टाग्राम', w: ['इंस्टाग्राम', 'इंस्टा', 'instagram', 'insta'] },
+  { key: 'playstore', name: 'प्ले स्टोर', w: ['प्ले स्टोर', 'प्लेस्टोर', 'play store', 'playstore'] },
+  { key: 'chrome', name: 'इंटरनेट खोलने वाला ऐप', w: ['क्रोम', 'गूगल क्रोम', 'chrome'] }
+];
+function compactKey(s) {
+  return norm(s).toLowerCase().replace(/[\s​-‍.,!?।'"`\-_:;()\[\]]+/g, '');
+}
+function findAppOpener(raw) {
+  var c = compactKey(raw);
+  if (!c) return null;
+  var hasOpen = false;
+  for (var v = 0; v < OPEN_WORDS.length; v++) {
+    if (c.indexOf(compactKey(OPEN_WORDS[v])) !== -1) { hasOpen = true; break; }
   }
-  notify('#mic-state', 'इस फ़ोन में YouTube खोलने की सुविधा अभी उपलब्ध नहीं है।');
+  var bare = c;
+  for (var f = 0; f < FILLER_WORDS.length; f++) bare = bare.split(compactKey(FILLER_WORDS[f])).join('');
+  for (var i = 0; i < APP_OPENERS.length; i++) {
+    var app = APP_OPENERS[i];
+    for (var k = 0; k < app.w.length; k++) {
+      var tok = compactKey(app.w[k]);
+      if (!tok || c.indexOf(tok) === -1) continue;
+      if (hasOpen || bare === tok) return app;
+    }
+  }
+  return null;
+}
+/* ऐप खोलना: फ़ोन में बने Java पुल (window.AwazNative.openApp) से; YouTube के लिए पुराना openYouTube भी चलता है */
+function openAppNow(app) {
+  var nat = window.AwazNative;
+  try {
+    if (nat && typeof nat.openApp === 'function') {
+      nat.openApp(app.key);
+      notify('#mic-state', app.name + ' खोला जा रहा है।');
+      return;
+    }
+    if (app.key === 'youtube' && nat && typeof nat.openYouTube === 'function') {
+      nat.openYouTube();
+      notify('#mic-state', 'YouTube खोला जा रहा है।');
+      return;
+    }
+  } catch (e) { /* नीचे संदेश */ }
+  notify('#mic-state', 'इस फ़ोन में ' + app.name + ' खोलने की सुविधा अभी उपलब्ध नहीं है।');
 }
 var COMMANDS = [
-  { w: ['यूट्यूब खोलो', 'YouTube खोलो', 'यूट्यूब चलाओ', 'open youtube'], run: openYouTubeNow },
   { w: ['नाम बदल', 'नाम लिख', 'मेरा नाम'], run: function () { goTo('h-myname', 'नाम बदलने वाला हिस्सा खुला है। पहला नाम लिखें और नाम सहेजें दबाएँ।'); } },
   { w: ['स्क्रीन रिकॉर्ड', 'स्क्रीन'], run: function () { goTo('h-screen', 'स्क्रीन रिकॉर्डर वाला हिस्सा खुला है।'); } },
   { w: ['स्पीकर साफ़', 'स्पीकर क्लीनर'], run: function () { goTo('h-speaker', 'स्पीकर क्लीनर वाला हिस्सा खुला है। सफ़ाई शुरू करने के लिए "सफ़ाई शुरू करो" बटन दबाएँ।'); } },
@@ -4550,13 +4597,15 @@ var COMMANDS = [
   { w: ['मौसम'], run: function () { goTo('h-weather', 'मौसम वाला हिस्सा खुला है। अपनी जगह का मौसम सुनने के लिए "मेरी जगह का मौसम" दबाएँ। या देश चुनकर जगह का नाम लिखें।'); } },
   { w: ['पढ़कर', 'सुनाओ', 'सुनाएँ', 'पढ़ो', 'पढ़ें'], run: function () { goTo('h-speak', 'बोलकर सुनाने वाला हिस्सा खुला है। लिखा पाठ यहाँ चिपकाएँ।'); } },
   { w: ['रुको', 'रोको', 'बंद करो', 'चुप'], run: function () { stopAllCams(); notify('#mic-state', 'सब रोक दिया गया।'); } },
-  { w: ['मदद', 'क्या बोल'], run: function () { notify('#mic-state', 'आदेश: वीडियो जोड़ो, आवाज़ निकालो, मिलाओ, गाना, वोकल रिमूवर। तस्वीर, रंग पहचानें, कैमरा, रेडियो, मौसम, यूट्यूब खोलो, होम, सेटिंग, रुको।'); } },
+  { w: ['मदद', 'क्या बोल'], run: function () { notify('#mic-state', 'आदेश: वीडियो जोड़ो, आवाज़ निकालो, मिलाओ, गाना, वोकल रिमूवर। तस्वीर, रंग पहचानें, कैमरा, रेडियो, मौसम, यूट्यूब खोलो, व्हाट्सऐप खोलो, जीमेल खोलो, होम, सेटिंग, रुको।'); } },
   { w: ['वोकल रिमूवर', 'वोकल'], run: function () { goTo('h-vocal', 'वोकल रिमूवर वाला हिस्सा खुला है। गाने की फ़ाइल चुनें।'); } },
   { w: ['खेल', 'गेम'], run: function () { goTo('h-games', 'खेल वाला हिस्सा खुला है।'); } },
   { w: ['आवाज़'], run: function () { goTo('h-sound', 'आवाज़ वाला हिस्सा खुला है।'); } }
 ];
 
 function micDo(raw) {
+  var app = findAppOpener(raw);
+  if (app) { openAppNow(app); return; }
   var t = norm(raw).toLowerCase();
   for (var i = 0; i < COMMANDS.length; i++) {
     var c = COMMANDS[i];
