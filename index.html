@@ -268,9 +268,9 @@ html.hc body { background: #fff; color: #000; }
 <p aria-live="polite" class="greet" id="greet" tabindex="-1"></p>
 </div>
 <div aria-labelledby="h-name" class="notice" hidden="" id="name-panel" role="region">
-<h2 class="panel-title" id="h-name" tabindex="-1">आपका नाम (वैकल्पिक)</h2>
-<ul class="bullets"><li>अगर आप चाहें तो अपना नाम लिखें।</li><li>तब ऐप अभिवादन में आपका नाम लेगा।</li><li>नहीं लिखना चाहें तो "छोड़ें" दबाएँ।</li></ul>
-<ul class="bullets"><li><strong>साफ़ बात:</strong> यह नाम सिर्फ़ इसी फ़ोन में सहेजा जाएगा।<br>यह कहीं भेजा नहीं जाएगा।</li><li>ऐप आपके Gmail या Google खाते से नाम नहीं पढ़ता।</li><li>इसलिए नाम आपको खुद लिखना होगा।</li><li>फ़ोन नंबर नहीं माँगा जाता।</li></ul>
+<h2 class="panel-title" id="h-name" tabindex="-1">साइन-इन (वैकल्पिक)</h2>
+<ul class="bullets"><li>अगर आप चाहें तो अपना पहला नाम लिखें। तब ऐप अभिवादन में आपका नाम लेगा।</li><li>ईमेल और फ़ोन नंबर भी लिख सकते हैं। ईमेल के लिए "Gmail खाता चुनें" दबा सकते हैं।</li><li>कुछ न लिखना चाहें तो "बाद में" दबाएँ। यह सवाल दोबारा नहीं आएगा।</li></ul>
+<ul class="bullets"><li><strong>साफ़ बात:</strong> ये जानकारी अभी सिर्फ़ इसी फ़ोन में सहेजी जाती है।<br>अभी यह कहीं भेजी नहीं जाती।</li><li>ऐप आपके Gmail या Google खाते से नाम नहीं पढ़ता।</li><li>इसलिए नाम आपको खुद लिखना होगा।</li><li>फ़ोन नंबर नहीं माँगा जाता।</li></ul>
 <label for="name-first">पहला नाम</label>
 <input aria-describedby="hx-name-first" autocomplete="given-name" id="name-first" maxlength="40" type="text"/>
 <p class="hint" id="hx-name-first">पहला नाम लिखें, जैसे रमेश। इसके बिना नाम सहेजा नहीं जाएगा।</p>
@@ -278,18 +278,26 @@ html.hc body { background: #fff; color: #000; }
 <input aria-describedby="hx-name-last" autocomplete="family-name" id="name-last" maxlength="40" type="text"/>
 <p class="hint" id="hx-name-last">दूसरा नाम, जैसे शर्मा। यह लिखना ज़रूरी नहीं है।</p>
 <div class="actions">
+<button aria-describedby="hx-name-gmail" class="btn" id="name-gmail" type="button">Gmail खाता चुनें</button>
+<p class="hint" id="hx-name-gmail">दबाने पर फ़ोन में खाता चुनने की स्क्रीन खुलेगी। इससे सिर्फ़ आपका Gmail पता लिया जाता है। ऐप आपका पासवर्ड नहीं देखता।</p>
+<label for="name-email">ईमेल (वैकल्पिक)</label>
+<input aria-describedby="hx-name-email" autocomplete="email" id="name-email" inputmode="email" maxlength="80" type="email"/>
+<p class="hint" id="hx-name-email">अपना ईमेल लिखें, जैसे नाम@gmail.com। या ऊपर Gmail खाता चुनें।</p>
+<label for="name-phone">फ़ोन नंबर (वैकल्पिक)</label>
+<input aria-describedby="hx-name-phone" autocomplete="tel" id="name-phone" inputmode="tel" maxlength="16" type="tel"/>
+<p class="hint" id="hx-name-phone">दस अंकों का मोबाइल नंबर। लिखना ज़रूरी नहीं है।</p>
 <button aria-describedby="hx-name-save" class="btn primary" id="name-save" type="button">नाम सहेजें</button>
-<button aria-describedby="hx-name-skip" class="btn" id="name-skip" type="button">छोड़ें / <span lang="en">Skip</span></button>
+<button aria-describedby="hx-name-skip" class="btn" id="name-skip" type="button">बाद में / <span lang="en">Skip</span></button>
 </div>
 <p class="hint" id="hx-name-save">नाम सहेजें: जो लिखा है वह इसी फ़ोन में रहेगा। अभिवादन में यही नाम लिया जाएगा।</p>
-<p class="hint" id="hx-name-skip">छोड़ें: नाम नहीं लिखा जाएगा। अभिवादन बिना नाम के होगा। यह सवाल दोबारा नहीं पूछा जाएगा। नाम बाद में सेटिंग में जोड़ सकते हैं।</p>
+<p class="hint" id="hx-name-skip">बाद में: अभी कुछ नहीं सहेजा जाएगा। अभिवादन बिना नाम के होगा। यह सवाल दोबारा नहीं पूछा जाएगा। नाम, ईमेल या फ़ोन बाद में सेटिंग में जोड़ सकते हैं।</p>
 <p aria-live="polite" class="note" id="name-msg"></p>
 </div>
 <!-- ===== बोलकर काम करें ===== -->
 <!-- ===== होम ===== -->
 <div class="panel" id="panel-home">
 <div aria-label="प्राइवेसी की सूचना" class="notice" hidden="" id="privacy-notice" role="region">
-<ul class="bullets"><li><strong>आवाज़ साथी आपका कोई निजी डेटा इकट्ठा नहीं करता।</strong></li><li>सब काम आपके फ़ोन में ही होता है।</li></ul>
+<ul class="bullets"><li><strong>पहली बार ऐप नाम, ईमेल और फ़ोन (वैकल्पिक) माँग सकता है।</strong> ये आप ही लिखते हैं।</li><li>सब काम, और यह जानकारी भी, आपके फ़ोन में रहती है।</li></ul>
 <div class="actions">
 <button aria-describedby="hx-notice-read" class="btn primary" id="notice-read" type="button">प्राइवेसी पॉलिसी पढ़ें</button>
 <button aria-describedby="hx-notice-close" class="btn" id="notice-close" type="button">सूचना बंद करें</button>
@@ -1142,7 +1150,7 @@ html.hc body { background: #fff; color: #000; }
 </section>
 <section aria-labelledby="h-myname" id="myname-sec">
 <h3 class="sec-title" id="h-myname">मेरा नाम</h3>
-<ul class="bullets note"><li>नाम सिर्फ़ इसी फ़ोन में रहता है, कहीं भेजा नहीं जाता।</li><li>यह अभिवादन में लिया जाता है।</li></ul>
+<ul class="bullets note"><li>नाम, ईमेल और फ़ोन अभी सिर्फ़ इसी फ़ोन में रहते हैं, कहीं भेजे नहीं जाते।</li><li>नाम अभिवादन में लिया जाता है।</li></ul>
 <p aria-live="polite" class="note" id="set-name-now">अभी कोई नाम सहेजा नहीं है।</p>
 <label for="set-name-first">पहला नाम</label>
 <input aria-describedby="hx-set-name-first" autocomplete="given-name" id="set-name-first" maxlength="40" type="text"/>
@@ -1150,10 +1158,18 @@ html.hc body { background: #fff; color: #000; }
 <label for="set-name-last">दूसरा नाम (वैकल्पिक)</label>
 <input aria-describedby="hx-set-name-last" autocomplete="family-name" id="set-name-last" maxlength="40" type="text"/>
 <p class="hint" id="hx-set-name-last">दूसरा नाम लिखना ज़रूरी नहीं है।</p>
+<button aria-describedby="hx-set-gmail" class="btn" id="set-gmail" type="button">Gmail खाता चुनें</button>
+<p class="hint" id="hx-set-gmail">दबाने पर फ़ोन में खाता चुनने की स्क्रीन खुलेगी। इससे सिर्फ़ आपका Gmail पता लिया जाता है। ऐप आपका पासवर्ड नहीं देखता।</p>
+<label for="set-email">ईमेल (वैकल्पिक)</label>
+<input aria-describedby="hx-set-email" autocomplete="email" id="set-email" inputmode="email" maxlength="80" type="email"/>
+<p class="hint" id="hx-set-email">अपना ईमेल लिखें, जैसे नाम@gmail.com। या ऊपर Gmail खाता चुनें।</p>
+<label for="set-phone">फ़ोन नंबर (वैकल्पिक)</label>
+<input aria-describedby="hx-set-phone" autocomplete="tel" id="set-phone" inputmode="tel" maxlength="16" type="tel"/>
+<p class="hint" id="hx-set-phone">दस अंकों का मोबाइल नंबर। लिखना ज़रूरी नहीं है।</p>
 <button aria-describedby="hx-set-name-save" class="btn primary" id="set-name-save" type="button">नाम सहेजें</button>
 <p class="hint" id="hx-set-name-save">दबाने पर लिखा हुआ नाम इसी फ़ोन में सहेजा जाएगा।</p>
-<button aria-describedby="hx-set-name-del" class="btn" id="set-name-del" type="button">नाम मिटाएँ</button>
-<p class="hint" id="hx-set-name-del">दबाने पर सहेजा हुआ नाम फ़ोन से मिट जाएगा। अभिवादन बिना नाम के होगा।</p>
+<button aria-describedby="hx-set-name-del" class="btn" id="set-name-del" type="button">नाम, ईमेल और फ़ोन मिटाएँ</button>
+<p class="hint" id="hx-set-name-del">दबाने पर सहेजे हुए नाम, ईमेल और फ़ोन नंबर फ़ोन से मिट जाएँगे। अभिवादन बिना नाम के होगा।</p>
 <p aria-live="polite" class="support" id="set-name-msg"></p>
 </section>
 <section aria-labelledby="h-privacy" id="privacy-sec">
@@ -1167,11 +1183,12 @@ html.hc body { background: #fff; color: #000; }
 <div aria-labelledby="privacy-title" class="policy" hidden="" id="privacy-body" role="region">
 <h4 id="privacy-title" tabindex="-1">आवाज़ साथी – प्राइवेसी पॉलिसी</h4>
 <p>डेवलपर: कपिल. संपर्क: 9896471058 (WhatsApp).</p>
-<p><strong>1. हम क्या इकट्ठा करते हैं:</strong> आवाज़ साथी आपका कोई निजी डेटा इकट्ठा नहीं करता। इसमें न साइन-अप है, न अकाउंट, न विज्ञापन, न ट्रैकिंग।<br>एक छोटी बात है।<br>मौसम में आखिरी चुनी जगह आपके फ़ोन में सेव रहती है।<br>यह बात नीचे आइटम 15 में पूरी लिखी है।</p>
+<p><strong>1. हम क्या इकट्ठा करते हैं:</strong> पहली बार ऐप एक वैकल्पिक साइन-इन दिखाता है। इसमें आप पहला नाम, ईमेल (या Gmail पता) और चाहें तो फ़ोन नंबर लिख सकते हैं। कुछ भी अनिवार्य नहीं है, "बाद में" दबाकर छोड़ सकते हैं।<br>कोई विज्ञापन या ट्रैकिंग नहीं है।<br>एक छोटी बात है।<br>मौसम में आखिरी चुनी जगह आपके फ़ोन में सेव रहती है।<br>यह बात नीचे आइटम 15 में पूरी लिखी है।</p>
 <p><strong>2. आपकी फ़ाइलें और आवाज़:</strong> आप जो ऑडियो, वीडियो, फ़ोटो या रिकॉर्डिंग चुनते हैं।<br>उन पर सारा काम आपके अपने फ़ोन में ही होता है।<br>वे किसी सर्वर पर नहीं भेजी जातीं।<br>हमें वे कभी नहीं मिलतीं।</p>
 <p><strong>3. परमिशन:</strong> माइक्रोफ़ोन सिर्फ़ दो मौकों पर चलता है।<br>पहला, जब आप गाने के साथ रिकॉर्डिंग चुनते हैं।<br>दूसरा, जब आप "बोलकर काम करें" बटन दबाकर बोलते हैं।<br>बिना आपके बटन दबाए रिकॉर्डिंग शुरू नहीं होती।<br>फ़ाइलें या गैलरी: सिर्फ़ वही फ़ाइल जो आप खुद चुनते हैं।<br>बोलकर सुनाने में फ़ोन की अपनी आवाज़ इस्तेमाल होती है।</p>
 <p><strong>4. आपकी सेटिंग:</strong> अक्षर का आकार, कंट्रास्ट, रंग, भाषा और गति जैसी सेटिंग।<br>ये सिर्फ़ आपके फ़ोन में सेव होती हैं।<br>हमें ये नहीं दिखतीं।</p>
 <p><strong>4क. वैकल्पिक नाम:</strong> अगर आप चाहें तो अपना नाम लिख सकते हैं।<br>इससे अभिवादन में वह नाम लिया जाता है।<br>यह नाम सिर्फ़ आपके फ़ोन में सेव होता है।<br>यह कहीं भेजा नहीं जाता।<br>सेटिंग में जाकर कभी भी बदला या मिटाया जा सकता है।<br>हम आपके Gmail या Google खाते से नाम नहीं पढ़ते।</p>
+<p><strong>4ख. साइन-इन की जानकारी:</strong> नाम, ईमेल और फ़ोन नंबर अभी सिर्फ़ इसी फ़ोन में सहेजे जाते हैं।<br>ये कहीं भेजे नहीं जाते।<br>आगे चलकर इनसे यह गिना जाएगा कि ऐप कितने लोग इस्तेमाल करते हैं।<br>ज़रूरी अपडेट भी इन्हीं से बताए जा सकते हैं।<br>भेजने की व्यवस्था जुड़ने से पहले यह नीति और ऐप का नोट अपडेट होगा।<br>आप सेटिंग में "नाम, ईमेल और फ़ोन मिटाएँ" दबाकर सब मिटा सकते हैं।<br>हम यह जानकारी किसी को बेचते या देते नहीं।</p>
 <p><strong>5. तीसरे पक्ष से साझा:</strong> हम आपकी कोई जानकारी किसी को बेचते या देते नहीं।</p>
 <p><strong>6. बच्चे:</strong> ऐप सबके लिए है और हम बच्चों से कोई जानकारी नहीं लेते।</p>
 <p><strong>7. बदलाव:</strong> नीति बदली तो नई तारीख के साथ यहीं अपडेट होगी।</p>
@@ -1183,7 +1200,7 @@ html.hc body { background: #fff; color: #000; }
 <p><strong>13. स्क्रीन रिकॉर्डर:</strong> स्क्रीन रिकॉर्डिंग सिर्फ़ आपके फ़ोन में बनती है।<br>यह कहीं अपलोड नहीं होती।<br>आवाज़ रिकॉर्ड करने के लिए माइक्रोफ़ोन की अनुमति आप खुद देते हैं।<br>रिकॉर्डिंग तभी बनती है जब आप शुरू करने का बटन दबाते हैं।<br>फ़ाइल आप खुद सेव या शेयर करते हैं।</p>
 <p><strong>14. वोकल रिमूवर:</strong> गाने से आवाज़ कम करना सिर्फ़ आपके फ़ोन में होता है।<br>आपकी फ़ाइल किसी सर्वर पर नहीं भेजी जाती।<br>हम उसे कभी नहीं देखते।<br>बनी हुई फ़ाइल आप खुद सेव करते हैं।</p>
 <p><strong>15. मौसम:</strong> मौसम वाला हिस्सा Open-Meteo मौसम सेवा से जुड़ता है।<br>इस सेवा को जगह का नाम और देश भेजा जाता है।<br>या जगह के अक्षांश-देशांतर (latitude, longitude) भेजे जाते हैं।<br>आपके फ़ोन का इंटरनेट पता (IP address) भी इसे दिखता है।<br>"मेरी जगह का मौसम" दबाने पर आपकी जगह ली जाती है।<br>यह फ़ोन की अनुमति से होता है।<br>वह जगह सिर्फ़ उसी मौसम सेवा को भेजी जाती है।<br>उसे आपके फ़ोन में सेव नहीं किया जाता।<br>वह कहीं और नहीं भेजी जाती।<br>आखिरी चुनी जगह आपके फ़ोन के फ़ोन में सेव रहती है।<br>ताकि अगली बार वही जगह दिखे।<br>इसमें नाम, अक्षांश-देशांतर और देश का कोड होता है।<br>आप फ़ोन की Settings में जाकर इस ऐप का डेटा मिटाकर यह हटा सकते हैं।<br>Open-Meteo अपने सर्वर पर क्या रखता है, उसकी नीति में देखें।<br>आवाज़ साथी उस नीति के लिए ज़िम्मेदार नहीं है।</p>
-<p>अंतिम अपडेट: 26 नवंबर 2026.</p>
+<p>अंतिम अपडेट: 28 नवंबर 2026.</p>
 <button aria-describedby="hx-privacy-close" class="btn" id="privacy-close" type="button">बंद करें और सेटिंग पर लौटें</button>
 <p class="hint" id="hx-privacy-close">दबाने पर पॉलिसी बंद होगी। फ़ोकस फिर "प्राइवेसी पॉलिसी पढ़ें" बटन पर जाएगा।</p>
 </div>
@@ -1192,11 +1209,12 @@ html.hc body { background: #fff; color: #000; }
 <div aria-labelledby="privacy-en-title" class="policy" hidden="" id="privacy-en-body" lang="en" role="region">
 <h4 id="privacy-en-title" tabindex="-1">Awaz Saathi – Privacy Policy</h4>
 <p>Developer: Kapil. Contact: 9896471058 (WhatsApp).</p>
-<p><strong>1. What we collect:</strong> Awaz Saathi does not collect any personal data about you.<br>There is no sign-up, no account, no ads and no tracking.<br>One small exception: weather saves your last chosen place.<br>It is saved only on your phone.<br>Item 15 below explains this fully.</p>
+<p><strong>1. What we collect:</strong> On first launch the app shows an optional sign-in. You may type your first name, your email (or pick your Gmail address) and, if you wish, your phone number.<br>Nothing is compulsory. You can press "Skip" (बाद में).<br>There are no ads and no tracking.<br>One small exception: weather saves your last chosen place.<br>It is saved only on your phone.<br>Item 15 below explains this fully.</p>
 <p><strong>2. Your files and voice:</strong> All work on the files you choose happens only on your phone.<br>They are not sent to any server.<br>We never receive them.</p>
 <p><strong>3. Permissions:</strong> The microphone is used in only two cases.<br>First, when you choose to record along with a song.<br>Second, when you press "Work by voice" (बोलकर काम करें) and speak.<br>Recording never starts without you pressing a button.<br>Files and gallery: only the file you pick yourself.<br>The read-aloud feature uses your phone's own voice.</p>
 <p><strong>4. Your settings:</strong> Settings such as text size, contrast, colour, language and speed.<br>They are saved only on your phone.<br>We cannot see them.</p>
 <p><strong>4a. Optional name:</strong> If you wish, you can type your name for the greeting.<br>The name is saved only on your phone.<br>It is never sent anywhere.<br>You can change or delete it in Settings at any time.<br>We do not read your name from your Gmail or Google account.</p>
+<p><strong>4b. Sign-in details:</strong> For now, your name, email and phone number are saved only on your phone.<br>The app does not send them anywhere yet.<br>Later they will be used to count how many people use the app, and to send important updates.<br>Before the app starts sending them, this policy and the app's update notes will say so first.<br>In Settings you can press "Erase name, email and phone" to delete them at any time.<br>We do not sell or give these details to anyone.</p>
 <p><strong>5. Sharing with third parties:</strong> We do not sell or give any of your information to anyone.</p>
 <p><strong>6. Children:</strong> The app is for everyone.<br>We do not collect any information from children.</p>
 <p><strong>7. Changes:</strong> If the policy changes, we will update it here.<br>It will show a new date.</p>
@@ -1208,7 +1226,7 @@ html.hc body { background: #fff; color: #000; }
 <p><strong>13. Screen recorder:</strong> Screen recording is made only on your phone.<br>It is not uploaded anywhere.<br>You give the microphone permission yourself to record your voice.<br>A recording is made only when you press the start button.<br>You save or share the file yourself.</p>
 <p><strong>14. Vocal remover:</strong> Removing the singer's voice happens only on your own phone.<br>Your file is not sent to any server.<br>We never see it.<br>You save the made file yourself.</p>
 <p><strong>15. Weather:</strong> The weather part connects to the Open-Meteo weather service.<br>This service receives the place name and country you chose.<br>Or it receives the latitude and longitude of the place.<br>It can also see your phone's internet address (IP address).<br>When you press "My place's weather", your location is taken.<br>Your phone asks for your permission first.<br>That location is sent only to this weather service.<br>It is not stored on your phone.<br>It is not sent anywhere else.<br>Your last chosen place is saved inside this app on your phone.<br>It includes the name, latitude, longitude and country code.<br>This lets the same place show next time.<br>You can clear this by deleting this app's data in your phone's Settings.<br>Your current location from "My place" is never saved.<br>Open-Meteo's own privacy policy applies to what it keeps on its servers.<br>Please read it there.<br>Awaz Saathi is not responsible for that policy.</p>
-<p>Last updated: 26 November 2026.</p>
+<p>Last updated: 28 November 2026.</p>
 <button aria-describedby="hx-privacy-en-close" class="btn" id="privacy-en-close" type="button">Close and return to settings</button>
 <p class="hint" id="hx-privacy-en-close">दबाने पर पॉलिसी बंद होगी। फ़ोकस फिर अंग्रेज़ी पॉलिसी वाले बटन पर जाएगा।</p>
 </div>
@@ -5664,6 +5682,69 @@ function startGreetSpeech() {
   };
   evs.forEach(function (ev) { document.addEventListener(ev, onGesture, true); });
 }
+var SIGNKEY = 'awaz-saathi-signin-v1';
+var signMem = null;
+function cleanMail(v) { return String(v || '').trim().slice(0, 80); }
+function cleanPhone(v) { return String(v || '').replace(/[^0-9+]/g, '').slice(0, 16); }
+function validMail(v) { v = cleanMail(v); return !v || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+function validPhone(v) { var p = cleanPhone(v); return !p || p.replace(/\D/g, '').length >= 10; }
+function readSignin() {
+  if (signMem) return signMem;
+  if (!storeOK) return null;
+  try {
+    var o = JSON.parse(window.localStorage.getItem(SIGNKEY) || 'null');
+    if (o && typeof o === 'object') { signMem = { email: cleanMail(o.email), phone: cleanPhone(o.phone) }; return signMem; }
+  } catch (e) { /* पढ़ न सकें तो खाली मानें */ }
+  return null;
+}
+/* 'saved' = फ़ोन में सहेजा; 'mem' = इसी बार के लिए; 'none' = दोनों खाली, पुराना साइन-इन हटा दिया */
+function writeSignin(email, phone) {
+  var o = { email: cleanMail(email), phone: cleanPhone(phone) };
+  if (!o.email && !o.phone) { eraseSignin(); return 'none'; }
+  signMem = o;
+  if (!storeOK) return 'mem';
+  try { window.localStorage.setItem(SIGNKEY, JSON.stringify(o)); return 'saved'; }
+  catch (e) { return 'mem'; }
+}
+function eraseSignin() {
+  signMem = null;
+  if (!storeOK) return;
+  try { window.localStorage.removeItem(SIGNKEY); } catch (e) { /* फ़ोन में न हो तो ठीक */ }
+}
+function fillSignFields() {
+  var s = readSignin();
+  ['#name-email', '#set-email'].forEach(function (q) { $(q).value = s ? s.email : ''; });
+  ['#name-phone', '#set-phone'].forEach(function (q) { $(q).value = s ? s.phone : ''; });
+}
+function signMsg(r) {
+  return r === 'saved' ? 'ईमेल और फ़ोन भी इसी फ़ोन में सहेज लिए गए हैं।' : (r === 'mem' ? 'ईमेल और फ़ोन इस बार के लिए रखे गए हैं।' : '');
+}
+function signCheck(emailSel, phoneSel, msgSel) {
+  if (validMail($(emailSel).value) && validPhone($(phoneSel).value)) return true;
+  var bad = validMail($(emailSel).value) ? phoneSel : emailSel;
+  $(msgSel).textContent = 'ईमेल या फ़ोन नंबर सही नहीं लगता। ईमेल जैसे नाम@gmail.com हो, और फ़ोन में दस अंक। या ये खाली छोड़ दें।';
+  say('ईमेल या फ़ोन नंबर सही नहीं लगता।');
+  $(bad).focus();
+  return false;
+}
+function gmailAvailable() {
+  return !!(window.AwazNative && typeof window.AwazNative.pickAccount === 'function');
+}
+function pickGmail(msgSel) {
+  window.__awGmailMsg = msgSel;
+  if (!gmailAvailable()) { $(msgSel).textContent = 'Gmail खाता इस फ़ोन पर अभी नहीं चुना जा सकता। ईमेल हाथ से लिखें।'; return; }
+  $(msgSel).textContent = 'फ़ोन का खाता चुनने की स्क्रीन खुल रही है।';
+  try { window.AwazNative.pickAccount(); }
+  catch (e) { $(msgSel).textContent = 'Gmail खाता अभी नहीं चुना जा सका। ईमेल हाथ से लिखें।'; }
+}
+window.awazAccountPicked = function (email) {
+  var msgSel = window.__awGmailMsg || '#name-msg';
+  if (!email) { $(msgSel).textContent = 'कोई खाता नहीं चुना गया। ईमेल हाथ से लिखें।'; return; }
+  var clean = cleanMail(email);
+  $('#name-email').value = clean;
+  $('#set-email').value = clean;
+  $(msgSel).textContent = 'Gmail पता भर दिया गया है: ' + clean + '। अब नाम सहेजें दबाएँ।';
+};
 function showNamePanelIfFirst() {
   if (readName() || askedBefore()) return;
   $('#name-panel').hidden = false;
@@ -5681,6 +5762,7 @@ function nameSavedMsg(r) {
 }
 
 $('#name-save').addEventListener('click', function () {
+  if (!signCheck('#name-email', '#name-phone', '#name-msg')) return;
   var r = writeName($('#name-first').value, $('#name-last').value);
   if (r === 'empty') {
     $('#name-msg').textContent = 'पहला नाम लिखें। नाम तभी सहेजा जाएगा।';
@@ -5688,14 +5770,18 @@ $('#name-save').addEventListener('click', function () {
     $('#name-first').focus();
     return;
   }
+  var sr = writeSignin($('#name-email').value, $('#name-phone').value);
   markAsked();
   $('#name-panel').hidden = true;
   renderGreeting();
   fillNameFields();
+  fillSignFields();
   showNameNow();
   $('#greet').focus();
-  notify('#mic-state', nameSavedMsg(r));
+  notify('#mic-state', nameSavedMsg(r) + ' ' + signMsg(sr));
 });
+$('#name-gmail').addEventListener('click', function () { pickGmail('#name-msg'); });
+$('#set-gmail').addEventListener('click', function () { pickGmail('#set-name-msg'); });
 $('#name-skip').addEventListener('click', function () {
   markAsked();
   $('#name-panel').hidden = true;
@@ -5704,6 +5790,7 @@ $('#name-skip').addEventListener('click', function () {
   notify('#mic-state', 'ठीक है, नाम नहीं लिखा गया। अभिवादन बिना नाम के है।');
 });
 $('#set-name-save').addEventListener('click', function () {
+  if (!signCheck('#set-email', '#set-phone', '#set-name-msg')) return;
   var r = writeName($('#set-name-first').value, $('#set-name-last').value);
   if (r === 'empty') {
     $('#set-name-msg').textContent = 'पहला नाम लिखें। नाम सहेजा नहीं गया।';
@@ -5711,20 +5798,24 @@ $('#set-name-save').addEventListener('click', function () {
     $('#set-name-first').focus();
     return;
   }
+  var sr = writeSignin($('#set-email').value, $('#set-phone').value);
   markAsked();
   $('#name-panel').hidden = true;
   fillNameFields();
+  fillSignFields();
   showNameNow();
   renderGreeting();
-  notify('#set-name-msg', nameSavedMsg(r));
+  notify('#set-name-msg', nameSavedMsg(r) + ' ' + signMsg(sr));
 });
 $('#set-name-del').addEventListener('click', function () {
   eraseName();
+  eraseSignin();
   markAsked();
   fillNameFields();
+  fillSignFields();
   showNameNow();
   renderGreeting();
-  notify('#set-name-msg', 'नाम मिटा दिया गया है। अभिवादन बिना नाम के है।');
+  notify('#set-name-msg', 'नाम, ईमेल और फ़ोन मिटा दिए गए हैं। अभिवादन बिना नाम के है।');
 });
 $('#set-lang').addEventListener('change', renderGreeting);
 
@@ -5736,6 +5827,8 @@ setInterval(function () {
 renderGreeting();
 fillNameFields();
 showNameNow();
+fillSignFields();
+if (!gmailAvailable()) { $('#name-gmail').hidden = true; $('#set-gmail').hidden = true; }
 showNamePanelIfFirst();
 startGreetSpeech();
 
