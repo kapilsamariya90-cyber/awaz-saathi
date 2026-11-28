@@ -611,6 +611,13 @@ html.hc body { background: #fff; color: #000; }
 <button aria-describedby="hx-speak-vol" aria-label="बोलने की आवाज़ बढ़ाएँ" class="btn" id="speak-vol-up" type="button">बढ़ाएँ</button>
 </div>
 <p class="hint" id="hx-speak-vol">बोलने की आवाज़ बदलने के लिए:<br>स्लाइडर पर टिक कर ऊपर या नीचे स्वाइप करें।<br>या कम या बढ़ाएँ बटन दबाएँ।<br>हर बार 10 प्रतिशत बदलेगा।</p>
+<label for="game-vol">खेल की आवाज़ (0 से 100)</label>
+<div class="vol">
+<button aria-describedby="hx-game-vol" aria-label="खेल की आवाज़ कम करें" class="btn" id="game-vol-down" type="button">कम</button>
+<input aria-describedby="hx-game-vol" aria-label="खेल की आवाज़ का स्तर" id="game-vol" max="100" min="0" step="5" type="range" value="100"/>
+<button aria-describedby="hx-game-vol" aria-label="खेल की आवाज़ बढ़ाएँ" class="btn" id="game-vol-up" type="button">बढ़ाएँ</button>
+</div>
+<p class="hint" id="hx-game-vol">रेलगाड़ी और दूसरे खेलों की आवाज़ का स्तर बदलने के लिए:<br>स्लाइडर पर टिक कर ऊपर या नीचे स्वाइप करें।<br>या कम या बढ़ाएँ बटन दबाएँ। बोलकर बताने की आवाज़ इससे नहीं बदलती।</p>
 <div class="actions">
 <button aria-describedby="hx-speak-btns" aria-label="लिखा हुआ पाठ फ़ोन की आवाज़ में बोलकर सुनाएँ" class="btn primary" id="speak-go" type="button">बोलकर सुनाएँ</button>
 <button aria-describedby="hx-speak-btns" aria-label="बोलकर सुनाना रोकें" class="btn" id="speak-pause" type="button">रोकें</button>
@@ -1046,7 +1053,7 @@ html.hc body { background: #fff; color: #000; }
 </section>
 </div>
 </div><div class="panel cat-screen" hidden="" id="cat-photopdf"><span class="sr-only" id="hx-back-cat-photopdf">फ़ोटो से PDF से बाहर निकलकर मुख्य सूची पर लौटने के लिए दबाएँ।</span><button aria-describedby="hx-back-cat-photopdf" class="btn back" data-back="" type="button">वापस</button><h2 class="panel-title" data-reveal="" id="h-pp" tabindex="-1">फ़ोटो से PDF</h2><p class="hint" id="hx-pp-intro">अपने फ़ोन की फ़ोटो चुनें, उनका क्रम बदलें, और एक PDF फ़ाइल बनाकर फ़ोन में सेव करें।</p><button aria-describedby="hx-pp-pick" class="btn primary big-btn" id="pp-pick-btn" type="button">फ़ोटो चुनें</button><p class="hint" id="hx-pp-pick">गैलरी से एक या कई फ़ोटो चुनें। चुनी हुई फ़ोटो PDF में इसी क्रम में जाएँगी।</p><input accept="image/*" aria-describedby="hx-pp-pick" hidden="" id="pp-file" multiple="" type="file"><label for="pp-sel">फ़ोटो का क्रम</label><select aria-describedby="hx-pp-sel" id="pp-sel" size="5"></select><p class="hint" id="hx-pp-sel">सूची में एक फ़ोटो चुनें, फिर नीचे के बटन से उसे ऊपर या नीचे ले जाएँ।</p><button aria-describedby="hx-pp-up" class="btn" id="pp-up" type="button">ऊपर ले जाओ</button><p class="hint" id="hx-pp-up">चुनी हुई फ़ोटो सूची में एक जगह ऊपर जाती है।</p><button aria-describedby="hx-pp-down" class="btn" id="pp-down" type="button">नीचे ले जाओ</button><p class="hint" id="hx-pp-down">चुनी हुई फ़ोटो सूची में एक जगह नीचे जाती है।</p><button aria-describedby="hx-pp-del" class="btn" id="pp-del" type="button">इस फ़ोटो को हटाओ</button><p class="hint" id="hx-pp-del">चुनी हुई फ़ोटो PDF से हट जाएगी। आपकी गैलरी की फ़ोटो नहीं हटेंगी।</p><label for="pp-name">PDF का नाम</label><input aria-describedby="hx-pp-name" id="pp-name" type="text" value="photos"><p class="hint" id="hx-pp-name">फ़ाइल का नाम। .pdf अपने-आप जुड़ जाएगा।</p><button aria-describedby="hx-pp-make" class="btn primary big-btn" id="pp-make" type="button">PDF बनाओ और सेव करो</button><p class="hint" id="hx-pp-make">सभी फ़ोटो को एक PDF में जोड़कर फ़ोन के Downloads फ़ोल्डर में सेव करता है। इसमें कुछ समय लग सकता है।</p><button aria-describedby="hx-pp-clear" class="btn" id="pp-clear" type="button">सूची साफ़ करो</button><p class="hint" id="hx-pp-clear">सारी फ़ोटो सूची से हट जाएँगी। गैलरी की फ़ोटो नहीं हटेंगी।</p><p aria-live="polite" class="hint" id="pp-status" role="status"></p></div><div class="panel cat-screen" hidden="" id="cat-ringtone"><span class="sr-only" id="hx-back-cat-ringtone">रिंगटोन बनाओ से बाहर निकलकर मुख्य सूची पर लौटने के लिए दबाएँ।</span><button aria-describedby="hx-back-cat-ringtone" class="btn back" data-back="" type="button">वापस</button><h2 class="panel-title" data-reveal="" id="h-rt" tabindex="-1">रिंगटोन बनाओ</h2><p class="hint" id="hx-rt-intro">किसी गाने या आवाज़ की फ़ाइल से 40 सेकंड तक का हिस्सा चुनकर फ़ोन की रिंगटोन बनाएँ।</p><button aria-describedby="hx-rt-pick" class="btn primary big-btn" id="rt-pick-btn" type="button">ऑडियो फ़ाइल चुनें</button><p class="hint" id="hx-rt-pick">फ़ोन में सेव किसी गाने या MP3, M4A, WAV या OGG फ़ाइल को चुनें।</p><input accept="audio/*" aria-describedby="hx-rt-pick" hidden="" id="rt-file" type="file"><label for="rt-start">कितने सेकंड बाद से शुरू करें</label><input aria-describedby="hx-rt-start" id="rt-start" inputmode="numeric" min="0" step="1" type="number" value="0"><p class="hint" id="hx-rt-start">गाने में कितने सेकंड बाद से हिस्सा शुरू हो। जैसे 30 लिखें तो 30वें सेकंड से।</p><label for="rt-len">रिंगटोन कितने सेकंड की हो (अधिकतम 40)</label><input aria-describedby="hx-rt-len" id="rt-len" inputmode="numeric" max="40" min="1" step="1" type="number" value="30"><p class="hint" id="hx-rt-len">रिंगटोन की लंबाई सेकंड में। 40 सेकंड से ज़्यादा नहीं हो सकती।</p><button aria-describedby="hx-rt-play" class="btn" id="rt-play" type="button">चुना हिस्सा सुनो</button><p class="hint" id="hx-rt-play">बनाने से पहले चुना हुआ हिस्सा सुन लें।</p><button aria-describedby="hx-rt-stop" class="btn" id="rt-stop" type="button">सुनना बंद करो</button><p class="hint" id="hx-rt-stop">चल रही आवाज़ रोकता है।</p><button aria-describedby="hx-rt-save" class="btn primary big-btn" id="rt-save" type="button">रिंगटोन बनाओ और सेव करो</button><p class="hint" id="hx-rt-save">चुने हिस्से को रिंगटोन की फ़ाइल में बदलकर फ़ोन के रिंगटोन फ़ोल्डर में सेव करता है।</p><button aria-describedby="hx-rt-sound" class="btn" id="rt-sound" hidden="" type="button">साउंड सेटिंग खोलो</button><p class="hint" id="hx-rt-sound" hidden="">फ़ोन की साउंड सेटिंग खुलेगी। वहाँ जाकर रिंगटोन के रूप में नई रिंगटोन चुनें।</p><p aria-live="polite" class="hint" id="rt-status" role="status"></p></div>
-<div class="panel cat-screen" hidden="" id="cat-games"><span class="sr-only" id="hx-back-cat-games">खेल से बाहर निकलकर मुख्य सूची पर लौटने के लिए दबाएँ।</span><button aria-describedby="hx-back-cat-games" class="btn back" data-back="" type="button">वापस</button><h2 class="panel-title" data-reveal="" id="h-games" tabindex="-1">खेल</h2><button aria-describedby="hx-soon-g" aria-disabled="true" class="btn" type="button">ऑनलाइन खेल: जल्द आ रहा है</button><p class="note" id="hx-soon-g">यह सुविधा अभी जल्द आ रही है। अभी इसे खोला नहीं जा सकता।</p><p class="gm-intro">आठ खेल हैं। सब बिना इंटरनेट के चलते हैं। किसी खेल को खोलने के लिए डबल टैप करें।</p><button aria-controls="gm-ludo-body" aria-describedby="hx-gm-ludo" aria-expanded="false" class="btn primary" data-label-close="रंग दौड़ बंद करें" data-label-open="रंग दौड़ खोलें" id="gm-ludo-toggle" type="button">रंग दौड़ खोलें</button><span class="gm-help" id="hx-gm-ludo">इसे खोलने के लिए डबल टैप करें। गेम-बोर्ड वाला दौड़ का खेल। 2 से 4 खिलाड़ी, पासा फेंककर टोकन आगे बढ़ाएँ। बाकी सीटें रोबोट भरेगा।</span><div data-collapsible="" hidden="" id="gm-ludo-body"></div><button aria-controls="gm-chess-body" aria-describedby="hx-gm-chess" aria-expanded="false" class="btn primary" data-label-close="छोटी शतरंज बंद करें" data-label-open="छोटी शतरंज खोलें" id="gm-chess-toggle" type="button">छोटी शतरंज खोलें</button><span class="gm-help" id="hx-gm-chess">इसे खोलने के लिए डबल टैप करें। पाँच गुणा पाँच के बोर्ड पर राजा, हाथी, घोड़ा और प्यादे। पहले मोहरा चुनें, फिर खाना।</span><div data-collapsible="" hidden="" id="gm-chess-body"></div><button aria-controls="gm-memory-body" aria-describedby="hx-gm-memory" aria-expanded="false" class="btn primary" data-label-close="सुर याद करो बंद करें" data-label-open="सुर याद करो खोलें" id="gm-memory-toggle" type="button">सुर याद करो खोलें</button><span class="gm-help" id="hx-gm-memory">इसे खोलने के लिए डबल टैप करें। चार बटन हैं, हर बटन का अलग सुर। पहले एक सुर बजेगा, उसी क्रम में दबाएँ। हर बार एक सुर जुड़ता है।</span><div data-collapsible="" hidden="" id="gm-memory-body"></div><button aria-controls="gm-antak-body" aria-describedby="hx-gm-antak" aria-expanded="false" class="btn primary" data-label-close="शब्द-अंत्याक्षरी बंद करें" data-label-open="शब्द-अंत्याक्षरी खोलें" id="gm-antak-toggle" type="button">शब्द-अंत्याक्षरी खोलें</button><span class="gm-help" id="hx-gm-antak">इसे खोलने के लिए डबल टैप करें। रोबोट के साथ शब्द-अंत्याक्षरी। पिछले शब्द के आखिरी अक्षर से नया शब्द लिखें।</span><div data-collapsible="" hidden="" id="gm-antak-body"></div><button aria-controls="gm-quiz-body" aria-describedby="hx-gm-quiz" aria-expanded="false" class="btn primary" data-label-close="सामान्य ज्ञान क्विज़ बंद करें" data-label-open="सामान्य ज्ञान क्विज़ खोलें" id="gm-quiz-toggle" type="button">सामान्य ज्ञान क्विज़ खोलें</button><span class="gm-help" id="hx-gm-quiz">इसे खोलने के लिए डबल टैप करें। दस सवाल, चार विकल्प। हरियाणा और भारत के सवाल। एक से चार खिलाड़ी।</span><div data-collapsible="" hidden="" id="gm-quiz-body"></div><button aria-controls="gm-numbers-body" aria-describedby="hx-gm-numbers" aria-expanded="false" class="btn primary" data-label-close="संख्या का अंदाज़ा बंद करें" data-label-open="संख्या का अंदाज़ा खोलें" id="gm-numbers-toggle" type="button">संख्या का अंदाज़ा खोलें</button><span class="gm-help" id="hx-gm-numbers">इसे खोलने के लिए डबल टैप करें। आप संख्या का अंदाज़ा लगाएँ, या रोबोट लगाए। ऊपर या नीचे बताकर पकड़ें।</span><div data-collapsible="" hidden="" id="gm-numbers-body"></div><button aria-controls="gm-car-body" aria-describedby="hx-gm-car" aria-expanded="false" class="btn primary" data-label-close="गाड़ी चलाओ बंद करें" data-label-open="गाड़ी चलाओ खोलें" id="gm-car-toggle" type="button">गाड़ी चलाओ खोलें</button><span class="gm-help" id="hx-gm-car">इसे खोलने के लिए डबल टैप करें। तीन लेन की सड़क। हर कदम पर बंद लेन बताई जाएगी, खुली लेन चुनें। बिना इंटरनेट।</span><div data-collapsible="" hidden="" id="gm-car-body"></div><button aria-controls="gm-train-body" aria-describedby="hx-gm-train" aria-expanded="false" class="btn primary" data-label-close="रेलगाड़ी बंद करें" data-label-open="रेलगाड़ी खोलें" id="gm-train-toggle" type="button">रेलगाड़ी खोलें</button><span class="gm-help" id="hx-gm-train">इसे खोलने के लिए डबल टैप करें। हर रेलगाड़ी की मंज़िल सुनें और सही स्टेशन वाली पटरी चुनें। बिना इंटरनेट।</span><div data-collapsible="" hidden="" id="gm-train-body"></div></div><div class="panel cat-screen" hidden="" id="cat-settings"><span class="sr-only" id="hx-back-cat-settings">इस पन्ने से बाहर निकलकर मुख्य सूची पर लौटने के लिए दबाएँ।</span><button aria-describedby="hx-back-cat-settings" class="btn back" data-back="" type="button">वापस</button>
+<div class="panel cat-screen" hidden="" id="cat-games"><span class="sr-only" id="hx-back-cat-games">खेल से बाहर निकलकर मुख्य सूची पर लौटने के लिए दबाएँ।</span><button aria-describedby="hx-back-cat-games" class="btn back" data-back="" type="button">वापस</button><h2 class="panel-title" data-reveal="" id="h-games" tabindex="-1">खेल</h2><button aria-describedby="hx-soon-g" aria-disabled="true" class="btn" type="button">ऑनलाइन खेल: जल्द आ रहा है</button><p class="note" id="hx-soon-g">यह सुविधा अभी जल्द आ रही है। अभी इसे खोला नहीं जा सकता।</p><p class="gm-intro">आठ खेल हैं। सब बिना इंटरनेट के चलते हैं। किसी खेल को खोलने के लिए डबल टैप करें।</p><button aria-controls="gm-ludo-body" aria-describedby="hx-gm-ludo" aria-expanded="false" class="btn primary" data-label-close="रंग दौड़ बंद करें" data-label-open="रंग दौड़ खोलें" id="gm-ludo-toggle" type="button">रंग दौड़ खोलें</button><span class="gm-help" id="hx-gm-ludo">इसे खोलने के लिए डबल टैप करें। गेम-बोर्ड वाला दौड़ का खेल। 2 से 4 खिलाड़ी, पासा फेंककर टोकन आगे बढ़ाएँ। बाकी सीटें रोबोट भरेगा।</span><div data-collapsible="" hidden="" id="gm-ludo-body"></div><button aria-controls="gm-chess-body" aria-describedby="hx-gm-chess" aria-expanded="false" class="btn primary" data-label-close="छोटी शतरंज बंद करें" data-label-open="छोटी शतरंज खोलें" id="gm-chess-toggle" type="button">छोटी शतरंज खोलें</button><span class="gm-help" id="hx-gm-chess">इसे खोलने के लिए डबल टैप करें। पाँच गुणा पाँच के बोर्ड पर राजा, हाथी, घोड़ा और प्यादे। पहले मोहरा चुनें, फिर खाना।</span><div data-collapsible="" hidden="" id="gm-chess-body"></div><button aria-controls="gm-memory-body" aria-describedby="hx-gm-memory" aria-expanded="false" class="btn primary" data-label-close="सुर याद करो बंद करें" data-label-open="सुर याद करो खोलें" id="gm-memory-toggle" type="button">सुर याद करो खोलें</button><span class="gm-help" id="hx-gm-memory">इसे खोलने के लिए डबल टैप करें। चार बटन हैं, हर बटन का अलग सुर। पहले एक सुर बजेगा, उसी क्रम में दबाएँ। हर बार एक सुर जुड़ता है।</span><div data-collapsible="" hidden="" id="gm-memory-body"></div><button aria-controls="gm-antak-body" aria-describedby="hx-gm-antak" aria-expanded="false" class="btn primary" data-label-close="शब्द-अंत्याक्षरी बंद करें" data-label-open="शब्द-अंत्याक्षरी खोलें" id="gm-antak-toggle" type="button">शब्द-अंत्याक्षरी खोलें</button><span class="gm-help" id="hx-gm-antak">इसे खोलने के लिए डबल टैप करें। रोबोट के साथ शब्द-अंत्याक्षरी। पिछले शब्द के आखिरी अक्षर से नया शब्द लिखें।</span><div data-collapsible="" hidden="" id="gm-antak-body"></div><button aria-controls="gm-quiz-body" aria-describedby="hx-gm-quiz" aria-expanded="false" class="btn primary" data-label-close="सामान्य ज्ञान क्विज़ बंद करें" data-label-open="सामान्य ज्ञान क्विज़ खोलें" id="gm-quiz-toggle" type="button">सामान्य ज्ञान क्विज़ खोलें</button><span class="gm-help" id="hx-gm-quiz">इसे खोलने के लिए डबल टैप करें। दस सवाल, चार विकल्प। हरियाणा और भारत के सवाल। एक से चार खिलाड़ी।</span><div data-collapsible="" hidden="" id="gm-quiz-body"></div><button aria-controls="gm-numbers-body" aria-describedby="hx-gm-numbers" aria-expanded="false" class="btn primary" data-label-close="संख्या का अंदाज़ा बंद करें" data-label-open="संख्या का अंदाज़ा खोलें" id="gm-numbers-toggle" type="button">संख्या का अंदाज़ा खोलें</button><span class="gm-help" id="hx-gm-numbers">इसे खोलने के लिए डबल टैप करें। आप संख्या का अंदाज़ा लगाएँ, या रोबोट लगाए। ऊपर या नीचे बताकर पकड़ें।</span><div data-collapsible="" hidden="" id="gm-numbers-body"></div><button aria-controls="gm-car-body" aria-describedby="hx-gm-car" aria-expanded="false" class="btn primary" data-label-close="गाड़ी चलाओ बंद करें" data-label-open="गाड़ी चलाओ खोलें" id="gm-car-toggle" type="button">गाड़ी चलाओ खोलें</button><span class="gm-help" id="hx-gm-car">इसे खोलने के लिए डबल टैप करें। तीन लेन की सड़क। हर कदम पर बंद लेन बताई जाएगी, खुली लेन चुनें। बिना इंटरनेट।</span><div data-collapsible="" hidden="" id="gm-car-body"></div><button aria-controls="gm-train-body" aria-describedby="hx-gm-train" aria-expanded="false" class="btn primary" data-label-close="रेलगाड़ी बंद करें" data-label-open="रेलगाड़ी खोलें" id="gm-train-toggle" type="button">रेलगाड़ी खोलें</button><span class="gm-help" id="hx-gm-train">इसे खोलने के लिए डबल टैप करें। हर रेलगाड़ी की घोषणा सुनें और सही प्लेटफ़ॉर्म की पटरी चुनें। पहले इंजन चालू होता है, फिर पटरी की खट-खट और हॉर्न। बिना इंटरनेट।</span><div data-collapsible="" hidden="" id="gm-train-body"></div></div><div class="panel cat-screen" hidden="" id="cat-settings"><span class="sr-only" id="hx-back-cat-settings">इस पन्ने से बाहर निकलकर मुख्य सूची पर लौटने के लिए दबाएँ।</span><button aria-describedby="hx-back-cat-settings" class="btn back" data-back="" type="button">वापस</button>
 <h2 class="panel-title" data-reveal="settings-body" id="h-settings" tabindex="-1">सेटिंग</h2>
 <button aria-controls="settings-body" aria-describedby="hx-settings-toggle" aria-expanded="false" class="btn primary" data-label-close="सेटिंग छिपाएँ" data-label-open="सेटिंग दिखाएँ" id="settings-toggle" type="button">सेटिंग दिखाएँ</button>
 <p class="hint" id="hx-settings-toggle">इसे खोलने के लिए डबल टैप करें। दबाने पर सेटिंग के सारे हिस्से नीचे खुलेंगे। दोबारा दबाने पर वे बंद होंगे।</p>
@@ -2659,7 +2666,7 @@ bindVolume('#speak-vol', '#speak-vol-down', '#speak-vol-up', 'बोलने �
 var SKEY = 'chitti-settings-v1';
 var FSIZES = [90, 100, 120, 140];
 var FSIZE_NAMES = ['छोटा', 'सामान्य', 'बड़ा', 'बहुत बड़ा'];
-var DEFAULTS = { fsize: 1, contrast: false, lang: 'hi-IN', rate: 1, announce: true, accent: 'default', selfspeak: true, theme: 'classic', srVoice: 'auto', srRate: 1, srPitch: 1, srVol: 1, wake: true };
+var DEFAULTS = { fsize: 1, contrast: false, lang: 'hi-IN', rate: 1, announce: true, accent: 'default', selfspeak: true, theme: 'classic', srVoice: 'auto', srRate: 1, srPitch: 1, srVol: 1, wake: true, gameVol: 1 };
 function cloneDefaults() {
   var o = {};
   for (var k in DEFAULTS) { if (DEFAULTS.hasOwnProperty(k)) o[k] = DEFAULTS[k]; }
@@ -2697,6 +2704,7 @@ function loadSettings() {
     if (typeof o.srPitch === 'number' && o.srPitch >= 0.5 && o.srPitch <= 2) S.srPitch = o.srPitch;
     if (typeof o.srVol === 'number' && o.srVol >= 0.1 && o.srVol <= 1) S.srVol = o.srVol;
     if (typeof o.wake === 'boolean') S.wake = o.wake;
+    if (typeof o.gameVol === 'number' && o.gameVol >= 0 && o.gameVol <= 1) S.gameVol = o.gameVol;
   } catch (e) { /* खराब सेटिंग्स हों तो पहले जैसी */ }
 }
 function saveSettings() {
@@ -5119,6 +5127,16 @@ if (!HAS_MIC) $$('[data-mic]').forEach(function (b) { b.disabled = true; });
 if (!AC) $$('[data-ac]').forEach(function (b) { b.disabled = true; });
 loadSettings();
 applySettings();
+/* ---------- खेल की आवाज़ का स्तर (सेटिंग्स में सहेजा जाता है) ---------- */
+(function () {
+  if (!$('#game-vol')) return;
+  $('#game-vol').value = Math.round((typeof S.gameVol === 'number' ? S.gameVol : 1) * 100);
+  bindVolume('#game-vol', '#game-vol-down', '#game-vol-up', 'खेल की आवाज़', function (x) {
+    S.gameVol = x;
+    saveSettings();
+    if (window.awazApplyGameVol) window.awazApplyGameVol();
+  });
+})();
 renderJoin();
 if (!hasCam()) {
   $('#col-support').hidden = false;
@@ -5756,12 +5774,16 @@ function softClipCurve() {
   }
   return curve;
 }
+/* खेल की आवाज़ का स्तर (सेटिंग्स, 0 से 1): मास्टर गेन पर लागू होता है */
+function gameVolNow() { return (S && typeof S.gameVol === 'number') ? S.gameVol : 1; }
+function applyGameVol() { if (busNode) { try { busNode.gain.value = 1.5 * gameVolNow(); } catch (e) { /* ignore */ } } }
+window.awazApplyGameVol = applyGameVol;
 function outBus(c) {
   if (busNode && busCtx === c) return busNode;
   busCtx = c;
   try {
     /* मास्टर गेन: आवाज़ें ज़ोर से सुनाई दें; सीमित करने वाला (लिमिटर) ज़ोरदार पल को -3 dB पर रोकता है, क्लिप नहीं होता */
-    var master = c.createGain(); master.gain.value = 1.5;
+    var master = c.createGain(); master.gain.value = 1.5 * gameVolNow();
     var comp = c.createDynamicsCompressor();
     comp.threshold.value = -3; comp.knee.value = 2; comp.ratio.value = 20;
     comp.attack.value = 0.002; comp.release.value = 0.12;
@@ -5925,18 +5947,26 @@ function trainWhistle(key, delay) {
   tone(key, 660, 0.7, 'sine', 0.6, delay || 0, 880);
   tone(key, 1320, 0.7, 'sine', 0.2, delay || 0, 1760);
 }
-/* पटरी के जोड़ की "खट-खट": छोटा शोर का धमाका जिसके साथ हल्की थप; दो ताल (भारी और हल्की) */
+/* पहिये की एक थाप (खट): पटरी के जोड़ पर धातु जैसी तेज़ चटक और नीचे की हल्की थप */
 function clack(key, at, vol) {
   if (!soundOn[key]) return;
   var c = audio(); if (!c) return;
   try {
     var s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
     s.buffer = noiseBuf(c);
-    f.type = 'bandpass'; f.frequency.value = 1500 + rnd() * 900; f.Q.value = 1.6;
+    f.type = 'bandpass'; f.frequency.value = 2000 + rnd() * 800; f.Q.value = 2.2;
     g.gain.setValueAtTime(vol, at);
-    g.gain.exponentialRampToValueAtTime(0.0001, at + 0.07);
+    g.gain.exponentialRampToValueAtTime(0.0001, at + 0.06);
     s.connect(f); f.connect(g); g.connect(outBus(c));
-    s.start(at, rnd() * 1.0); s.stop(at + 0.09); track(key, s);
+    s.start(at, rnd() * 1.0); s.stop(at + 0.08); track(key, s);
+    var o = c.createOscillator(), og = c.createGain();
+    o.type = 'sine';
+    o.frequency.setValueAtTime(160, at);
+    o.frequency.exponentialRampToValueAtTime(70, at + 0.05);
+    og.gain.setValueAtTime(vol * 0.7, at);
+    og.gain.exponentialRampToValueAtTime(0.0001, at + 0.07);
+    o.connect(og); og.connect(outBus(c));
+    o.start(at); o.stop(at + 0.08); track(key, o);
   } catch (e) { /* ignore */ }
 }
 /* रफ़्तार 0 से 1 तक: धीरे चढ़ना, बीच में बनी रहना, आख़िर में धीरे उतरना (स्टेशन पर रुकने के लिए) */
@@ -5945,13 +5975,15 @@ function trainSpeed(t, dur) {
   var v = Math.min(up, down);
   return v * v * (3 - 2 * v);
 }
-/* जोड़ों की ताल: रफ़्तार बढ़ने पर जोड़ पास-पास आते हैं; हर जोड़ पर दो थाप */
+/* पहियों की खट-खट: हर पटरी के जोड़ पर एक बोगी की दो थापें (खट-खट); रफ़्तार बढ़ने पर जोड़ पास-पास आते हैं */
 function trainJoints(key, at, dur) {
   var t = 0.5, n = 0;
   while (t < dur) {
-    var gap = 0.74 - 0.42 * trainSpeed(t, dur);
-    clack(key, at + t, 0.8 - 0.22 * (n % 2));
-    clack(key, at + t + gap * 0.42, 0.42);
+    var sp = trainSpeed(t, dur);
+    var gap = 0.74 - 0.42 * sp;
+    var second = 0.13 - 0.03 * sp;
+    clack(key, at + t, 0.9 - 0.2 * (n % 2));
+    clack(key, at + t + second, 0.65 - 0.1 * (n % 2));
     t += gap; n++;
   }
 }
@@ -5981,23 +6013,34 @@ function dieselRumble(key, at, dur, vol) {
     s.start(at, rnd() * 1.0); s.stop(at + dur + 0.05); track(key, s);
   } catch (e) { /* ignore */ }
 }
-/* रेलगाड़ी का दो-सुर वाला हॉर्न (भारी और ऊँचा एक साथ) */
+/* भारतीय रेलगाड़ी का हॉर्न: गहरे दो सुर (लगभग 233 और 294 हर्ट्ज़), हर सुर में ऊपर के हार्मोनिक्स और हल्का कंपन;
+   लंबा, भारी और सबसे ज़ोरदार आवाज़ */
 function trainHorn(key, at, len) {
   if (!soundOn[key]) return;
   var c = audio(); if (!c) return;
   try {
-    /* गहरे दो सुर (लगभग A3 और C#4): भारी गूँज वाली सीटी */
-    [220, 277].forEach(function (hz) {
-      var o = c.createOscillator(), o2 = c.createOscillator(), lp = c.createBiquadFilter(), g = c.createGain();
-      o.type = 'sawtooth'; o.frequency.value = hz;
-      o2.type = 'triangle'; o2.frequency.value = hz * 2;
-      lp.type = 'lowpass'; lp.frequency.value = 1200; lp.Q.value = 1;
-      g.gain.setValueAtTime(0.0001, at);
-      g.gain.exponentialRampToValueAtTime(0.26, at + 0.08);
-      g.gain.setValueAtTime(0.26, at + len - 0.15);
-      g.gain.exponentialRampToValueAtTime(0.0001, at + len);
-      o.connect(lp); o2.connect(lp); lp.connect(g); g.connect(outBus(c));
-      o.start(at); o2.start(at); o.stop(at + len + 0.05); o2.stop(at + len + 0.05); track(key, o); track(key, o2);
+    var bus = outBus(c);
+    var parts = [['sawtooth', 1, 0.42], ['triangle', 2, 0.22], ['square', 1, 0.08], ['sine', 3, 0.12]];
+    [233, 294].forEach(function (hz) {
+      var env = c.createGain(), lp = c.createBiquadFilter();
+      lp.type = 'lowpass'; lp.frequency.value = 1900; lp.Q.value = 0.8;
+      env.gain.setValueAtTime(0.0001, at);
+      env.gain.exponentialRampToValueAtTime(0.9, at + 0.07);
+      env.gain.setValueAtTime(0.9, at + len - 0.28);
+      env.gain.exponentialRampToValueAtTime(0.0001, at + len);
+      lp.connect(env); env.connect(bus);
+      var lfo = c.createOscillator();
+      lfo.frequency.value = 5.5;
+      lfo.start(at); lfo.stop(at + len + 0.05); track(key, lfo);
+      parts.forEach(function (p) {
+        var o = c.createOscillator(), og = c.createGain(), pg = c.createGain();
+        o.type = p[0]; o.frequency.value = hz * p[1];
+        og.gain.value = p[2];
+        pg.gain.value = hz * p[1] * 0.012;
+        lfo.connect(pg); pg.connect(o.frequency);
+        o.connect(og); og.connect(lp);
+        o.start(at); o.stop(at + len + 0.05); track(key, o);
+      });
     });
   } catch (e) { /* ignore */ }
 }
@@ -6016,19 +6059,60 @@ function airHiss(key, at, dur, vol) {
     s.start(at, rnd() * 1.0); s.stop(at + dur + 0.05); track(key, s);
   } catch (e) { /* ignore */ }
 }
-/* रेलगाड़ी के आने का पूरा दृश्य (लगभग 7.5 सेकंड): हॉर्न, गड़गड़ाहट, जोड़ों की ताल,
-   ब्रेक की चरचराहट, हवा का फुफकार और अंत में डिंग-डोंग घंटी */
+/* डीज़ल इंजन चालू होना: पहले स्टार्टर मोटर की घुरघुराहट, फिर इंजन पकड़ता है (फट-फट, जो तेज़ होती है) */
+function engineStartUp(key, at) {
+  if (!soundOn[key]) return;
+  var c = audio(); if (!c) return;
+  try {
+    var o = c.createOscillator(), g = c.createGain(), f = c.createBiquadFilter();
+    o.type = 'sawtooth';
+    o.frequency.setValueAtTime(95, at);
+    o.frequency.linearRampToValueAtTime(230, at + 1.6);
+    f.type = 'lowpass'; f.frequency.value = 800; f.Q.value = 1.5;
+    g.gain.setValueAtTime(0.0001, at);
+    g.gain.exponentialRampToValueAtTime(0.12, at + 0.25);
+    g.gain.setValueAtTime(0.12, at + 1.3);
+    g.gain.exponentialRampToValueAtTime(0.0001, at + 1.8);
+    o.connect(f); f.connect(g); g.connect(outBus(c));
+    o.start(at); o.stop(at + 1.9); track(key, o);
+  } catch (e) { /* ignore */ }
+  var now = c.currentTime, t = 1.1, n = 0;
+  while (t < 2.6) {
+    puff(key, 150 + rnd() * 70, 0.9, 0.2, 0.6 - 0.1 * (n % 2), (at - now) + t);
+    t += 0.34 - 0.2 * ((t - 1.1) / 1.5);
+    n++;
+  }
+}
+/* पहियों की गड़गड़ाहट: नीचे का छनता शोर, रफ़्तार के साथ उठता-गिरता */
+function wheelRoll(key, at, dur, vol) {
+  if (!soundOn[key]) return;
+  var c = audio(); if (!c) return;
+  try {
+    var s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+    s.buffer = noiseBuf(c); s.loop = true;
+    f.type = 'lowpass'; f.frequency.value = 420; f.Q.value = 0.7;
+    g.gain.setValueAtTime(0.0001, at);
+    g.gain.exponentialRampToValueAtTime(vol, at + dur * 0.35);
+    g.gain.setValueAtTime(vol, at + dur * 0.7);
+    g.gain.exponentialRampToValueAtTime(0.0001, at + dur);
+    s.connect(f); f.connect(g); g.connect(outBus(c));
+    s.start(at, rnd() * 1.0); s.stop(at + dur + 0.05); track(key, s);
+  } catch (e) { /* ignore */ }
+}
+/* रेलगाड़ी के आने का पूरा दृश्य (लगभग 9.5 सेकंड): पहले इंजन चालू, फिर पहियों की खट-खट के साथ चलना,
+   फिर हॉर्न, ब्रेक, हवा का फुफकार और अंत में डिंग-डोंग घंटी */
 function trainArrival(key) {
   if (!soundOn[key]) return;
   var c = audio(); if (!c) return;
   var at = c.currentTime + 0.05;
-  /* क्रम: पहले इंजन चालू, फिर रेलगाड़ी चलने की छुक-छुक, फिर सीटी, ब्रेक, हवा और घंटी */
-  dieselRumble(key, at, 7.0, 0.3);
-  trainJoints(key, at + 1.0, 5.2);
-  trainHorn(key, at + 4.9, 1.1);
-  brake(key, 6.1);
-  airHiss(key, at + 6.5, 0.9, 0.22);
-  trainChime(key, 7.3);
+  engineStartUp(key, at);
+  dieselRumble(key, at + 1.2, 6.2, 0.24);
+  wheelRoll(key, at + 2.6, 4.4, 0.16);
+  trainJoints(key, at + 2.6, 4.4);
+  trainHorn(key, at + 4.0, 1.5);
+  brake(key, 5.4);
+  airHiss(key, at + 6.3, 0.9, 0.22);
+  trainChime(key, 7.2);
 }
 /* भीड़ की एक आवाज़: गले जैसा सुर (सॉटूथ) जो दो फ़ॉर्मेंट फ़िल्टर से छनता है; फ़ॉर्मेंट धीरे-धीरे खिसकते हैं */
 function voice(key, at) {
@@ -7603,7 +7687,7 @@ function trainNext(g) {
   });
   if (!gameSpeechOK() || !soundOn.train) { trainSay(g, instr); return; }
   /* घोषणा घंटी के बाद बोली जाती है; उसके पूरा होने पर ही खेल का निर्देश बोला जाता है */
-  later(g, 8800, function () {
+  later(g, 9300, function () {
     stationVoice(g, ann, function () {
       if (g.gen !== gen || !g.st || g.st.picked || g.st.round !== roundNow || g.st.over) return;
       trainSay(g, instr);
