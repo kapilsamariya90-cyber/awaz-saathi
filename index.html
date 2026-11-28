@@ -221,6 +221,36 @@ html.hc body { background: #fff; color: #000; }
 .gm-check input{width:26px;height:26px}
 .gm-live,.gm-status,.gm-question{font-size:1.15rem;line-height:1.6}
 .gm-seat{border-top:1px solid currentColor;padding-top:6px}
+/* दृश्य बोर्ड (रेलगाड़ी, गाड़ी): हर लेन एक पट्टी है; गाड़ी उसमें बाएँ से दाएँ चलती है। रंग और लिखावट दोनों से दिखता है */
+.rail{margin:12px 0;padding:10px;border:2px solid #37474f;border-radius:14px;background:#fff;color:#111;position:relative}
+.rail-head{font-size:1.15rem;font-weight:700;line-height:1.5;margin:0 0 8px}
+.rail-lane{margin:10px 0}
+.rail-name{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:1.05rem;font-weight:600}
+.rail-tag{font-size:.95rem;font-weight:700;padding:2px 8px;border-radius:8px}
+.rail-tag:empty{display:none}
+.rail-tag.ok{background:#1b5e20;color:#fff}
+.rail-tag.bad{background:#b71c1c;color:#fff}
+.rail-tag.want{background:#e8f5e9;color:#1b5e20;outline:2px solid #1b5e20}
+.rail-tag.blocked{background:#b71c1c;color:#fff}
+.rail-tag.open{background:#e8f5e9;color:#1b5e20}
+.rail-bar{position:relative;height:44px;margin-top:6px;border-radius:8px;background:#eceff1;border-top:4px solid #5d4037;border-bottom:4px solid #5d4037;box-sizing:border-box}
+.rail-bar::after{content:"→";position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:1.4rem;font-weight:700;color:#37474f}
+.rail-lane.ok .rail-bar{background:#c8e6c9;border-color:#1b5e20}
+.rail-lane.bad .rail-bar{background:#ffcdd2;border-color:#b71c1c}
+.rail-lane.want .rail-bar{background:#e8f5e9;outline:3px dashed #1b5e20;outline-offset:2px}
+.rail-lane.blocked .rail-bar{background:repeating-linear-gradient(45deg,#ffcdd2 0 10px,#ef9a9a 10px 20px)}
+.rail-train,.rail-car{position:absolute;z-index:1;top:3px;bottom:3px;left:0;width:84px;border-radius:8px;background:#1565c0;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;box-sizing:border-box;transition:left 1.2s ease}
+.rail-train.wait{background:#90a4ae}
+.rail-train.ok{background:#1b5e20}
+.rail-train.bad{background:#b71c1c}
+.rail-car{transition:left 1s ease}
+.rail-car.crash{background:#b71c1c}
+.rail-bar::after{z-index:0}
+.gm-trainbtns{display:flex;flex-wrap:wrap;gap:8px}
+.rail-siding{background:#fff}
+.gm-pad.lit{background:#ffe082;color:#111;box-shadow:0 0 0 4px #ff8f00}
+.gm-tokens{margin:8px 0 0;padding-inline-start:1.2em;font-size:1.05rem;line-height:1.6}
+.gm-tokens li.turn{font-weight:700;text-decoration:underline}
 </style>
 </head>
 <body>
@@ -5971,12 +6001,13 @@ function trainArrival(key) {
   if (!soundOn[key]) return;
   var c = audio(); if (!c) return;
   var at = c.currentTime + 0.05;
-  trainHorn(key, at, 1.2);
+  /* क्रम: पहले इंजन चालू, फिर रेलगाड़ी चलने की छुक-छुक, फिर सीटी, ब्रेक, हवा और घंटी */
   dieselRumble(key, at, 7.0, 0.3);
-  trainJoints(key, at, 6.0);
-  brake(key, 6.05);
-  airHiss(key, at + 6.4, 0.9, 0.22);
-  bell(key, 7.2);
+  trainJoints(key, at + 1.0, 5.2);
+  trainHorn(key, at + 4.9, 1.1);
+  brake(key, at + 6.1);
+  airHiss(key, at + 6.5, 0.9, 0.22);
+  bell(key, at + 7.3);
 }
 /* भीड़ की एक आवाज़: गले जैसा सुर (सॉटूथ) जो दो फ़ॉर्मेंट फ़िल्टर से छनता है; फ़ॉर्मेंट धीरे-धीरे खिसकते हैं */
 function voice(key, at) {
@@ -6442,6 +6473,10 @@ function setupLudo(g, root) {
   selectBox(g.set, 'पहली बारी किसकी होगी?', [['0', 'सीट 1'], ['1', 'सीट 2'], ['2', 'सीट 3'], ['3', 'सीट 4']], '0', function (v) { g.first = +v; g.touch(); }, 'जिस सीट की पहली बारी होगी, वह पहला पासा फेंकेगा। सीट संख्या से अधिक हो तो सीट 1 से शुरू होगा।');
   g.rollBtn = btn(g.play, 'पासा फेंको', 'यहाँ दबाकर खेलें: पासा फेंकने के लिए दबाएँ। फिर आपकी चाल के विकल्प आएँगे।', function () { ludoHumanRoll(g); });
   g.choices = el('div', 'gm-row');
+  /* दृश्य सूची: हर खिलाड़ी के टोकन कहाँ हैं; जिसकी बारी है वह मोटे अक्षरों में */
+  g.tokView = el('ul', 'gm-tokens');
+  g.tokView.setAttribute('aria-hidden', 'true');
+  g.play.appendChild(g.tokView);
   g.play.appendChild(g.choices);
   btn(g.play, 'सब टोकन की जगह सुनाएँ', 'हर खिलाड़ी के दोनों टोकन कहाँ हैं, यह बोलकर सुनाता है।', function () { if (g.st) announce(g, ludoBoard(g)); });
 
@@ -6451,6 +6486,7 @@ function setupLudo(g, root) {
     if (g.first < g.n) g.st.turn = g.first;
     g.die = 0;
     g.choices.innerHTML = '';
+    ludoView(g);
     g.seatWraps.forEach(function (w, k) { w.hidden = k >= g.n; });
     announce(g, 'नया खेल। ' + g.n + ' खिलाड़ी। ' + ludoSeatText(g));
     ludoLater(g, 400, function () { ludoAskRoll(g); });
@@ -6460,6 +6496,15 @@ function ludoSeatText(g) {
   var parts = [];
   for (var k = 0; k < g.n; k++) parts.push(g.names[k] + ' ' + (g.seat[k] === 'इंसान' ? 'इंसान' : 'रोबोट'));
   return parts.join(', ') + '।';
+}
+/* दृश्य सूची ताज़ा करें: हर चाल और हर बारी के बाद */
+function ludoView(g) {
+  if (!g.tokView || !g.st) return;
+  g.tokView.innerHTML = '';
+  g.st.tk.forEach(function (tk, p) {
+    var mine = p === g.st.turn && !g.st.over;
+    g.tokView.appendChild(el('li', mine ? 'turn' : '', (mine ? '▶ ' : '') + g.names[p] + ': टोकन 1 ' + ludo.where(tk[0]) + ', टोकन 2 ' + ludo.where(tk[1]) + '।'));
+  });
 }
 function ludoBoard(g) {
   var parts = [];
@@ -6474,6 +6519,7 @@ function ludoAskRoll(g) {
   var p = st.turn;
   g.die = 0;
   g.choices.innerHTML = '';
+  ludoView(g);
   if (g.seat[p] === 'रोबोट') {
     g.rollBtn.disabled = true;
     g.stat.textContent = g.names[p] + ' (रोबोट) की बारी।';
@@ -6563,6 +6609,7 @@ function ludoMove(g, p, t) {
     msg += ' और ' + g.names[ev.capture] + ' का टोकन वापस घर भेज दिया।';
   }
   ludo.checkEnd(st);
+  ludoView(g);
   if (st.over) {
     g.rollBtn.disabled = true;
     g.stat.textContent = 'खेल खत्म।';
@@ -6846,6 +6893,9 @@ function setupMemory(g, root) {
     st.seq.forEach(function (pad, i) {
       later(g2, 400 + i * g2.speed, function () {
         tone('mem', MEM_HZ[pad], 0.38, 'sine', 0.25);
+        /* जो सुर बज रहा है, उसका खाना कुछ देर रोशन दिखे */
+        var lp = g2.pads && g2.pads[pad];
+        if (lp) { lp.classList.add('lit'); later(g2, Math.max(200, g2.speed - 120), function () { lp.classList.remove('lit'); }); }
         announce(g2, (i + 1) + '. ' + MEM_NAME[pad]);
       });
     });
@@ -7335,7 +7385,7 @@ function setupCar(g, root) {
   g.reset = function () {
     stopGame(g);
     g.play.innerHTML = '';
-    g.st = { step: 0, over: false, blocked: [] };
+    g.st = { step: 0, over: false, blocked: [], lane: 1 };
     engineStart('car');
     horn('car', 0.1, 0.35);
     carSay(g, 'गाड़ी चलाओ शुरू। ' + g.steps + ' कदम चलाने हैं। हर कदम पर बंद लेन बताई जाएगी, खुली लेन चुनें।');
@@ -7347,10 +7397,36 @@ function setupCar(g, root) {
     engineRev('car', g.st.step / g.steps);
   };
 }
+/* दृश्य सड़क: तीन लेन; रुकावट वाली लेन लाल, खुली लेन हरी लिखी; गाड़ी आगे बढ़ती दिखती है */
+function carLeft(g, step) { return 'calc(' + (step / g.steps) + ' * (100% - 84px))'; }
+function carBoard(g, blocked) {
+  var st = g.st;
+  var box = el('div', 'rail');
+  box.setAttribute('aria-hidden', 'true');
+  g.railHead = el('div', 'rail-head', 'कदम ' + (st.step + 1) + ' of ' + g.steps + '। खुली लेन चुनें।');
+  box.appendChild(g.railHead);
+  g.carLanes = [];
+  CAR_LANES.forEach(function (name, j) {
+    var isBlocked = blocked.indexOf(j) >= 0;
+    var lane = el('div', 'rail-lane' + (isBlocked ? ' blocked' : ''));
+    var row = el('div', 'rail-name');
+    row.appendChild(el('span', '', name));
+    row.appendChild(el('span', 'rail-tag ' + (isBlocked ? 'blocked' : 'open'), isBlocked ? 'रुकावट' : 'खुली'));
+    lane.appendChild(row);
+    var bar = el('div', 'rail-bar');
+    lane.appendChild(bar);
+    box.appendChild(lane);
+    g.carLanes.push(bar);
+  });
+  var car = el('div', 'rail-car', 'गाड़ी');
+  car.style.left = carLeft(g, st.step > 0 ? st.step - 1 : 0);
+  g.carEl = car;
+  g.carLanes[st.lane].appendChild(car);
+  return box;
+}
 function carNext(g) {
   var st = g.st;
   if (!st || st.over) return;
-  g.play.innerHTML = '';
   if (st.step >= g.steps) {
     st.over = true;
     stopLoops('car');
@@ -7366,25 +7442,38 @@ function carNext(g) {
   }
   st.blocked = blocked;
   var names = blocked.map(function (b) { return CAR_LANES[b]; }).join(' और ');
+  g.play.innerHTML = '';
+  g.play.appendChild(carBoard(g, blocked));
+  /* गाड़ी पिछले कदम से नए कदम तक सरकती दिखे */
+  void g.carEl.offsetWidth;
+  g.carEl.style.left = carLeft(g, st.step);
+  g.carBtns = el('div', 'gm-trainbtns', '');
+  g.play.appendChild(g.carBtns);
   carSay(g, 'कदम ' + (st.step + 1) + ': ' + names + ' में रुकावट है। कौन-सी खुली लेन चुनें?');
   CAR_LANES.forEach(function (name, i) {
-    btn(g.play, name, 'यहाँ दबाकर खेलें: गाड़ी इस लेन में ले जाएँ।', function () { carMove(g, i); });
+    btn(g.carBtns, name, 'यहाँ दबाकर खेलें: गाड़ी इस लेन में ले जाएँ।', function () { carMove(g, i); });
   });
 }
 function carMove(g, i) {
   var st = g.st;
   if (!st || st.over) return;
-  g.play.innerHTML = '';
+  if (g.carBtns) g.carBtns.innerHTML = '';
+  if (g.carLanes && g.carEl) g.carLanes[i].appendChild(g.carEl);
   if (st.blocked.indexOf(i) >= 0) {
     st.over = true;
     stopLoops('car');
     crash('car');
+    if (g.carEl) g.carEl.classList.add('crash');
+    if (g.railHead) g.railHead.textContent = 'टक्कर हो गई! ' + CAR_LANES[i] + ' में रुकावट थी।';
     carSay(g, CAR_LANES[i] + ' में रुकावट थी और टक्कर हो गई। आपने ' + st.step + ' कदम सही चलाए। फिर से खेलने के लिए "नया खेल शुरू करें" दबाएँ।');
     return;
   }
   st.step++;
+  st.lane = i;
   puff('car', 1200, 0.7, 0.6, 0.4, 0);
   engineRev('car', st.step / g.steps);
+  if (g.railHead) g.railHead.textContent = CAR_LANES[i] + ' से गाड़ी आगे निकली। ' + st.step + ' कदम पूरे।';
+  if (g.carEl) { void g.carEl.offsetWidth; g.carEl.style.left = carLeft(g, st.step); }
   carSay(g, CAR_LANES[i] + ' से गाड़ी आगे निकली। ' + st.step + ' कदम पूरे।');
   later(g, 1000, function () { carNext(g); });
 }
@@ -7451,7 +7540,6 @@ function stationVoice(g, text, done) {
 function trainNext(g) {
   var st = g.st;
   if (!st || st.over) return;
-  g.play.innerHTML = '';
   if (st.round >= g.rounds) {
     st.over = true;
     stopLoops('train');
@@ -7477,8 +7565,12 @@ function trainNext(g) {
   var num = 1000 + Math.floor(Math.random() * 9000), plat = 1 + Math.floor(Math.random() * 6);
   var ann = 'गाड़ी नंबर ' + num + ', प्लेटफ़ॉर्म नंबर ' + plat + ' पर आएगी।';
   var gen = g.gen, roundNow = st.round;
+  g.play.innerHTML = '';
+  g.play.appendChild(railBoard(g, stations, st.dest));
+  g.trainBtns = el('div', 'gm-trainbtns', '');
+  g.play.appendChild(g.trainBtns);
   stations.forEach(function (s, i) {
-    btn(g.play, 'पटरी ' + (i + 1) + ': ' + s, 'यहाँ दबाकर खेलें: रेलगाड़ी इस पटरी पर भेजें।', function () { trainPick(g, i); });
+    btn(g.trainBtns, 'पटरी ' + (i + 1) + ': ' + s, 'यहाँ दबाकर खेलें: रेलगाड़ी इस पटरी पर भेजें।', function () { trainPick(g, i); });
   });
   if (!gameSpeechOK() || !soundOn.train) { trainSay(g, instr); return; }
   /* घोषणा घंटी के बाद बोली जाती है; उसके पूरा होने पर ही खेल का निर्देश बोला जाता है */
@@ -7490,13 +7582,58 @@ function trainNext(g) {
     });
   });
 }
+/* दृश्य रेल-बोर्ड: हर पटरी एक पट्टी; हर पट्टी पर रेलगाड़ी का डिब्बा बाएँ से दाएँ चलता है।
+   यह केवल देखने के लिए है (aria-hidden); बोलने का काम trainSay करता है */
+function railBoard(g, stations, dest) {
+  var box = el('div', 'rail');
+  box.setAttribute('aria-hidden', 'true');
+  g.railHead = el('div', 'rail-head', 'मंज़िल: ' + dest + '। सही पटरी चुनें।');
+  box.appendChild(g.railHead);
+  g.railLanes = [];
+  stations.forEach(function (s, i) {
+    var lane = el('div', 'rail-lane');
+    var name = el('div', 'rail-name');
+    name.appendChild(el('span', '', 'पटरी ' + (i + 1) + ': ' + s));
+    var tag = el('span', 'rail-tag', '');
+    name.appendChild(tag);
+    lane.appendChild(name);
+    var bar = el('div', 'rail-bar');
+    var train = el('div', 'rail-train wait', 'रेलगाड़ी');
+    train.style.left = '0px';
+    bar.appendChild(train);
+    lane.appendChild(bar);
+    box.appendChild(lane);
+    g.railLanes.push({ lane: lane, tag: tag, train: train });
+  });
+  return box;
+}
+function railTag(tag, cls, text) { tag.className = 'rail-tag ' + cls; tag.textContent = text; }
+/* चुनाव के बाद: चुनी पटरी की रेलगाड़ी उसी पट्टी के आख़िर तक चलती है; सही या गलत का रंग और लिखावट दिखती है */
+function railShow(g, i, ok) {
+  var lanes = g.railLanes, st = g.st;
+  if (!lanes || !lanes[i] || !st) return;
+  var P = lanes[i];
+  P.train.classList.remove('wait');
+  P.train.classList.add(ok ? 'ok' : 'bad');
+  P.lane.classList.add(ok ? 'ok' : 'bad');
+  railTag(P.tag, ok ? 'ok' : 'bad', ok ? 'सही' : 'गलत');
+  if (!ok) {
+    var C = lanes[st.correct];
+    C.lane.classList.add('want');
+    railTag(C.tag, 'want', 'सही पटरी');
+  }
+  g.railHead.textContent = ok ? 'सही पटरी! रेलगाड़ी ' + st.dest + ' पहुँच गई।' : 'गलत पटरी। मंज़िल ' + st.dest + ' थी।';
+  void P.train.offsetWidth;
+  P.train.style.left = 'calc(100% - 84px)';
+}
 function trainPick(g, i) {
   var st = g.st;
   if (!st || st.over || st.picked) return;
   st.picked = true;
-  g.play.innerHTML = '';
+  if (g.trainBtns) g.trainBtns.innerHTML = '';
   brake('train', 0);
-  if (i === st.correct) {
+  var ok = i === st.correct;
+  if (ok) {
     st.right++;
     chime('train', [660, 880], 0.08);
     bell('train', 1.1);
@@ -7505,6 +7642,7 @@ function trainPick(g, i) {
     tone('train', 170, 0.45, 'sawtooth', 0.18, 1.0);
     trainSay(g, 'गलत पटरी। यह रेलगाड़ी ' + st.stations[i] + ' पहुँची, मंज़िल ' + st.dest + ' थी।');
   }
+  railShow(g, i, ok);
   later(g, 1400, function () { trainNext(g); });
 }
 reg('car', 'gm-car-body', setupCar);
